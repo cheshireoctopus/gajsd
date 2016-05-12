@@ -71,6 +71,27 @@ section.has-light-background {
 	max-height: none !important;
 }
 
+.heading {
+	background-image: url(../../img/main/ga-logo.png);
+	background-repeat: no-repeat;
+	background-position: right top 4px;
+	font-family: $headingFont !important;
+	font-size: $heading3Size !important;
+	text-transform: uppercase !important;
+	margin-bottom: 20px !important;
+	border-bottom: 2px solid black !important;
+
+	img {
+		height: 60px !important;
+		width: 60px !important;
+		margin: 0 !important;
+		float: right;
+		border: none !important;
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+}
+
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
