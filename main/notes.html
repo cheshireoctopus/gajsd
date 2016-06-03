@@ -56,44 +56,64 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Week One</h2>
+                <!-- UNIT 1 -->
+                <h1>Unit 1: Fundamentals of JavaScript</h1>
+                <h3>Week One</h3>
                 <a href="../notes/class00.html" class="list-group-item disabled">Class 00 - Installfest (06/28/16)</a>
                 <a href="../notes/class01.html" class="list-group-item disabled">Class 01 - JS on the Command Line (06/30/16)</a>
-                <h2>Week Two</h2>
+                <h3>Week Two</h3>
                 <a href="../notes/class02.html" class="list-group-item disabled">Class 02 - Data Types (07/05/16)</a>
                 <a href="../notes/class03.html" class="list-group-item disabled">Class 03 - Conditionals and Loops (07/07/16)</a>
-                <h2>Week Three</h2>
+                <h3>Week Three</h3>
                 <a href="../notes/class04.html" class="list-group-item disabled">Class 04 - Functions and Scope (07/12/16)</a>
                 <a href="../notes/class05.html" class="list-group-item disabled">Class 05 - Project 1 Lab: Slackbot (07/14/16)</a>
-                <h2>Week Four</h2>
+                <h3>Week Four</h3>
                 <a href="../notes/class06.html" class="list-group-item disabled">Class 06 - Objects and JSON (07/19/16)</a>
+                <hr>
+
+                <!-- UNIT 2 -->
+                <h1>Unit 2: The Browser and API's</h1>
+                <h3>Week Four (ctn)</h3>
                 <a href="../notes/class07.html" class="list-group-item disabled">Class 07 - Intro to DOM & jQuery (07/21/16)</a>
-                <h2>Week Five</h2>
+                <h3>Week Five</h3>
                 <a href="../notes/class08.html" class="list-group-item disabled">Class 08 - DOM & jQuery Continued (07/26/16)</a>
                 <a href="../notes/class09.html" class="list-group-item disabled">Class 09 - AJAX and API's (07/28/16)</a>
-                <h2>Week Six</h2>
+                <h3>Week Six</h3>
                 <a href="../notes/class10.html" class="list-group-item disabled">Class 10 - Asynchronous JS and Callbacks (08/02/16)</a>
                 <a href="../notes/class11.html" class="list-group-item disabled">Class 11 - Advanced API's (08/04/16)</a>
-                <h2>Week Seven</h2>
+                <h3>Week Seven</h3>
                 <a href="../notes/class12.html" class="list-group-item disabled">Class 12 - Mid-course Lab (08/09/16)</a>
+                <hr>
+
+                <!-- UNIT 3 -->
+                <h1>Unit 3: Persisting Data and Advanced Topics</h1>
+                <h3>Week Seven (ctn)</h3>
                 <a href="../notes/class13.html" class="list-group-item disabled">Class 13 - Prototypal Inheritance (08/11/16)</a>
-                <h2>Week Eight</h2>
+                <h3>Week Eight</h3>
                 <a href="../notes/class14.html" class="list-group-item disabled">Class 14 - Closures and This (08/16/16)</a>
                 <a href="../notes/class15.html" class="list-group-item disabled">Class 15 - Intro to Crud and Firebase (08/18/16)</a>
-                <h2>Week Nine</h2>
+                <hr>
+
+                <!-- UNIT 4 -->
+                <h1>Unit 4: Building and Deploying Applications</h1>
+                <h3>Week Nine</h3>
                 <a href="../notes/class16.html" class="list-group-item disabled">Class 16 - Deploying Your App (08/23/16)</a>
                 <a href="../notes/class17.html" class="list-group-item disabled">Class 17 - Instructor Student Choice (08/25/16)</a>
-                <h2>Week Ten</h2>
+                <h3>Week Ten</h3>
                 <a href="../notes/class18.html" class="list-group-item disabled">Class 18 - Final Project Lab / Student Choice (08/30/16)</a>
                 <a href="../notes/class19.html" class="list-group-item disabled">Class 19 - Final Project Lab / Student Choice (09/01/16)</a>
-                <h2>Week Eleven</h2>
-                <a href="../notes/class18.html" class="list-group-item disabled">Class 20 - Final Presentations (09/06/16)</a>
+                <h3>Week Eleven</h3>
+                <a href="../notes/class20.html" class="list-group-item disabled">Class 20 - Final Presentations (09/06/16)</a>
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script>
+        $('.disabled').click(function (e) {
+            e.preventDefault()
+        })
+
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
