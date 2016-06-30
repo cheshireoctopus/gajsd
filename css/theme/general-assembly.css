@@ -48,6 +48,15 @@ section.has-light-background, section.has-light-background h1, section.has-light
     background: transparent !important;
     box-shadow: none !important; }
 
+.code {
+  background: #f9f2f4;
+  padding: 2px 4px !important;
+  color: #c7254e;
+  border-radius: 4px; }
+
+.reveal blockquote {
+  width: 90% !important; }
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
