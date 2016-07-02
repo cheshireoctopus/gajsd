@@ -31,8 +31,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="notes.html">Notes</a></li>
-                    <li><a href="homework.html">Homework</a></li>
-                    <li class="dropdown active">
+                    <li class="active"><a href="homework.html">Homework</a></li>
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="projects.html">Projects Overview</a></li>
@@ -49,55 +49,34 @@
         </div>
     </nav>
     <div class="jumbotron">
-            <div class="container">
-            <h1>Projects</h1>
+        <div class="container">
+            <h1>Homework</h1>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <!-- OVERVIEW -->
-                <h2>Overview</h2>
-                <p>JavaScript Development contains three projects:</p>
-                <ol>
-                    <li>Slackbot</li>
-                    <li>Feedr</li>
-                    <li>Final Project</li>
-                </ol>
-                <p>Successful completion of each project is required in order to satisfy the course's graduation requirements.</p>
-                <hr>
-
-                <!-- PROJECT 1 -->
-                <h2>Project 1: Slackbot</h2>
-                <p>
-                    For our first project, we are going to keep things simple. We will build a Slackbot on top of the popular Github bot called <a href="https://github.com/slackhq/hubot-slack">Hubot</a>. Hubot is a robot that was created by GitHub, that enhances their company chat. Hubot can deploy their site, act as a source of fun comments, and also automate their daily tasks. It is powerful and can be extended in a way that developers can build whatever they want on top of it.
-                </p>
-                <p>
-                    Hubot scripts are generally written in <a href="http://coffeescript.org/">CoffeeScript</a>, a language that compiles into JavaScript. Thankfully, these scripts can also be written in vanilla JavaScript. Your bot can respond to whatever you like, but it must perform at least <u>three</u> different actions.
-                </p>
-                <p><a href="slackbot.html">Slackbot Details...</a></p>
-                <hr>
-
-                <!-- PROJECT 2 -->
-                <h2>Project 2: Feedr</h2>
-                <p>
-                    For our Unit 2 project we will build <strong>Feedr</strong>, a personalized feed reader. Our feed reader will pull feeds from our favorite blogs. The user will be able to filter between publications through the dropdown on the header menu. Clicking/tapping on one of the articles will load a pop up with more information. From that point, the user will either be able dismiss the additional information, or proceed through to the referenced article.
-                </p>
-                <p><a href="feedr.html">Feedr Details...</a></p>
-                <hr>
-
-                <!-- FINAL PROJECT -->
-                <h2>Project 3: Final Project</h2>
-                <p>
-                    For the final project, students will design and build a <a href="https://en.wikipedia.org/wiki/Single-page_application">single-page web application</a>. This project will test your knowledge of JavaScript and ask you to apply everything you've learned in this course. The result will be a web app that you can add to your portfolio. The sky is the limit - work with your instructional team to create project goals that are realistic given the scope and timing of the class.
-                </p>
-                <p><a href="final-project.html">Final Project Details...</a></p>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Week One</h3></div>
+                    <div class="panel-body">
+                        <ol>
+                            <li>Finish the <a target="_blank" href="../materials/pre_course/checklist.pdf">prework</a>!</li>
+                            <li>Complete <a target="_blank" href="https://try.github.io/">https://try.github.io/</a></li>
+                            <li>Units 1 and 2 from CodeAcademy's <a target="_blank" href="https://www.codecademy.com/learn/learn-the-command-line">Learn the Command Line</a> (ignore paid-content)</li>
+                            <li>Extra Credit: <a target="_blank" href="http://cli.learncodethehardway.org/book/">The Command Line Crash Course</a></li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script>
+        $('.disabled').click(function (e) {
+            e.preventDefault()
+        })
+
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
