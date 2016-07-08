@@ -27,6 +27,799 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>1) Please clone Joe's <a href="https://github.com/jkeohan/jsd04_class_repo">class repo</a> into your <code class="code">GA_JSD</code> directory</p>
+						<p class="pad-left-lg"><span style="color: red;">DANGER!</span> Do not clone into your <code class="code">github.io</code> directory</p>
+						<p>2) Copy <code class="code">week2</code> into your <code class="code">github.io</code> folder</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#03</span> - 07/07/2016</h1>
+					<h1>Conditionals and Loops</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Strings</p>
+					<p>&#149; Conditional statements</p>
+					<p>&#149; Logical operators</p>
+					<p>&#149; Truthy and falsy values</p>
+					<p>&#149; Boolean logic</p>
+					<p>&#149; Loops: <code class="code">for</code> and <code class="code">while</code></p>
+					<p>&#149; Lab</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Questions</div>
+					<div class="text-smaller">
+						<p class="fragment">
+							<b>Q: What makes something a variable vs a function? For: <br> <code class="code">var myFunction = function() {};</code> isn't <code class="code">myFunction</code> a variable, too?</b>
+						</p>
+						<p class="fragment pad-left-lg">
+							A: Variables can hold (or, point to) assorted types of data (numbers, string, etc.), objects, and even functions.
+							<br>
+<pre class="fragment"><code>
+	var myFunction = function () {
+	  return 'Hello, World!';
+	};
+
+	typeof myFunction
+	// 'function
+
+	myFunction
+	[Function]
+
+	myFunction()
+	// 'Hello, World!'
+
+</code></pre>
+						</p>
+					</div>
+				</section>
+
+				<!-- PACKAGE CONTROL -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Package Control</div>
+					<p>Last class, you installed <a href="https://packagecontrol.io/">Package Control</a>:</p>
+					<div class="fragment pad-left-lg">
+						<p>&#149; Package manager for Sublime Text (similar to <code class="code">brew</code> and <code class="code">npm</code></p>
+						<p>&#149; Contains over 2.5k freely avaiable <a href="https://packagecontrol.io/browse">packages</a> and themes</p>
+						<p>&#149; <u>Always</u> use Package Manager to install packages:</p>
+						<div class="pad-left-lg text-smaller">
+							<p>1) <code class="code">command</code> + <code class="code">shift</code> + <code class="code">p</code></p>
+							<p>2) <code class="code">install</code> (Package Control: Install Package)</p>
+							<p>3) Search for the package you want to install</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- STRINGS -->
+				<section class="center">
+					<h1>Strings</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">String Concatenation</div>
+
+					<p>&#149; JS allows us to combine strings with variables, numbers, and other strings using the <code class="code">+</code> operator:</p>
+<pre class="fragment"><code>
+	> 'cat' + 'dog'
+	// 'catdog'
+
+	> 5 + ' cats'
+	// '5 cats'
+
+	var animal1 = 'cats'
+	var animal2 = 'dogs'
+
+	> 'i like ' + animal1 + ' and ' + animal2
+	// 'i like cats and dogs'
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">String Helper Methods</div>
+					<div class="fragment text-smaller">
+						<p>&#149; Use <code class="code">[index]</code> to access a particular index of a string</p>
+						<p class="pad-left-lg text-smallest">
+							&rArr; <code class="code">'javascript'[0]</code>
+						</p>
+						<p>&#149; <code class="code">.toLowerCase()</code> will return a string with all lower-case letters</p>
+						<p class="pad-left-lg text-smallest">
+							&rArr; <code class="code">'JAVASCRIPT'.toLowerCase()</code>
+						</p>
+						<p>&#149; <code class="code">.toUpperCase()</code> will return a string with all upper-case letters</p>
+						<p class="pad-left-lg text-smallest">
+							&rArr; <code class="code">'javascript'.toUpperCase()</code>
+						</p>
+						<p>&#149; <code class="code">.substring(x, y)</code> returns characters of a string between to indices</p>
+						<p class="pad-left-lg text-smallest">
+							&rArr; <code class="code">'JavaScript'.substr(0, 4)</code>
+						</p>
+					</div>
+				</section>
+
+				<!-- CONDITIONAL STATEMENTS -->
+				<section class="center">
+					<h1>Conditional Statements</h1>
+					<h2><code class="code">if/else</code></h2>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statements</div>
+					<p>Control Flow:</p>
+					<div class="pad-left-lg">
+						<p>&#149; Order in which the computer executes program's statements</p>
+						<p>&#149; Determines which chunks of code are running at a given time</p>
+					</div>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statements</div>
+					<p>Sequential Control Flow:</p>
+					<p class="text-smaller pad-left-lg">Programs execute line by line, from top to bottom</p>
+					<div class="text-center">
+						<img src="../img/class03/sequential-flow.png">
+					</div>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statements</div>
+
+					<p>Sequential Control Flow Example:</p>
+<pre><code>
+	function square (num) {
+		var squaredNum = Math.pow(num, 2)
+		console.log(squaredNum)
+	}
+
+</code></pre>
+					<p class="fragment">1) <code class="code">var squaredNum = Math.pow(num, 2)</code></p>
+					<p class="fragment">2) <code class="code">console.log(squaredNum)</code></p>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statements</div>
+
+					<p>Programs can flow in other ways:</p>
+					<div class="text-center">
+						<img src="../img/class03/control-flows.jpg">
+					</div>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statements</div>
+					<p>If/Else Flow:</p>
+					<div class="pad-left-lg">
+						<p>&#149; AKA <i>conditional</i> or <i>selection</i></p>
+						<p>&#149; Used to alter program flow when a decision must be made between two or more actions</p>
+						<p>&#149; This choice is usually made based on variables within the function/program</p>
+					</div>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statements</div>
+					<p>If/Else Flow:</p>
+					<div class="text-center">
+						<img src="../img/class03/conditional-flow.jpg">
+					</div>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statments</div>
+					<p>Sequential vs. Conditional Flows:</p>
+					<div class="text-center">
+						<img src="../img/class03/sequential-vs-conditional-flow.png" alt="">
+					</div>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Conditional Statments</div>
+					<p>Conditional Flows JavaScript Syntax:</p>
+<pre><code>
+	var x = 10;
+
+	if (x > 5) {
+		alert('x is larger than 5!');
+	} else {
+		alert('x is smaller than 5!');
+	}
+
+</code></pre>
+					<p class="text-smallest">&#149; Denoted by the <code class="code">if</code> and <code class="code">else</code> keywords</p>
+					<p class="text-smallest">&#149; Begins with a <u>condition</u>: <code class="code">(x > 5)</code></p>
+					<p class="text-smallest">&#149; If the condition is true, the statment(s) in the "if block" will run</p>
+					<p class="text-smallest">&#149; If the condition is false, the statment(s) in the "else block" will run</p>
+				</section>
+
+				<!-- LOGICAL OPERATORS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Logial Operators</div>
+					<p class="text-smaller">Assuming <code>var x = 3</code></p>
+					<img src="../img/class03/logical-operators.png" alt="">
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Logical Operators: <code class="code">==</code> vs <code class="code">===</code></div>
+					<div class="fragment text-smaller">
+						<p>&#149; <code class="code">==</code> (loose equality); Compares <u>value</u> only</p>
+<pre><code>
+	> '2' == 2
+	// true
+
+	> 1 == true
+	// true
+
+</code></pre>
+					</div>
+					<div class="fragment text-smaller">
+						<p>&#149; <code class="code">===</code> (strict equality); Compares both <u>value</u> and <u>type</u></p>
+<pre><code>
+	> '2' === 2
+	// false (the string two is NOT equal to the number 2)
+
+	> 1 === true
+	// false (the number 1 is NOT equal to the boolean true)
+
+</code></pre>
+					</div>
+					<p class="fragment">&#149; Always use <code class="code">===</code> and <code class="code">!==</code> when comparing equalities</p>
+				</section>
+
+				<section class="text-left text-smaller" data-background="#FFF">
+					<div class="heading">Logial Operators</div>
+						<p>Ex. 1</p>
+<pre><code>
+	var x = 10;
+
+	if (x === 10) {
+		alert('bananas');
+	} else {
+		alert('apples');
+	}
+
+</code></pre>
+
+						<p>Ex. 2</p>
+<pre><code>
+	var x = 'cat';
+
+	if (x !== 5) {
+		alert('tacos');
+	} else {
+		alert('salads');
+	}
+
+</code></pre>
+				</section>
+
+				<section class="text-left text-smaller" data-background="#FFF">
+					<div class="heading">Logial Operators</div>
+					<p>Ex. 3</p>
+<pre><code>
+	var x = 10;
+
+	if (x >= 10) {
+		alert('oranges');
+	} else {
+		alert('strawberrys');
+	}
+
+</code></pre>
+
+					<p>Ex. 4</p>
+<pre><code>
+	var x = 10;
+
+	if (x <= 10) {
+		alert('kiwis');
+	} else {
+		alert('olives');
+	}
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Logical Operators: A Note</div>
+					<p><b>Note:</b> there are situations where <code class="code">===</code> does not behave as expected:</p>
+					<div class="fragment">
+<pre><code>
+	// with objects
+	> {} === {}
+	// false
+
+	// with arrays
+	> [1,2,3] === [1,2,3]
+	// false
+
+</code></pre>
+					</div>
+					<div class="fragment text-smaller">
+						<p>&#149; <u>Reference</u> vs. <u>Primitive</u> data types</p>
+						<p>&#149; Reference types <u>reference</u>, or point to, a place in memory</p>
+						<p>&#149; <code class="code">===</code> is also comparing this location</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Logical Operators: A Note</div>
+					<p>We will be revisiting this topic later:</p>
+					<div class="fragment text-smaller">
+						<p>&#149; Primitive Values:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Number</p>
+							<p>&rArr; String</p>
+							<p>&rArr; Boolean</p>
+							<p>&rArr; Undefined</p>
+							<p>&rArr; Null</p>
+						</div>
+					</div>
+					<div class="fragment text-smaller">
+						<p>&#149; Reference Values:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Arrays</p>
+							<p>&rArr; Objects</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- CONDITIONAL STATEMENTS: MULTIPLE CONDITIONS -->
+				<section class="center">
+					<h1>Multiple Conditions</h1>
+					<h2><code class="code">else if</code></h2>
+				</section>
+
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Condtional Statements - Multiple Conditions</div>
+					<p class="text-smaller">&#149; Often, programs will evaluate more than one condition</p>
+					<p class="text-smaller">&#149; In JS, use the <code class="code">else if</code> for multiple conditions:</p>
+
+<pre><code>
+	var x = 10;
+
+	if (x !== 10) {
+		alert('beer');
+	} else if (x === 10) {
+		alert('coffee');
+	} else {
+		alert('water');
+	}
+
+</code></pre>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Condtional Statements - Multiple Conditions</div>
+					<p>The <code class="code">else</code> block acts as a "default" or catch-all option:</p>
+<pre><code>
+	var bestLanguage = 'javascript';
+
+	if (bestLanguage === 'python') {
+	  alert('python!');
+	} else if (bestLanguage === 'ruby') {
+	  alert('ruby!');
+	} else if (bestLanguage === 'swift') {
+	  alert('swift!');
+	} else {
+	  alert('JavaScript!');
+	}
+
+</code></pre>
+				</section>
+
+				<!-- TRUTHY/FALSY VALUES -->
+				<section class="center">
+					<h1>Truthy and Falsy Values</h1>
+					<img src="../img/class03/truth_o_meter.png" alt="">
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Truth/Falsy Values</div>
+					<p>In addition to explicit <code class="code">true</code> and <code class="code">false</code> values, JS values are inherently truthy or falsy:</p>
+					<p>&#149; <u>Truthy</u>: values that translate to <code class="code">true</code> when evaluated in a boolean context</p>
+					<p>&#149; <u>Falsy</u>: values that translate to <code class="code">false</code> when evaluated in a boolean context</p>
+					<div class="fragment">
+						<p>&#149; The result of JS's <u>type coercion</u> (the changing of data types, e.g. a string to a boolean)</p>
+						<p><b>&rArr; Note</b>: all values are truthy, except for a limited set of falsy values</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Truth/Falsy Values</div>
+					<p>Falsy Values:</p>
+					<div class="pad-left-lg">
+						<p>1) <code class="code">false</code></p>
+						<p>2) <code class="code">null</code></p>
+						<p>3) <code class="code">undefined</code></p>
+						<p>4) <code class="code">NaN</code></p>
+						<p>5) <code class="code">0</code></p>
+						<p>6) <code class="code">""</code> (an empty string)</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Truthy/Falsy Values</div>
+						<div class="text-smallest">
+							<p>Truthy:</p>
+<pre><code>
+	var num = 10;
+
+	if (num) {
+	  console.log('this is a TRUTHY value');
+	} else {
+	  console.log('this is a FALSY value');
+	}
+
+	// 'this is a TRUTHY' value
+
+</code></pre>
+							<p>Falsy:</p>
+<pre><Code>
+
+	var emptyStr = "";
+
+	if (emptyStr) {
+	  console.log('this is a TRUTHY value');
+	} else {
+	  console.log('this is a FALSY value');
+	}
+
+	// 'this is a FALSY' value
+
+</code></pre>
+						</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Truthy/Falsy Values</div>
+					<p><b>Remember:</b> truthy/falsey values are not necessarily equal to <code class="code">true</code> or <code class="code">false</code></p>
+					<p class="fragment">&#149; Comparing these values using <code class="code">==</code> and <code class="code">===</code>:</p>
+					<div class="fragment">
+<pre><code>
+	> false == 0
+	// true
+
+	> false === 0
+	// false (the boolean false is not equal to the number 0)
+
+	> true == 1
+	// true
+
+	> true === 0
+	// false (the boolean true is not equal to the number 1)
+
+</code></pre>
+					</div>
+				</section>
+
+				<!-- BOOLEAN LOGIC -->
+				<section class="center">
+					<h1>Boolean Logic</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Boolean Logic</div>
+
+					<p>Often, we will want to perform more complex logic</p>
+					<p class="fragment"><b>Simple</b>: If it's hot, wear a t-shirt</p>
+					<div class="fragment">
+<pre><code>
+	if (temp === 'hot') {
+		wear('t-shirt')
+	}
+
+</code></pre>
+					</div>
+					<p class="fragment"><b>More Complex</b>: If it's hot and raining, wear a rain jacket</p>
+					<div class="fragment">
+<pre><code>
+	if (temp === 'hot' && weather === 'raining') {
+		wear('rain jacket')
+	}
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Boolean Logic</div>
+
+					<p>Three operators for more complex logic:</p>
+					<p>&#149; <u>Binary</u> operators that require two values</p>
+					<div class="pad-left-lg">
+						<p><code class="code">&&</code> <b>(AND)</b></p>
+						<p><code class="code">||</code> <b>(OR)</b></p>
+					</div>
+					<p>&#149; <u>Unary</u> operator that requires one value</p>
+					<p class="pad-left-lg"><code class="code">!</code> <b>(NOT)</b></p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Boolean Logic: <code class="code">&&</code> <b>(AND)</b></div>
+					<p>&#149; The <code class="code">&&</code> operator requires both left and right values to be <code class="code">true</code> in order to return <code class="code">true</code></p>
+<pre><code>
+	> true && true
+	// true
+
+</code></pre>
+					<p>&#149; Any other combination will return <code class="code">false</code></p>
+<pre><code>
+	> true && false
+	// false
+
+	> false && true
+	// false
+
+	> false && false
+	// false
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Boolean Logic: <code class="code">||</code> <b>(OR)</b></div>
+					<p>&#149; The <code class="code">||</code> operator requires just one of the left or right values to be <code class="code">true</code> in order to return <code class="code">true</code></p>
+<pre><code>
+	> true || false
+	// true
+
+	> false || true
+	// true
+
+</code></pre>
+					<p>&#149; Only <code class="code">false || false</code> will return <code class="code">false</code></p>
+<pre><code>
+	> false || false
+	// false
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Boolean Logic: <code class="code">!</code> <b>(NOT)</b></div>
+					<p>&#149; The <code class="code">!</code> operator takes a value and returns the OPPOSITE boolean value</p>
+<pre><code>
+	> !true
+	// false
+
+	> !false
+	// true
+
+	> !(true && true)
+	// false
+
+	> !(true || false)
+	// false
+
+	// can also be used on truthy/falsy values
+	> !([].length)
+	// true
+
+</code></pre>
+				</section>
+
+				<!-- LAB -->
+				<section class="center">
+					<h1>Conditionals Lab</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Conditionals Lab</div>
+					<div class="text-smaller">
+						<p>&#149; Open <code class="code">conditionals_lab.js</code></p>
+						<p>&#149; Using an <code class="code">if</code>, <code class="code">else</code>, <code class="code">else if</code> structure, logical operators, and boolean logic, complete the function so that it prints the proper response for a given <code class="code">age</code> input:</p>
+					</div>
+					<div class="text-smallest pad-left-lg">
+						<p>&rArr; If you are under 16, you cannot do much outside of going to school</p>
+						<p>&rArr; If you are 16 or older, you can drive</p>
+						<p>&rArr; If you 18 or older, you can vote</p>
+						<p>&rArr; If you are 21 or older, you can drink alcohol</p>
+						<p>&rArr; If you are 25 or older, you can rent a car</p>
+						<p>&rArr; If you are 35 or older, you can run for president</p>
+						<p>&rArr; If you are 62 or older, you collect social security benefits</p>
+					</div>
+				</section>
+
+				<!-- BREAK (5-7 mins) -->
+				<section class="center">
+					<h1>5 minute break</h1>
+					<img src="../img/main/break-time-bear.jpg">
+				</section>
+
+				<!-- LOOPS -->
+				<section class="center">
+					<h1>Loops</h1>
+				</section>
+
+				<section class="text-left" data-background="#FFF">
+					<div class="heading">Loops</div>
+
+					<p>Program control flow:</p>
+					<div class="text-center">
+						<img src="../img/class03/control-flows.jpg">
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Loops</div>
+
+					<p>This program prints the numbers one through five:</p>
+					<div class="fragment">
+<pre><code>
+	function printNumbers () {
+	  console.log(1);
+	  console.log(2);
+	  console.log(3);
+	  console.log(4);
+	  console.log(5);
+	}
+
+</code></pre>
+					</div>
+					<p class="fragment">&#149; Does this program scale easily?</p>
+					<p class="fragment">&#149; What if I wanted to print the numbers one through one-hundred? One-million?</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Loops</div>
+
+					<p>&#149; Loops allow us to execute the <u>same</u> block of code for all values in a particular set of data, or for a pre-defined number of loops</p>
+<pre><code>
+	for (var i = 1; i <= 5; i++) {
+	  console.log(i);
+	}
+
+	// 1
+	// 2
+	// 3
+	// 4
+	// 5
+
+</code></pre>
+					<p>&#149; We will be covering <code class="code">while</code> and <code class="code">for</code> loops</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Loops: <code class="code">while</code></div>
+
+					<p>&#149; <code class="code">while</code> loops run as long as their <u>condition</u> is true</p>
+					<div class="fragment">
+						<p>&#149; This will run forever (an infinite-loop):</p>
+<pre><code>
+	while (true) {
+	  console.log('loop is running!');
+	}
+
+</code></pre>
+					</div>
+					<div class="fragment">
+						<p>&#149; This will run once:</p>
+<pre><code>
+	var shouldRun = true;
+
+	while (shouldRun) {
+		console.log('loop is running!');
+		shouldRun = false; // updated the loop's condition
+	}
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Loops: <code class="code">while</code></div>
+
+					<p>Write a function that counts down from 10 using a <code class="code">while</code> loop:</p>
+					<div class="fragment">
+<pre><code>
+  var count = 10;
+
+  while (count >= 0) {
+    console.log(count);
+    count -= 1; // always update your condition in a while loop!
+  }
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Loops: <code class="code">for</code></div>
+
+					<p>&#149; <code class="code">for</code> loops will run for a set duration (number)</p>
+					<p>&#149; The following will print the numbers one through five</p>
+<pre><code>
+	for (var i = 1; i <= 5; i++) {
+		console.log(i);
+	}
+
+</code></pre>
+					<div class="fragment">
+						<p>&#149; <code class="code">for</code> loop anatomy:</p>
+						<div class="pad-left-lg text-smaller">
+							<p>&rArr; <b>initialization</b>: declares the loop's counter</p>
+							<p>&rArr; <b>condition</b>: determines if the loop executes</p>
+							<p>&rArr; <b>iteration</b>: changes the counter after each loop</p>
+							<p>&rArr; <b>body</b>: code block that runs once per loop</p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Loops: <code class="code">for</code></div>
+
+					<p>&#149; <code class="code">for</code> loops are useful for iterating over arrays (similar to <code class="code">Array.forEach()</code></p>
+<pre><code>
+  var boroughs = ['manhattan', 'the bronx', 'queens', 'brooklyn', 'staten island']
+
+  for (var i = 0; i < boroughs.length; i++) {
+    var boro = boroughs[i]; // ex: boroughs[0] would return 'manhattan'
+    console.log(boro);
+  }
+
+</code></pre>
+					<div class="fragment">
+						<p>&#149; Be sure to initialize with your counter at 0</p>
+						<p>&#149; Run the loop for the duration of the array's length</p>
+						<p>&#149; Access the array structure inside the loop using the current value of the counter</p>
+					</div>
+				</section>
+
+				<!-- LAB -->
+				<section class="center">
+					<h1>Lab</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Lab: Fizz Buzz</div>
+					<p>&#149; Open <code class="code">fizzbuzz.js</code>; we are building the <a href="http://c2.com/cgi/wiki?FizzBuzzTest">Fizz Buzz</a></p>
+					<p>&#149; Your program should:</p>
+					<div class="pad-left-lg">
+						<p>1) Use a <code class="code">for</code> loop to print the numbers 1 - 100</p>
+						<p>2) Use <code class="code">if</code>, <code class="code">else</code>, <code class="code">else if</code> to:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&#149; Print <code class="code">"fizz"</code> if a number in the loop is divisible by 3</p>
+							<p>&#149; Print <code class="code">"buzz"</code> if a number in the loop is divisible by 5</p>
+							<p>&#149; Print <code class="code">"fizzbuzz"</code> if a number in the loop is divisible by 3 and 5</p>
+						</div>
+					</div>
+					<p>&#149; Ex: 1, 2, 'fizz', 4, 'buzz', 'fizz', 7, 8, 'fizz', 'buzz'...</p>
+				</section>
+
+				<!-- END/WRAPUP -->
+				<section class="center">
+					<h1>FIN</h1>
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- HOMEWORK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Homework</div>
+					<p>1) Complete <code class="code">fizzbuzz.js</code></p>
+					<p>2) Complete <code class="code">99_bottles_of_beer.js</code>:</p>
+					<div class="pad-left-lg">
+						<p>&#149; Write a script that prints the lyrics to "99 Bottles of Beer on the Wall" in the terminal (<a href="http://www.99-bottles-of-beer.net/lyrics.html">lyrics </a>).</p>
+						<p>&#149; Make sure your program can handle both singular and plural cases (i.e. both "100 bottles of beer" and "1 bottle of beer").</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #04 (of 20) - Functions and Scope</h4>
+					<div class="pad-left-lg">
+						<p>&rArr; Functions</p>
+						<p>&rArr; Function parameters</p>
+						<p>&rArr; The <code class="code">return</code> statement</p>
+						<p>&rArr; Scope (local vs global)</p>
+					</div>
+				</section>
 			</div>
 		</div>
 
