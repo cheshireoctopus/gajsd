@@ -27,178 +27,379 @@
 	<body>
 
 		<!--
-			Lesson 06 - CSS Floats (pt. 2)
-
-			Learning Objectives:
-				- Horizontal Nav strategies
-				- Display Property: inline-block;
-				- CSS Floats
-				- CSS Clears
+			Lesson 06 - Objects and JSON
 		-->
 
 		<div class="reveal">
 			<div class="slides">
 				<section class="center">
-					<h1>HELLO</h1>
-					<div class="text-left text-smallest pad-left-lg">
-						<p>1) Please download <a href="../materials/class06/class06.zip">Class 06 Starter Code</a></p>
-						<p>2) Move the following into your homework directory:</p>
-						<p class="pad-left-lg">&#149; <code>startup-matchmaker/</code></p>
-						<p>3) The solution to last week's layout/float challenges:</p>
-						<p class="pad-left-lg">&#149; <code>fashion-blog-solution/</code></p>
-						<p class="pad-left-lg">&#149; <code>relaxr-solution/</code></p>
-						<p>4) Push up your HW!</p>
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>1) Please commit and push your homework to your <code class="code">github.io</code></p>
+						<p>2) Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
 					</div>
 				</section>
 
 				<section class="center">
-					<h1>Class #06 - 03/21/2016</h1>
-					<h1>CSS Floats (pt. 2)</h1>
-				</section>
-
-				<!-- ANNOUNCEMENTS -->
-				<section class="center">
-					<h1>Announcements:</h1>
-
-					<div class="text-left">
-						<p>&#149; Final Projects! First deliverable due 03/28 (Monday)</p>
-						<p class="pad-left-lg">&rArr; Project Proposal & Wireframes</p>
-						<p>&#149; GA is buying us drinks!</p>
-						<p class="pad-left-lg">&rArr; 3/23 (Wednesday) - after intro to JS</p>
-					</div>
-				</section>
-
-				<!-- QUESTIONS -->
-				<section class="center">
-					<h1>Questions</h1>
-					<img src="../img/main/questions.jpg">
-				</section>
-
-<!-- 				<section data-background="#FFF" class="text-left">
-					<h2>Questions</h2>
-					<hr>
-
-					<p class="text-smaller fragment"><b>Q: Default spacing between elements?</b></p>
-					<p class="text-smaller fragment">A: Unable to locate a source, but looks like 4px</p>
-				</section>
- -->
-				<!-- AGENDA -->
-				<section data-background="#FFF" class="text-left">
-					<h2>Agenda</h2>
-					<hr>
-					<p>&#149; Final Project</p>
-					<p>&#149; Floats/Clears Review</p>
-					<p>&#149; Startup Matchmaker Lab</p>
-				</section>
-
-				<section class="center">
-					<h1>Final Project</h1>
-					<img src="../img/class01/final.jpg">
+					<h1>Class <span style="color: red;">#06</span> - 07/19/2016</h1>
+					<h1>Objects and JSON</h1>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<h2>Final Project</h2>
-					<hr>
-
-					<div class="text-smallest">
-						<p>&#149; Culmination of all skills/technologies (and then some)</p>
-						<p>&#149; Five deliverables; due weekly starting @ week 5</p>
-						<p>&#149; Watch out for scope creep!</p>
-						<p>&#149; Student Gallery: <a href="http://gallery.ga.co/">http://gallery.ga.co/</a></p>
-						<p class="pad-left-lg">&rArr; <a href="http://ericthelefty.github.io/fewd-37/Project/doggy.html">Trippy Dog</a></p>
-						<p class="pad-left-lg">&rArr; <a href="http://weeeitsmylinh.github.io/fewd-37/map-project/world-map/world.html">Find That Country</a></p>
-						<p class="pad-left-lg">&rArr; <a href="http://astrologer-horse-46603.bitballoon.com/">Tweet The Vote</a></p>
-						<p class="pad-left-lg">&rArr; <a href="http://www.drinkerlyn.com/">Erlyn</a></p>
-						<p class="pad-left-lg">&rArr; <a href="http://murielm.github.io/fewd-34/Homework/disrupticon">Disrupticon</a></p>
-						<p>&#149; <a href="../main/final-project.html">Final project document</a></p>
+					<div class="heading">Announcements</div>
+					<p>Final Project</p>
+					<div class="pad-left-lg">
+						<p>&#149; Due in 7 weeks: Tuesday, 9/06</p>
+						<p>&#149; Final class will consist of (optional) presentations</p>
+						<p>&#149; Next deliverable due 07/26: at least three ideas or <u>proven progress</u> on one idea</p>
 					</div>
+<!-- 					<p>Happy Hour</p>
+					<div class="pad-left-lg">
+						<p>&#149; GA is buying us drinks. Oh yea.</p>
+					</div> -->
 				</section>
 
-				<!-- FLOATS REVIEW -->
 				<section class="center">
-					<h1>Floats/Clears Review</h1>
+					<h1>Warm Up</h1>
+					<img src="../img/random/warmup.jpg" alt="">
+					<p><a href="https://repl.it/CdWV/0" target="_blank">https://repl.it/CdWV/0</a></p>
 				</section>
 
-				<section data-background="#FFF">
-					<h2 class="text-left">Floats - Review</h2>
-					<hr>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Objects</p>
+					<p>&#149; Objects Lab</p>
+					<p>&#149; JavaScript Object Notation (JSON)</p>
+					<p>&#149; JSON Lab</p>
+				</section>
 
-					<div class="text-left">
-						<p>&#149; Enable complex layouts by altering a block element's "flow" in the document</p>
-						<p>&#149; Floated elements will shift left or right, until:</p>
-						<p class="pad-left-lg">&rArr; They reach the side of their parent</p>
-						<p class="pad-left-lg">&rArr; They encounter another floating element</p>
-						<p>&#149; Text and Inline elements will now <u>wrap</u> around it</p>
-						<p>&#149; <a href="http://codepen.io/cheshireoctopus/pen/dYQBpz?editors=110">Example</a></p>
+				<!-- OBJECTS -->
+				<section class="center">
+					<h1>Objects</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Introduction</div>
+					<p>&#149; So far, we've dealt with simple (primitive) data types:</p>
+					<div class="pad-left-lg fragment">
+						<p>&rArr; <code class="code">String</code></p>
+						<p>&rArr; <code class="code">Number</code></p>
+						<p>&rArr; <code class="code">Boolean</code></p>
+						<p>&rArr; Not so much: <code class="code">undefined</code>, <code class="code">null</code></p>
 					</div>
+					<p class="fragment">&#149; <code class="code">Array</code>, a list-like data-structure</p>
+					<p class="fragment">&#149; As our applications grow more powerful, we need to leverage a more complex data-structure, the <code class="code">Object</code></p>
 				</section>
 
-				<section data-background="#FFF">
-					<h2 class="text-left">Clears - Review</h2>
-					<hr>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Introduction</div>
+					<p class="text-smaller">&#149; Objects are collections of <u>properties</u>, which are <u>key:value</u> pairs:</p>
+					<div class="fragment">
+<pre><code>
+  {
+    name: 'Obama',
+    number: 44,
+    titles: ['POTUS', 'Prez', 'Commander-In-Chief'],
+    speak: function () {
+      return 'Pay your taxes.';
+    }
+  }
 
-					<div class="text-left">
-						<p>&#149; How we fix, or control, floating elements</p>
-						<p>&#149; Various approaches to clearing elements:</p>
-						<p class="pad-left-lg">&rArr; <code>clear</code> CSS property</p>
-						<p class="pad-left-lg">&rArr; <code>overflow: hidden</code></p>
-						<p class="pad-left-lg">&rArr; <code>clearfix</code></p>
+</code></pre>
 					</div>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Clears - The "Clear" CSS Proprety</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&#149; <code>clear</code> is a CSS property that takes:</p>
-						<p class="pad-left-lg">&rArr; <code>left</code></p>
-						<p class="pad-left-lg">&rArr; <code>right</code></p>
-						<p class="pad-left-lg">&rArr; <code>both</code></p>
-						<p>&#149; Tells non-floating elements where floats are not allowed (left, right, both sides)</p>
-					</div>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Clears - overflow: hidden</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&#149; The <code>overflow</code> CSS property controls what happens to content that breaks outside of it's container <a href="http://codepen.io/cheshireoctopus/pen/YyRoYa?editors=110">(ex.)</a></p>
-						<p>&#149; Takes the following values: <code>visible, hidden, scroll, auto</code></p>
-						<p>&#149; If <code>hidden</code> or <code>auto</code> is applied to a element containing floated elements, will cause the element to extend to accompany any floating children <a href="http://codepen.io/cheshireoctopus/pen/PPxrEx?editors=110">(ex.)</a></p>
-						<p>&#149; <a href="https://css-tricks.com/almanac/properties/o/overflow/">More info</a></p>
+					<div class="fragment text-smaller">
+						<p>&#149; Useful for a simple, structured data store</p>
+						<p>&#149; Fundamental programming paradigm that helps us structure and categorize our code</p>
+						<p>&#149; AKA - associative array / hash / dictionary</p>
 					</div>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<h2>Clears - clearfix</h2>
-					<hr>
+					<div class="heading">Objects: Creation</div>
+					<p>Like arrays, two ways to create objects:</p>
+					<div class="fragment">
+						<p>&#149; Object Literal</p>
+<pre><code>
+	var person = {};
 
-					<p>&#149; Applying overflow</code> may cause undesirable behavior</p>
-					<p>&#149; Clearfix to the rescue:</p>
-					<pre><code>
-	.clearfix:after {
-	  content: "";
-	  display: table;
-	  clear: both;
+</code></pre>
+						<p class="pad-left-lg text-smaller">&rArr; Useful for simple data stores</p>
+					</div>
+					<div class="fragment">
+						<p>&#149; Object Constructor</p>
+<pre><code>
+	var person = new Object();
+
+</code></pre>
+						<p class="pad-left-lg text-smaller">&rArr; Useful for creating many instances of a particular type</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Get/Set Values</div>
+					<p>&#149; Use either <u>dot-notation</u> or <u>bracket notation</u> to set and get propreties</p>
+					<div class="fragment">
+<pre><code>
+  var person = {
+    name: 'Obama'
+  };
+
+  // dot-notation
+  person.job = 'president';
+
+  person.job;
+  // "president"
+
+  // bracket notation (useful if a property has a special character)
+  person['bad-habits'] = 'cigarettes';
+
+  person['bad-habits'];
+  // "cigarettes"
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Property Iteration</div>
+					<p class="text-smaller">&#149; Use a <code class="code">for</code> loop to iterate through an object's enumerable properties</p>
+					<p class="text-smaller">&#149; <b>NOTE</b>: unlike arrays, objects do not maintain property order</p>
+					<div class="text-smaller">
+<pre><code>
+  var person = {
+    name: 'Obama',
+    number: 44,
+    titles: ['POTUS', 'Prez', 'Commander-In-Chief'],
+    speak: function () {
+      return 'Pay your taxes.';
+    }
+  };
+
+  for (var prop in person) {
+    console.log(prop);
+	console.log(person[prop]);
+  }
+
+  // name
+  // "Obama"
+  // number
+  // 44
+  // ...
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Property Iteration</div>
+					<p>&#149; Can also use <code class="code">Object.keys()</code> for property iteration:</p>
+<pre><code>
+  var person = {
+    name: 'Obama',
+    number: 44,
+  };
+
+  Object.keys(person);
+  // ["name", "number"]
+
+  Object.keys.forEach(function (key) {
+    var value = person[key];
+    console.log(value)
+  })
+  // "Obama", 44
+
+</code></pre>
+					<p class="fragment">&#149; <b>NOTE:</b> <code class="code">Object.values()</code> is still in <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values">development</a></p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Object-Oriented Programming (OOP)</div>
+					<p>&#149; Programming is a tool for problem-solving</p>
+					<p>&#149; Many different approaches (programming paradigms):</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Imperative</p>
+						<p>&rArr; Object-oriented (OOP)</p>
+						<p>&rArr; Functional (fp)</p>
+						<p>&rArr; Logic</p>
+					</div>
+					<div class="fragment">
+						<p>&#149; JSD will focus on OOP and FP</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Object-Oriented Prgramming (OOP)</div>
+					<p>&#149; The fundamental unit is the <u>object</u>, which can contain other objects...which can contain other objects</p>
+					<p>&#149; Objects are combinations of data and methods (functions) to act upon this data</p>
+<pre><code>
+  var person = {
+    name: 'Obama',
+    number: 44,
+    titles: ['POTUS', 'Prez', 'Commander-In-Chief'],
+    speak: function () {
+      return 'Pay your taxes.';
+    }
+  };
+
+</code></pre>
+					<p>&#149; Make it easier for programmers to visualize the program by tying it to concrete concepts</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Object-Oriented Prgramming (OOP)</div>
+					<p>&#149; Use OOP to model the MTA</p>
+					<p>&#149; Identify likely objects, attributes, and methods</p>
+					<p>&#149; Some elements to consider:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Customers</p>
+						<p>&rArr; Stations</p>
+						<p>&rArr; Trains</p>
+						<p>&rArr; Lost tourists</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Constructors</div>
+					<p>&#149; Constructors are factories used to create many of the same "class" or type of object</p>
+					<p>&#149; By convention, use upper-cased variables when defining constructors</p>
+					<p>&#149; Invoke the constructor with the <code class="code">new</code> keyword</p>
+<pre><code>
+	var Person = function () {};
+
+	var obama = new Person();
+	var bush = new Person();
+	var clinton = new Person();
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Constructors</div>
+					<p class="text-smaller">&#149; Object constructors are used to set an object's properties</p>
+<pre><code>
+	var Person = function (name, age) {
+	  this.name = name;
+	  this.age = age;
 	}
-					</code></pre>
-					<p>&#149; Works on collapsed elements only!</p>
+
+	var obama = new Person('obama', 54)
+
+</code></pre>
+					<p class="text-smaller">&#149; Cleaner than creating many literals:</p>
+<pre><code>
+	var obama = {
+	  name: 'obama',
+	  age: 54
+	}
+
+	var bush = {
+	  name: 'bush',
+	  age: 70
+	}
+
+</code></pre>
 				</section>
 
-<!-- 				<section class="center">
-					<h1>Layout Practice</h1>
-					<p>Open <code>layout_challenge</code> from the previous class</p>
-				</section> -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Constructors</div>
+					<p>&#149; <code class="code">this</code> is used to set a function's context</p>
+					<p>&#149; Inside the object constructor, <code class="code">this</code> refers to the <u>current</u> object instance</p>
+					<p>&#149; Must use <code class="code">this</code> when referring to the object using methods:</p>
+<pre><code>
+  var Person = function (name) {
+    this.name = name;
+    this.sayName = fucntion () {
+      console.log(this.name);
+    }
+  }
+
+  var obama = new Person('obama');
+  obama.sayName();
+  // "obama"
+</code></pre>
+				</section>
+
+				<!-- OBJECTS LAB -->
+				<section class="center">
+					<h1>Objects Lab</h1>
+					<p>Please open <code class="code">monkey.js</code> in Sublime Text</p>
+				</section>
+
+				<!-- JSON -->
+				<section class="center">
+					<h1>JavaScript Object Notation (JSON)</h1>
+				</section>
 
 				<section class="center">
-					<h1>Startup Matchmaker</h1>
-					<div class="text-left">
-						<p>1. Open <code>startup-matchmaker/</code> in SublimeText</p>
-						<p>2. Build what you see in <code>spec.png</code></p>
-						<p>3. Styling help can be found in <code>readme.txt</code></p>
+					<img src="../img/class00/dns.png" alt="">
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">JSON: What is it?</div>
+					<p>&#149; <b>JSON</b>: JavaScript Object Notation</p>
+					<p>&#149; JSON !== JavaScript</p>
+					<p>&#149; Text-based data format that is based on JS</p>
+					<p>&#149; JSON is <u>language-independent</u>; Ruby, Python, etc. can all parse/generate JSON</p>
+					<p>&#149; Successor to XML (ew)</p>
+					<p>&#149; Easy for humans to read; easy for machines to parse</p>
+					<p>&#149; Specified by Douglas Crockford</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">JSON: What's it used for?</div>
+					<p>&#149; JSON is used as a data-exchange format between progrmams/applications</p>
+					<p>&#149; Ex: sending data from the frontend (JavaScript), to a Python-powered backend, and vice-versa</p>
+					<div class="fragment">
+					<p>&#149; Has strict conventions:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Property names must be double-quoted strings: <code class="code">"name"</code> vs <code class="code">name</code></p>
+							<p>&rArr; All strings must be double-quoted: <code class="code">"name"</code> vs <code class="code">'name'</code></p>
+							<p>&rArr; No in-line comments</p>
+							<p>&rArr; Trailing commas are forbidden</p>
+						</div>
 					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">JSON: JavaScript's <code class="code">JSON</code> Object</div>
+					<div class="text-smallest">
+					<p>Like the <code class="code">Math</code> object, JavaScript has a lib for working with JSON: <code class="code">JSON</code></p>
+					<div class="fragment">
+						<p>&#149; <code class="code">JSON.stringify()</code></p>
+						<div class="pad-left-lg">
+							<p>&rArr; Transforms JavaScript to JSON</p>
+<pre><code>
+	var jsonObject = JSON.stringify({ name: 'obama' });
+	// "{"name":"obama"}"
+	typeof jsonObject
+	// string
+
+</code></pre>
+						</div>
+					</div>
+					<div class="fragment">
+						<p>&#149; <code class="code">JSON.parse()</code></p>
+						<div class="pad-left-lg">
+							<p>&rArr; Transforms JSON to JavaScript</p>
+<pre><code>
+	var javaScriptObject = JSON.parse(jsonObject);
+	// { name: "obama" }
+	typeof javaScriptObject
+	// "object"
+
+</code></pre>
+						</div>
+					</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>JSON LAB</h1>
+					<p>Open <code class="code">json_lab.js</code></p>
 				</section>
 
 				<!-- THE END -->
@@ -206,16 +407,23 @@
 					<img src="../img/main/the-end.jpg">
 				</section>
 
+				<!-- HOMEWORK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Homework</div>
+
+					<p>1) Finish <code class="code">json_lab.js</code></p>
+					<p>2) Complete <code class="code">json_hw.js</code> (due 7/26)</p>
+				</section>
+
 				<!-- ON DECK -->
 				<section data-background="#FFF" class="text-left">
-					<h2>What's On Deck: Intro Programming</h2>
-					<hr>
-
-					<h4>Class #7 (of 20) - Wednesday, March 23th</h4>
-					<p>&#149; What is JavaScript and what can it do?</p>
-					<p>&#149; How to think programatically</p>
-					<p>&#149; Pseudo Code</p>
-					<p>&#149; JS Basics</p>
+					<div class="heading">What's On Deck</div>
+					<h4>Class #07 (of 20) - Intro to the DOM and jQuery</h4>
+					<div class="pad-left-lg">
+						<p>&#149; The Document Object Model (DOM)</p>
+						<p>&#149; DOM Manipulation</p>
+						<p>&#149; jQuery</p>
+					</div>
 				</section>
 
 				<section class="center">
