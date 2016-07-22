@@ -91,7 +91,7 @@
 						<p>&rArr; <code class="code">Boolean</code></p>
 						<p>&rArr; Not so much: <code class="code">undefined</code>, <code class="code">null</code></p>
 					</div>
-					<p class="fragment">&#149; <code class="code">Array</code>, a list-like data-structure</p>
+					<p class="fragment">&#149; <code class="code">Array</code>, a list-like data-structure (note: complex)</p>
 					<p class="fragment">&#149; As our applications grow more powerful, we need to leverage a more complex data-structure, the <code class="code">Object</code></p>
 				</section>
 
@@ -165,6 +165,52 @@
 				</section>
 
 				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Recap</div>
+					<div class="text-smaller">
+						<p><b>Q: Objects are collections of _____:_____ pairs</b></p>
+						<div class="fragment">
+							<p class="pad-left-lg">A: <code class="code">key:value</code> pairs</p>
+<pre><code>
+	var person = {
+	  name: 'Obama',
+	  number: 44,
+	}
+
+</code></pre>
+						</div>
+						<p class="fragment"><b>Q: Two methods of creating objects are: </b></p>
+						<div class="fragment">
+							<p class="pad-left-lg">A: The object literal and the object constructor</p>
+<pre><code>
+	var person = {};
+
+	var person = new Object();
+
+</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Recap</div>
+					<p><b>Q: To get and set object properties, we can use either:</b></p>
+					<div class="fragment">
+						<p class="pad-left-lg">A: <u>dot-notation</u> or <u>bracket-notation</u></p>
+<pre><code>
+	var person = {};
+
+	// set
+	person.name = 'Obama';
+
+	// get
+	person.name
+	// "Obama"
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
 					<div class="heading">Objects: Property Iteration</div>
 					<p class="text-smaller">&#149; Use a <code class="code">for</code> loop to iterate through an object's enumerable properties</p>
 					<p class="text-smaller">&#149; <b>NOTE</b>: unlike arrays, objects do not maintain property order</p>
@@ -181,7 +227,7 @@
 
   for (var prop in person) {
     console.log(prop);
-	console.log(person[prop]);
+    console.log(person[prop]);
   }
 
   // name
@@ -206,7 +252,7 @@
   Object.keys(person);
   // ["name", "number"]
 
-  Object.keys.forEach(function (key) {
+  Object.keys(person).forEach(function (key) {
     var value = person[key];
     console.log(value)
   })
@@ -223,11 +269,11 @@
 					<div class="pad-left-lg">
 						<p>&rArr; Imperative</p>
 						<p>&rArr; Object-oriented (OOP)</p>
-						<p>&rArr; Functional (fp)</p>
+						<p>&rArr; Functional (FP)</p>
 						<p>&rArr; Logic</p>
 					</div>
 					<div class="fragment">
-						<p>&#149; JSD will focus on OOP and FP</p>
+						<p>&#149; JSD is focused on OOP</p>
 					</div>
 				</section>
 
@@ -264,7 +310,7 @@
 
 				<section data-background="#FFF" class="text-left">
 					<div class="heading">Objects: Constructors</div>
-					<p>&#149; Constructors are factories used to create many of the same "class" or type of object</p>
+					<p>&#149; Constructors are factories used to create many of the same type of object</p>
 					<p>&#149; By convention, use upper-cased variables when defining constructors</p>
 					<p>&#149; Invoke the constructor with the <code class="code">new</code> keyword</p>
 <pre><code>
@@ -275,6 +321,7 @@
 	var clinton = new Person();
 
 </code></pre>
+					<p>&#149; <b>NOTE:</b> JS is a prototype-based language; there are no classes!</p>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
@@ -321,6 +368,24 @@
   obama.sayName();
   // "obama"
 </code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Objects: Recap</div>
+					<p><b>Q: Is there only one programming paradigm?</b></p>
+					<p class="fragment text-smaller pad-left-lg">NO! Many: OOP, functional, imperative</p>
+					<div class="fragment">
+						<p><b>Q: In OOP, objects contain:</b></p>
+						<p class="fragment text-smaller pad-left-lg">A: Data (properties) and methods (functions) to act upon this data</p>
+					</div>
+					<div class="fragment">
+						<p><b>Q: The object constructor allows us to</b></p>
+						<p class="fragment text-smaller pad-left-lg">A: Use a function to create many of the same type of object</p>
+					</div>
+					<div class="fragment">
+						<p><b>Q: The concept of <code class="code">this</code> refers to</b></p>
+						<p class="fragment text-smaller pad-left-lg">A: Whatever object is in context (invoked the function)</p>
+					</div>
 				</section>
 
 				<!-- OBJECTS LAB -->

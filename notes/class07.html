@@ -27,552 +27,461 @@
 	<body>
 
 		<!--
-			Lesson 08 - JavaScript (pt. 1)
-
-			Learning Objectives:
-			- Identify JavaScript's capabilities
-			- Understand why developers use pseudo code
-			- Describe two JavaScript data types: strings and numbers
-			- Use variables to store/retrieve data
-			- Introduction to JavaScript functions
-			- Introduction to document.getElementById()
+			Lesson 07 - Intro to the DOM and jQuery
 		-->
 
 		<div class="reveal">
 			<div class="slides">
 				<section class="center">
-					<h1>HELLO</h1>
-
-					<div class="text-left">
-						<p>1) Please download <a href="../materials/class07/class07.zip">Class 07 Starter Code</a></p>
-						<p>2) Move the following into your course work directory:</p>
-						<p class="pad-left-lg">&#149; <code>first-javascript/</code></p>
-						<p>3) Last class's solution:</p>
-						<p class="pad-left-lg">&#149; <code>startup-matchmaker-solution/</code></p>
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
 					</div>
 				</section>
 
 				<section class="center">
-					<h1>Class #7 - 03/23/2016</h1>
-					<h1>Intro to Programming</h1>
+					<h1>Unit 2</h1>
+					<h1>JavaScript + Browser</h1>
 				</section>
 
-				<!-- ANNOUNCEMENTS -->
 				<section class="center">
-					<h1>Announcements:</h1>
+					<h1>Class <span style="color: red;">#07</span> - 07/21/2016</h1>
+					<h1>Intro to the DOM and jQuery</h1>
+				</section>
 
-					<div class="text-left">
-						<p>&#149; Final Projects! First deliverable due 03/28 (Monday)</p>
-						<p class="pad-left-lg">&rArr; Project Proposal & Wireframes</p>
-						<p>&#149; GA is buying us drinks! Tonight!</p>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<p>&#149; Final Project</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Next deliverable due 07/26: at least three ideas or <u>proven progress</u> on one idea</p>
+						<p>&rArr; Joe and I will meet with each of you for 3 minutes to confirm</p>
 					</div>
+					<p>&#149; I'm Out</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Thursday 8/4 and Tuesday 8/9</p>
+						<p>&rArr; Joe will be leading; previous JSD instructor will also be here</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Intro to the Document Object Model (DOM)</p>
+					<p>&#149; Working with the DOM</p>
+					<p>&#149; DOM Manipulation Lab</p>
+					<p>&#149; jQuery</p>
+					<p>&#149; jQuery Lab</p>
 				</section>
 
 				<!-- QUESTIONS -->
-				<section class="center">
-					<h1>Questions</h1>
-					<img src="../img/main/questions.jpg">
-				</section>
-
-				<!-- AGENDA -->
 				<section data-background="#FFF" class="text-left">
-					<h2>Agenda</h2>
-					<hr>
-
+					<div class="heading">Questions</div>
 					<div class="text-smaller">
-						<p>&#149; Review Startup Matchmaker</p>
-						<p>&#149; What is JavaScript and what can it do?</p>
-						<p>&#149; How to think programatically</p>
-						<p>&#149; Pseudo Code</p>
-						<p>&#149; JS Basics:</p>
-						<p class="pad-left-lg">&rArr; Data Types</p>
-						<p class="pad-left-lg">&rArr; Variables</p>
-						<p class="pad-left-lg">&rArr; Functions</p>
-						<p>&#149; <code>document.getElementById()</code> - maybe...</p>
+						<!-- <p class="fragment"><b>Q: In objects, can you clarify how local and global key values work?</b></p>
+						<p class="fragment pad-left-lg text-smaller">A: Object properties are "local" to their objects</p> -->
+						<p class="fragment"><b>Q: How can I tell when I should use object literal or constructor?</b></p>
+						<p class="fragment pad-left-lg text-smaller">A: Literal for on-the-fly data structures; constructors for creating MANY of a particular type of object (ie Users, Tweets, Posts, etc.)</p>
+						<p class="fragment"><b>Q: What is the definition of a prototype?</b></p>
+						<p class="fragment pad-left-lg text-smaller">A: In JS, objects inherit their attributes via their prototype; can be used to add attributes to existing objects: <a href="https://repl.it/Ce4v">https://repl.it/Ce4v</a></p>
 					</div>
 				</section>
 
-				<!-- REVIEW: STARTUP MATCHMAKER -->
+				<!-- INTRO TO THE DOM -->
 				<section class="center">
-					<h1>Review Startup Matchmaker</h1>
-				</section>
-
-				<!-- INTRO TO JAVASCRIPT -->
-				<section class="center">
-					<h1>Intro To JavaScript</h1>
-					<p>Hold on to your hats...</p>
-				</section>
-
-				<section class="center">
-					<img src="../img/class07/roller-coaster.png">
+					<h1>Document Object Model</h1>
+					<img src="../img/class07/the-dom.jpg" alt="">
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<h2>JavaScript: History</h2>
-					<hr>
-
-					<p>&#149; JavaScript &ne; Java</p>
-					<p>&#149; Born in 1995 - created in 10 days by Brendan Eich</p>
-					<p>&#149; JavaScript is one of the most <a href="http://githut.info/">popular languages</a></p>
-					<p>&#149; Attwood's Law &rArr; "Any application that can be written in JavaScript, will eventually be written in JavaScript."</p>
-				</section>
-
-				<section class="center">
-					<h1>What Can JS Do In the Browser?</h1>
+					<div class="heading">DOM: Intro</div>
+					<p>&#149; <b>DOM</b>: Document Object Model</p>
+					<p>&#149; "Map" of HTML nodes created by the browser</p>
+					<p>&#149; Nodes are objects that JS can access/manipulate</p>
+					<p>&#149; Connects web pages to JavaScripts</p>
+					<p>&#149; API that allows JS to manipulate HTML/CSS</p>
+					<p>&#149; Designed to be language independent (you can write an HTML parser in Python!)</p>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<h2>Javascript: What Can It Do?</h2>
-					<hr>
+					<div class="heading">DOM: Intro</div>
+					<p>&#149; Each browser parses HTML differently; different browsers means different DOM's</p>
+					<p>&#149; In Chrome, we can access the DOM using the <code class="code">document</code> object in the console</p>
+					<p>&#149; To open your console: <code class="code">command</code> + <code class="code">option</code> + <code class="code">j</code></p>
+					<p>&#149; We can explore the node objects in detail using the "Inspector" tool, or in the "Elements" tab</p>
+				</section>
 
-					<p>Most uses of JavaScript fall into four categories:</p>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">DOM: Intro</div>
+					<p>&#149; JS has <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Document">helper methods</a> for interacting with the DOM</p>
+					<p>&#149; Since the DOM is an object, we can get/set data!</p>
+					<p>&#149; Three of the most useful methods relate to querying:</p>
+					<div class="pad-left-lg text-smaller">
+						<p><code class="code">Document.getElementById(String id)</code></p>
+						<p><code class="code">Document.querySelector(String selector)</code></p>
+						<p><code class="code">Document.querySelectorAll(String selector)</code></p>
+					</div>
+					<p>&#149; Each returns an <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Element">element</a> (or group of) from the DOM</p>
+				</section>
+
+				<!-- WORKING WITH THE DOM -->
+				<section class="center">
+					<h1>Working with the DOM</h1>
+					<iframe src="http://giphy.com/embed/Snu0LueGQkpfq" width="480" height="197"></iframe><p></p>
+					<p>Open <code class="code">dom_intro</code> in Sublime Text</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Working with the DOM</div>
+					<p>There are three ways to inject JavaScript into HTML:</p>
 					<div class="pad-left-lg">
-						<p>1) Responding to user actions (events)</p>
-						<p>2) Changing HTML Content</p>
-						<p>3) Changing CSS Styles</p>
-						<p>4) Loading/sending data to and from the server</p>
+						<p>1) Inline Javascript</p>
+						<p>2) Embeded <code class="code">&lt;script&gt;</code> tags</p>
+						<p>3) Linked external scripts</p>
 					</div>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<h2 class="text-left">JavaScript: What Can It Do?</h2>
-					<hr>
-					<p>A few examples:</p>
-					<div class="pad-left-lg">
-						<p>&#149; Adding / Removing Elements</p>
-						<p>&#149; Animating content</p>
-						<p>&#149; Changing CSS "on-the-fly"</p>
-						<p>&#149; Detecting user interactions</p>
-						<p>&#149; Form validation</p>
-						<p>&#149; Loading dynamic content</p>
+					<div class="heading">Working with the DOM</div>
+					<p>Like inline CSS, JavaScript can be executed inline:</p>
+<pre><code>
+	&lt;p onclick="myFunction()"&gt;Click Me!&lt;/p&gt;
+
+</code></pre>
+					<div class="fragment">
+						<p>&#149; Please avoid!</p>
+						<p>&#149; Separate presentation (HTML) from your logic (JS)</p>
+						<p>&#149; "Separation of concerns"</p>
+						<p>&#149; Easier to maintain the view and logic components</p>
 					</div>
 				</section>
 
-
-
 				<section data-background="#FFF" class="text-left">
-					<h2>Javascript vs HTML + CSS?</h2>
-					<hr>
-					<h3>HTML/CSS</h3>
-					<p>&#149; HTML/CSS are used to define <u>initial</u> page state</p>
-					<p>&#149; HTML/CSS are (mostly) <u>static</u></p>
-					<h3>JS</h3>
-					<p>&#149; JS is used to define how page state can <u>change</u></p>
-					<p>&#149; JS is <u>dynamic</u></p>
-				</section>
-
-				<!-- INTRO TO PROGRAMMING -->
-				<section class="center">
-					<h1>Intro To Programming</h1>
-					<p>Next stop: 1337 h4x0r</p>
-				</section>
-
-				<section data-background="#FFF" class="text-left">
-					<h2>Intro to Programming</h2>
-					<hr>
-
-					<p><b>Q:</b> What is a program?</p>
-					<p class="fragment text-smaller pad-left-lg">&rArr; A program is a set of instructions that tells a computer how to carry-out a task</p>
-					<p><b>Q:</b> What is programming?</p>
-					<p class="fragment text-smaller pad-left-lg">&rArr; Programming is the task of writing those instructions in a language that the computer can understand</p>
-					<p><b>Q:</b> How do I become a programmer?</p>
-					<p class="fragment text-smaller pad-left-lg">&rArr; Not by learning a particular language, but by learning how to think like a computer</p>
-				</section>
-
-				<section class="center">
-					<h1>Think like a computer</h1>
-					<p>10101010100101010</p>
-				</section>
-
-				<section class="center">
-					<h1>Close your laptops</h1>
-					<p>Seriously.</p>
-				</section>
-
-				<section data-background="#FFF" class="text-left">
-					<h2>Think like a CPU - What did we learn?</h2>
-					<hr>
-
-					<p>&#149; You have to speak the same language</p>
-					<p>&#149; Steps execute sequentially</p>
-					<p>&#149; Steps need to granular and precise</p>
-					<p>&#149; The computer will only do what you tell it to do</p>
-					<p>&#149; The computer is never wrong</p>
-				</section>
-
-				<section class="center">
-					<h1>Pseudo Code</h1>
-					<p>Like code, but not...</p>
-				</section>
-
-				<section data-background="#FFF" class="text-left">
-					<h2>Pseudo Code</h2>
-					<hr>
-
-					<p>&#149; <b>Pseudo Code</b>:</p>
-					<p class="pad-left-lg text-smaller">&rArr; The process of thinking through a program, step-by-step, without actually writing a line of code</p>
-					<p class="pad-left-lg text-smaller">&rArr; A written outline of a program that can be converted into code</p>
-					<p class="pad-left-lg text-smaller">&rArr; Allows the programmer to focus on problem solving, not the precise layout of the code and its syntax</p>
-					<p class="pad-left-lg text-smaller">&rArr; Don't need to know how to code, to write pseudo code!</p>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Pseudo Code</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&#149; Let's write pseudo code for a thermostat</p>
-						<p>&#149; Things to think about:</p>
-						<p class="pad-left-lg">&rArr; What is <u>goal</u> of our program? What are we trying to solve?</p>
-						<p class="pad-left-lg">&rArr; What are the <u>inputs</u> for our program? What pieces of data will be going into it?</p>
-						<p class="pad-left-lg">&rArr; What is the desired <u>output</u> of our program? Once the program runs, what should happen?</p>
-					</div>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Pseudo Code</h2>
-					<hr>
-
-					<div class="text-left text-smaller">
-						<p><code>determine target_temperature</code></p>
-						<p><code>target_temperature = 72</code></p>
-						<p><code>get current_temperature</code></p>
-						<p><code>current_temperature = 68</code></p>
-						<p><code>if current_temperature < target_temperature</code></p>
-						<p class="pad-left-lg"><code>turn_heater_up</code></p>
-						<p><code>if current_temperature >= target_temperature</code></p>
-						<p class="pad-left-lg"><code>turn_heater_off</code></p>
-					</div>
-				</section>
-
-				<section class="center">
-					<h1>Working Locally With JavaScript</h1>
-					<p>Like my JavaScript? It's local...no big deal.</p>
-				</section>
-
-				<section data-background="#FFF" class="text-left">
-					<h2>Working Locally with JavaScript</h2>
-					<hr>
-
+					<div class="heading">Working with the DOM</div>
 					<div class="text-smaller">
-						<p>&#149; Create JavaScript files using the <code>.js</code> extension</p>
-						<p>&#149; Example: <code>script.js</code></p>
-						<p>&#149; Two methods to link HTML and JS:</p>
-						<p class="pad-left-lg">&rArr; External (most common; preferred):</p>
+						<p>JavaScript can also run between the <code class="code">&lt;script&gt;</code> tags:</p>
 <pre><code>
-	&lt;script type="text/javascript" src="script.js"></script>
+	&lt;p&gt;A really exciting paragraph&lt;/p&gt;
+
+	&lt;script&gt;
+	  var num = 5;
+
+	  function addTwo (number) {
+	    return number + 2;
+	  }
+
+	  var newNum = addTwo(num);
+	&lt;/script&gt;
 
 </code></pre>
-						<p class="pad-left-lg">&rArr; Locally (in our HTML):</p>
-<pre><code>
-	<p>some text</p>
-	<script type="text/javascript">
-		// Write JavaScript here...plz don't do this
-	</script>
-
-</code></pre>
-					</div>
-				</section>
-
-				<section class="center">
-					<h1>Code Along</h1>
-					<div class="text-left text-smaller">
-						<p>1. Open <code>first-javascript</code> directory in SublimeText</p>
-						<p>2. Open the file <code>script.js</code></p>
-						<p>3. Add the following to <code>index.html</code>, above <code>&lt;/body&gt;</code></p>
-<pre><code>
-	&lt;script type="text/javascript" src="script.js">&lt;/script>
-
-</code></pre>
-						<p>3. Add the following to <code>script.js</code></p>
-<pre><code>
-	alert('this is an alert. this is annoying');
-
-	document.write('writing to the document, like a boss');
-
-</code></pre>
-						<p>4. Save and open <code>index.html</code> in the browser</p>
-					</div>
-				</section>
-
-				<section class="center">
-					<h1>Let's take a Break</h1>
-					<img src="../img/main/break-time-bear.jpg">
-				</section>
-
-				<!-- JAVASCRIPT DATA TYPES -->
-				<section class="center">
-					<h1>JavaScript Data Types</h1>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">JavaSript: Data Types</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&#149; In the machine, there is only data</p>
-						<p>&#149; Data are separated by type:</p>
-						<p class="pad-left-lg text-smaller">&rArr; Numbers</p>
-						<p class="pad-left-lg text-smaller">&rArr; Strings</p>
-						<p class="pad-left-lg text-smaller">&rArr; Booleans</p>
-						<p class="pad-left-lg text-smaller">&rArr; Objects</p>
-						<p class="pad-left-lg text-smaller">&rArr; Functions</p>
-						<p class="pad-left-lg text-smaller">&rArr; Null/Undefined</p>
-					</div>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Data Types: Numbers</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&#149; Numbers:</p>
-						<p class="pad-left-lg">&rArr; Used for arithmetic: (operators: +, -, *, / )</p>
-						<div class="pad-left-lg">
-							<p class="pad-left-lg">2 + 2</p>
-							<p class="pad-left-lg">2 - 2</p>
-							<p class="pad-left-lg">2 * 2</p>
-							<p class="pad-left-lg">2 / 2</p>
-						</div>
-					</div>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Data Types: Strings</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&#149; Srings:</p>
-						<p class="pad-left-lg">&rArr; Used to represent text: "Hello, World!"</p>
-						<p>&#149; Notable for <u>String Concatenation</u>:</p>
 						<div class="fragment">
-							<p class="pad-left-lg"><code>'c' + 'a' + 't'</code></p>
-							<p class="pad-left-lg"><code>=&gt; 'cat'</code></p>
-						</div>
-						<div class="fragment">
-							<p class="pad-left-lg"><code>'i have ' + 2 + 'cats'</code></p>
-							<p class="pad-left-lg"><code>=&gt; 'i have 2 cats;</code></p>
+							<p>&#149; Has its uses: embedding properties through a backend template</p>
+							<p>&#149; Doesn't allow for reusability across multiple HTML pages</p>
+							<p>&#149; Cannot cache embeded (or inline) JS</p>
 						</div>
 					</div>
 				</section>
 
-				<section class="center">
-					<h1>Code Along</h1>
-					<div class="text-left text-smaller">
-						<p>1. Reopen <code>first-javascript</code> in SublimeText</p>
-						<p>2. Add the following <code>document.write()</code> messages:</p>
-						<div class="pad-left-lg">
-							<p>&#149; The product of 10 and 10:</p>
-<pre><code>
-	document.write(10 * 10);
-
-</code></pre>
-							<p>&#149; The quotient of 100 and 10</p>
-							<p>&#149; The difference of 50 and 17</p>
-							<p>&#149; The sum of 50 and 17</p>
-							<p>&#149; Your first and last name</p>
-						</div>
-					</div>
-				</section>
-
-				<!-- VARIABLES -->
-				<section class="center">
-					<h1>Variables</h1>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Variables</h2>
-					<hr>
-
-					<div class="text-left">
-						<p class="text-smaller">&#149; Often, you will want to store, or keep track of, data in a program</p>
-						<p class="text-smaller">&#149; Declare using the <u>var</u> keyword</p>
-						<p class="text-smaller">&#149; Will store the piece of data in memory</p>
-						<p class="text-smaller">&#149; Use the variable's name to "call" it, or retrieve it from memory:</p>
-<pre><code>
-	var x = 2;
-	var y = 2;
-
-	x
-	=> 2
-
-	x + y
-	=> 4
-
-</code></pre>
-					</div>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Variables - Naming Rules</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&#149; Take care when naming your variables</p>
-						<p>&#149; Variable names should reflect the data they describe</p>
-						<p>&#149; Other naming conventions:</p>
-						<div class="pad-left-lg text-smaller">
-							<p>&rArr; Names should start with a lowercase letter</p>
-							<p>&rArr; Cannot use spaces; use hyphens or underscores instead</p>
-							<p>&rArr; Better yet, use CamelCase:</p>
-<pre><code>
-	var currentTemp = 70;
-	var targetTemp = 73;
-
-</code></pre>
-						</div>
-					</div>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Variables - Reassignment</h2>
-					<hr>
-
-					<p>1. Create a variable, x, and assign it to 2</p>
-					<p>
-<pre><code>
-	var x = 2;
-	> 2
-
-</code></pre>
-					</p>
-					<p>2. Perform some arithmetic on x</p>
-					<p>
-<pre><code>
-	x * 2
-	> 4
-
-</code></pre>
-					</p>
-					<p>3. What's x now equal to?</p>
-					<p>
-<pre><code>
-	x
-	> 2
-
-</code></pre>
-					</p>
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Variables - Reassignment</h2>
-					<hr>
-
-					<div class="text-left">
-						<p>&rArr; You must <u>reassign</u> variables to change them</p>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Working with the DOM</div>
+					<div class="text-smaller">
+					<p>&#149; Best practice for injecting JS into HTML is <u>external</u> links</p>
+					<p>&#149; Use the <code class="code">&lt;script&gt;</code> tag with a <code class="code">src</code> attribute that points to an external file</p>
+					<p>&#149; Ensure these tags are placed right before the closing <code class="code">&lt;/body&gt;</code></p>
 					</div>
 <pre><code>
-	var x = 2;
-	> 2
+	  // BELOW YOUR HTML!
 
-	x * 2
-	> 4
+ 	  &lt;script src="http://jquery.js"&gt;&lt;/script&gt;
+	  &lt;script src="react.js"&gt;&lt;/script&gt;
+	  &lt;script src="my_app.js"&gt;&lt;/script&gt;
 
-	x
-	> 2
+	  // ABOVE THE CLOSING BODY TAG!
+	&lt;/body&gt;
 
-	x = x * 2
-	> 4
+</code></pre>
 
-	x
-	> 4
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Working with the DOM</div>
+					<p>&#149; We must wait until the DOM loads before manipulating it!</p>
+					<p>&#149; Cannot access nodes the browser hasn't rendered</p>
+					<p>&#149; Leverage the <code class="code">window.onload</code> function for help:</p>
+<pre><code>
+  window.onload = function () {
+    var header = document.createElement("h1");
+    var text = document.createTextNode("Hello dynamic world!");
+    header.appendChild(text);
+    document.body.appendChild(header);
+  }
 
 </code></pre>
 				</section>
 
-				<section class="center">
-					<h1>Code Along</h1>
-					<div class="text-left">
-						<p>1. Open <code>first-javascript</code> in SublimeText</p>
-						<p>2. Store your previous arthimetic in variables:</p>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Work with the DOM</div>
+					<p>&#149; JavaScript can "listen" for certain <a href="https://developer.mozilla.org/en-US/docs/Web/Events">events</a></p>
+					<p>&#149; Most common: <code class="code">.onclick</code> event</p>
+					<p>&#149; Event functions capture related info in the first parameter, <code class="code">evt</code></p>
+					<p>&#149; Assign these events to DOM nodes</p>
 <pre><code>
-	var num1 = 10 * 10;
+	var btn = document.getElementById('my-btn');
 
-</code></pre>
-						<p>3. Use <code>document.write()</code> with the vaiables:</p>
-<pre><code>
-	document.write(num1);
-
-</code></pre>
-
-					</div>
-				</section>
-
-				<section class="center">
-					<h1>Functions</h1>
-					<img src="../img/class07/conjunction-function.jpg">
-				</section>
-
-				<section data-background="#FFF">
-					<h2 class="text-left">Functions</h2>
-					<hr>
-
-					<div class="text-left">
-						<p class="text-smaller">&#149; Functions are chunks of code, grouped together, that execute (or run) line-by-line</p>
-						<p class="text-smaller">&#149; Often take an input, perform logic on that input, and return ouput</p>
-						<p class="text-smaller">&#149; Think of them as miniature programs</p>
-
-						<p class="text-smaller">&#149; What does this function do?</p>
-<pre><code>
-	function hello () {
-		var greeting = 'hello!';
-
-		greeting = 'hello, world!';
-
-		alert(greeting);
+	btn.onclick = function (evt) {
+	  alert('You clicked a button!');
 	}
 
 </code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">DOM: Recap</div>
+					<p><b>Q: What is the DOM?</b></p>
+					<p class="fragment pad-left-lg text-smaller">A: Object representation of HTML created by the browser</p>
+					<p class="fragment"><b>Q: What is the name of the object we use to reference the DOM?</b></p>
+					<p class="fragment pad-left-lg text-smaller">A: <code class="code">document</code></p>
+					<p class="fragment"><b>Q: What is the best method of linking JS and HTML?</b></p>
+					<p class="fragment pad-left-lg text-smaller">A: External scripts - separation of concerns; reusability</p>
+				</section>
+
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">DOM: Recap</div>
+					<p><b>Q: Why should scripts be placed at the end of the <code class="code">&lt;body&gt;</code>?</b></p>
+					<p class="fragment pad-left-lg text-smaller">A: DOM must be loaded before it can be manipulated</p>
+				</section>
+
+				<!-- DOM MANIPULATION LAB -->
+				<section class="center">
+					<h1>DOM Lab</h1>
+					<p>Complete <code class="code">main.js</code> in <code class="code">js_dom_lab</code></p>
+				</section>
+
+				<!-- JQUERY -->
+				<section class="center">
+					<h1>jQuery</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: What is it?</div>
+					<p>&#149; jQuery <u>IS</u> JavaScript (<a href="https://code.jquery.com/jquery-3.1.0.js">source code</a>)</p>
+					<p>&#149; jQuery is a JavaScript library</p>
+					<p>&#149; A library is a collection of battle-tested functions that increase the speed/stability of development</p>
+					<p>&#149; Why reinvent the wheel? Use a library instead!</p>
+					<p>&#149; 1000's of JS libraries, and (for better, or worse) growing daily</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: What is it?</div>
+					<p>&#149; Released in 2006, currently v3, most widely-used JS library</p>
+					<p>&#149; Written by John Resig (lives in BK!)</p>
+					<p>&#149; jQuery's Motto: 'Write Less, Do More'</p>
+					<p>&#149; Makes working with the DOM + some fn's, easier:</p>
+					<div class="pad-left-lg text-smaller">
+						<p>&rArr; HTML / CSS manipulation</p>
+						<p>&rArr; Event handling (click events)</p>
+						<p>&rArr; Ajax (...soon!)</p>
+					</div>
+					<p>&#149; Bonus: Covers JS's browser inconsistencies</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: Why Use It?</div>
+					<p>&#149; The DOM isn't the prettiest/robust API:</p>
+					<div class="pad-left-lg">
+						<p><code class="code">document.getElementById</code></p>
+						<p><code class="code">document.getElementsByClassName</code></p>
+						<p><code class="code">document.getElementsByTagName</code></p>
+					</div>
+					<div class="fragment">
+						<p>&#149; What if I wanted to get every other <code class="code">li</code> in a <code class="code">ul</code>?</p>
+						<div class="pad-left-lg">
+						<p class="fragment"><a href="http://codepen.io/josephjbliss/pen/uqdCw">Pure JavaScript</a></p>
+						<p class="fragment"><a href="http://codepen.io/josephjbliss/pen/jLtfC">jQuery</a></p>
+						</div>
 					</div>
 				</section>
 
-				<section class="center" id="cool-id">
-					<p><code>document.getElementById()</code></p>
+<!-- 				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery</div>
+					<p>&#149; jQuery uses CSS selectors to query elements from the DOM</p>
+<pre><code>
+  #my-element {
+    color: red;
+  }
+
+  .my-favorites {
+    color: blue;
+  }
+
+</code></pre>
+
+<pre><code>
+    // target by ID
+	$('#my-element')
+
+	// target by class
+	$('.my-favorites')
+
+	// target by tag
+	$('li')
+
+	// target by whatever
+	$('.my-favorites li .important')
+
+</code></pre>
+				</section> -->
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery</div>
+					<p>jQuery in three steps:</p>
+					<div class="pad-left-lg">
+						<p>1) Use jQuery's powerful CSS selector to select which HTML elements you want to manipulate</p>
+						<p>2) This query returns a jQuery object that wraps the original DOM node</p>
+						<p>3) Call jQuery methods on the object!</p>
+					</div>
 				</section>
 
-				<section data-background="#FFF">
-					<p class="text-left">document.getElementById()</p>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: CSS SELECTORS</div>
+					<p>&#149; CSS selectors query HTML for certain elements</p>
+					<p>&#149; Similar to <code class="code">document.getElementById()</code></p>
+					<p>&#149; Use the same selectors you write in CSS!</p>
 					<hr>
-
-					<div class="text-left">
-						<p>&#149; One of the most common/useful JavaScript methods</p>
-						<p>&#149; Used to query HTML and return an element with a certain ID attribute</p>
+					<p>&#149; The $('x') Function - Get all of the 'X'</p>
 <pre><code>
-	document.getElementById('logo')
+	$('div') // select all &lt;div&gt;'s
+	$('h2') // select all &lt;h2&gt;'s
+	$('p a') // select all &lt;a&gt;'s inside of all &lt;p&gt;'s
+	$('p, a') // select all &lt;p&gt;'s and &lt;a&gt;'s
 
 </code></pre>
-						<p>&#149; The above will look through an HTML document and return the first element with and ID = "logo"</p>
+					<p>&#149; The $('x') function takes ANY CSS selector</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: CSS Selectors</div>
+					<p>Query ID's using the # (hashtag):</p>
+<pre><code>
+	$('#someId')
+	$('#someId a')
+
+</code></pre>
+					<hr>
+					<p>Query Classes using the . (period):</p>
+<pre><code>
+	$('.someClass')
+	$('.someClass a')
+
+</code></pre>
+					<p>&#149; Querying classes will return an array, <code class="code">[]</code>, of elements</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: Implementing the Library</div>
+					<p>&#149; To use jQuery (or any library), we must link to it:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Download and link locally</p>
+						<p>&rArr; Link to a CDN</p>
 					</div>
 				</section>
 
-				<section class="center">
-					<h1>Code Along</h1>
-					<div class="text-left">
-						<p class="text-smaller">1. Open <code>first-javascript</code> in SublimeText</p>
-						<p class="text-smaller">2. Add the following elements to <code>index.html</code>:</p>
-<pre><code>
-	<h1 id="title">Some Title</h1>
-	<p id="text-chunk">A block of text! Yay! Content! SEO!</p>
-
-</code></pre>
-						<p class="text-smaller">3. Use <code>document.getElementId()</code> to target the above elements and change their text color</p>
-
-<pre><code>
-	document.getElementById('title').style.color='red';
-
-</code></pre>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: Implementing the Library</div>
+					<p>Option 1: Download and store jQuery locally</p>
+					<div class="pad-left-lg text-smaller">
+						<p>1. Download jQuery from <a href="http://jquery.com/download">http://jquery.com/download</a></p>
+						<p>2. Save the <code class="code">.js</code> file in your project's directory</p>
+						<p>3. Create a <code class="code">&lt;script&gt;</code> tag ABOVE any of your own JS files</p>
+						<p>3. Point the <code class="code">src</code> attribute to the the file</p>
 					</div>
+<pre><code>
+  // libs
+  &lt;script src="jquery.js">&lt;/script&gt;
+
+  // your files
+  &lt;script type="text/javascript" src="my_app.js">&lt;/script&gt;
+
+</code></pre>
 				</section>
 
-				<section class="center">
-					<h1>Homework</h1>
-
-					<div class="text-left">
-						<p>1) Final Project: Ideas/concepts & wireframes/sketches</p>
-						<p>2) Finish <code>startup-matchmaker/</code></p>
-						<p>3) GA Dash - note the JS exercises</p>
-						<p>4) Complete any unfinished HW</p>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: Implementing the Library</div>
+					<p>Option 2: Link to an external jQuery source (CDN)</p>
+					<div class="pad-left-lg text-smaller">
+						<p>1. Locate an externally hosted version of jQuery:</p>
+						<p class="pad-left-lg">&rArr; <a href="https://code.jquery.com/jquery-1.11.3.js">https://code.jquery.com/jquery-1.11.3.js</a></p>
+						<p>2. Create a <code class="code">&lt;script&gt;</code> tag ABOVE any of your own JS files</p>
+						<p>3. Point the <code class="code">src</code> attribute to the jQuery CDN</p>
 					</div>
+<pre><code>
+  // libs
+  &lt;script src="https://code.jquery.com/jquery-1.11.3.js">&lt;/script&gt;
+
+  // your files
+  &lt;script src="my_app.js">&lt;/script&gt;
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: Common Functions</div>
+					<p>&#149; Maniuplate HTML:</p>
+<pre><code>
+	$('div').html('<p>paragraph!</p>');
+
+</code></pre>
+					<p>&#149; Manipulate CSS:</p>
+<pre><code>
+	$('div').css('color', red);
+
+</code></pre>
+					<p>&#149; Get/Set <code class="cdoe">&lt;input&gt;</code> values:</p>
+<pre><code>
+	// Get
+	$('input').val()
+
+	// Set
+	$('input').val('hello, world!')
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: Common Functions</div>
+					<p>&#149; Add Event Listeners:</p>
+<pre><code>
+	$('button').click(function (evt) {
+		// code here
+	})
+
+</code></pre>
+					<p>&#149; Append HTML</p>
+<pre><code>
+	var myValue = 'hello, world!';
+
+	$('div').append('<div>' + myValue + '</div>')
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">jQuery: Recap</div>
+					<p><b>Q: Is jQuery is JavaScript?</b></p>
+					<p class="fragment text-smaller pad-left-lg">A: YES!</p>
+					<p class="fragment"><b>Q: jQuery makes it easier to work with the _____.</b></p>
+					<p class="fragment text-smaller pad-left-lg">A: DOM (and other common JS functions)</p>
+					<p class="fragment"><b>Q: jQuery must be placed above or below your JS</b></p>
+					<p class="fragment text-smaller pad-left-lg">A: Below! Need to load in dependencies first!</p>
+				</section>
+
+				<!-- JQUERY LAB -->
+				<section class="center">
+					<h1>jQuery Lab</h1>
+					<p>Complete <code class="code">main.js</code> in <code class="code">jquery_lab</code></p>
 				</section>
 
 				<!-- THE END -->
@@ -580,21 +489,20 @@
 					<img src="../img/main/the-end.jpg">
 				</section>
 
+				<!-- HOMEWORK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Homework</div>
+					<p>1) Finish <code class="code">json_hw.js</code> from last class</p>
+					<p>2) Complete <code class="code">99_bottles_DOM</code> - instructions are in the <code class="code">README.md</code></p>
+				</section>
+
 				<!-- ON DECK -->
-				<section data-background="#FFF">
-					<h2 class="text-left">What's On Deck: JavaScript (pt. 2)</h2>
-					<hr>
-
-					<div class="text-left">
-						<h4>Class #8 (of 20) - Monday, March 28th</h4>
-
-						<div class="text-left">
-							<p>&rArr; More JavaScript!</p>
-							<p>&rArr; Functions</p>
-							<p>&rArr; The DOM</p>
-							<p>&rArr; JavaScript <code>.click</code> event</p>
-							<p>&rArr; Getting Input/Writing Output</p>
-						</div>
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #08 (of 20) - jQuery Events and JS Templating </h4>
+					<div class="pad-left-lg">
+						<p>&#149; More jQuery Events!</p>
+						<p>&#149; Javascript Templating: <a href="http://handlebarsjs.com/">Handlebars.js</a></p>
 					</div>
 				</section>
 
