@@ -46,6 +46,8 @@
 				<section class="center">
 					<h1>Class <span style="color: red;">#08</span> - 07/26/2016</h1>
 					<h1>DOM and jQuery Continued</h1>
+					<h2>+</h2>
+					<h1>JS Templates</h1>
 				</section>
 
 				<!-- ANNOUNCEMENTS -->
@@ -77,6 +79,7 @@
 					<p>&#149; JavaScript Templating</p>
 					<p>&#149; Templating Lab</p>
 					<p>&#149; Todo List</p>
+					<p>&#149; See Joe or me before you leave re: final projects!</p>
 				</section>
 
 				<!-- WARM UP -->
@@ -211,12 +214,43 @@
 					<p>&#149; Direct events (seen previously), are only attached to <u>existing</u> DOM elements on page load</p>
 					<p>&#149; Events on dynamically created elements must be set differently:</p>
 <pre><code>
-	$(document).on('.my-list-item', 'click', function () {
+	$(document).on('click', '.my-list-item', function () {
 	  $(this).addClass('active');
 	  $(this).siblings().removeClass('active');
 	})
 
 </code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Events: Recap</div>
+					<p><b>Q: Can we only attach one event handler to an HTML element?</b></p>
+					<p class="fragment text-smaller pad-left-lg">A: No; can attach many!</p>
+					<p class="fragment"><b>Q: How do we handle events on dynamically created elements (those not present in the DOM at page load)?</b></p>
+					<div class="fragment text-smaller">
+<pre><code>
+	$(document).on(event, selector, fuction)
+
+	$(document).on('click', '.my-els', function () {})
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Events: Recap</div>
+					<p class="fragment"><b>Q: How can we identify which element cause an event to happen?</b></p>
+					<div class="fragment text-smaller pad-left-lg">
+						A: Using <code class="code">$(this)</code>
+<pre><code>
+	$('.my-elements').click(function () {
+	  $(this).addClass('active');
+	  $(this).siblings().removeClass('active');
+	})
+
+</code></pre>
+					</div>
+
 				</section>
 
 				<section class="center">
@@ -290,6 +324,12 @@
 					<p>Open <code class="code">list_maker</code> in Sublime Text</p>
 				</section>
 
+				<!-- BREAK (5-7 mins) -->
+				<section class="center">
+					<h1>5 minute break</h1>
+					<img src="../img/main/break-time-bear.jpg">
+				</section>
+
 				<!-- JAVASCRIPT TEMPLATING -->
 				<section class="center">
 					<h1>JavaScript Templating</h1>
@@ -314,7 +354,7 @@
 					<p>&#149; Generating with jQuery:</p>
 <pre><code>
 	var presidentObject = {
-		presidents: ['Washington', 'Adams', ...];
+	  presidents: ['Washington', 'Adams', ...];
 	}
 	var $list = $('#list');
 
@@ -362,8 +402,8 @@ $('#my-table')
 					<div class="heading">Handlebars.js</div>
 					<p>1) Create the template structure:</p>
 					<div class="text-smaller">
-						<p>&#149; Use <code class="code">&lt;script&gt; tags to create the template</code></p>
-						<p>&#149; Must have an <code class="code">id</code> and <code class="code">type="text/x-handlebars-template"</code></p>
+						<p>&#149; Use <code class="code">&lt;script&gt;</code> tags to create the template</p>
+						<p>&#149; Must have <code class="code">id</code> and <code class="code">type="text/x-handlebars-template"</code></p>
 						<p>&#149; Write HTML inside the template, and surround dynamically generated data with <code class="code">{{}}</code></p>
 					</div>
 <pre><code>
@@ -384,8 +424,8 @@ $('#my-table')
 	var template = Handlebars.compile(source);
 
 </code></pre>
-					<p>3) Pass a data object to the newly created template</p>
-					<p>4) And add it to the DOM via jQuery.</p>
+					<p>3) Pass a data object to the newly created template...</p>
+					<p>4) ...and add it to the DOM via jQuery</p>
 <pre><code>
 	var titleObject = {
 	  title: 'Presidents',
@@ -417,6 +457,29 @@ $('#my-table')
 </code></pre>
 				</section>
 
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Templates: Recap</div>
+					<p><b>Q: What are the four steps for using a Handlebars.js template?</b></p>
+					<div class="fragment text-smaller">
+						<p>1) Create the template structure</p>
+<pre><code>
+	&lt;script id="my-template" type="text/x-handlebars-template"&gt;
+		<p>{{data}}</p>
+	&lt;/script&gt;
+
+</code></pre>
+						<p>2) Compile the template</p>
+						<p>3) Pass the compiled template a JavaScript data structure</p>
+						<p>4) Append the template to the DOM</p>
+<pre><code>
+	var myObj = { data: 'Hello, World!' };
+	var template = Handlebars.compile($('#my-template').html());
+	$('#myEl').append(template(myObj));
+
+</code></pre>
+					</div>
+				</section>
+
 				<!-- TEMPLATING LAB -->
 				<section class="center">
 					<h1>Templating Lab</h1>
@@ -433,6 +496,17 @@ $('#my-table')
 				<!-- THE END -->
 				<section class="center">
 					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #09 (of 20) - AJAX and API's</h4>
+					<div class="pad-left-lg">
+						<p>&#149; Hypertext Transfer Protocol (HTTP)</p>
+						<p>&#149; Application Programming Interfaces (API's)</p>
+						<p>&#149; Asychronous JavaScript and XML (AJAX)</p>
+					</div>
 				</section>
 
 				<section class="center">
