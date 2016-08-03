@@ -32,6 +32,477 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#11</span> - 08/04/2016</h1>
+					<h1>Advanced API's</h1>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<p>&#149; Final Project</p>
+					<div class="pad-left-lg text-smaller">
+						<p>&rArr; Due in 5 weeks! (09/06)</p>
+						<p>&rArr; Next deliverable due 08/09:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Read your docs! (Libraries and API's)</p>
+							<p>&#149; Pseudo code for your core feature(s)</p>
+							<p>&#149; Basic API functionality (if applicable)</p>
+						</div>
+						<p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; OAuth</p>
+					<p>&#149; 500px Codealong</p>
+				</section>
+
+				<!-- OAUTH -->
+				<section class="center">
+					<h1>OAuth</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">OAuth: Intro</div>
+					<div class="text-smaller">
+						<p>&#149; Open standard for authorization</p>
+						<p>&#149; Enables clients to securely access server data</p>
+						<p>&#149; Allows third-party access w/ out sharing of credentials</p>
+					</div>
+					<div class="text-center">
+						<img src="../img/class11/oauth.png" alt="">
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">OAuth: User Flow</div>
+
+					<div class="text-smaller">
+						<p class="fragment">1) User is redirected from our application to the third-party API we wish to authenticate with (500px)</p>
+						<p class="fragment">2) User logs into 500px</p>
+						<p class="fragment">3) 500px redirects user back to our application with an <b>access token</b></p>
+						<p class="fragment">4) User can now make requests for resources from 500px with the provided access token</p>
+						<p class="fragment">5) User receives resources from 500px</p>
+					</div>
+					<p class="fragment text-smaller">Note: Having an access token does not mean you can perform any HTTP method on the resource provider's API, nor does it mean your request for any type of data will be granted</p>
+				</section>
+
+				<!-- 500PX API -->
+				<section class="center">
+					<h1>500px API</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px API</div>
+					<p><b>Goal</b>: Render the most popular 500px landscape pictures based of a user's location.</p>
+					<p><b>Overview</b>:</p>
+					<div class="pad-left-lg text-smallest">
+						<p>&rArr; Check documentation (is our idea even possible>?</p>
+						<p>&rArr; Get 500px developer credentials</p>
+						<p>&rArr; Create our initial view which will have a way for our user to perform OAuth</p>
+						<p>&rArr; Get the user's location</p>
+						<p>&rArr; Access the 500px API with the user's location and access token</p>
+						<p>&rArr; Parse through API response for images and render them into DOM</p>
+					</div>
+				</section>
+
+				<!-- 500PX: DOCUMENATION -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px API: Documentation</div>
+					<div class="text-smaller">
+						<p>&#149; Which 500px API endpoint should we use?</p>
+						<p>&#149; We are <u>searching</u> (aka <code class="code">GET</code>) for photos given a geo location</p>
+						<p class="fragment">&#149; To the <a href="https://github.com/500px/api-documentation" target="_blank">docs</a>! Should come across:</p>
+						<div class="fragment">
+							<div class="text-center">
+								<img src="../img/class11/500px-search-endpoint.png" alt="">
+							</div>
+							<p>&#149; Returns a listing of twenty (up to one hundred) photos from search results for a specified tag, keyword, or location.</p>
+							<p>&#149; Note the <code class="code">geo</code> parameter!</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- 500PX: DEVELOPER CREDENTIALS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px API: Developer Credentials</div>
+
+					<p>1) Sign up for an account with <a href="https://500px.com/" target="_blank">https://500px.com/</a></p>
+					<p>2) Register your new application with 500px (Settings > Applications)</p>
+					<img src="../img/class11/500px-register.png" alt="">
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px API: Developer Credentials</div>
+					<p class="text-smaller">Fill out the form; note the <b>JavaScript SDK Callback URL</b></p>
+					<div class="text-center">
+						<img src="../img/class11/500px-register-form.png" alt="">
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px API: Developer Credentials</div>
+
+					<p>JavaScript SDK Callback URL:</p>
+					<p>&#149; Recall a portion of the OAuth process:</p>
+					<div class="pad-left-lg text-smaller">
+						<p>&rArr; User leaves our app to log in to 500px</p>
+						<p>&rArr; 500px redirects them back to our app with an access token</p>
+					</div>
+					<p class="fragment">&#149; How does 500px know where to redirect the user?</p>
+					<div class="fragment">
+						<p>&#149; The SDK Callback: http://localhost:3000/callback.html</p>
+						<p>&#149; We have not yet covered what http://localhost:3000 is, but for now just know that it is the URI that our app will be connected to and so it is the URI we want 500px to redirect back to</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px API: Developer Credentials</div>
+					<div class="text-smaller">
+						<p>&#149;After creating your application, click "See application details"</p>
+						<p>&#149; Note the <b>JavaScript SDK Key</b>; will pass in with our requests to the 500px API</p>
+					</div>
+					<div class="text-center">
+						<img src="../img/class11/500px-app-details.png" alt="">
+					</div>
+				</section>
+
+				<!-- 500PX: STARTER CODE REVIEW -->
+				<section class="center">
+					<h1>Let's Code</h1>
+					<p>Open <code class="code">500px_api_lab</code> in Sublime Text</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: Starter Code Review</div>
+
+					<p><code class="code">index.html</code></p>
+					<div class="text-smaller pad-left-lg">
+						<p>&rArr; CSS bootstrap</p>
+						<p>&rArr; jQuery</p>
+					</div>
+
+					<p><code class="code">app.js</code></p>
+					<div class="text-smaller pad-left-lg">
+						<p>&rArr; Will be coding here!</p>
+					</div>
+
+					<p><code class="code">styles.css</code></p>
+					<div class="text-smaller pad-left-lg">
+						<p>&rArr; Pre-built styles</p>
+						<p>&rArr; Will be using theses styles for DOM manipulaiton</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: Starter Code Review</div>
+
+					<p><code class="code">500px.js</code></p>
+					<div class="text-smaller pad-left-lg">
+						<p>&rArr; Lib from 500px</p>
+						<p>&rArr; Helps other developers use their product</p>
+						<p>&rArr; No need to modify this file</p>
+					</div>
+
+					<p><code class="code">callback.html</code></p>
+					<div class="text-smaller pad-left-lg">
+						<p>&rArr; Will be used to handle auth with 500px</p>
+						<p>&rArr; No need to modify this file</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: Starter Code Review</div>
+					<div class="text-smaller">
+						<p>&#149; Note the <code class="code">&lt;div&gt;</code>'s in <code class="code">index.html</code></p>
+						<p>&#149; Will be showing these <code class="code">&lt;div&gt;</code>'s conditionally</p>
+						<p>&#149; <code class="code">sign-in-view</code> will be used for auth</p>
+						<p>&#149; <code class="code">image-results-view</code> will hold 500px API results</p>
+					</div>
+<pre><code>
+  &lt;div class="container-fluid sign-in-view"&gt;
+    &lt;div class="row text-center"&gt;
+      &lt;h3&gt;Discover how beautiful your surroundings can be&lt;/h3&gt;
+      &lt;button class="btn btn-default"&gt;
+        &lt;a href="#" id="login"&gt;Login to 500px&lt;/a&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="container-fluid text-center image-results-view"&gt;
+    &lt;h3&gt;Here are some landscape photos from 500px near you:&lt;/h3&gt;
+    &lt;div class="images"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+</code></pre>
+				</section>
+
+				<!-- 500PX OAUTH -->
+				<section class="center">
+					<h1>500px OAuth</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: OAuth</div>
+					<div class="text-smaller">
+						<p>&#149; For this lab, we will be using our machines as servers</p>
+						<p>&#149; <code class="code">npm</code> has a server package we can use; from the command line:</p>
+						<p class="pad-left-lg"><code class="code">npm install -g http-server</code></p>
+						<p>&#149; Run this server from the root of the <code class="code">500px_api_lab</code> project:</p>
+						<p class="pad-left-lg"><code class="code">http-server -p 3000</code></p>
+						<p>&#149; This command starts a server accessible on port 3000</p>
+						<p>&#149; Once running, visit <code class="code">http://localhost:3000</code> in your browser</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: OAuth</div>
+
+					<p>&#149; Once the app is running, let's begin the auth process</p>
+					<p>&#149; First, we need to configure the SDK and initialize it</p>
+					<p>&#149; Make sure your <code class="code">JavaScript SDK Key</code> is on hand</p>
+					<p>&#149; Inside of <code class="code">app.js</code>:</p>
+<pre><code>
+	// app.js
+
+	$(function() {
+	  // DOM is now ready
+	  _500px.init({
+	    sdk_key: 'YOUR JAVASCRIPT SDK KEY'
+	  });
+
+	});
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: OAuth</div>
+					<div class="text-smaller">
+						<p>&#149; When a user clicks the "Login..." button, we want to init the auth process using the 500px library</p>
+						<p>&#149; Use jQuery to add a click-event handler for the <code class="code">#login</code> button</p>
+<pre><code>
+	// app.js
+
+	$('#login').click(function() {
+	  _500px.login();
+	});
+
+</code></pre>
+						<p>&#149; The <code class="code">login()</code> method will authorize a user and redirect them back to our site with their authorization token</p>
+						<p>&#149; Refresh your app and click the button to login</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: OAuth</div>
+
+					<p>&#149; Upon authentication, the 500px.js library fires an event: <code class="code">authorization_obtained</code></p>
+					<p>&#149; Add a handler to this event:</p>
+<pre><code>
+  // app.js
+
+  // When a successful login to 500px is made, they fire off the 'authorization_obtained' event
+  _500px.on('authorization_obtained', function() {
+    // Successful OAuth login!
+
+  });
+
+</code></pre>
+					<p>&#149; We can now run code after a user has successfully authorized</p>
+				</section>
+
+				<!-- CONDITIONAL VIEWS -->
+				<section class="center">
+					<h1>Conditional Views</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: Conditional Views</div>
+
+					<p>&#149; Use jQuery to properly hide and show the <code class="code">div</code>'s discussed earlier</p>
+					<p>&#149; After the <code class="code">authorization_obtained</code> event fires:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Hide <code class="code">.sign-in-view</code></p>
+						<p>&rArr; Show <code class="code">.image-results-view</code></p>
+					</div>
+<pre><code>
+  // app.js
+
+  _500px.on('authorization_obtained', function() {
+    $('.sign-in-view').hide();
+    $('.image-results-view').show();
+  });
+
+</code></pre>
+				</section>
+
+				<!-- GEO LOCATION -->
+				<section class="center">
+					<h1>Geo Location</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: Geo Location</div>
+
+					<p>&#149; Our goal is to find images based on the user's location</p>
+					<p>&#149; Will leverage the <a href="https://github.com/500px/api-documentation/blob/master/endpoints/photo/GET_photos_search.md" target="_blank">search</a> endpoint</p>
+					<p>&#149; Note the <code class="code">geo</code> parameter in the docs:</p>
+					<p class="text-smallest"><code>geo - A geo-location point of the format latitude,longitude,radius<units>. Acceptable units are km or mi.</code></p>
+					<p class="fragment">&#149; But first, we have to get the user's location</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: Geo Location</div>
+
+					<div class="text-smaller">
+						<p>&#149; Use the browser's <code class="code">navigator</code> object to request geo location data</p>
+						<p>&#149; Access this object after the user has logged in:</p>
+					</div>
+<pre><code>
+  // app.js
+
+  // check if navigator geolocation is available from the browser
+  if (navigator.geolocation) {
+    // if it is use the getCurrentPosition method to retrieve the Window's location
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude;
+      var long = position.coords.longitude;
+
+      console.log('lat: ', lat);
+      console.log('long: ', long);
+
+    })
+  } else {
+    $('.images').append('Sorry, the browser does not support geolocation');
+  }
+
+</code></pre>
+				</section>
+
+				<!-- API REQUEST -->
+				<section class="center">
+					<h1>500PX: API Request</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: API Request</div>
+
+					<p class="text-smaller">Use the <code class="code">500px.js</code> library to make API requests:</p>
+<pre><code>
+  // app.js
+
+  // Feel free to adjust the search radius as you see fit
+  var radius = '25mi';
+
+  var searchOptions = {
+    geo: lat + ',' + long + ',' + radius,
+    only: 'Landscapes', // We only want landscape photos
+    image_size: 3 // This isn't neccessary but by default the images are thumbnail sized
+  };
+
+  _500px.api('/photos/search', searchOptions, function(response) {
+    if (response.data.photos.length == 0) {
+      alert('No photos found!');
+    } else {
+      // Handle the successful response here
+      console.log(response);
+    }
+  });
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: API Request</div>
+					<p>&#149; Write code to handle the <code class="code">response</code> from 500px</p>
+					<p>&#149; Your function should iterate through the <code class="code">photos</code> array</p>
+					<p>&#149; In each iteration, append the image to the <code class="code">.images</code> DOM element</p>
+					<p>&#149; Make sure the appened image has a class of <code class="code">image</code> for styling purposes</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: API Request</div>
+					<p>&#149; One way of handling the <code class="code">response</code> from 500px:</p>
+<pre><code>
+  // app.js
+
+  function handleResponseSuccess(response) {
+    var allData = response.data.photos;
+
+    $.each(allData, function() {
+      var element = $('<img>').attr('src', this.image_url).addClass('image');
+      $('.images').append(element);
+    });
+  }
+
+</code></pre>
+					<p>&#149; Note: Relies on jQuery's <code class="code">$.each()</code> function</p>
+				</section>
+
+				<section class="center">
+					<h1>500px: API Exploration</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">500px: API Exploration</div>
+
+					<p>&#149; Update the API query to:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Sort photos results by highest rated first</p>
+						<p>&rArr; Return 28 photos instead of the default 20</p>
+					</div>
+					<p>&#149; Read the <a href="https://github.com/500px/api-documentation/blob/master/endpoints/photo/GET_photos_search.md" target="_blank">docs</a>!</p>
+					<p>&#149; Up for a challenge?</p>
+					<p class="pad-left-lg">&rArr; Display the current user's information on the site after a successful login. You'll need to look into the <a href="https://github.com/500px/api-documentation#user-resources">Users API</a> or JavaScript SDK documentation to accomplish this.</p>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- HOMEWORK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Homework</div>
+
+					<p>1) Complete <code class="code">500px_api_lab</code></p>
+					<p>2) Read the Feedr <a href="../main/feedr.html">project outline</a></p>
+					<p>3) Complete any missing HW; review challenging topics</p>
+					<p>4) Final project progress:</p>
+					<div class="pad-left-lg">
+						<p>&#149; Read your docs! (Libraries and API's)</p>
+						<p>&#149; Pseudo code for your core feature(s)</p>
+						<p>&#149; Basic API functionality (if applicable)</p>
+					</div>
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #12 (of 20) - Feedr Lab</h4>
+					<div class="pad-left-lg">
+						<p>&#149; API Goodness!</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
+				</section>
 			</div>
 		</div>
 

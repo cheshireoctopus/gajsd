@@ -32,6 +32,158 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#12</span> - 08/09/2016</h1>
+					<h1>Mid-Course Lab: Feedr</h1>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<p>&#149; Final Project</p>
+					<div class="pad-left-lg text-smaller">
+						<p>&rArr; Due in 4 weeks! (09/06)</p>
+						<p>&rArr; Next deliverable due 08/16:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Successful implementation of basic API calls</p>
+						</div>
+						<p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Lab Intro</p>
+					<p>&#149; Feedr Lab</p>
+				</section>
+
+				<!-- LAB INTRO -->
+				<section class="center">
+					<h1>Lab Intro</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Lab Intro: Overview</div>
+					<div class="text-smaller">
+					<p>Overview:</p>
+					<div class="pad-left-lg">
+						<p>&#149; We are building Feedr: a personalized news reader</p>
+						<p>&#149; Our reader will pull feeds from various API's</p>
+						<p>&#149; The user will be able to filter the feeds via a dropdown</p>
+						<p>&#149; Clicking an article will render a modal with more info</p>
+					</div>
+					<hr>
+					<p>Notes:</p>
+					<div class="pad-left-lg">
+						<p>&#149; This will be a single page app (SAP); all application views will be contained in the provided <code class="code">index.html</code> file</p>
+						<p>&#149; If you haven't already, read the project <a target="_blank" href="../main/feedr.html">overview</a></p>
+					</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Lab Intro: Overview</div>
+					<p>&#149; Initially, you will pull from three news sources:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; <a href="http://mashable.com/stories.json">Mashable</a></p>
+						<p>&rArr; <a href="https://www.reddit.com/top.json">Reddit</a></p>
+						<p>&rArr; <a href="http://digg.com/api/news/popular.json">Digg</a></p>
+					</div>
+					<p>&#149; Once you pull from these three, feel free to add other sources...</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Lab Intro: Overview</div>
+
+					<p>&#149; Please feel free to use other news API's</p>
+					<p>&#149; Be aware that not all API's will support <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> or <a href="https://en.wikipedia.org/wiki/JSONP">JSONp</a></p>
+					<p>&#149; If you encounter these issues,use a proxy server to filter your API requests</p>
+					<p>&#149; See the <a href="../main/feedr.html" target="_blank">project overview</a> for more info</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Lab Intro: Getting Started</div>
+					<div class="text-smaller">
+						<p>&#149; Create a new directory in your <code class="code">github.io</code> called <code class="code">Feedr</code></p>
+						<p>&#149; Copy the starter code into this new directory</p>
+						<p>&#149; Suggested First Steps:</p>
+					</div>
+					<div class="pad-left-lg text-smallest">
+						<p>&rArr; Start by adding all the DOM functionality first</p>
+						<p>&rArr; Map out the needed fields/properties from each respective feed</p>
+						<p>&rArr; <code class="code">console.log</code> the feeds to confirm your data before you map it</p>
+						<p>&rArr; Make sure you have the <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en" target="_blank">JSON View chrome extension</a></p>
+						<p>&rArr; Think about ways to best standardize all of your incoming data</p>
+						<p>&rArr; Test small pieces of functionality frequently</p>
+						<p>&rArr; Use tools such as Stack Overflow, Google and documentation resources to solve problems</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Lab Intro: Getting Started</div>
+
+					<p>Note: each feed article should be rendered in the following manner:</p>
+<pre><code>
+  &lt;article class="article"&gt;
+
+    &lt;section class="featuredImage"&gt;
+      &lt;img src="images/article_placeholder_1.jpg" alt="" /&gt;
+    &lt;/section&gt;
+
+    &lt;section class="articleContent"&gt;
+      &lt;a href="#"&gt;&lt;h3&gt;Test article title&lt;/h3&gt;&lt;/a&gt;
+      &lt;h6&gt;Lifestyle&lt;/h6&gt;
+    &lt;/section&gt;
+
+    &lt;section class="impressions"&gt;
+      526
+    &lt;/section&gt;
+
+    &lt;div class="clearfix"&gt;&lt;/div&gt;
+  &lt;/article&gt;
+
+</code></pre>
+				</section>
+
+				<!-- FEEDR LAB -->
+				<section class="center">
+					<h1>Feedr Lab</h1>
+					<p>Be sure to read the <u>Feed Goals</u> and <u>Additional UI interaction Goals</u> in the <a href="../main/feedr.html">project outline</a></p>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #13 (of 20) - Prototypal Inheritance</h4>
+					<div class="pad-left-lg">
+						<p>&#149; Prototypal Inheritance</p>
+						<p>&#149; Classes vs. Prototypes</p>
+						<p>&#149; Constructors and Prototypes</p>
+						<p>&#149; <code class="code">Object.create()</code></p>
+						<p>&#149; ES6 Classes</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
+				</section>
 			</div>
 		</div>
 
