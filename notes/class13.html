@@ -32,6 +32,587 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#13</span> - 08/11/2016</h1>
+					<h1>Prototypal Inheritance</h1>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<div class="text-smaller">
+						<p>&#149; Starting this class, HW is final project-related</p>
+						<p>&#149; Final Project (T-Minus 26 days...)</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Next deliverable due 08/16:</p>
+							<div class="pad-left-lg">
+								<p>&#149; Basic API functionality should be complete</p>
+								<p>&#149; Begin connecting JS with HTML and CSS</p>
+							</div>
+							<p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
+						</div>
+						<p>&#149; Weekend Office Hours: 8/22 (Sat), 8/28 (Sun), and 9/04 (Sun)</p>
+						<p>&#149; Student Choice for Classes 18 and 19:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Node + Express Server</p>
+							<p>&rArr; D3.js</p>
+							<p>&rArr; Anything else?</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Prototypes</p>
+					<p>&#149; Prototypes vs. Classes</p>
+					<p>&#149; Prototypes and Constructors</p>
+					<p>&#149; Inheritance</p>
+					<p>&#149; Lab</p>
+				</section>
+
+				<!-- PROTOTYPES -->
+				<section class="center">
+					<h1>Prototypes</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes</div>
+
+<pre><code>
+	// define an array literal
+	var numbers = [1,2,3,4,5];
+
+	numbers.push(6,7,8,9,10);
+
+	numbers.forEach(function (num) {
+	  num * 2;
+	})
+
+</code></pre>
+					<p class="fragment">&#149; Where did <code class="code">push</code> and <code class="code">forEach</code> come from?</p>
+					<div class="fragment">
+						<p>&#149; These methods are <u>inherited</u> from the <code class="code">Array</code> object</p>
+						<p>&#149; <b>Note:</b> Use <code class="code">Array.prototype</code> to see all available methods</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes</div>
+					<div class="text-smaller">
+						<p>&#149; JS is a prototype-based language (vs. a class-based language)</p>
+						<blockquote class="text-smallest">
+							Prototype-based programming is a style of object-oriented programming in which behavior reuse (known as inheritance) is performed via a process of cloning existing objects that serve as prototypes.
+						</blockquote>
+						<div class="fragment">
+							<p>In other words...</p>
+							<p class="fragment">&#149; When you create an object, it comes with a few pre-defined properties; one of which is its prototype</p>
+							<p class="fragment">&#149; The prototype points to another object (often containing methods/properties)</p>
+							<p class="fragment">&#149; If you try to look up a key on an object and it is not found, JS will look for it in prototype. It will follow the "prototype chain" until it sees a null value. In that case, it returns undefined.</p>
+						</div>
+					</div>
+					<!-- Prototype-based programming is an OOP model that doesn't use classes, but rather it first accomplishes the behavior of any class and then reuses it (equivalent to inheritance in class-based languages) by decorating (or expanding upon) existing prototype objects. (Also called classless, prototype-oriented, or instance-based programming.) -->
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes</div>
+
+					<div class="text-smaller">
+						<p>&#149; Think of prototypes as recipes for objects</p>
+						<p>&#149; Functions have a <code class="code">prototype</code> property that is used during the creation of new instances</p>
+						<p>&#149; <code class="code">prototype</code> is shared among all object instances (those instances can access properties of the prototype)</p>
+						<p>&#149; Ex: <code class="code">hasOwnProperty</code> is defined on the generic <code class="code">Object.prototype</code>, but it can be accessed from any object as if it were its own property</p>
+<pre><code>
+	var obama = { name: 'obama' }
+
+	obama.hasOwnProperty('name');
+	// true
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes</div>
+
+					<div class="text-smallest">
+						<p>&#149; Instances keep track of their prototypes with an internal property, [[Prototype]]</p>
+						<!-- <p>&#149; This property points back to the prototype object that the constructor was using</p> -->
+						<p>&#149; When an object is constructed using <code class="code">new</code>, the constructor's <code class="code">prototype</code> property is assigned to the object's [[Prototype]] property</p>
+						<p>&#149; Use <code class="code">Object.getPrototypeOf(yourObj)</code> to read an object's <code class="code">prototype</code></p>
+						<p>&#149; NOTE: some JS engines support <code class="code">__proto__</code> on objects; this property allows you to read and write to the [[Prototype]] property</p>
+						<p>&#149; Open up Chrome's console to see the above</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes</div>
+					<div class="text-smaller">
+						<p>&#149; Recall, prototypes are objects that all instances can access:</p>
+<pre><code>
+	function Person (name) {
+	  this.name = name;
+	}
+
+	Person.prototype.speak = function () {
+	  console.log('Hello, my name is ' + this.name);
+	}
+
+	var chandler = new Person('Chandler');
+	var joe = new Person('Joe');
+
+	chandler.speak()
+	// 'Hello, my name is Chandler'
+
+</code></pre>
+						<div class="fragment">
+							<p>&#149; As methods perform the same actions, no need to create a new method for each instance</p>
+							<p>&#149; More efficient to put these methods on the prototype and use <code class="code">this</code> to access the current instance</p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes</div>
+
+					<div class="text-smaller">
+						<p>&#149; Becareful when sharing reference values using the prototype:</p>
+
+<pre><code>
+	function Person (name) {
+	  this.name = name;
+	}
+
+	Person.prototype.favorites = [];
+
+	var chandler = new Person('Chandler');
+	var joe = new Person('Joe');
+
+	chandler.favorites.push('beer');
+	joe.favorites.push('kale salad');
+
+	console.log(joe.favorites);
+	// ['beer', 'kale salad']
+
+</code></pre>
+						<p>&#149; <code class="code">favorites</code> is pointing to the same array; all instances use it</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes</div>
+
+					<div class="text-smallest">
+						<p>&#149; JS allows you to modify the standard built-in objects (<code class="code">Array</code>, <code class="code">Number</code>)</p>
+						<p>&#149; As built-ins have constructors, they have proptypes that can be changed</p>
+						<p>&#149; Here, we extended the <code class="code">Array.prototype</code> with a function that sums an array's values:</p>
+<pre><code>
+	Array.prototype.sum = function () {
+	  var sum = 0;
+
+	  this.forEach(function (number) {
+	    sum += number;
+	  })
+
+	  return sum;
+	}
+
+	[1,2,3,4].sum()
+	// 10
+
+</code></pre>
+						<div class="fragment">
+							<p>&#149; All array instances will automatically have access to this method</p>
+							<p>&#149; Note: avoid modifying built-in types; dev's expect consistent behavior</p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Prototypes vs. Classes</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes vs. Classes</div>
+
+					<p>&#149; The purpose of prototypes is to offer a modeling object for other objects to inherit behaviors from</p>
+					<p>&#149; For those of you familiar with other OO languages, this functionality may sound very similar to classes</p>
+					<p class="fragment">&#149; However, Javascript is not a class-based language</p>
+					<p class="fragment">&#149; JavaScript is a prototype-based language</p>
+					<p class="fragment">&#149; Let's compare Ruby vs JS</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes vs. Classes</div>
+
+					<p>In Ruby, classes are objects that have unique responsibilities and methods:</p>
+					<div class="pad-left-lg">
+						<p>&#149; Manufacture new objects</p>
+						<p>&#149; Define the behavior of the objects they manufacture</p>
+					</div>
+<pre><code>
+	// Ruby Example
+	class Person
+	  def initialize(name)
+	    @name = name
+	  end
+
+	  def sayHello
+	    puts "My name is #{@name}"
+	  end
+	end
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes vs. Classes</div>
+					<div class="text-smaller">
+						<p>&#149; Similar to Ruby, JS also uses objects to perform inheritance</p>
+						<p>&#149; Unlike Ruby, JS lacks a designated object (class) that both:</p>
+						<div class="pad-left-lg text-smaller">
+							<p>&rArr; Manufacture new objects</p>
+							<p>&rArr; Define the behavior of the objects they manufacture</p>
+						</div>
+						<div class="fragment">
+							<p>&#149; JS has two different features, <u>constructors</u> and <u>prototypes</u>, to accomplish these tasks</p>
+							<div class="pad-left-lg text-smaller">
+								<p>&rArr; A constructor function manufactures new objects</p>
+								<p>&rArr; A prototype property defines the behavior of new objects manufactured by the constructor</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Prototypes and Constructors</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+
+					<p class="text-smaller"><u>Constructor</u>:</p>
+					<div class="text-smallest">
+						<p>&#149; A function used with <code class="code">new</code> to create an object</p>
+						<p>&#149; Is an ordinary function no different than any function</p>
+						<p>&#149; What does distinguish it is when it is used with the <code class="code">new</code> operator</p>
+						<p>&#149; Used to create objects with pre-defined properties and methods</p>
+						<p>&#149; Open a <a href="http://repl.it" target="_blank">http://repl.it</a> and enter the following:</p>
+<pre><code>
+  function Vehicle (color) {
+    this.color = color
+  }
+
+  var car = new Vehicle('red')
+
+</code></pre>
+						<p>&#149; <b>Note:</b> out of convention, just as we would capitalize a class name, we capitalize the name of our constructor function.</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+
+					<p>&#149; The <code class="code">new</code> operator creates a new object instance</p>
+					<p>&#149; The constructor function is what specifies the type of the object instance to create</p>
+					<p>&#149; This has several implications:</p>
+					<div class="pad-left-lg text-smallest">
+						<p>1) The constructor creates a new object: <code class="code">{}</code></p>
+						<p>2) The constructor sets an internal <code class="code">constructor</code> property referencing the function that created it</p>
+						<p>3) The constructor sets up the object to delegate to its prototype</p>
+						<p>4) The constructor calls <code class="code">Vehicle()</code> in the context of the new object</p>
+					</div>
+					<p>&#149; Let's discuss points 2 - 4</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+					<div class="text-smaller">
+						<p>2) The constructor sets an internal <code class="code">constructor</code> property referencing the function that created it</p>
+						<hr>
+						<p>&#149; In our example, <code class="code">car.constructor === Vehicle</code></p>
+						<p>&#149; If you enumerate the car object, <code class="code">constructor</code> will not show</p>
+						<p>&#149; If you redefine the <code class="code">constructor</code> property, you will add a property with the name "constructor" on top of the special one</p>
+						<p>&#149; <code class="code">constructor</code> is built-in with the new keyword and can never be set manually</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+
+					<p>&#149; To assert the reference of a <code class="code">constructor</code>, use the <code class="code">instanceof</code> operator:</p>
+<pre><code>
+  function Vehicle (color) {
+    this.color = color
+  }
+
+  var car = new Vehicle('red')
+
+  car instanceof Vehicle
+  // true
+
+</code></pre>
+					<p>&#149; Or, use <code class="code">car.constructor === Vehicle</code></p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+					<div class="text-smallest">
+						<p>3) The constructor sets up the object to delegate to its prototype</p>
+						<hr>
+						<p>&#149; Functions are objects and can contain properties</p>
+						<p>&#149; Recall: functions have a special <code class="code">prototype</code> property which has a value of an empty object</p>
+						<p>&#149; Whenever an object is constructed, it inherits all the properties of its constructor's <code class="code">prototype</code></p>
+<pre><code>
+	Vehicle.prototype.wheels = 4
+
+	var car = new Vehicle()
+
+	car.wheels // 4
+
+</code></pre>
+						<p>&#149; Super cool: any object created by <code class="code">Vehicle</code> can have properties set on its prototype after creation</p>
+						<!-- <p>We can see evidence that car inherited the the wheels property from Vehicle's prototype. Let's take an in-depth look in the console to further understand what's going on here:</p> -->
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+
+					<div class="text-smaller">
+						<p>We never declared a <code class="code">wheels</code> property on <code class="code">car</code> so how did it receive the value from <code class="code">Vehicle</code>?</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&#149; When we accessed <code class="code">car.wheels</code> JS looked to the <code class="code">car</code> object and could not find <code class="code">wheels</code></p>
+							<p>&#149; It continued along the <u>prototype chain</u> to search for inherited values</p>
+							<p>&#149; Where it then found <code class="code">4</code> from Vehicle's <code class="code">wheels</code> in its prototype</p>
+						</div>
+					</div>
+					<img src="../img/class13/prototype_chain.png" alt="">
+
+					<!-- PROTOTYPE CHAIN -->
+					<!-- When it comes to inheritance, JavaScript only has one construct: objects. Each object has an internal link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. null, by definition, has no prototype, and acts as the final link in this prototype chain. -->
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+
+					<div class="text-smaller">
+						<p>4) The constructor calls <code class="code">Vehicle()</code> in context of the new obj</p>
+						<hr>
+						<p>&#149; Context will be covered in detail next lesson</p>
+						<p>&#149; For now, context, in a nutshell, deals with object reference</p>
+						<p>&#149; JS provides a tool, <code class="code">this</code> which tells you which object you are referencing</p>
+						<p>&#149; When we construct a new object the <code class="code">this</code> in our constructor will reference the new object instance:</p>
+<pre><code>
+	var greenCar = Vehicle('green');
+	var blueCar = Vehicle('blue');
+	var pinkCar = Vehicle('pink');
+
+</code></pre>
+						<p>&#149; These are referred to as <b>instance properties</b></p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Prototype + Constructor Recap</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototypes and Constructors</div>
+
+					<div class="text-smallest">
+						<p class="fragment">&#149; JavaScript is a prototype-based language (vs. a traditional class-based language)</p>
+						<p class="fragment">&#149; Almost everything in Javascript is an object and each of these objects contain an internal property that links it to its constructor</p>
+						<p class="fragment">&#149; This is what defines Javascript as being prototype-based and allows for inheritance</p>
+						<p class="fragment">&#149; If we try to access a property on an object that doesn't exist Javascript will search the object's immediate properties, but once it cannot find it, it will continue to search within the object's prototype property. If it can't find it there, it will search within the prototype of that prototype and so on and so forth traversing down the prototype chain until it reaches <code class="code">Object</code></p>
+					</div>
+				</section>
+
+				<!-- GROUP EXERCISES -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototype Group Exercise</div>
+
+					<div class="text-center">
+						<img src="../img/class13/prototype_group_exercise.png" alt="">
+					</div>
+					<div class="text-smaller">
+						<p>&#149; Explain what is happening line-by-line using all the following keywords: <b>constructor</b>, <b>instance property</b>, <b>prototype</b>, <b>inheritance</b> and <b>prototype chain</b></p>
+						<p>&#149; Also discuss why car has a different value from the first and second times it is printed</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Prototype Group Exercise</div>
+
+					<p>Use <a href="http://repl.it" target="_blank">http://repl.it</a> to:</p>
+					<div class="pad-left-lg">
+						<p>1) Create a constructor function for an object of your choice (it should generate at least two instances)</p>
+						<p>2) Ensure the constructor function instantiates the objects with instance methods/properties</p>
+						<p>3) Use <code class="code">prototype</code> to generate a few additional properties on the object instances</p>
+					</div>
+				</section>
+
+				<!-- BREAK -->
+				<section class="center">
+					<h1>5 minute break</h1>
+					<img src="../img/main/break-time-bear.jpg">
+				</section>
+
+				<!--
+
+					Prototype Chain
+
+					- JS's approach for inheritance is callled prototype chaining (or, prototypal inheritance)
+					- Prototype properties are available across all obj instances (read: inheritance)
+					- Because the prototype is also an object, it inherits properties from its own prototype (and so on)
+					- This is called the prototype chain
+					- The chain ends (or begins) with `Object`
+					- All objects will automatically have the following methods: hasOwnProperty(), propertyIsEnumerable(), isPrototypeOf(), valueOf(), and toString()
+					- When a property is accessed on an object, the JS engine goes through a search process: first searches the object instance, then searches the prototype, then that objects prototype, all the way up the chain to `Object`
+
+					Constructor Stealing
+
+					-
+
+				 -->
+				<section class="center">
+					<h1>Inheritance</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Inheritance</div>
+
+					<div class="text-smaller">
+						<p>&#149; Learning how to create objects is the first step to understanding OOP</p>
+						<p class="fragment">&#149; 2nd step is understanding <u>inheritance</u></p>
+						<div class="fragment">
+							<p>&#149; In traditional OOP languages, classes inherit from other classes</p>
+							<p>&#149; JS is not a traditional, class-based language</p>
+							<p>&#149; In JS, objects inherit from other objects via the <code class="code">prototype</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Inheritance</div>
+
+					<div class="text-smaller">
+						<p>&#149; To inherit an object's properties, specify it as a constructor's <code class="code">proptype</code>:</p>
+<pre><code>
+  function Vehicle (color) {
+    this.color = color;
+  }
+
+  Vehicle.prototype.accelerate = function () {
+    console.log('VROOM!');
+  }
+
+  function HybridCar (color) {
+    Vehicle.call(this, color);
+  }
+
+  HybridCar.prototype = new Vehicle();
+
+  var prius = new HybridCar('white');
+
+  prius.color // "white"
+
+</code></pre>
+					<p class="text-smaller">&#149; Let's break this down...</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Inheritance</div>
+
+					<p>&#149; The constructor for <code class="code">HybridCar</code>:</p>
+<pre><code>
+  function HybridCar (color) {
+    Vehicle.call(this, color)
+  }
+
+</code></pre>
+					<p>&#149; <code class="code">.call()</code> is used to invoke the <code class="code">Vehicle</code> constructor in the context of <code class="code">HybridCar</code></p>
+					<p>&#149; Allows us to apply <code class="code">this.color</code> to <code class="code">HybridCar</code> instances</p>
+					<p>&#149; Will be discussed next lesson</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Inheritance</div>
+
+<pre><code>
+  HybridCar.prototype = new Vehicle()
+
+</code></pre>
+					<p>&#149; Sets <code class="code">HybridCar</code>'s <code class="code">prototype</code> equal to an instance of <code class="code">Vehicle</code></p>
+					<p>&#149; Allows <code class="code">HybridCar</code> instances to inherit all of <code class="code">Vehicle</code>'s prototype properties: <code class="code">accelerate</code></p>
+				</section>
+
+				<!-- INHERITANCE CODEALONG -->
+				<section class="center">
+					<h1>Inheritance Codealong</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Inheritance Codealong</div>
+
+					<div class="text-smaller">
+						<p>1) Create a <code class="code">Rectangle</code> constructor that has <code class="code">length</code> and <code class="code">width</code> instance properties</p>
+						<p>2) Assign <code class="code">Rectangle.prototype</code> a <code class="code">getArea</code> function that returns the rectangle's area</p>
+						<p>3) Create a <code class="code">Square</code> constructor that has a <code class="code">size</code> instance property</p>
+						<p>4) <code class="code">Square</code> should inherit from the <code class="code">Rectangle</code> constructor</p>
+						<p>5) Use Rectangle's constructor inside of Square</p>
+						<p>Use the following <a href="https://repl.it/CmOM/1" target="_blank">https://repl.it/CmOM/1</a></p>
+					</div>
+				</section>
+
+				<!-- PROTOTYPE LAB -->
+				<section class="center">
+					<h1>Prototype Lab</h1>
+					<p>Open <code class="code">virtual_farm</code> in Sublime Text</p>
+					<p>Follow the directions in <code class="code">app.js</code></p>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- HOMEWORK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Homework</div>
+					<p>1) Finish <code class="code">virtual_farm</code></p>
+					<p>2 Final project:</p>
+					<div class="pad-left-lg">
+						<p>&#149; Basic API functionality should be complete</p>
+						<p>&#149; Begin connecting JS with HTML and CSS</p>
+					</div>
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #14 (of 20) - Closures and This</h4>
+					<div class="pad-left-lg">
+						<p>&#149; Scope</p>
+						<p>&#149; Closures and Context</p>
+						<p>&#149; The Module Pattern</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
+				</section>
 			</div>
 		</div>
 
