@@ -32,6 +32,667 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#14</span> - 08/16/2016</h1>
+					<h1>Closures and <code class="code">this</code></h1>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<div class="text-smallest">
+						<p>&#149; Final Project (T-Minus 21 days...)</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Next deliverable due 08/23:</p>
+							<div class="pad-left-lg">
+								<p>&#149; Wrapping up API functionality</p>
+								<p>&#149; Additional HTML/CSS</p>
+							</div>
+							<p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
+						</div>
+						<p>&#149; Weekend Office Hours:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; 8/20 (Sat) Noon - 2:30PM </p>
+							<p>&rArr; 8/28 (Sun), 9/03 (Sat), maybe 9/04 (Sun)</p>
+						</div>
+						<p>&#149; Student Choice for Class 17:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Node + Express Server</p>
+							<p>&rArr; D3.js</p>
+							<p>&rArr; Angular.js</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Scope Review</p>
+					<p>&#149; Closures</p>
+					<!-- <p>&#149; The Module Pattern</p> -->
+					<p>&#149; Context (Meaning and purpose of <code class="code">this</code>)</p>
+					<p>&#149; Manipluating Context</p>
+					<p>&#149; Lab</p>
+				</section>
+
+				<!-- OBJECTS REVIVEW -->
+				<section class="center">
+					<h1>Objects Review</h1>
+					<p><a href="https://repl.it/CmaM/1" target="_blank">https://repl.it/CmaM/1</a></p>
+				</section>
+
+				<!-- SCOPE REVIEW -->
+				<section class="center">
+					<h1>Scope Review</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Scope Review</div>
+
+					<p>&#149; JavaScript scope is synonymous with variable access</p>
+					<p>&#149; In other words, what variables our functions have access to</p>
+					<p>&#149; We've discussed two types of scope: global and local</p>
+<pre><code>
+	// global scope
+	var x = 2;
+
+	function local () {
+	  // local scope
+	  var x = 5;
+	}
+
+	console.log(x);
+	// 2
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Scope Review</div>
+
+					<p>Global Scope:</p>
+					<p>&#149; Variables declared <u>outside</u> of functions</p>
+					<p>&#149; Can be accessed anywhere in the execution environment</p>
+<pre><code>
+	var name = 'obama';
+
+	function hello () {
+	  console.log('hello, ' + name);
+	}
+
+	hello();
+	// "hello, obama"
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Scope Review</div>
+
+					<p>Local Scope:</p>
+					<p>&#149; Variables declared <u>inside</u> of functions</p>
+					<p>&#149; Only accessible within the function they are declared</p>
+
+<pre><code>
+	function hello () {
+	  var name = 'obama';
+	  console.log('hello, ' + name);
+	}
+
+	hello();
+	// "hello, obama"
+
+	console.log(name);
+	// name is not defined
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Scope Review: Nested Functions</div>
+
+					<div class="text-smaller">
+						<p>&#149; Each function has its own local scope</p>
+						<p>&#149; Variables created in local scope can only be accessed inside the function they were declared (Lexical Scope)</p>
+						<p>&#149; Inner functions can access variables in the scope of their outer function, but not <a href="https://repl.it/Cn2z" target="_blank">vice versa</a>:</p>
+					</div>
+<pre><code>
+	function outer () {
+	  var outerVar = 1;
+	  console.log(innerVar);
+
+	  function inner () {
+	    var innerVar = 2;
+	    console.log(outerVar);
+	  }
+
+	  inner();
+	}
+
+	outer();
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Scope Review: Nested Functions</div>
+
+					<div class="text-smaller">
+						<p>&#149; Note: <a href="https://repl.it/Cn3C/0" target="_blank">sibling scopes</a> are also restricted from accessing each other's variables</p>
+<pre><code>
+	function outer () {
+	  var outerVar = 1;
+
+	  function innerOne() {
+	    var innerOneVar = 'cat';
+
+	    console.log(innerOneVar);
+	    console.log(outerVar);
+	  }
+
+	  function innerTwo() {
+	    var innerTwoVar = 'dog';
+
+	    console.log(innerTwoVar);
+	    console.log(outerVar);
+	    console.log(innerOneVar);
+	  }
+
+	  innerOne();
+	  innerTwo();
+	}
+
+	outer();
+</code></pre>
+					</div>
+				</section>
+
+				<!-- CLOSURES -->
+				<section class="center">
+					<h1>Closures</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closures</div>
+
+					<div class="text-smallest">
+						<p>&#149; A closure is an inner function that has access to the outer (enclosing) function's scope</p>
+						<p>&#149; <code class="code">makeFullName</code> has access to the outer function's variables, including the parameter</p>
+						<p>&#149; Note: <code class="code">makeFullName</code> was returned <u>before</u> it was executed</p>
+<pre><code>
+	function showName (firstName, lastName) {
+	  var nameIntro = 'Your name is ';
+
+	  function makeFullName () {
+	    return nameIntro + firstName + ' ' + lastName;
+	  }
+
+	  return makeFullName;
+	}
+
+	var obama = showName('barack', 'obama');
+
+	obama();
+
+</code></pre>
+						<p>&#149; <a href="https://repl.it/Cn9D/0" target="_blank">https://repl.it/Cn9D/0</a></p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closures</div>
+
+					<div class="text-smallest">
+						<p>&#149; When functions in JavaScript execute, they use the same scope that was in effect when they were created</p>
+						<p>&#149; Closures have access to the outer function's scope - even after the outer function returns</p>
+						<p>&#149; Therefore, you can call the inner function later in your <a href="https://repl.it/Cn9M/0" target="_blank">program</a>:</p>
+<pre><code>
+  function showName (firstName, lastName) {
+    var nameIntro = 'Your name is ';
+
+    // the inner function, makeFullName, has access to the outer's variables, including its parameters
+    function makeFullName () {
+      return nameIntro + firstName + ' ' + lastName;
+    }
+
+    return makeFullName;
+  }
+
+  // The outer function, showName, is called and returns
+  var obama = showName('barack', 'obama');
+
+  // The closure is called here after the outer function has returned above
+  // It retains access to the outer function's variables and parameters!
+  obama();
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closures</div>
+
+					<div class="text-smaller">
+						<p>&#149; Closures combine:</p>
+						<div class="pad-left-lg">
+							<p>1) A function</p>
+							<p>2) The environment in which the function was created</p>
+						</div>
+						<p class="fragment">&#149; Let you closely associate some data (the environment) with a function that operates on said data</p>
+						<div class="fragment">
+							<p>&#149; Much of the code JS-devs write is event-based: code is attached to a browser action (e.g. <code class="code">onclick</code>) in the form of a callback</p>
+							<p>&#149; For example...</p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closures</div>
+
+					<div class="text-smaller">
+						<p>&#149; Assuming the following HTML and JS:</p>
+<pre><code>
+  // HTML
+  &lt;button&gt;Click Me!&lt;/button&gt;
+
+  // JS
+  $(document).ready(function () {
+
+    var count = 0;
+
+    $('button').click(function () {
+      alert(count);
+    })
+  })
+
+</code></pre>
+						<p>&#149; <code class="code">click</code> closes over <code class="code">count</code> and continues to have access to this variable no matter how many times the user clicks on the <code class="code">&lt;button&gt;</code></p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closures</div>
+
+					<div class="text-smallest">
+						<p>&#149; Multiple functions share access to the same variables in their clousure:</p>
+						<p>&#149; <a href="http://codepen.io/cheshireoctopus/pen/BzbjZj?editors=1010" target="_blank">Below</a>, both close over <code class="code">count</code> so whenever it changes, both scope chains have access to the new value!</p>
+						<p>&#149; Note: this behavior can lead to incorrectly referenced variables...</p>
+
+
+<pre><code>
+  // HTML
+  &lt;button id="increase">Increase Number +&lt;/button&gt;
+  &lt;button id="show">Show Me!&lt;/button&gt;
+
+  // JS
+  $(document).ready(function() {
+
+    var count = 0;
+
+    $('#increase').click(function () {
+      count = count + 1;
+    })
+
+    $('#show').click(function () {
+      alert(count);
+    })
+  })
+
+</code></pre>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Closure Exercise 1</h1>
+					<p>Open up <code class="code">sticky_notes</code> in Sublime Text</p>
+				</section>
+
+				<section class="center">
+					<h1>Closure Exercise 2</h1>
+					<p>Open <a href="https://repl.it/CnEc/3" target="_blank">https://repl.it/CnEc/3</a></p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closure Exercise 2</div>
+
+					<p>The Problem:</p>
+					<p>&#149; The inner function accesses the outer function's variable (<code class="code">positionInQueue</code>) by reference, not by value</p>
+					<p>&#149; The value of <code class="code">positionInQueue</code> was incremented in a for loop that ran thrice; its referenced value ended up being 4 (1 + 1 + 1 + 1)</p>
+					<p>&#149; We have a few methods to fix the code so that our closure uses the correct reference</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closure Exercise 2</div>
+
+					<p>Here is a potential solution using immediately invoked function expressions (<a href="http://gregfranko.com/blog/i-love-my-iife/" target="_blank">IIFE</a>):</p>
+					<p class="pad-left-lg"><a href="https://repl.it/CnEt/2" target="_blank">https://repl.it/CnEt/2</a></p>
+					<p>&#149; IFFE's create new scope</p>
+					<p>&#149; The IIFE takes a single parameter, <code class="code">position</code>, which is a copy of the current value of <code class="code">positionInQueue</code></p>
+					<p>&#149; Takes advantage of the way JS passes arguments by value, allowing the closure to reference a unique, unchanging value for <code class="code">position</code></p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Closure Exercise 2</div>
+
+					<p>&#149; An alternative solution, which also helps explain how the above IIFE works, is to use any one of the built-in array iteration methods, such as <code class="code">forEach</code></p>
+					<p>&#149; Here, the scope created by the function passed to <code class="code">forEach</code> also contains a unique value for index every time it is executed, allowing the closure created by .id to close over the single, unchanging value.</p>
+					<p><a href="https://repl.it/CnEv/1" target="_blank">https://repl.it/CnEv/1</a></p>
+				</section>
+
+				<!-- THE MODULE PATTERN -->
+				<!-- <section class="center">
+					<h1>The Module Pattern</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">The Module Pattern</div>
+
+					<p>
+						Now that we know the ins-and-outs and quirks of scope & closure, how exactly is it useful?
+
+						Well, they can help us hide state by creating modules:
+					</p>
+
+					<p>
+						Unlike most other object-oriented languages, Javascript doesn't have a true concept of private context. Closures allow us to abstract away private variables and functions so that the public doesn't need to worry about the complicated details of how the program works, they can use the module pattern to get what they need done accomplished. In terms of this example, wheelCount and start expressions are private. The module is solely concerned with returning an object for the public to use while hiding how the values for the object properties were created. This is the main idea behind the module pattern, that it returns an object literal which through its use, is the only way to access the private functions and variables. Another benefit of the module pattern, is that it helps keep your codebase cleaner by organizing relevant code together which in turn also helps with testing and reuse.
+					</p>
+
+					<p>
+						<a href="https://repl.it/CnFG/1" target="_blank">https://repl.it/CnFG/1</a>
+					</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">The Module Pattern</div>
+
+					<p>&#149; IN JS, all object properties are <u>public</u></p>
+					<p>&#149; No explicit way to indicate a property shouldn't be accessed from outside a object</p>
+					<p>&#149; Might not want all of an object's data to be publically accessible</p>
+					<p>&#149; There are naming conventions <code class="code">_name</code>, but they are nothing more than just a naming convention (are not very bulletproof)</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">The Module Pattern</div>
+
+					<p>&#149; The <u>module pattern</u> is an object-creation pattern designed to create objects w/ private data</p>
+					<p>&#149; The approach involves using an IIFE to return an object</p>
+					<p>&#149; The IIFE will contain any number of local variables that are not accessible from outside the function</p>
+					<p>&#149; Because the returned object is defined within the function, the object's methods have access to its data</p>
+					<p>&#149; A closure is used</p>
+<pre><code>
+	var yourObject = (function() {
+		// private data variables
+
+		return {
+			// public methods and properties
+		}
+	}());
+</code></pre>
+				</section> -->
+
+				<!-- CONTEXT (MEANING AND PURPOSE OF THIS) -->
+				<section class="center">
+					<h1>Context</h1>
+					<h2>Meaning and Purpose of <code class="code">this</code></h2>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Context</div>
+
+					<p>&#149; Functions do not occur in a vacuum - they are always executed in relation to some object</p>
+					<p class="fragment">&#149; Context refers to whatever object is responsible for executing a function</p>
+					<p class="fragment">&#149; This object can be referenced using the tool: <code class="code">this</code></p>
+					<p class="fragment">&#149; In other words, <code class="code">this</code> represents whatever object is in context when a function runs</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Context</div>
+
+					<div class="text-smaller">
+						<p>&#149; In the browser, the top-level object in the global scope is <code class="code">window</code></p>
+<pre><code>
+	console.log(this === window)
+	// true
+
+</code></pre>
+						<div class="fragment">
+							<p>&#149; By default a function runs within the scope of the object it sits in, so in this case this is still equivalent to the window object.</p>
+<pre><code>
+	function foo() {
+  	  console.log(this === window)
+	}
+
+	foo()
+	// true
+
+</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Context</div>
+
+					<p>In fact:</p>
+<pre><code>
+	foo() === window.foo() // true
+
+</code></pre>
+					<p>&#149; Here you can see that <code class="code">foo()</code> is a property of the object it's running in.</p>
+
+					<p>&#149; Note: We would never need to explicitly code the <code class="code">window</code> object like this, but this example illustrates the point that the function <code class="code">foo</code> does in fact exist within <code class="code">window</code> when it runs in the global scope.</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Context</div>
+
+					<div class="text-smaller">
+						<p>&#149; So, what's the purpose of context and <code class="code">this</code>?</p>
+						<p class="pad-left-lg"><a href="https://repl.it/CnFR/1" target="_blank">https://repl.it/CnFR/1</a></p>
+						<p>&#149; In <code class="code">printASL</code> we are referring to the <code class="code">chatroomUser</code> object using:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; <code class="code">chatroomUser</code></p>
+							<p>&rArr; <code class="code">this</code></p>
+						</div>
+						<div class="fragment">
+							<p>&#149; What if we wanted to turn <code class="code">chatroomUser</code> into a constructor?</p>
+							<p>&#149; Using <code class="code">this</code> allows precision and removes any ambiguity from our code</p>
+							<p>&#149; <code class="code">this</code> allows us to set (manipulate) the context of any function we call</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- MANIPULATING CONTEXT -->
+				<section class="center">
+					<h1>Manipulating Context</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Manipulating Context</div>
+
+					<div class="text-smaller">
+						<p>&#149; Recall: functions are objects; objects have properties</p>
+						<p>&#149; Also recall: when a function executes, <code class="code">this</code> refers to the object that invokes the function</p>
+<pre><code>
+	var user = {
+	  firstName: 'Barack',
+	  lastName: 'Obama',
+	  showFullName: function() {
+	    console.log(this.firstName + ' ' + this.lastName)
+	  }
+	}
+
+	user.showFullName()
+	// Barack Obama
+
+</code></pre>
+						<div class="fragment">
+
+							<p>&#149; Sometimes, <code class="code">this</code> doesn't behave as <a href="http://codepen.io/cheshireoctopus/pen/pbGKba?editors=1010#0" target="_blank">expected</a></p>
+							<p>&#149; The above is an example of when we want to change what <code class="code">this</code> refers to</p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Manipulating Context</div>
+
+					<div class="text-smaller">
+						<p>There are three methods that allow us to control context:</p>
+						<p><code class="code">call</code>: Calls a function with a given <code class="code">this</code> value and arguments provided individually</p>
+						<p><code class="code">apply</code>: Calls a function with a given <code class="code">this</code> value and arguments provided as an array (or an array-like object)</p>
+						<p><code class="code">bind</code>: Creates a new function that, when called, has its <code class="code">this</code> keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Manipulating Context</div>
+
+					<p>Call:</p>
+<pre><code>
+	function speak (prefix) {
+	  console.log(prefix + ' ' + this.sound);
+	}
+
+	var dog = {
+	  sound: 'woof'
+	}
+
+	speak.call(dog, 'the dog says')
+	// 'the dog says woof'
+
+</code></pre>
+					<div class="fragment">
+					<hr>
+<pre><code>
+	$('button').click(function() {
+ 	  user.showFullName.call(user)
+	})
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Manipulating Context</div>
+
+					<p>Apply</p>
+<pre><code>
+	function speak (prefix) {
+	  console.log(prefix + ' ' + this.sound);
+	}
+
+	var cat = {
+	  sound: 'meow',
+	}
+
+	speak.apply(cat, ['the cat says'])
+	// 'the cat says meow'
+
+</code></pre>
+
+					<div class="fragment">
+						<hr>
+<pre><code>
+	$('.button').click(function() {
+ 	  user.showFullName.apply(user) // Chelsea Logan
+	})
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Manipulating Context</div>
+
+					<div class="text-smallest">
+						<p>&#149; <code class="code">call</code> and <code class="code">apply</code> yield the same end result</p>
+						<p>&#149; The first parameter in both is always responsible for establishing context (<code class="code">this</code>)</p>
+						<p>&#149; They differ in how many remaining arguments they take</p>
+						<p>&#149; <code class="code">call</code> takes individual arguments, while <code class="code">apply</code> takes an array</p>
+<pre><code>
+	var user = {
+	  firstName: 'Barack',
+	  lastName: 'Obama',
+	  showFullName: function(x, y, z) {
+	    console.log(this.firstName + ' ' + this.lastName, x, y, z)
+	  }
+	}
+
+	$('button').click(function() {
+	  user.showFullName.call(user, 1, 2, 3)
+	  // Barack Obama 1 2 3
+	})
+
+	$('button').click(function() {
+	  user.showFullName.apply(user, [1, 2, 3])
+	  // Barack Obama 1 2 3
+	})
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Manipulating Context</div>
+
+					<div class="text-smaller">
+						<p>&#149; <code class="code">bind</code> is different in that it doesn't set the context of a function, but rather <u>creates</u> an entire new function with the context (and arguments) supplied</p>
+<pre><code>
+  var user = {
+    firstName: 'Barack',
+    lastName: 'Obama',
+    showFullName: function() {
+      console.log(this.firstName + ' ' + this.lastName)
+    }
+  }
+
+  // declare a new variable whose value is the user.showFullName function with a context set to user
+  var contextSetUser = user.showFullName.bind(user)
+  $('button').click(contextSetUser)
+  // Barack Obama
+
+  $('button').click(user.showFullName)
+  // undefined undefined
+
+</code></pre>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Manipulating Context Lab</h1>
+					<p>Complete the following: <a href="https://repl.it/CnF7/1" target="_blank">https://repl.it/CnF7/1</a></p>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #15 (of 20) - Intro to CRUD and Firebase</h4>
+					<div class="pad-left-lg">
+						<p>&#149; CRUD: Create, Read, Update, Delete</p>
+						<p>&#149; Firebase</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
+				</section>
 			</div>
 		</div>
 
