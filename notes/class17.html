@@ -32,6 +32,205 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#17</span> - 08/25/2016</h1>
+					<h2>Instructor/Student Choice</h2>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<div class="text-smallest">
+						<p>&#149; Final Project (T-Minus 12 days...)</p>
+						<div class="pad-left-lg">
+							<p>&rArr; Next deliverable due 08/30:</p>
+							<div class="pad-left-lg">
+								<p>&#149; You should have <u>ONE</u> feature of your application nearing completion</p>
+							</div>
+							<p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work; will have side-modules</p>
+						</div>
+						<p>&#149; Weekend Office Hours:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; 8/28 (Sun) from noon until 2PM</p>
+							<p>&rArr; 9/04 (Sat) from noon until 3PM/4PM (BYOB)</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Angular.js</p>
+					<p>&#149; Node.js</p>
+					<p>&#149; Node + Express.js</p>
+				</section>
+
+				<!-- ANGULAR.JS -->
+				<section class="center">
+					<h1>Angular.JS</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Intro to Angular</div>
+
+					<div class="text-smaller">
+						<p class="fragment">&#149; Angular follows the MVC Architecture</p>
+						<p class="fragment">&#149; Use case scenarios for higher level functions:</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; Model: The Data (2-way binding)</p>
+								<p class="fragment">&rArr; View: Presents Data in HTML</p>
+								<p class="fragment">&rArr; Controller: Data Manipulation and User Interaction</p>
+							</div>
+
+						<p class="fragment">&#149; Additional Functionality:</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; Templating: similiar to Handlebars</p>
+								<p class="fragment">&rArr; Directives: special classes that do something, such as:  <code class="code">ng-app</code>, <code class="code">ng-controller</code>, <code class="code">ng-repeat</code>, <code class="code">ng-class</code></p>
+								<p class="fragment">&rArr; Factories & Services: modularized funtionality</p>
+							</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Ceating Your First Angular App</div>
+
+					<div class="text-smaller">
+						<p class="fragment">&#149; A Basic To-Do App which will be similiar to the <code class="code">list_maker</code> solution from Module 5 made in jQuery...<a href="http://codepen.io/jkeohan/full/LkoXGo/" target="_blank">CodePen</a></p>
+						<p class="fragment">&#149; Functionality will include:</p>
+							<p class="fragment pad-left-lg">&rArr; Adding to-do items</p>
+							<p class="fragment pad-left-lg">&rArr; Deleting to-do items</p>
+						<p class="fragment">&#149; Setting up the project</p>
+							<p class="fragment pad-left-lg">&rArr; Adding js code to our Angular app</p>
+							<p class="fragment pad-left-lg">&rArr; Structure\Edit HTML to support Angular</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Ceating Your First Angular App</div>
+
+					<p>&#149; Adding an Angular module:</p>
+<pre class="fragment"><code>
+	var ToDoApp = angular.module("ToDoApp", []) { }
+
+</code></pre>
+					<p class="fragment pad-left-lg text-smallest">&rArr; It takes in 2 params:  1) the app name, and, 2) dependencies which are added as an array, <code class="code">[]</code> such as: <code class="code">['ngAnimate', 'ui-router']</code></p>
+					<p class="fragment">&#149; Adding an Angular controller:</p>
+<pre class="fragment"><code>
+	ToDoApp.controller('ToDoAppCtrl', function($scope) { })
+
+</code></pre>
+					<div class="text-smallest">
+						<p class="fragment pad-left-lg">&rArr; It takes in 2 params: 1) ctrl name, and, 2) a callback function that includes the required angular services</p>
+						<p class="fragment pad-left-lg">&rArr; <code class="code">$scope</code> is an object with properties and methods; it is accessible within our HTML templates</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Adding Our App and Controller to HMTL</div>
+
+						<p>&#149; Adding an angular module:</p>
+<pre class="fragment"><code>
+ 	&lt;div ng-app="ToDoApp"&gt;&lt;/div&gt;
+
+</code></pre>
+						<p class="fragment pad-left-lg text-smallest">&rArr; <code class="code">ng-app</code> is an <u>Angular directive</u>, which is synonymous with a class or property; it auto-bootstraps the application scoping it to the <code class="code">&lt;div&gt;</code> in which it was added</p>
+						<p class="fragment">&#149; Adding an angular controller:</p>
+<pre class="fragment"><code>
+ 	&lt;div id="wrapper" ng-controller="ToDoAppCtrl"&gt;&lt;/div&gt;
+
+</code></pre>
+						<p class="fragment pad-left-lg text-smallest">&rArr; <code class="code">ng-controller</code> is another Angular directive and scopes the contorllers functionality to a specific section of the app</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Adding Items To Our To Do List</div>
+
+					<div class="text-smaller">
+						<p class="fragment">&#149; Grap input value using <code class="code">ng-model</code>:</p>
+<pre class="fragment"><code>
+	&lt;input type="text" id="new-item" ng-model="inputText"&gt;
+
+</code></pre>
+
+						<p class="fragment">&#149; Adding a <code class="code">addItem</code> method to our <code class="code">$scope</code>:</p>
+<pre class="fragment"><code>
+	$scope.items = [];
+  	$scope.addItem = function() {
+	  $scope.items.push($scope.inputText)
+	  $scope.inputText = ""
+  	}
+
+</code></pre>
+
+						<p class="fragment">&#149; Using <code class="code">ng-repeat</code> to append items:</p>
+<pre class="fragment"><code>
+	&lt;ul id="list"&gt;
+	   &lt;li ng-repeat="item in items"&gt;{{item}}&lt;/li&gt;
+	&lt;/ul&gt;
+
+</code></pre>
+
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Removing Items From Our To Do List</div>
+
+					<div class="text-smaller">
+						<p class="fragment">&#149;Adding a <code class="code">removeItem</code> method to our <code class="code">$scope</code>:</p>
+<pre class="fragment"><code>
+  $scope.removeItem = function(index){ $scope.items.splice(index,1) }
+
+</code></pre>
+
+						<p class="fragment">&#149; Adding an <code class="code">ng-click</code> directive to the <code class="code">&lt;li&gt;</code>:</p>
+<pre class="fragment"><code>
+  &lt;li ng-repeat="item in items" ng-click="removeItem($index)"&gt;{{item}}&lt;/li&gt;
+
+</code></pre>
+
+						<p class="fragment">&#149; Using <code class="code">ng-repeat</code> to append items:</p>
+<pre class="fragment"><code>
+  &lt;ul id="list"&gt;
+    &lt;li ng-repeat="item in items" ng-click="removeItem($index)"&gt;{{item}}&lt;/li&gt;
+  &lt;/ul&gt;
+
+</code></pre>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Questions?</div>
+
+					<p>&#149; Resources:</p>
+					<div class="text-smaller pad-left-lg">
+						<p>&rArr; <a href="https://angularjs.org/">Angular Docs</a></p>
+						<p>&rArr; <a href="https://leanpub.com/mean-machine">MEAN Machine</a> (covers Mongo, Express, Angular, and Node)</p>
+						<p>&rArr; <a href="https://scotch.io/tag/angular-js">Scotch.io</a> Almost 60 Angular (1 and 2) Tutorials</p>
+						</div>
+					<p class="fragment">&#149; Starter Code: <a href="http://codepen.io/jkeohan/pen/jAovWX">CodePen</a></p>
+				</section>
+
+				<!-- NODE.JS -->
+				<section class="center">
+					<h1>Node.js</h1>
+				</section>
+
+				<!-- EXPRESS.JS -->
+				<section class="center">
+					<h1>Express.js</h1>
+				</section>
 			</div>
 		</div>
 
