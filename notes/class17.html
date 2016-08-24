@@ -81,8 +81,24 @@
 					<h1>Angular.JS</h1>
 				</section>
 
+
 				<section data-background="#FFF" class="text-left">
-					<div class="heading">Intro to Angular</div>
+					<div class="heading">Why Angular?</div>
+
+					<div class="text-smaller">
+						<p class="fragment">Most popular frontend framework for building applications</p>
+							<p class="fragment pad-left-lg">&rArr; Let the data speak for itself...</p>
+							<div class=" fragment pad-left-lg">
+									<p style="font-size:20px">*Represents interest over time</p>
+									<img style="margin:0px !important" src="../img/class17/frameworks-compared.png" alt="">
+									<p style="font-size:20px">Source: <a target="_" href="https://www.google.com/trends/explore?date=all&q=ember%20js,angular%20js,backbone%20js,react%20js&hl=en-US">Google Trends</a></p>
+								
+							</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Intro to Angular 1.5.8</div>
 
 					<div class="text-smaller">
 						<p class="fragment">&#149; Angular follows the MVC Architecture</p>
@@ -157,7 +173,7 @@
 					<div class="heading">Adding Items To Our To Do List</div>
 
 					<div class="text-smaller">
-						<p class="fragment">&#149; Grap input value using <code class="code">ng-model</code>:</p>
+						<p class="fragment">&#149; Grab input value using <code class="code">ng-model</code>:</p>
 <pre class="fragment"><code>
 	&lt;input type="text" id="new-item" ng-model="inputText"&gt;
 
@@ -173,7 +189,7 @@
 
 </code></pre>
 
-						<p class="fragment">&#149; Using <code class="code">ng-repeat</code> to append items:</p>
+						<p class="fragment">&#149; Using <code class="code">ng-repeat</code> to update the view with changes made to items array:</p>
 <pre class="fragment"><code>
 	&lt;ul id="list"&gt;
 	   &lt;li ng-repeat="item in items"&gt;{{item}}&lt;/li&gt;
@@ -200,7 +216,7 @@
 
 </code></pre>
 
-						<p class="fragment">&#149; Using <code class="code">ng-repeat</code> to append items:</p>
+						<p class="fragment">&#149; Using <code class="code">ng-repeat</code> to once again update the view with changes made to items array:</p>
 <pre class="fragment"><code>
   &lt;ul id="list"&gt;
     &lt;li ng-repeat="item in items" ng-click="removeItem($index)"&gt;{{item}}&lt;/li&gt;
@@ -208,6 +224,19 @@
 
 </code></pre>
 					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">The Next Iteration: Angular 2.0</div>
+
+					<p class="fragment">&#149;Drastically Different than Angular 1.0</p>
+					<div class="text-smaller pad-left-lg">
+						<p class="fragment">&rArr; No more Controllers or Scope</p>
+						<p class="fragment">&rArr; Focus is now on Components (aka: Directives)</p>
+						<p class="fragment">&rArr; Written in ES5, Dart or TypeScript</p>
+						<p class="fragment">&rArr; ES6 Templating and classes also available</p>
+						<p class="fragment">&rArr; 3-5x faster than 1.0</p>
+						</div>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
