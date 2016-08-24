@@ -32,6 +32,482 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#16</span> - 08/23/2016</h1>
+					<h2>Deploying Your Application</h2>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<div class="text-smallest">
+						<p>&#149; Final Project (T-Minus 14 days...)</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Next deliverable due 08/30:</p>
+							<div class="pad-left-lg">
+								<p>&#149; You should have <u>ONE</u> feature of your application nearing completion</p>
+							</div>
+							<p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
+						</div>
+						<p>&#149; Weekend Office Hours:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; 8/28 (Sun) from noon until 2PM</p>
+							<p>&rArr; Maybe 9/03 and 9/04 (Sun)</p>
+						</div>
+						<p>&#149; Student Choice for Class 17 (Thursday):</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Node + Express Server</p>
+							<p>&rArr; D3.js</p>
+							<p>&rArr; Angular.js</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Deployment Overview</p>
+					<p>&#149; GitHub Pages Deployment</p>
+					<p>&#149; Firebase Deployment</p>
+					<p>&#149; Google Maps + Citibike API</p>
+					<p>&#149; Lab</p>
+				</section>
+
+				<!-- DEPLOYMENT OVERVIEW -->
+				<section class="center">
+					<h1>Deployment</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Deployment</div>
+
+					<div class="text-smaller">
+						<p>&#149; So far, our code has been developed <u>locally</u></p>
+						<p class="pad-left-lg fragment">&rArr; Your code runs solely on your machines</p>
+						<p class="fragment">&#149; Eventually want to deploy our code to a <u>remote</u> server in order to share with the world</p>
+						<div class="fragment">
+							<p>&#149; Why develop locally in the first place?</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; Requires a lot less resources</p>
+								<p class="fragment">&rArr; Control over the development environment</p>
+								<p class="fragment">&rArr; Easier to track/identify bugs</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Deployment</div>
+
+					<div class="text-smaller">
+					<p>&#149; Deployment:</p>
+						<blockquote>
+							Deployment encompasses all the processes involved in getting new software or hardware up and running properly in its environment, including installation, configuration, running, testing, and making necessary changes
+						</blockquote>
+						<p class="fragment">&#149; The process of moving your <u>local</u> application to a <u>remote</u> server</p>
+						<p class="fragment">&#149; Once deployed, code moves from <u>development</u> to <u>production</u></p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Deployment</div>
+
+					<p>&#149; Not all applications deploy the same way!</p>
+					<p>&#149; Over the time of this course we have come to learn how to build two different types of programs:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Static websites</p>
+						<p>&rArr; Dynamic web applications</p>
+					</div>
+					<p>&#149; There are many hosting options available; each is best suited to a particular application type</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Deployment</div>
+
+					<p>Static Websites:</p>
+					<div class="pad-left-lg">
+						<p>&#149; Purely front-end application</p>
+						<p>&#149; Consist of only HTML, CSS and JS files; also includes images, videos, JSON, etc.</p>
+						<p>&#149; Files are static in that they are served once and never dynamically updated</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Deployment</div>
+
+					<p>Dynamic web applications:</p>
+					<div class="pad-left-lg">
+						<p>&#149; Defined as a client-server software application where the client runs in the browser</p>
+						<p>&#149; An application with both a frontend and a backend</p>
+						<p>&#149; Leveraged Firebase to build one:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; HTML, CSS and JS are considered the client (frontend)</p>
+							<p>&rArr; Firebase provides the backend (server, API, database)</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- GITHUB PAGES -->
+				<section class="center">
+					<h1>GitHub Pages</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GitHub Pages</div>
+
+					<p>&#149; Great option for deploying a simple static website</p>
+					<p>&#149; Available for free with your GitHub acount (limited to one URL)</p>
+					<div class="pad-left-lg"><code class="code">http://your_username.github.com</code></div>
+					<p>&#149; Public (everyone can see your code) - do not push API keys or other sensitive information here</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GitHub Pages</div>
+
+					<p>To deploy with GitHub pages:</p>
+					<div class="pad-left-lg">
+						<p>1) Create your <code class="code">github.io</code> repository</p>
+						<p>2) Clone your newly created repo to your local environment</p>
+						<p>3) Create <code class="code">HTML</code>, <code class="code">CSS</code>, and <code class="code">JS</code> files</p>
+						<p>4) Add, commit, and push your newly created files</p>
+						<p>5) Visit <code class="code">http://your_username.github.com</code> to see deployed code</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GitHub Pages</div>
+
+					<div class="text-smaller">
+						<p>Note: to properly activate GitHub pages, you <u>must</u> name the repo using the following convention:</p>
+						<div class="pad-left-lg"><code class="code">your_github_username.github.io</code></div>
+					</div>
+					<hr>
+					<div class="text-center">
+						<img src="../img/class16/github-create-repo.png" alt="">
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GitHub Pages</div>
+
+					<p>&#149; After creating your repo, clone it to your machine</p>
+					<p>&#149; <code class="code">git</code> may complain that you cloned an empty repo:</p>
+					<img src="../img/class16/github-empty-clone.png" alt="">
+					<hr>
+					<p>&#149; Note: an <code class="code">index.html</code> file is required at this repo's root!</p>
+					<p>&#149; Create the necessary files/folders; then <code class="code">add</code>, <code class="code">commit</code>, and <code class="code">push</code> up to GitHub</p>
+				</section>
+
+				<section class="center">
+					<h1>GitHub Deploy Exercise</h1>
+				</section>
+
+				<section class="center">
+					<h1>How is this working?</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GitHub Pages</div>
+
+					<div class="text-smaller">
+						<p>&#149; Where are you pushing your code to?</p>
+						<div class="fragment">
+							<p>&#149; A <u>Server</u>:</p>
+							<div class="pad-left-lg text-smallest">
+								<blockquote>
+									A server is a computer program or a machine that waits for requests from other machines or software (clients) and responds to them. The purpose of a server is to share data or hardware and software resources among clients. This architecture is called the client-	server model.
+								</blockquote>
+							</div>
+							<p>&#149; Re: web apps, the main purpose of a server is to listen to requests coming from clients (i.e. browsers) and respond with the appropriate resources to fulfill the request</p>
+							<p>&#149; This could be the server redirecting to a whole new page and/or just providing some more data to the user interface</p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GitHub Pages</div>
+
+						<p>&#149; When we pushed our code up to GitHub for GitHub Pages to host we essentially told GitHub Pages that we'd like to utilize their server to deliver our resources (HTML, CSS and JS)</p>
+						<p>&#149; More specifically, we told GitHub Pages that whenever someone comes to <code class="code">http://username.github.io</code> serve all the code from <code class="code">username/username.github.io</code></p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GitHub Pages</div>
+
+					<p>&#149; What if we built out a full-stack application that already has a server?</p>
+					<p>&#149; In our last lesson we utilized the BEaaS, Firebase, to build an application</p>
+					<p>&#149; Firebase provided us with both a server and a database</p>
+					<p>&#149; If we have an application that already has its own server, would it still be appropriate to use a hosting service, like GitHub Pages, that provides our program with a server?</p>
+				</section>
+
+				<!-- FIREBASE DEPLOYMENT -->
+				<section class="center">
+					<h1>Firebase</h1>
+					<h1>Deployment</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<p>&#149; Firebase Hosting provides developers the infrastructure, features, and tooling tailored to deploying and managing their websites</p>
+					<p>&#149; Gives your project a subdomain on the firebaseapp.com domain:</p>
+					<p class="pad-left-lg"><code class="code">YOUR_FIREBASE_APP.firebaseapp.com</code></p>
+					<p>&#149; Using the Firebase CLI, you can deploy files from local directories to Firebase</p>
+					<p>&#149; Files are served over an SSL connection from the closest edge server on their global CDN</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<p>Firebase Deployment Overview:</p>
+					<div class="pad-left-lg text-smaller">
+						<p>1) Install the Firebase Command Line Interface (CLI)</p>
+						<p>2) Use <code class="code">firebase init</code> to begin your Firebase project</p>
+						<p>3) Create the proper project directory using <code class="code">public/</code></p>
+						<p>4) Test your app locally using <code class="code">firebase serve</code></p>
+						<p>5) Use <code class="code">firebase deploy</code> to delpoy your app to Firebase's servers</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<div class="text-smaller">
+						<p>&#149; You already accomplished a few of these steps last class:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; Installed the Firebase CLI using <code class="code">npm install -g firebase-tools</code></p>
+							<p>&rArr; Created and deployed your application using <code class="code">firebase init</code> and <code class="code">firebase deploy</code></p>
+						</div>
+						<div class="fragment">
+							<p>&#149; Next steps:</p>
+							<div class="pad-left-lg">
+								<p>&rArr; Create the proper project structure</p>
+								<p>&rArr; Test using <code class="code">firebase serve</code></p>
+								<p>&rArr; Deploy and confirm</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<p>To obtain your Firebase project's URL, visit your application's overview page:</p>
+					<img src="../img/class16/firebase-app-overview.png" alt="">
+				</section>
+
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<p>Opening the URL should yield the following:</p>
+					<img src="../img/class16/firebase-hosting-welcome.png" alt="">
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<div class="text-smaller">
+						<p>&#149; <code class="code">firebase.init</code> creates a <code class="code">firebase.json</code> config file:</p>
+<pre><code>
+	{
+	  "hosting": {
+	    "public": "public",
+	    "ignore": [
+	      "firebase.json",
+	      "**/.*",
+	      "**/node_modules/**"
+	    ]
+	  }
+	}
+
+</code></pre>
+						<p>&#149; Only the <code class="code">public</code> attribute is required; tells Firebase which directory to upload to Firebase hosting</p>
+						<p>&#149; The <code class="code">ignore</code> attribute specifies files which Firebase should ignore (smiliar to <code class="code">.gitignore</code>)</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<div class="text-smallest">
+						<p>&#149; We need to move our static assets into the <code class="code">public directory</code>:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; <code class="code">HTML</code></p>
+							<p>&rArr; <code class="code">CSS</code></p>
+							<p>&rArr; <code class="code">JS</code></p>
+							<p>&rArr; Any images/videos</p>
+						</div>
+						<p>&#149; Your app's structure should look like:</p>
+					</div>
+					<div class="text-center">
+						<img src="../img/class16/firebase-project-structure.png" alt="">
+					</div>
+				</section>
+
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Firebase Deployment</div>
+
+					<div class="text-smaller">
+						<p>&#149; Use <code class="code">firebase serve</code> to test your application using your local machine as a webserver</p>
+						<p>&#149; By default, will use port <code class="code">5000</code></p>
+						<p>&#149; Navigate to <code class="code">http://localhost:5000</code> in your browser</p>
+						<div class="text-center">
+							<img src="../img/class16/firebase-serve-cli.png" alt="">
+						</div>
+						<p>&#149; If all is well, deploy to Firebase using <code class="code">firebase deploy</code></p>
+						<p>&#149; Access your deployed code at <code class="code"><YOUR-FIREBASE-APP>.firebaseapp.com</code></p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Note:</h1>
+					<p>We will be covering hosting with Heroku once we learn how to write a basic web application using Node and Express</p>
+				</section>
+
+				<!-- BREAK -->
+				<section class="center">
+					<h1>5 minute break</h1>
+					<img src="../img/main/break-time-bear.jpg">
+				</section>
+
+				<!-- GOOGLE MAPS -->
+				<section class="center">
+					<h1>Goolge Maps API</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Google Maps API</div>
+
+					<p>What is an API?</p>
+					<div class="fragment text-smallest">
+						<div class="pad-left-lg">
+							<p>&#149; Application Programming Interface</p>
+							<p>&#149; Set of rules/instructions for interacting with a piece of software</p>
+							<p>&#149; Middleman; allows different pieces of software to "talk" to each other</p>
+						</div>
+						<div class="text-center">
+							<img src="../img/class16/api.png" alt="">
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Google Maps API</div>
+
+					<div class="text-smaller">
+						<p>&#149; Google Maps Overview:</p>
+						<div class="pad-left-lg">
+							<p>1. Obtain API Key</p>
+							<p>2. Add starter HTML</p>
+							<p>3. Enable map using JS</p>
+							<p>4. ???</p>
+							<p>5. Profit</p>
+						</div>
+						<p>&#149; Please open:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; <a target="_blank" href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps JavaScript API V3 Documentation</a></p>
+							<p>&rArr; <code class="code">google-maps/</code> in Sublime Text</p>
+						</div>
+					</div>
+				</section>
+
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Google Maps API</div>
+
+					<p>&#149; Google Maps require:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; <code class="code">center</code></p>
+						<p>&rArr; <code class="code">zoom</code></p>
+					</div>
+
+					<p>Challenge: Change the <code class="code">center</code> of your map to NYC</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Hint: look up NYC's coordinates!</p>
+						<p class="fragment">&rArr; 40.7127 N, 74.0059 W</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Google Maps API</div>
+
+					<div class="text-smaller">
+						<p>&#149; To add a marker to your map, create a new <code class="code">Marker</code>:</p>
+<pre><code>
+	var marker = new google.maps.Marker({
+		position: {lat: y, lng: x},
+		map: map,
+		title: 'New York, NY'
+	});
+
+</code></pre>
+						<p>&#149; The <code class="code">Marker</code> object requires:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; <code class="code">position: {lat: y, lng: x}</code></p>
+							<p>&rArr; <code class="code">map</code></p>
+						</div>
+						<p>&#149; Challenge 1: Add a marker using NYC's coordinates</p>
+						<p>&#149; Challenge 2: Add another marker using your address</p>
+					</div>
+				</section>
+
+				<!-- GOOGLE MAPS + CITIBIKE LAB -->
+				<section class="center">
+					<h1>Google Maps</h1>
+					<h2>+</h2>
+					<h1>CitiBike Lab</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">GOOGLE MAPS + CITIBIKE LAB</div>
+
+					<p class="text-smaller">Goals:</p>
+					<div class="text-smallest pad-left-lg">
+						<p>&#149; Use the CitiBike feed to render bike stations on a Google Map</p>
+						<p>&#149; Each station should be represented by a Marker object</p>
+						<p>&#149; When a user clicks on a Marker, display an InfoWindow with information about how many bikes are available</p>
+					</div>
+					<p class="text-smaller">Information:</p>
+					<div class="text-smallest pad-left-lg">
+						<p>&#149; Use <code class="code">http://api.citybik.es/citi-bike-nyc.json</code> to get the Citibike data</p>
+						<p>&#149; To add a click event to a Marker, research Google Maps' <code class="code">addListener</code> method</p>
+						<p>&#149; To create an InfoWindow object, research Google Maps' <code class="code">InfoWindow</code> object</p>
+					</div>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #17 (of 20) - Student Choice</h4>
+					<div class="pad-left-lg">
+						<p>&#149; Node + Express</p>
+						<p>&#149; Heroku + Node Deployment</p>
+						<p>&#149; Angular.js</p>
+						<p>&#149; D3.js</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
+				</section>
 			</div>
 		</div>
 
