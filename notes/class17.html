@@ -22,6 +22,21 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+	<style>
+		span.containImg{
+    display: block;
+    float:left;
+    width: 300px;
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+    background-size: cover;
+    margin-right:2%;
+		}
+		span.containImg a{
+			color:black
+		}
+	</style>
 	</head>
 
 	<body>
@@ -88,40 +103,47 @@
 						<p class="fragment">Most popular frontend framework for building applications</p>
 							<p class="fragment pad-left-lg">&rArr; Let the data speak for itself...</p>
 							<div class=" fragment pad-left-lg">
-									<p style="font-size:20px">*Represents interest over time</p>
 									<img style="margin:0px !important" src="../img/class17/frameworks-compared.png" alt="">
-									<p style="font-size:20px">Source: <a target="_" href="https://www.google.com/trends/explore?date=all&q=ember%20js,angular%20js,backbone%20js,react%20js&hl=en-US">Google Trends</a></p>
+
+									<p style="font-size:20px">Source: <a target="_" href="https://www.google.com/trends/explore?date=all&q=ember%20js,angular%20js,backbone%20js,react%20js&hl=en-US">Google Trends</a><span style="font-size:20px; float:right; margin-right:40px">&nbsp  *Represents interest over time</span></p>						
 
 							</div>
+							<p class="fragment pad-left-lg">&rArr; Popular sites built in Angular</p>
+							
+							<span class="fragment containImg" style="background-image: url('../img/class17/weather.png')"><a href="http://weather.com">Weather.com</a></span>
+							<span class="fragment containImg "style="background-image: url('../img/class17/netflix.png')">
+								<a href="http://netflix.com">Netflix</a>
+							</span>	
+							<span class="fragment containImg" style="background-image: url('../img/class17/istockphoto.png')"><a href="http://jetblue.com">istockphoto</a></span>
+							
 					</div>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<div class="heading">Intro to Angular 1.5.8</div>
+					<div class="heading">Intro to Angular v1 (current version 1.5.8)</div>
 
 					<div class="text-smaller">
 						<p class="fragment">&#149; Angular follows the MVC Architecture</p>
-						<p class="fragment">&#149; Use case scenarios for higher level functions:</p>
 							<div class="pad-left-lg">
-								<p class="fragment">&rArr; Model: The Data (2-way binding)</p>
-								<p class="fragment">&rArr; View: Presents Data in HTML</p>
-								<p class="fragment">&rArr; Controller: Data Manipulation and User Interaction</p>
+								<p class="fragment">&rArr; Model: The Data (Two-Way Data Binding)</p>
+								<p class="fragment">&rArr; View: Show data from model or controller</p>
+								<p class="fragment">&rArr; Controller: Scoped modular functionality</p>
 							</div>
 
 						<p class="fragment">&#149; Additional Functionality:</p>
 							<div class="pad-left-lg">
 								<p class="fragment">&rArr; Templating: similiar to Handlebars</p>
-								<p class="fragment">&rArr; Directives: special classes that do something, such as:  <code class="code">ng-app</code>, <code class="code">ng-controller</code>, <code class="code">ng-repeat</code>, <code class="code">ng-class</code></p>
-								<p class="fragment">&rArr; Factories & Services: modularized funtionality</p>
+								<p class="fragment">&rArr; Directives: attributes that enhance functionality, such as:  <code class="code">ng-hide</code>, <code class="code">ng-show</code>, <code class="code">ng-repeat</code>, <code class="code">ng-class</code></p>
+								<p class="fragment">&rArr; Factories & Services: global modular funtionality</p>
 							</div>
 					</div>
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<div class="heading">Ceating Your First Angular App</div>
+					<div class="heading">Creating Your First Angular App</div>
 
 					<div class="text-smaller">
-						<p class="fragment">&#149; A Basic To-Do App which will be similiar to the <code class="code">list_maker</code> solution from Module 5 made in jQuery...<a href="http://codepen.io/jkeohan/full/LkoXGo/" target="_blank">CodePen</a></p>
+						<p class="fragment">&#149; A Basic To-Do App which will be similiar to the <code class="code">jQuery list_maker</code> solution from Module 5: <a href="http://codepen.io/jkeohan/full/LkoXGo/" target="_blank">CodePen</a></p>
 						<p class="fragment">&#149; Functionality will include:</p>
 							<p class="fragment pad-left-lg">&rArr; Adding to-do items</p>
 							<p class="fragment pad-left-lg">&rArr; Deleting to-do items</p>
@@ -132,9 +154,9 @@
 				</section>
 
 				<section data-background="#FFF" class="text-left">
-					<div class="heading">Ceating Your First Angular App</div>
-
-					<p>&#149; Adding an Angular module:</p>
+					<div class="heading">Getting Started</div>
+					<p class="fragment">&#149; Adding our script tag</p>
+					<p class="fragment">&#149; Adding an Angular module:</p>
 <pre class="fragment"><code>
 	var ToDoApp = angular.module("ToDoApp", []) { }
 
@@ -146,8 +168,7 @@
 
 </code></pre>
 					<div class="text-smallest">
-						<p class="fragment pad-left-lg">&rArr; It takes in 2 params: 1) ctrl name, and, 2) a callback function that includes the required angular services</p>
-						<p class="fragment pad-left-lg">&rArr; <code class="code">$scope</code> is an object with properties and methods; it is accessible within our HTML templates</p>
+						<p class="fragment pad-left-lg">&rArr; It takes in 2 params: 1) ctrl name, and, 2) a callback function that includes any required angular services such as: <code class="code">$scope, $rootScope, $http </code></p>
 					</div>
 				</section>
 
@@ -159,7 +180,7 @@
  	&lt;div ng-app="ToDoApp"&gt;&lt;/div&gt;
 
 </code></pre>
-						<p class="fragment pad-left-lg text-smallest">&rArr; <code class="code">ng-app</code> is an <u>Angular directive</u>, which is synonymous with a class or property; it auto-bootstraps the application scoping it to the <code class="code">&lt;div&gt;</code> in which it was added</p>
+						<p class="fragment pad-left-lg text-smallest">&rArr; <code class="code">ng-app</code> is an <u>Angular directive</u>, which can take the form of an html <code class="code">property</code> or <code class="code">tag</code>; it auto-bootstraps the application scoping it to the <code class="code">&lt;div&gt;</code> in which it was added</p>
 						<p class="fragment">&#149; Adding an angular controller:</p>
 <pre class="fragment"><code>
  	&lt;div id="wrapper" ng-controller="ToDoAppCtrl"&gt;&lt;/div&gt;
