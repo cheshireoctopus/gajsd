@@ -87,8 +87,7 @@
 				<section data-background="#FFF" class="text-left">
 					<div class="heading">Agenda</div>
 					<p>&#149; Angular.js</p>
-					<p>&#149; Node.js</p>
-					<p>&#149; Node + Express.js</p>
+					<p>&#149; Node.js + Express.js</p>
 				</section>
 
 				<!-- ANGULAR.JS -->
@@ -105,7 +104,9 @@
 							<p class="fragment pad-left-lg">&rArr; Let the data speak for itself...</p>
 							<div class=" fragment pad-left-lg">
 									<img style="margin:0px !important" src="../img/class17/frameworks-compared.png" alt="">
+
 									<p style="font-size:20px">Source: <a target="_" href="https://www.google.com/trends/explore?date=all&q=ember%20js,angular%20js,backbone%20js,react%20js&hl=en-US">Google Trends</a><span style="font-size:20px; float:right; margin-right:40px">&nbsp  *Represents interest over time</span></p>						
+
 							</div>
 							<p class="fragment pad-left-lg">&rArr; Popular sites built in Angular</p>
 							
@@ -275,9 +276,481 @@
 					<h1>Node.js</h1>
 				</section>
 
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Note: Preface</div>
+
+					<p>&#149; So far, we have only developed on the <u>client-side</u> of the <u>client-server</u> model</p>
+					<p>&#149; While Firebase provided us with a backend (server/API/database) ... we actually didn't build it</p>
+					<p>&#149; Tonight, we will leverage Node.js, to create a JavaScript-powered server-side application</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Overview</div>
+					<p>&#149; Node(<a href="https://en.wikipedia.org/wiki/Node.js">source</a>):</p>
+					<blockquote class="text-smaller">
+						Node.js is an open-source, cross-platform runtime environment for developing server-side Web applications
+					</blockquote>
+					<div class="fragment">
+						<p>&#149; Enables JavaScript on the server (the backend)</p>
+						<p>&#149; Written in C, C++, and JS (so, not a JS framework)</p>
+						<p>&#149; Interprets JS using Chrome's <a href="https://developers.google.com/v8/">V8 engine</a></p>
+						<p>&#149; Module driven; see Node Package Manager (<a href="https://www.npmjs.com/">npm</a>)</p>
+						<p>&#149; Event-driven, asychronous (non-blocking) input/output</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: npm</div>
+
+					<div class="text-smaller">
+						<p>&#149; <a href="https://www.npmjs.com/" target="_blank">Node Package Manager</a> (npm); ships with Node</p>
+						<p>&#149; Allows developers to easily pull in modules for their projects</p>
+						<p>&#149; Most often, there is no need to re-invent the wheel</p>
+						<p>&#149; Installed packages are kept in a project's <code class="code">package.json</code></p>
+						<p>&#149; Some popular packages (as of August, 2016):</p>
+						<div class="pad-left-lg">
+							<p>&rArr; <a href="https://www.npmjs.com/package/express" target="_blank">express</a>: minimalist web framework</p>
+							<p>&rArr; <a href="https://www.npmjs.com/package/requests" target="_blank">request</a>: simple HTTP request client</p>
+							<p>&rArr; <a href="https://www.npmjs.com/package/nodemon" target="_blank">nodemon</a>: monitor for Node development</p>
+						</div>
+					</div>
+				</section>
+
+<!-- 				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node.js</div>
+
+					<p>&#149; The event loop</p>
+				</section>
+ -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Project Overview</div>
+
+					<p>&#149; You will be creating a backend application that: </p>
+					<div class="pad-left-lg">
+						<p class="fragment">1) Randomly generates a geo-location</p>
+						<p class="fragment">2) Consumes the OpenWeather API to fetch weather at these coordinates</p>
+						<p class="fragment">3) Returns the above as one object to the frontend</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Getting Started</div>
+
+					<div class="text-smallest">
+						<p>&#149; To begin a Node app, run <code class="code">npm init</code> from the command line:</p>
+						<div class="text-center">
+							<img src="../img/class17/node-init.png" alt="">
+						</div>
+						<p>&#149; All the prompts are <b>OPTIONAL</b>; most have default values</p>
+						<p>&#149; You will now have a <code class="code">package.json</code> file at your directory root</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Getting Started</div>
+
+					<div class="text-smallest">
+						<p>&#149; Let's add the npm packages we will be using:</p>
+						<div class="pad-left-lg">
+							<p>&rArr; Express</p>
+							<p>&rArr; Nodemon</p>
+							<p>&rArr; Faker</p>
+							<p>&rArr; Request</p>
+						</div>
+						<p>&#149; Install one at a time: <code class="code">npm install express --save</code></p>
+						<p>&#149; Or, all at once:</p>
+<pre><code>
+	npm install express nodemon faker request --save
+
+</code></pre>
+						<p>&#149; The <code class="code">--save</code> flag records these modules in the <code class="code">package.json</code> file</p>
+						<p>&#149; These packages are stored in the <code class="code">node_modules</code> directory</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Getting Started</div>
+
+					<p>&#149; When we ran <code class="code">npm init</code>, we specified an entry point for our Node app: <code class="code">index.js</code></p>
+					<p>&#149; This is the first file to run when the Node app starts</p>
+					<p>&#149; Add this file using <code class="code">touch index.js</code>, and add to it:</p>
+<pre><code>
+	console.log('Hello, World!');
+
+</code></pre>
+					<p>&#149; Test the file by running <code class="code">node index.js</code> from the command line</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Getting Started</div>
+
+					<div class="text-smallest">
+						<p>&#149; Next, let's see Nodemon in action:</p>
+						<div class="pad-left-lg">
+							<p>1) Run <code class="code">nodemon</code> from the command line (may have to install globally)</p>
+							<p>2) Add a new line to <code class="code">index.js</code>:</p>
+<pre><code>
+	console.log('How are things on Spaceship Earth?');
+
+</code></pre>
+							<p>3) Go back to your command line; you should see the following:</p>
+						</div>
+						<div class="text-center">
+							<img src="../img/class17/nodemon-restart.png" alt="">
+						</div>
+						<p>&#149; Use <code class="code">control</code> + <code class="code">c</code> to stop nodemon</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Next Step:</h1>
+					<h2>Setup an Express-powered HTTP server</h2>
+				</section>
+
 				<!-- EXPRESS.JS -->
 				<section class="center">
 					<h1>Express.js</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Overview</div>
+
+					<p>&#149; <a href="https://expressjs.com/" target="_blank">Express.js</a> is a light-weight, easy-to-use, web framework for Node</p>
+					<p>&#149; Used to help organize web apps on the server-side</p>
+					<p>&#149; Abstracts of lot of Node's inner-workings to speed/ease application development</p>
+					<p>&#149; Notable features:</p>
+					<div class="pad-left-lg">
+						<p>&rArr; Router</p>
+						<p>&rArr; HTTP request handling</p>
+						<p>&rArr; Middleware</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Setup</div>
+
+					<div class="text-smallest">
+						<p>Add the following to <code class="code">index.js</code>:</p>
+<pre><code>
+  var express = require('express');
+  var path = require('path');
+
+  var app = express();
+
+  app.get('/', function (req, res) {
+    res.send('Hello, World!');
+  });
+
+  app.listen(1337, function () {
+    console.log('The magic is going down on 1337!')
+  });
+
+</code></pre>
+						<p>&#149; Builds a new Express application</p>
+						<p>&#149; Creates a new <u>route</u> at <code class="code">/</code> that reponds to <code class="code">get</code> requests</p>
+						<p>&#149; Listens for incoming HTTP request on port 1337</p>
+						<p>&#149; Kick off your app by running <code class="code">nodemon</code>; open <code class="code">http://localhost:1337/</code> in your browser</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Setup</div>
+
+					<div class="text-smallest">
+						<p>&#149; To send an actual HTML file, we need to do a few things:</p>
+						<div class="pad-left-lg">
+							<p>1) Create a <code class="code">public</code> directory to hold our HTML, CSS, and JS files:</p>
+							<div class="pad-left-lg">
+								<p>&rArr; <code class="code">index.html</code></p>
+								<p>&rArr; <code class="code">styles.css</code></p>
+								<p>&rArr; <code class="code">app.js</code></p>
+							</div>
+							<p>2) Tell Express where this public directory is:</p>
+<pre><code>
+	app.use(express.static('public'));
+
+</code></pre>
+							<p>3) Return the <code class="code">index.html</code> on the <code class="code">app.get('/', ...</code> route:</p>
+<pre><code>
+  app.get('/', function (req, res) {
+    res.send('index.html');
+  });
+
+</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Next Step:</h1>
+					<h2>Add Routes and Backend Application Logic</h2>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Routing</div>
+
+					<div class="text-smallest">
+						<p>&#149; Routes allow for functionality built on top of the HTTP methods</p>
+						<p class="fragment">&#149; Our app already has one route:</p>
+						<div class="fragment">
+<pre><code>
+  app.get('/', function (req, res) {
+    res.send('index.html');
+  });
+
+</code></pre>
+						</div>
+						<div class="fragment">
+							<p>&#149; Whenever a <code class="code">GET</code> request is made to the root of our Node server <code class="code">/</code>, Express responds with a callback:</p>
+<pre><code>
+  function (req, res) {
+    res.send('index.html');
+  }
+
+</code></pre>
+						</div>
+						<div class="fragment">
+							<p>&#149; This callback has two arguments: <code class="code">req</code> and <code class="code">res</code></p>
+							<p>&#149; <code class="code">req</code> is an object representing our <u>HTTP request</u></p>
+							<p>&#149; <code class="code">res</code> is an object representing our <u>HTTP response</u></p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Routing</div>
+
+					<p>Express makes it easy to handle all HTTP methods:</p>
+<pre><code>
+  // GET
+  app.get('/', function (req, res) {
+    res.send('Received a GET request');
+  });
+
+  // POST
+  app.post('/', function (req, res) {
+    res.send('Received a POST request');
+  });
+
+  // PUT
+  app.put('/', function (req, res) {
+    res.send('Received a PUT request');
+  });
+
+  // DELETE
+  app.delete('/user', function (req, res) {
+    res.send('Received a DELETE request');
+  });
+
+</code></pre>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Routing</div>
+
+					<p>&#149; Let's add a new route that will return our random geolocation data:</p>
+					<div class="fragment">
+<pre><code>
+  app.get('/geo', function (req, res) {
+    res.send('I am working!');
+  });
+
+</code></pre>
+					</div>
+					<p class="fragment">&#149; We are fetching data, so we will use <code class="code">app.get()</code></p>
+					<p class="fragment">&#149; The route which we will hit is <code class="code">/geo</code></p>
+					<p class="fragment">&#149; For now, we are just returning a string to test if our route is working</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Routing</div>
+
+					<div class="text-smallest">
+						<p>&#149; How can we test our new route?</p>
+						<p class="fragment">&#149; Enter the path in the browser: <code class="code">http://localhost:1337/geo</code></p>
+						<p class="fragment">&#149; What JS tool can we use to make a request to our <code class="code">/geo</code> endpoint?</p>
+						<div class="fragment">
+							<p>&#149; We could use an AJAX request; add the following to your <code class="code">public/app.js</code>:</p>
+<pre><code>
+  $.ajax({
+    url: '/geo',
+    type: 'GET',
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (xhr) {
+      console.log(xhr);
+    }
+  });
+
+</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Application Logic</div>
+
+					<p>Now that our route is working, let's add some application logic:</p>
+					<div class="pad-left-lg">
+						<p class="fragment">1) Require the <code class="code">faker</code> package into your <code class="code">index.js</code></p>
+						<p class="fragment">2) Generate random geo-data in the <code class="code">/geo</code> callback</p>
+						<p class="fragment">3) Return this data to the frontend as a JSON object</p>
+						<p class="fragment">4) Update the AJAX call to handle the new response</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Application Logic</div>
+
+					<p>&#149; To use the <code class="code">faker</code> pacakge, you must require it:</p>
+<pre><code>
+	var faker = require('faker');
+
+</code></pre>
+					<div class="fragment">
+						<p>&#149; Update the <code class="code">/geo</code> route to send an object containing the geo-data:</p>
+<pre><code>
+  app.get('/geo', function (req, res) {
+    var latitude = faker.address.latitude();
+    var longitude = faker.address.longitude();
+
+    res.send({
+      lat: latitude,
+      lng: longitude,
+    });
+  });
+
+</code></pre>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Next Step:</h1>
+					<h2>Making HTTP RequestS from Node</h2>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: HTTP Requests</div>
+
+					<p>&#149; We can use Node to make HTTP requests</p>
+					<p>&#149; Node can do this natively, but there are many packages which streamline the process</p>
+					<p>&#149; We will be using the <a href="https://github.com/request/request" target="_blank">request</a> package</p>
+					<p>&#149; Our Goal:</p>
+					<p class="pad-left-lg">Pass the <code class="code">latitude</code> and <code class="code">longitude</code> generated from the <code class="code">faker</code> to the <a href="http://openweathermap.org/current" target="_blank">http://openweathermap.org/</a> API to get the weather at those coordinates</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: HTTP Request</div>
+					<div class="text-smallest">
+						<p>&#149; Overview:</p>
+						<div class="pad-left-lg">
+							<p class="fragment">1) Require the <code class="code">request</code> package into your <code class="code">index.js</code></p>
+							<p class="fragment">2) Use <code class="code">request</code> to hit <a href="http://openweathermap.org/current" target="_blank">http://openweathermap.org/</a> with <code class="code">faker</code> data</p>
+							<p class="fragment">3) Handle the response appropriately and pass it, along with the <code class="code">faker</code> data, to the frontend</p>
+						</div>
+						<div class="fragment">
+							<p>&#149; <code class="code">request</code> usage:</p>
+<pre><code>
+  var request = require('request');
+
+  request(http://your-endpoint.com, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body);
+    }
+  });
+
+</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: HTTP Requests</div>
+
+					<div class="text-smallest">
+						<p>&#149; To use the <code class="code">request</code> pacakge, you must require it:</p>
+<pre><code>
+	var request = require('request');
+
+</code></pre>
+						<p class="fragment">&#149; Where should we add our <code class="code">request</code> call?</p>
+						<div class="fragment">
+							<p>&#149; In the <code class="code">app.get('/geo', ...)</code> route:</p>
+<pre><code>
+  var latitude = faker.address.latitude();
+  var longitude = faker.address.longitude();
+
+  var weatherKey = '19ab861f15cfd2e8216a3be1ed615598';
+  var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey
+
+  request(weatherURL, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.send({
+        weather: JSON.parse(body),
+        lat: latitude,
+        lng: longitude,
+      });
+    }
+  });
+
+</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Recap</div>
+
+					<p>You just learned:</p>
+					<p class="fragment">&#149; Node project setup using <code class="code">npm init</code></p>
+					<p class="fragment">&#149; Install <code class="code">npm</code> modules to <code class="code">package.json</code></p>
+					<p class="fragment">&#149; Run a Node project using <code class="code">nodemon</code></p>
+					<p class="fragment">&#149; Build a simple HTTP web server using <code class="code">express</code>:</p>
+					<div class="pad-left-lg">
+						<p class="fragment">&rArr; Construct your own API using <code class="code">app.get()</code></p>
+						<p class="fragment">&rArr; Make HTTP request from your server using <code class="code">request</code></p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Node: Next Steps</div>
+
+					<p>&#149; Make the frontend more user-friendly:</p>
+					<div class="pad-left-lg text-smaller">
+						<p>&rArr; Display the coordinates and weather in the DOM</p>
+						<p>&rArr; Make the request to <code class="code">/geo</code> on a button click</p>
+						<p>&rArr; Plot the coordinates on a Google Map</p>
+						<p>&rArr; Automatically pull the user's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation" target="_blank">geo-location</a></p>
+					</div>
+					<div class="fragment">
+						<p>&#149; Add more routes on the backend:</p>
+						<div class="pad-left-lg text-smaller">
+							<p>&rArr; Allow the user to enter their own input (e.g. search weather by city); HINT: look up <a href="https://expressjs.com/en/guide/routing.html">parameters</a></p>
+							<p>&rArr; Connect to <a href="https://www.firebase.com/docs/web/quickstart.html" target="_blank">Firebase</a> and keep a record of the randomly generated coordinates</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #18 (of 20) - Student Choice</h4>
+					<div class="pad-left-lg">
+						<p>&#149; In-class project work</p>
+						<p>&#149; Heroku + Node Deployment</p>
+						<p>&#149; D3.js</p>
+						<p>&#149; JS Debugging</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
 				</section>
 			</div>
 		</div>
