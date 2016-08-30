@@ -60,7 +60,9 @@
 
 				<section class="center">
 					<h1>Class <span style="color: red;">#17</span> - 08/25/2016</h1>
-					<h2>Instructor/Student Choice</h2>
+					<h1>Instructor Choice:</h1>
+					<h2>Angular.js</h2>
+					<h2>Node + Express.js</h2>
 				</section>
 
 				<!-- ANNOUNCEMENTS -->
@@ -105,17 +107,17 @@
 							<div class=" fragment pad-left-lg">
 									<img style="margin:0px !important" src="../img/class17/frameworks-compared.png" alt="">
 
-									<p style="font-size:20px">Source: <a target="_" href="https://www.google.com/trends/explore?date=all&q=ember%20js,angular%20js,backbone%20js,react%20js&hl=en-US">Google Trends</a><span style="font-size:20px; float:right; margin-right:40px">&nbsp  *Represents interest over time</span></p>						
+									<p style="font-size:20px">Source: <a target="_" href="https://www.google.com/trends/explore?date=all&q=ember%20js,angular%20js,backbone%20js,react%20js&hl=en-US">Google Trends</a><span style="font-size:20px; float:right; margin-right:40px">&nbsp  *Represents interest over time</span></p>
 
 							</div>
 							<p class="fragment pad-left-lg">&rArr; Popular sites built in Angular</p>
-							
+
 							<span class="fragment containImg" style="background-image: url('../img/class17/weather.png')"><a href="http://weather.com">Weather.com</a></span>
 							<span class="fragment containImg "style="background-image: url('../img/class17/netflix.png')">
 								<a href="http://netflix.com">Netflix</a>
-							</span>	
+							</span>
 							<span class="fragment containImg" style="background-image: url('../img/class17/istockphoto.png')"><a href="http://jetblue.com">istockphoto</a></span>
-							
+
 					</div>
 				</section>
 
@@ -681,8 +683,8 @@
   var latitude = faker.address.latitude();
   var longitude = faker.address.longitude();
 
-  var weatherKey = '19ab861f15cfd2e8216a3be1ed615598';
-  var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey
+  var weatherKey = 'YOUR_API_KEY_HERE';
+  var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey;
 
   request(weatherURL, function (error, response, body) {
     if (!error && response.statusCode == 200) {

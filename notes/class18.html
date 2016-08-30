@@ -32,6 +32,232 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#18</span> - 08/30/2016</h1>
+					<h1>Student Choice: D3.js</h1>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<div class="text-smallest">
+						<p>&#149; Final Project (T-Minus 7 days...)</p>
+						<p>&#149; Weekend Office Hours:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Saturday (09/03), noon until 2PM (tentatively)</p>
+						</div>
+						<p>&#149; Student Choice for Class 19 (Thursday):</p>
+						<p class="pad-left-lg">&rArr; Node: <code class="code">PUT</code>, <code class="code">POST</code>, <code class="code">DELETE</code></p>
+						<p class="pad-left-lg">&rArr; Node + Firebase</p>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; D3.js</p>
+					<p class="pad-left-lg">or</p>
+					<p>&#149; In-Class Project Work</p>
+				</section>
+
+								<section class="center">
+					<h1>Mapping With D3.JS</h1>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">The Buzz Word...."Data Visualization"</div>
+					<p class="fragment">What comes to  mind when you hear this word?</p>
+					<div class="pad-left-lg">
+							<span class="fragment"><a href="https://dc-js.github.io/dc.js/">Charts </a></span>
+							<span class="fragment"><a href="http://nvd3.org/"> &#42 Graphs </a></span>
+							<span class="fragment"><a href="https://d3-geomap.github.io//"> &#42 Dashboards </a></span>
+							<span class="fragment"><a href="http://d3-legend.susielu.com/"> &#42 Maps</a></span>
+					</div>
+					<p class="fragment">How about the following?</p>
+					<div class="pad-left-lg">
+							<span class="fragment"><a href="https://dc-js.github.io/dc.js/">Axes</a></span>
+							<span class="fragment"><a href="http://nvd3.org/"> &#42 Scales</a></span>
+							<span class="fragment"><a href="https://d3-geomap.github.io//"> &#42 Legends </a></span>
+							<span class="fragment"><a href="http://d3-legend.susielu.com/"> &#42 Colors Palletes</a></span>
+					</div>
+
+					<p class="fragment">Why is Data Visualization so important?</p>
+					<div class="pad-left-lg">
+							<p class="fragment">&rArr; Graphics are memorable, so the message sticks.</p>
+							<p class="fragment">&rArr; Consuming large volumes of data is nearly impossible without visualization methods.</p>
+							<p class="fragment">&rArr; Visualization tells the story succinctly.</p>
+					</div>
+				</section>
+
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Intro To D3.js</div>
+
+					<div class="text-smaller">
+						<p class="fragment">D3 was the brainchild of Mike Bostock while working on his Ph.D at Stanford.</p>
+						<p class="fragment">After being hired by The New York Times he brought D3  to mainstream america which included the following pieces:</p>
+							<p class="fragment pad-left-lg">&rArr; <a href="http://www.nytimes.com/interactive/2015/09/30/business/how-the-us-and-opec-drive-oil-prices.html?_r=1">How the US and OPEC Drive Oil Prices</a> </p>
+							<p class="fragment pad-left-lg">&rArr; <a href="http://www.nytimes.com/interactive/2014/11/04/upshot/senate-maps.html">Midterm Elections </a></p>
+							<p class="fragment pad-left-lg">&rArr; <a href="http://www.nytimes.com/interactive/2012/02/12/us/entitlement-map.htmll">Geography of Government Benefits </a></p>
+							<p class="fragment">It's the most popular javascript Data Visualization library with many other building off it, such as:</p>
+							<div style="text-align:center">
+								<span class="fragment"><a href="https://dc-js.github.io/dc.js/">DC.JS &#42 </a></span>
+								<span class="fragment"><a href="http://nvd3.org/">NVD3.JS &#42 </a></span>
+								<span class="fragment"><a href="https://d3-geomap.github.io//">D3.GEOMAP.JS &#42 </a></span>
+								<span class="fragment"><a href="http://d3-legend.susielu.com/">D3-LEGEND</a></span>
+							<div>
+						<!-- 			<p class="fragment">It allows you to bind arbitrary data to a Document Object Model (DOM), and then apply data-driven transformations\transitions to the document.</p> -->
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+						<div class="heading">Intro To D3.js - Continued</div>
+						<p class="fragment">Why D3?</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; D3 allows you to bind arbitrary data to a Document Object Model (DOM), and then apply data-driven transformations to the document.</p>
+								<p class="fragment">&rArr; It incorporates the Enter\Update\Exit methodology.</p>
+								<p class="fragment">&rArr; Very detailed <a href="https://github.com/d3/d3/wiki">API Library.</a></p>
+								<p class="fragment">&rArr; Several <a href="https://groups.google.com/forum/?hl=en#!forum/d3-js">Support Group(s)</a> and <a href="https://www.meetup.com/NYC-D3-JS/">Meetups</a></p>
+						</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">D3 Mapping Concepts</div>
+					<div style="font-size:.8em">
+						<p class="fragment">&#149; Data...which comes in two forms:</p>
+						<div class="text-smaller pad-left-lg">
+						<p class="fragment">&rArr; <a href="https://gist.githubusercontent.com/jkeohan/3f50052803c83a79dbaf84e6d104af76/raw/30a198b958b7a5e48cc9576e0b01809a786a329d/usa.json">GeoJSON</a> & <a href="https://bl.ocks.org/mbostock/raw/4090846/us.json">TopoJSON</a>....both of which had thier beginings as shapefiles (.shp)</p>
+					</div>
+					<p class="fragment">&#149; Define a Projection - <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Geo-Projections.md">List of D3 Projections</a></p>
+						<div class="text-smaller pad-left-lg">
+						<p class="fragment">&rArr; 	Projection is the process of transforming Geographic lat\long coordinates into Cartesian pixel coordinates.</p>
+					</div>
+
+						<p class="fragment">&#149; Include a Path Generator - <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Geo-Paths.md">d3.geo.path()</a></p>
+						<div class="text-smaller pad-left-lg">
+						<p class="fragment">&rArr; 	Generators are responsible for connecting the dots and drawing the lines within an svg, which means we will need to include an svg as well. </p>
+					</div>
+						<p class="fragment">&#149; Import The Data Using A "Convenience Method" - <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Requests.md">d3.json()</a></p>
+						<div class="text-smaller pad-left-lg">
+						<p class="fragment">&rArr; 	Convenience methods provide a means to import data (csv,tsv,json,etc) and wait for it to be loaded before execting a callback function </p>
+						</div>
+ 					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">D3 Mapping Code Along - <a href="http://codepen.io/jkeohan/pen/qaWAEG">CodePen</a></div>
+					<div style="font-size:.8em">
+						<p class="fragment">&#149; Adding the GEO Data</p>
+						<div class="text-smaller pad-left-lg">
+<pre class="fragment"><code>
+ 	var url = "https://gist.githubusercontent.com/jkeohan/3f50052803c83a79dbaf84e6d104af76/raw/30a198b958b7a5e48cc9576e0b01809a786a329d/usa.json"
+
+</code></pre>
+
+
+					</div>
+					<p class="fragment">&#149; Adding the Projection</p>
+						<div class="text-smaller pad-left-lg">
+<pre class="fragment"><code>
+	var projection = d3.geo.albersUsa().scale(1070).translate([width / 2, height / 2])
+
+</code></pre>
+						</div>
+					<p class="fragment">&#149; Adding the Projection</p>
+						<div class="text-smaller pad-left-lg">
+<pre class="fragment"><code>
+	var path = d3.geo.path().projection(projection)
+
+</code></pre>
+						</div>
+					<!-- ADDING THE PROJECTION CODE SAMPLE -->
+					<p class="fragment">&#149; Importing the Data</p>
+						<div class="text-smaller pad-left-lg">
+<pre class="fragment"><code>
+	d3.json(url, function(err, us)  {  })
+
+</code></pre>
+						</div>
+
+				</div>
+				</section>
+
+			<section data-background="#FFF" class="text-left">
+					<div class="heading">Code Along Continued...</div>
+					<div style="font-size:.8em">
+						<p class="fragment">&#149; Adding an SVG</p>
+						<div class="text-smaller pad-left-lg">
+<pre class="fragment"><code>
+	var svg = d3.select("#map").append("svg").attr("width", width).attr("height", height);
+
+</code></pre>
+
+					</div>
+					<p class="fragment">&#149; Drawing the data within the SVG</p>
+						<div class="text-smaller pad-left-lg">
+<pre class="fragment"><code>
+	d3.json(url, function(err, us)  {
+	  svg
+	    .attr("id","states")
+	    .selectAll("path")
+	    .data(us.features)
+	    .enter().append("path")
+	    .attr("d",path)
+	});
+
+</code></pre>
+						</div>
+						<p class="fragment">&#149; Save and watch the map appear...</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Resources</div>
+					<p class="fragment">&#149; Tutorials</p>
+						<div class="text-smaller pad-left-lg">
+							<p class="fragment">&rArr; <a href="https://bost.ocks.org/mike/map/">Let's Make A Map by Mike Bostock</a></p>
+							<p class="fragment">&rArr; <a href="https://bost.ocks.org/mike/map/"><a href=" http://www.tnoda.com/blog/2013-12-0">Interactive Map with D3 by Tom Noda</a></p>
+						</div>
+					<p class="fragment">&#149; Videos</p>
+						<div class="text-smaller pad-left-lg">
+							<p class="fragment">&rArr;<a href="https://www.youtube.com/user/enjalot">Ian Johnson's YouTube Vids</a></p>
+							<p class="fragment">&rArr;<a href="https://www.dashingd3js.com/lessons/d3-geo-path">Dashing D3 Vids</a></p>
+						</div>
+					<p class="fragment">&#149; Shapefiles</p>
+						<div class="text-smaller pad-left-lg">
+							<p class="fragment">&rArr;<a href="http://www.naturalearthdata.com/downloads/110m-cultural-vectors/">NaturalEarth for Shapefiles</a></p>
+						</div>
+					<p class="fragment">&#149; Additional Questions?</p>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #19 (of 20) - Student Choice</h4>
+					<div class="pad-left-lg">
+						<p>&rArr; Node: <code class="code">PUT</code>, <code class="code">POST</code>, <code class="code">DELETE</code></p>
+						<p>&rArr; Node + Firebase</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
+				</section>
 			</div>
 		</div>
 
