@@ -22,6 +22,21 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+		<style>
+			.containImg {
+		    background-repeat: no-repeat;
+		    width: 200px;
+		    height: 200px;
+		    display: inline-block;
+			}
+			#blackbox {
+				max-height: 200px;
+		    display: block;
+		    margin: 0 auto;
+		    width: 100%
+			}
+		</style>
 	</head>
 
 	<body>
@@ -32,6 +47,357 @@
 
 		<div class="reveal">
 			<div class="slides">
+				<section class="center">
+					<h1>Hello</h1>
+					<div class="text-left text-smaller">
+						<p>Pull down this class's exercises and homework:</p>
+						<div class="pad-left-lg">
+							<p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+							<p>&#149; Run <code class="code">git pull</code></p>
+						</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Class <span style="color: red;">#19</span> - 09/01/2016</h1>
+					<h1>Debugging</h1>
+					<h2>+</h2>
+					<h1>Express.js parameters</h1>
+				</section>
+
+				<!-- ANNOUNCEMENTS -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Announcements</div>
+					<div class="text-smallest">
+						<p>&#149; Final Project (T-Minus 5 days...)</p>
+						<p>&#149; Weekend Office Hours:</p>
+						<div class="pad-left-lg text-smallest">
+							<p>&rArr; Saturday (09/03), noon until 2PM (tentatively)</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- AGENDA -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Agenda</div>
+					<p>&#149; Review Common Error Types</p>
+					<p>&#149; Using Debugger and Setting Breakpoints</p>
+					<p>&#149; Parameters in Express.js</p>
+				</section>
+
+				<section class="center">
+					<h1>Debugging</h1>
+				</section>
+
+				<section style="width:1000px"data-background="#FFF" class="text-left">
+					<div class="heading">Error Types</div>
+						<p class="fragment">&#149; Errors are usually caused by:</p>
+					<div class="pad-left-lg text-smaller">
+					<p class="fragment">&rArr; Improper Syntax</p>
+					<p class="fragment">&rArr; Logic isn't working as expected</p>
+					</div>
+					<p class="fragment">&#149; The three most commonly encountered errors:</p>
+					<div class="pad-left-lg text-smaller">
+						<p class="fragment">&rArr; Reference: <img style="margin-bottom: -20px;" class="fragment" src="../img/class19/referenceError.png"/></p>
+						<p class="fragment">&rArr; Syntax: <img style="margin-bottom: -20px;" class="fragment" src="../img/class19/syntaxError.png"/></p>
+
+						<p class="fragment">&rArr; Type: <img style="margin-bottom: -20px;" class="fragment" src="../img/class19/typeError.png"/></p>
+					</div>
+					<p class="fragment">&#149; Lab: <a href="http://codepen.io/jkeohan/pen/wzvJRA">Troubleshooting Common Errors - 15min</a></p>
+
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Understanding Debugger and Breakpoints</div>
+					<div class="text-smaller">
+						<p class="fragment">&#149; Both the <code class="code">debugger</code> keyword and setting a <code class="code">breakpoint</code>  stops the execution of JavaScript but only if Developer Tools is open at the time of script execution</p>
+						<p class="fragment">&#149; This allows you to examine the innerworkings of the code in the Developer Tools Console or Sources tab to do the following:</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; Enumerate and Investigate Variables</p>
+								<p class="fragment">&rArr; Step Into\Out Of\Over The Code</p>
+								<p class="fragment">&rArr; Set Watches, View Call Stack</p>
+							</div>
+					</div>
+				</section>
+<!-- chrome://flags/#enable-devtools-experiments -->
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Enabling Debugger and Setting Breakpoints</div>
+					<div class="text-smallest">
+						<p class="fragment">&#149;<code class="code">Debugger</code> is a key word placed within the script itself</p>
+<pre class="fragment"><code>
+	 debugger;
+
+</code></pre>
+
+						<p class="fragment">&#149;<code class="code">Breakpoint</code> are enabled within the Sources tab and come in two forms:</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; Standard - click on line to enable one ore more breakpoints</p>
+				<!-- 				<img href="../
+								img/class19/standard.breakpoint.png"</> -->
+								<p class="fragment">&rArr; Conditional - right click and choose "Add Conditional Breakpoint"</p>
+								<p class="fragment">&rArr; Event Based - choosing which events(click, mouseover, etc) will initiate a breakpoint</p>
+								<p class="fragment">&rArr; <code class="code">NOTE: </code>The location of a breakpoint is also important.</p>
+							</div>
+							<p class="fragment">&#149;<code class="code">DEMO:</code> Adding a debugger and setting a standard\conditional breakpoint</p>
+					</div>
+				</section>
+
+ 				<section data-background="#FFF" class="text-left">
+					<div class="heading">Using Breakpoints</div>
+					<div class="text-smaller">
+						<p class="fragment">&#149; Once a breakpoints has been set you have the following options to walk through the code:</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr;<code class="code"> Resume Script Execution</code> - Continue running the code until the next breakpoint is reached.</p>
+								<p class="fragment">&rArr; <code class="code">Step Over</code> - Execute the next functional call in the sequence</p>
+								<p class="fragment">&rArr; <code class="code">Step Into</code> - Step into the existing function call</p>
+								<p class="fragment">&rArr; <code class="code">Step Out</code> - Continue debugging after the function call has finished</p>
+								<p class="fragment">&rArr; <code class="code">Deactivate</code> - remove breakpoint</p>
+
+							</div>
+						<p class="fragment">&#149;<code class="code">DEMO:</code> Stepping through the code</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Turn on BlackBoxing</div>
+					<div class="text-smaller">
+						<p class="fragment">&#149; At time stepping through the code involves stepping into another library like jQuery</p>
+						<p class="fragment">&#149; This can add additional time to your troubleshooting as this involes multiple "Step Outs" to get back to your code</p>
+						<p class="fragment">&#149; Enable <code class="code">Blackboxing</code> via the Developer Tools Setting:</p>
+						<img class="fragment" id="blackbox" src="../img/class19/blackboxing.png"/>
+					</div>
+					<p class="fragment">&#149;<code class="code">DEMO:</code> Configuring Blackboxing to exclude jQuery</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Check For Understanding</div>
+					<div class="text-smaller">
+					<p class="fragment">&#149; What are the three main categories of error messages? </p>
+						<div class="pad-left-lg">
+								<span class="fragment">&rArr; Syntax  &#42  </span>
+								<span class="fragment">Reference  &#42  </span>
+								<span class="fragment">Type  </span>
+						</div>
+						<p class="fragment">&#149; What is the main difference between debugger and breakpoint? </p>
+						<p class="fragment pad-left-lg">&rArr; Debugger is a keyword set within the script and a breakpoint is set within the Sources tab</p>
+						<p class="fragment">&#149; Can you set more than one breakpoint? </p>
+						<p class="fragment pad-left-lg">&rArr; You certainly can...</p>	<p class="fragment">&#149; Which type of breakpoint is kicked off based on some logic?  </p>
+						<p class="fragment pad-left-lg">&rArr; Conditional breakpoints</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">LAB: Using Debugger\Breakpoints - 20min</div>
+					<div class="text-smaller">
+						<p class="fragment">&#149;Troubleshooting "99 Bottles of Beer"....<a href="http://codepen.io/jkeohan/pen/RGwKLv">CodePen</a> </p>
+						<p class="fragment">&#149; Resolve the following issues:</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; Nothing happens on button click</p>
+								<p class="fragment">&rArr; Only lyrics display is the last line</p>
+								<p class="fragment">&rArr; Empty Lyrics continue to output to console indefinetly</p>
+							</div>
+						<p class="fragment">&#149; Troubleshooting Steps Hints:</p>
+							<div class="pad-left-lg">
+								<p class="fragment">&rArr; Determine where in the code to place one or more debuggers</p>
+								<p class="fragment">&rArr; Examine the how the variables change with each step through </p>
+							</div>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Express.js: Parameters</h1>
+				</section>
+
+				<section class="center">
+					<h1>Express.js: Parameters</h1>
+					<div class="text-left">
+						<p>1) Open up <code class="code">node_maps_two</code> in Sublime Text</p>
+						<p>2) From the command line, run <code class="code">nodemon</code></p>
+						<p class="fragment">3) What is the error message?</p>
+						<p class="pad-left-lg fragment">&rArr; <code class="code">Error: Cannot find module 'express'</code></p>
+						<div class="fragment">4) Install npm modules using <code class="code">npm install</code></div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Parameters</div>
+
+					<p>&#149; Last week, we covered how to:</p>
+					<div class="pad-left-lg text-smaller">
+						<p class="fragment">1) Setup a Node app using <code class="code">npm init</code> and <code class="code">npm install</code></p>
+						<p class="fragment">2) Start a simple web server using Express.js</p>
+						<p class="fragment">3) Create routes using <code class="code">app.get()</code></p>
+						<p class="fragment">4) Send static assets - <code class="code">index.html</code> - to the frontend</p>
+						<p class="fragment">4) Make an HTTP request from our server using <code class="code">request</code></p>
+						<p class="fragment">5) Send a JSON response to the frontend via <code class="code">res.send()</code></p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Parameters</div>
+					<p>&#149; Tonight, we will learn how to:</p>
+					<div class="pad-left-lg text-smaller">
+						<p class="fragment">&rArr; Add additional routes to Express</p>
+						<p class="fragment">&rArr; Allow users to submit data to the server using parameters</p>
+					</div>
+					<div class="fragment">
+						<p>&#149; Our goals:</p>
+						<div class="pad-left-lg text-smaller">
+							<p class="framgent">&rArr; Use <code class="code">navigator.geolocation</code> to get the weather at a user's current location</p>
+							<p class="fragment">&rArr; Allow the user to fetch the weather by inputting a city</p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Parameters</div>
+
+					<p>&#149; In order to get weather at the user's current location, we need to:</p>
+					<div class="pad-left-lg text-smaller">
+						<p class="fragment">1) Use <code class="code">navigator.geolocation</code> to get our user's current location</p>
+						<p class="fragment">2) Send this location to our server using <code class="code">$.ajax()</code></p>
+						<p class="fragment">3) Handle the request using <code class="code">app.get()</code></p>
+						<p class="fragment">4) Make an HTTP request with the location to OpenWeatherMap API</p>
+						<p class="fragment">5) Send this response as a JSON object to the frontend</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Parameters</div>
+
+					<p>1) Use <code class="code">navigator.geolocation</code> to get our user's current location"</p>
+					<div class="fragment">
+						<p>&#149; Inside of <code class="code">app.js</code>, add:</p>
+<pre><code>
+  navigator.geolocation.getCurrentPosition( function (position) {
+    console.log(position);
+
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+
+    console.log(lat, lng);
+  });
+
+</code></pre>
+						<p>&#149; Refresh your node server and ensure these coordinates are logged to the console</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js: Parameters</div>
+					<p>2) Send this location to our server using <code class="code">$.ajax()</code></p>
+					<div class="fragment">
+<pre><code>
+	function fetchGeoWeather (lat, lng) {
+	  $.ajax({
+	    url: '/coords/lat/' + lat + '/lng/' + lng,
+	    type: 'GET',
+	    success: function (response)  {
+	      console.log(response);
+	    },
+	    error: function (xhr) {
+	      console.log(xhr);
+	    }
+  	  })
+	}
+
+</code></pre>
+						<p>&#149; Note the <code class="code">url</code> option</p>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js Parameters</div>
+					<p>3) Handle the request using <code class="code">app.get()</code></p>
+					<div class="fragment text-smallest">
+					<p>&#149; Inside of <code class="code">index.js</code>:</p>
+<pre><code>
+  app.get('/coords/lat/:lat/lng/:lng', function (req, res) {
+    console.log(req)
+  })
+
+</code></pre>
+						<p>&#149; Parameters are denoted in URL paths using <code class="code">:</code></p>
+						<p>&#149; In this example, we have two parameters, <code class="code">:lat</code> and <code class="code">:lng</code></p>
+						<div class="fragment">
+							<p>&#149; Make sure to call <code class="code">fetchGeoWeather(lat, lng);</code> in <code class="code">app.js</code></p>
+							<p>&#149; Refresh your node server, refresh the browser, and then check your server logs</p>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js Parameters</div>
+
+					<p>&#149; To access the <code class="code">params</code> object in Express:</p>
+<pre><code>
+  app.get('/coords/lat/:lat/lng/:lng', function (req, res) {
+    var params = req.params;
+    var latitude = params.lat;
+    var longitude = params.lng;
+
+    console.log(latitude, longitude);
+
+    res.send({
+      lat: latitude,
+      lng: longitude
+    });
+  })
+
+</code></pre>
+					<p>&#149; Recall: <code class="code">res.send()</code> is how we send a response to the frontend</p>
+				</section>
+
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">Express.js Parameters</div>
+
+					<div class="text-smallest">
+						<p>4 + 5) Make an HTTP request with the location to OpenWeatherMap API</p>
+						<p>&#149; Similar to our first Node app, we will use the <code class="code">request</code> module:</p>
+<pre><code>
+  app.get('/coords/lat/:lat/lng/:lng', function (req, res) {
+    var params = req.params;
+    var latitude = params.lat;
+    var longitude = params.lng;
+
+    var weatherKey = '19ab861f15cfd2e8216a3be1ed615598';
+    var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey
+
+    // uses the "request" package to make a HTTP request from the Node server to the OpenWeatherMap API
+    request(weatherURL, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        res.send({
+          weather: JSON.parse(body),
+          lat: latitude,
+          lng: longitude,
+        });
+      }
+    })
+  })
+
+</code></pre>
+					</div>
+				</section>
+
+				<!-- THE END -->
+				<section class="center">
+					<img src="../img/main/the-end.jpg">
+				</section>
+
+				<!-- ON DECK -->
+				<section data-background="#FFF" class="text-left">
+					<div class="heading">What's On Deck</div>
+					<h4>Class #20 (of 20) - Final Presentations</h4>
+					<div class="pad-left-lg">
+						<p>&rArr; Good times</p>
+						<p>&rArr; Presentations</p>
+						<p>&rArr; Beer + Wine</p>
+					</div>
+				</section>
+
+				<section class="center">
+					<h1>Exit Tickets!</h1>
+				</section>
 			</div>
 		</div>
 
