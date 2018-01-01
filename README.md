@@ -1,6 +1,6 @@
 # GA JSD: Course Website and Notes
 
-A static web portal and notes for General Assembly's part-time JavaScript Development (JDS) course.
+A static web portal and notes for General Assembly's part-time JavaScript Development (JSD) course.
 
 Hosted at [http://jsd.nyc/](http://jsd.nyc/) using [surge.sh](http://surge.sh).
 
