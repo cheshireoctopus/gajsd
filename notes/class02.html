@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JSD: Class 01</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/general-assembly.css" id="theme">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="stylesheet" href="css/zenburn.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="hero condensed">
+        <h1>Class <span class="red">#02</span></h1>
+        <h1>02/07/2018</h1>
+        <h1 class="lesson-title">JS on the Command Line</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+        <p>&#149; <a href="#/node">Node.js overview</a></p>
+        <p>&#149; <a href="#/frameworks-libraries">JS frameworks and libraries</a></p>
+        <p>&#149; <a href="#/command-line">The command line (terminal)</a></p>
+        <p>&#149; <a href="#/git-and-github"><code>git</code> and Github</a></p>
+        <p>&#149; <a href="#/javascript-on-the-cli">JavaScript on the command line</a></p>
+      </section>
+
+      <!-- NODE OVERVIEW -->
+      <section class="title" id="node">
+        <h1>Node.js Overview</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Node.js Overview</div>
+
+        <p>&#149; Run-time environment for executing JS on the server</p>
+        <p class="fragment">&#149; Written in C, C++, and JS (so, not a JS framework)</p>
+        <p class="fragment">&#149; Interprets JS using Chrome's <a href="https://developers.google.com/v8/" target="_blank">V8 engine</a></p>
+        <p class="fragment">&#149; Module driven; see Node Package Manager (<a href="https://www.npmjs.com/" target="_blank">npm</a>)</p>
+        <p class="fragment">&#149; All about non-blocking, asychronous input/output</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Node.js Overview</div>
+        <p>&#149; Will not be using Node on the back end (see <a href="https://www.firebase.com/" target="_blank">Firebase</a>)</p>
+        <p class="fragment">&#149; We will be using of Node's <u>command line interface</u> (CLI)</p>
+        <p class="fragment">&#149; Allows us to run JavaScript from our terminal applications</p>
+        <p class="fragment">&#149; More at the end of class...</p>
+      </section>
+
+      <!-- JS FRAMEWORKS AND LIBRARIES -->
+      <section class="title" id="frameworks-libraries">
+        <h1>JS Frameworks & Libraries</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">JS Frameworks & Libraries</div>
+
+        <p>Library &rArr;</p>
+        <div class="pad-left-lg fragment">
+          <p>&#149; Set of predfined functions that your code calls</p>
+          <p>&#149; Each call performs work and returns a result (and control) to your code</p>
+          <p>&#149; Specific, well-defined operations</p>
+          <p>&#149; Examples: <a href="https://jquery.com/" target="_blank">jQuery</a> and <a href="https://lodash.com/" target="_blank">LoDash</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">JS Frameworks & Libraries</div>
+        <p>Framework &rArr;</p>
+        <div class="pad-left-lg fragment">
+          <p>&#149; Opinionated architecture for building software</p>
+          <p>&#149; Control-flow exists, you fill in with your code</p>
+          <p>&#149; Calls your code; is always in control</p>
+          <p>&#149; Examples <a href="https://angularjs.org/" target="_blank">Angular</a> and <a href="http://emberjs.com/" target="_blank">Ember</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">JS Frameworks & Libraries</div>
+        <p>&#149; The prirmary difference (<a href="http://stackoverflow.com/a/233765/2144912">source</a>):</p>
+        <div class="fragment pad-left-lg text-smallest">
+          <p>&#149; You call library</p>
+          <p>&#149; Framework calls you</p>
+        </div>
+        <div class="fragment">
+          <p>&#149; Please Note:</p>
+          <div class="pad-left-lg text-smallest">
+            <p>&#149; JSD focuses on the foundations of JS as a programming languge</p>
+            <p>&#149; Specific libraries and frameworks are not in scope</p>
+            <p>&#149; Opportunity towards class end for a framework intro</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="text-center">
+        <img src="img/class02 /framework-hype.jpg" alt="">
+      </section>
+
+      <!-- INTRODUCTION TO THE TERMINAL/COMMAND LINE -->
+      <section class="title" id="command-line">
+        <h1>The Command Line</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The Command Line</div>
+        <p>&#149; <a href="https://en.wikipedia.org/wiki/In_the_Beginning..._Was_the_Command_Line" target="_blank">"In the Beginning, was the Command Line"</a></p>
+        <p class="fragment">&#149; Just a user interface</p>
+        <p class="fragment">&#149; Method of interacting with a computer where the user issues text-based commands</p>
+        <p class="fragment">&#149; Commands can be combined in many ways to yield various outcomes</p>
+        <p class="fragment">&#149; Must memorize (constantly lookup) commands</p>
+      </section>
+
+      <section class="center">
+        <h2>To Open Your Terminal (OSX)</h2>
+        <h3>1) <code class="code lower">command</code> + <code class="code lower">space</code></h3>
+        <h3>2) Search: <code class="code lower">terminal</code></h3>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The Command Line</div>
+
+        <p>Useful Commands:</p>
+        <div class="text-center">
+          <img src="img/class02/useful-commands.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The Command Line</div>
+
+        <p>&#149; Sublime Text ships with a command line tool, <code class="code">subl</code></p>
+        <p>&#149; Allows us to open the text editor from the command line, among other things</p>
+        <p>&#149; Follow these <a target="_blank" href="https://ashleynolan.co.uk/blog/launching-sublime-from-the-terminal">instructions</a></p>
+        <p>&#149; Once installed, test by entering <code class="code">sublime</code> in your terminal</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The Command Line</div>
+
+        <div class="text-smallest">
+          <p>1) Navigate to your <b>root</b> directory: <code class="code">cd ~</code></p>
+          <p>2) Navigate into your <b>Documents</b> directory: <code class="code fragment">cd Documents</code></p>
+          <p>3) Create a new directory named <b>"GA_JSD"</b>: <code class="code fragment">mkdir GA_JSD</code></p>
+          <p>4) Navigate into <b>GA_JSD</b>: <code class="code fragment">cd GA_JSD</code></p>
+          <p>5) Create a file, <b>"index.html"</b>: <code class="code fragment">touch index.html</code></p>
+          <p>6) Create a new directory named <b>"test"</b>: <code class="code fragment">mkdir test</code></p>
+          <p>7) Remove this diretory: <code class="code fragment">rm test</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The Command Line</div>
+        <p>Inside your <code class="code">GA_JSD</code> directory:</p>
+        <div class="text-smaller pad-left-lg">
+          <p>1) Create two new files inside of <code class="code">GA_JSD</code>:</p>
+          <div class="pad-left-lg">
+            <p>&#149; <code class="code">goals.html</code></p>
+            <p>&#149; <code class="code">worries.html</code></p>
+          </div>
+          <p>2) Open the current directory in Sublime Text</p>
+          <p>3) Paste the code from Slack into <code class="code">index.html</code></p>
+        </div>
+      </section>
+
+      <!-- INTRODUCTION TO GIT/GITHUB -->
+      <section class="title" id="git-and-github">
+        <h1>Git and Github</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">git - What is it?</div>
+        <p>&#149; <code>git</code> &ne; GitHub</p>
+        <p>&#149; <code>git</code> is a version control program</p>
+        <p>&#149; Watches files and records any changes</p>
+        <p>&#149; Created by Linus Torvalds (father of Linux)</p>
+        <div class="text-center">
+          <img src="../img/class01/linus.jpg" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - What Is It?</div>
+        <p>&#149; GitHub is a platform makes it easy to work with git</p>
+        <p>&#149; Like Dropbox, but for code</p>
+        <p>&#149; Stores a history of files and their changes</p>
+        <p>&#149; Hosts files in the cloud; easy to share finished product</p>
+        <p>&#149; Also serves as a social network of sorts for developers collaborating on projects:</p>
+        <p class="pad-left-lg">&rArr; <a href="https://github.com/twbs/bootstrap">Twitter Bootstrap</a></p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - Why Do Developers Use It?</div>
+        <p>&#149; Tracks changes so you can see who worked on (or, broke) what</p>
+        <p>&#149; Stores history; we can easily fix mistakes</p>
+        <p>&#149; Allows multiple developers to work on the same project</p>
+        <p>&#149; Allows for line-by-line feedback</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - some vocab words</div>
+        <p>1. Repository</p>
+        <p>2. Clone</p>
+        <p>3. Commit</p>
+        <p>4. Push</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - Repository/Repo</div>
+        <p>&#149; Basic element of GitHub</p>
+        <p>&#149; Contains all of a project's files (all the code)</p>
+        <p>&#149; One or more users can contribute to a single repository</p>
+        <p>&#149; Repositories are either public or private</p>
+        <p>&#149; By EOC, you will each create your own repo!</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - Clone</div>
+        <p>&#149; Copies/clones a <u>remote</u> repo to your machine</p>
+        <p>&#149; This copy/clone is called a <u>local</u> repo</p>
+        <p>&#149; Changes to the <u>local</u> repo will not affect the <u>remote</u></p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - Commit</div>
+        <p>&#149; A snapshot of changes to a repo</p>
+        <p>&#149; Think of it as "saving" your changes</p>
+        <p>&#149; Contains a message describing the changes made</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - Push</div>
+        <p>&#149; "Pushes" your commits (saved changes) to a <u>remote</u> repository</p>
+        <p>&#149; Allows other developers to see your changes and "pull them down" to their own local repos</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub - How Will We Use It?</div>
+        <p>&#149; You will create your own repository to host your:</p>
+        <p class="pad-left-lg">&rArr; Homework</p>
+        <p class="pad-left-lg">&rArr; Class work</p>
+        <p class="pad-left-lg">&rArr; Final projects</p>
+        <p>&#149; Instructors will use your repo to grade homework</p>
+        <p>&#149; Your repo will serve as a public portfolio of your accomplishments</p>
+      </section>
+
+      <!-- GITHUB EXERCISE -->
+      <section class="center">
+        <h1>Don't Worry</h1>
+        <h1>We Will Practice</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub</div>
+
+        <p>1) Navigate to your <a href="http://github.com">http://github.com</a> profile</p>
+        <p>2) Select <b>Repositories</b> near the top navigation bar</p>
+        <p>3) Click <b>New</b> at the far right</p>
+        <p>4) The <b>Repository Name</b> needs to <b><u>MATCH</u></b>  your GitHub username</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Muy Importante</div>
+        <p>&#149; Your repo's name needs to match your GitHub username!</p>
+        <p>&#149; Ex:</p>
+        <p class="pad-left-lg"><strong>Username: </strong>keanu-reeves</p>
+        <p class="pad-left-lg"><strong>Repo: </strong>keanu-reeves.github.io</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub</div>
+        <p>&#149; Copy the text in the top-most text-box</p>
+        <div class="text-center">
+          <img src="img/class02/created-repo.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub</div>
+        <p>&#149; Cloning your GitHub Repo:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>1) Using your terminal, navigate to <code class="code">GA_JSD</code></p>
+          <p>2) Type <code class="code">git clone COPIED_GITHUB_LINK</code></p>
+          <p>3) Use <code class="code">ls</code> to ensure the repo has been cloned</p>
+          <p>4) Navigate into your cloned directory</p>
+          <p>5) Move the previous <code class="code">.html</code> files into your cloned repo</p>
+          <p>6) Run <code class="code">git status</code> (should see "untracked files")</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub</div>
+        <p>&#149; Committing and Pushing Changes</p>
+        <div class="pad-left-lg text-smaller">
+          <p>1) Use <code class="code">git add -A</code> to add/stage files for a commit</p>
+          <p>2) Run <code class="code">git status</code> - unracked files should be tracked!</p>
+          <p>3) To commit: <code class="code">git commit -m "Commit msg here!"</code></p>
+          <p>4) To push your <b>local</b> changes to <b>remote</b>: <code class="code">git push origin master</code></p>
+          <p>5) Visit your repo on <a href="http://github.com" target="_blank">http://github.com</a> to ensure changes have been made</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub</div>
+        <p>&#149; Adding a <code class="code">README.md</code> file</p>
+        <div class="pad-left-lg text-smaller">
+          <p>1) Inside of your <b>local</b> repo, add a new file, <code class="code">README.md</code></p>
+          <p>
+            2) Using Sublime Text, add the following to this file:
+            <br>
+            <code class="code"># My GitHub Portfolio</code>
+          </p>
+          <p>3) Follow the flow from the previous slide to push this new file from your <b>local</b> repo to your <b>remote</b></p>
+        </div>
+      </section>
+
+      <!-- JAVASCRIPT ON THE COMMAND LINE -->
+      <section class="title" id="javascript-on-the-cli">
+        <h1>JS on the Command Line</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">JavaScript on the Command Line</div>
+
+        <p>&#149; We will be using Node.js on our command line to practice JS</p>
+        <p>&#149; Eventually will be moving to JS in the browser</p>
+        <p>&#149; To open Node.js in your terminal:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>1) Open a new terminal window: <code class="code">command</code> + <code class="code">t</code></p>
+          <p>2) Enter <code class="code">node</code></p>
+          <p>3) To exit: <code class="code">control</code> + <code class="code">c</code>, twice</p>
+        </div>
+      </section>
+
+      <!-- END/WRAPUP -->
+      <section class="center">
+        <img src="img/main/the-end.jpg">
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Homework</div>
+        <p>1. Finish the <a target="_blank" href="../materials/pre_course/checklist.pdf">prework</a>!</p>
+        <p>2. Complete <a target="_blank" href="https://try.github.io/">https://try.github.io/</a></p>
+        <p>3. Units 1 and 2 from CodeAcademy's <a target="_blank" href="https://www.codecademy.com/learn/learn-the-command-line">Learn the Command Line</a> (ignore paid-content)</p>
+        <p>Extra Credit: <a target="_blank" href="http://cli.learncodethehardway.org/book/">The Command Line Crash Course</a></p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #02 (of 20) - JavaScript Data Types and Array Structures</h4>
+        <div class="pad-left-lg">
+          <p>&rArr; JS data types (string, number, boolean, etc.)</p>
+          <p>&rArr; Data structures: Arrays</p>
+          <p>&rArr; Array helper methods</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Exit Tickets!</h1>
+      </section>
+    </div>
+  </div>
+  <script src="js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
