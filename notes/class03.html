@@ -12,7 +12,659 @@
 <body>
   <div class="reveal">
     <div class="slides">
+      <section class="hero condensed">
+        <h1>HELLO</h1>
+        <div class="opening-instructions">
+          <p>1) Please install Sublime Text <a href="https://packagecontrol.io/installation" target="_blank">Package Control</a></p>
+          <p>2) Once installed, use Package Control to install <a href="https://packagecontrol.io/packages/SideBarEnhancements" target="_blank">SideBarEnhancements</a></p>
+          <p>3) You should now have additional commands in Sublime Text's sidebar</p>
+          <p>4) Download today's class materials <a href="../materials/class02/class02.zip">here</a></p>
+        </div>
+      </section>
 
+      <section class="hero condensed">
+        <h1>Class <span class="red">#03</span></h1>
+        <h1>02/12/2018</h1>
+        <h1 class="lesson-title">Data Types and Arrays</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+        <p>&#149; <a href="#/data-types">Data Types</a></p>
+        <p>&#149; <a href="#/variables">Variables</a></p>
+        <p>&#149; <a href="#/arrays">Arrays</a></p>
+        <p>&#149; <a href="#/array-helper-methods">Array helper methods</a></p>
+        <p>&#149; <a href="#/array-iteration">Array iteration</a></p>
+        <p>&#149; Lab</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Warm Up</div>
+        <div class="text-smallest">
+          <p>1) Use your terminal to navigate into your <code class="code">github.io</code> directory</p>
+          <p>2) Create a directory, <code class="code">homework</code>, inside of <code class="code">github.io</code></p>
+          <p>3) Create a file, <code class="code">index.html</code>, inside of the new <code class="code">homework</code></p>
+          <p>4) Use the following <code class="code">git</code> commands to push these new changes to GitHub:</p>
+          <div class="pad-left-lg text-smallest">
+            <p>&rArr; <code class="code">git status</code> (ensure you see the new, untracked file)</p>
+            <p>&rArr; <code class="code">git add -A</code> (add your most recent changes and stage them)</p>
+            <p>&rArr; <code class="code">git commit -m "your message here"</code> (commmit your changes)</p>
+            <p>&rArr; <code class="code">git push</code> (move your local changes to your remote repo)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA TYPES -->
+      <section class="title" id="data-types">
+        <h1>Data Types</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Data Types</div>
+
+        <div class="text-smaller">
+          <p>&#149; In the machine, there is only data</p>
+          <p class="fragment">&#149; The goal of computing is to collect, manage, manipulate, and store this data</p>
+          <p class="fragment">&#149; To manipulate data, it's important to know the data <u>type</u>:</p>
+          <div class="fragment pad-left-lg text-smallest">
+            <p>&rArr; What the data represents</p>
+            <p>&rArr; Possible values for that type</p>
+            <p>&rArr; Operations that can be performed on the data</p>
+          </div>
+          <p class="fragment">&#149; ALWAYS KNOW YOUR DATA TYPE!</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Data Types</div>
+
+        <div class="text-smallest">
+          <p class="text-smaller">&#149; Numbers</p>
+          <div class="text-smallest pad-left-lg">
+            <p><code class="code">42</code>, <code class="code">1337</code>, <code class="code">3.14</code></p>
+          </div>
+          <div class="fragment">
+            <p class="text-smaller">&#149; Strings</p>
+            <div class="text-smallest pad-left-lg">
+              <p><code class="code">'lots of kittens'</code>, <code class="code">'I am 29 years old'</code></p>
+            </div>
+          </div>
+          <div class="fragment">
+            <p class="text-smaller">&#149; Booleans</p>
+            <div class="text-smallest pad-left-lg">
+              <p>Either <code class="code">true</code> or <code class="code">false</code> values</p>
+            </div>
+          </div>
+          <div class="fragment">
+            <p class="text-smaller">&#149; Arrays</p>
+            <div class="text-smallest pad-left-lg">
+              <p>Collections of related data, stored in <code class="code">[]</code>, and comma-separated</p>
+              <p><code class="code">['manhattan', 'the bronx', 'queens', 'brooklyn', 'staten island']</code></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Data Types</div>
+
+        <div class="text-smallest">
+          <p>&#149; Undefined - A variable without a value</p>
+          <div class="pad-left-lg">
+<pre><code>
+  var x = 2;
+  x
+  // 2
+
+  var y;
+  y
+  // undefined
+
+</code></pre>
+          </div>
+          <div class="fragment">
+            <p>&#149; Null - Used to indicate no value</p>
+            <p class="pad-left-lg"><code class="code">var x = null;</code></p>
+          </div>
+          <p class="fragment">&#149; Note: <code class="code">undefined</code> &ne; <code class="code">null</code> (<a href="http://stackoverflow.com/a/802371/2144912" target="_blank">more info</a>)</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Data Types</div>
+
+        <div class="text-smallest">
+          <p>&#149; <u>Strong</u> vs <u>Weak</u> typing</p>
+          <p class="fragment">&#149; JS is <u>weakly typed</u> - the compiler does not enforce typing:</p>
+          <div class="fragment text-smallest pad-left-lg">
+            <p>&#149; <code class="code">5 * 'cat'</code></p>
+            <p class="pad-left-lg"><code class="code">// => NaN</code></p>
+            <p>&#149;<code class="code">'25' * 5</code></p>
+            <p class="pad-left-lg"><code class="code">// => 125</code></p>
+            <p>&#149;<code class="code">'25' + 5</code></p>
+            <p class="pad-left-lg"><code class="code">// => "255"</code></p>
+          </div>
+          <p class="fragment">&#149; ALWAYS KNOW YOUR DATA TYPE!</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Open Node</h1>
+
+        <div class="text-left">
+          <p>1) <code class="code">command</code> + <code class="code">space</code> to bring up OSX search</p>
+          <p>2) Search for <code class="code">terminal</code></p>
+          <p>3) Once in terminal, enter <code class="code">node</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Data Types</div>
+
+        <div class="text-smallest">
+          <p>&#149; Use the <code class="code">typeof</code> operator to determine data type</p>
+<pre><code>
+  typeof 42
+  // 'number'
+
+  typeof 'cat'
+  // 'string'
+
+  typeof false
+  // 'boolean'
+
+  typeof [1,2,3]
+  // 'object'
+
+  typeof 'beer' === 'string'
+  // true
+
+  typeof 42 === 'string'
+  // false
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Arithmetic Operators</div>
+
+        <p class="text-smaller">&#149; Use the standard arithmetic operators to manipulate numbers</p>
+<pre><code>
+  1 + 2
+  // 3
+
+  2 - 5
+  // -3
+
+  5 / 2
+  // 2.5
+
+  4 * 10
+  // 40
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The Math Library</div>
+
+        <p class="text-smaller">&#149; Use the <code class="code">Math</code> object to perform advanced operations</p>
+        <p class="text-smaller">&#149; In Node, enter <code class="code">Math.</code> and hit <code class="code">tab</code> to see the available operations  </p>
+<pre><code>
+  Math.sqrt(4)
+  // 2
+
+  Math.PI
+  // 3.141592653589793
+
+  Math.random()
+  // a random* number between 0 and 1
+
+</code></pre>
+      </section>
+
+      <!-- VARIABLES -->
+      <section class="title" id="variables">
+        <h1>Variables</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Variables</div>
+
+        <div class="text-smaller">
+          <p>&#149; Variables keep track of data in a program</p>
+          <p class="fragment">&#149; Used to manage a program's "state"</p>
+          <div class="fragment">
+            <p>&#149; The <code class="code">var</code> keyword declares a variable assignment</p>
+            <p class="pad-left-lg"><code class="code">var num = 1337;</code></p>
+            <p>&#149; Stores this piece of data in memory under <code class="code">num</code></p>
+            <p>&#149; Use the variable's name to "call", or retrieve, its value from memory</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Variables</div>
+
+        <div class="text-smaller">
+          <p>&#149; Take care when naming variables!</p>
+          <p class="fragment">&#149; Names should reflect the data they describe</p>
+          <p class="fragment">&#149; Other naming conventions</p>
+          <div class="pad-left-lg text-smallest fragment">
+            <p>&rArr; Names should start with a lowercase letter</p>
+            <p>&rArr; Cannot use spaces; use hyphens or underscores instead</p>
+            <p>&rArr; Better yet, use <u>camelCase</u>:</p>
+<pre><code>
+  var current_temp = 82; NO!!!
+  var current temp = 82; NO!!!
+
+  var currentTemp = 72; YES!!!
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Variables - Reassignment</div>
+
+        <div class="text-smallest">
+          <p>1. Create a variable, <code class="code">x</code>, and assign it to 2</p>
+<pre><code>
+  var x = 2;
+
+</code></pre>
+          <p>2. Perform some arithmetic on <code class="code">x</code></p>
+<pre><code>
+  x * 2
+  // 4
+
+</code></pre>
+          <p>3. What's <code class="code">x</code> now equal to?</p>
+<pre><code>
+  x
+  // 2
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Variables - Reassignment</div>
+
+        <div class="text-smaller">
+          <p>&#149; You must <u>reassign</u> variables to change them</p>
+<pre><code>
+  var x = 2;
+  // 2
+
+  x * 2
+  // 4
+
+  x
+  // 2
+
+  // REASSIGN
+  x = x * 2
+  // 4
+
+  x
+  // 4
+
+</code></pre>
+        </div>
+      </section>
+
+      <!-- BREAK -->
+      <section class="center">
+        <h1>5 minute break</h1>
+        <img src="img/main/break-time-bear.jpg">
+      </section>
+
+      <!-- ARRAYS -->
+      <section class="title" id="arrays">
+        <h1>Arrays</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Arrays</div>
+
+        <div class="text-smallest">
+          <p>&#149; Arrays are a list-like data structure of comma-separated values</p>
+          <p>&#149; Useful for storing a sequence of related data</p>
+          <p>&#149; Declare arrays using square brackets: <code class="code">[ ]</code></p>
+<pre><code>
+  var friends = ['Moe', 'Larry', 'Curly']
+
+</code></pre>
+          <div class="fragment">
+            <p>&#149; <b>Element</b> - an item inside the array</p>
+            <p>&#149; <b>Index</b> - the numerical location of each element in the array (starts at position 0 - aka "0-indexed")</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Arrays</div>
+
+        <div class="text-smallest">
+          <p>&#149; JS provides multiple methods for array creation:</p>
+          <div class="pad-left-lg">
+            <div class="fragment">
+              <p>&rArr; The <code class="code">new</code> keyword</p>
+<pre><code>
+  var drinks = new Array('beer', 'coffee', 'water')
+
+</code></pre>
+            </div>
+            <div class="fragment">
+              <p>&rArr; Using the array literal</p>
+<pre><code>
+  var drinks = ['beer', 'coffee', 'water']
+
+</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="fragment">
+          <p>&#149; While similar, there are crucial differences; please use the array literal</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Arrays</div>
+
+        <div class="text-smallest">
+          <p>&#149; Use <code class="code">[index]</code> to retrieve values from an array</p>
+          <p>&#149; Remember that arrays are <u>0-indexed</u></p>
+<pre><code>
+  var drinks = ['beer', 'coffee', 'water']
+
+  drinks[0]
+  // 'beer'
+
+  drinks[0+1]
+  // 'coffee'
+
+  var x = drinks.length - 1;
+  drinks[x]
+  // 'water'
+
+  drinks[4]
+  // undefined
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Arrays</div>
+
+        <p>&#149; To add a value to <u>END</u> of an array, use the <code class="code">.push()</code> method</p>
+<pre><code>
+  var drinks = ['beer', 'coffee', 'water']
+
+  drinks.push('wine')
+  // 4
+
+  drinks
+  // [ 'beer', 'coffee', 'water', 'wine' ]
+
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Arrays</div>
+
+        <p>&#149; To add a value to the <u>BEGINNING</u>, use <code class="code">.unshift()</code></p>
+<pre><code>
+  var drinks = ['beer', 'coffee', 'water']
+
+  drinks.unshift('tea')
+  // 4
+
+  drinks
+  // [ 'tea', 'beer', 'coffee', 'water']
+
+</code></pre>
+      </section>
+
+      <!-- ARRAY HELPER METHODS -->
+      <section class="title" id="array-helper-methods">
+        <h1>Array Helper Methods</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Helper Methods</div>
+
+        <p>JavaScript provides <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods" target="_blank">tools</a> to make working with arrays easier:</p>
+        <div class="pad-left-lg">
+          <p><code class="code">.push()</code> and <code class="code">.unshift()</code></p>
+          <p><code class="code">.shift()</code> and <code class="code">.pop()</code></p>
+          <p><code class="code">.reverse()</code></p>
+          <p><code class="code">.join()</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Helper Methods</div>
+
+        <div class="text-smaller">
+          <p>&#149; First, let's create an array with some values:</p>
+<pre><code>
+  var message = [];
+
+  message.push(8)
+  // 1
+
+  message.push('r', 'e', 'b', 'm', 'u')
+  // 6
+
+  message.push('n', 's', 'i', 'A', 'G', 'K')
+  // 12
+
+  message
+  // [ 8, 'r', 'e', 'b', 'm', 'u', 'n', 's', 'i', 'A', 'G', 'K' ]
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Helper Methods</div>
+
+        <div class="text-smallest">
+          <p>Use <code class="code">.pop()</code> to remove, and return, the last value:</p>
+<pre><code>
+  message.pop()
+  // 'K'
+
+</code></pre>
+          <div class="fragment">
+            <p>Use <code class="code">.shift()</code> to remove, and return, the first value:</p>
+<pre><code>
+  message.shift()
+  // 8
+
+</code></pre>
+          </div>
+          <div class="fragment">
+            <p>Use <code class="code">.unshift()</code> adds values to the beginning:</p>
+<pre><code>
+  message.unshift(1)
+  // 11
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Helper Methods</div>
+
+        <div class="text-smallest">
+          <p>Use <code class="code">.reverse()</code> to reverse an array</p>
+<pre><code>
+  message.reverse()
+  // [ 'G', 'A', 'i', 's', 'n', 'u', 'm', 'b', 'e', 'r', 1 ]
+
+</code></pre>
+          <div class="fragment">
+            <p>Use <code class="code">.join()</code> to join all elements into a string</p>
+<pre><code>
+  message.join()
+  // 'G,A,i,s,n,u,m,b,e,r,1'
+
+  message.join(' ')
+  // 'G A i s n u m b e r 1'
+
+</code></pre>
+          <p><b>Note</b>: <code class="code">.join()</code> takes a separator as an argument</p>
+        </div>
+      </section>
+
+      <!-- ARRAY ITERATION -->
+      <section class="title" id="array-iteration">
+        <h1>Array Iteration</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Iteration</div>
+
+        <div class="text-smallest">
+          <p>&#149; Consider an array of Tweets; how to render items in this list for a user?</p>
+          <p class="fragment">&#149; <b>Iterating</b> through a list of elements, one at a time, is a very common and useful practice in programming</p>
+          <p class="fragment">&#149; We will be learning more about <code class="code">for</code> loops next class:</p>
+          <div class="fragment">
+<pre><code>
+  var boroughs = ['manhattan', 'the bronx', 'queens', 'brooklyn', 'staten island'];
+
+  for (var i = 0; i < boroughs.length; i++) {
+    var borough = boroughs[i]
+    console.log(borough)
+  }
+
+  // 'manhattan'
+  // 'the bronx'
+  // 'queens'
+  // ...
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Iteration</div>
+
+        <div class="text-smallest">
+          <p>&#149; JS arrays have several iteration methods:</p>
+          <div class="pad-left-lg">
+            <p><code class="code">.forEach()</code></p>
+            <p><code class="code">.every()</code></p>
+            <p><code class="code">.some()</code></p>
+            <p><code class="code">.filter()</code></p>
+            <p><code class="code">.map()</code></p>
+          </div>
+          <p class="fragment">&#149; Most require a function to be supplied as an argument; this function will be applied to each item in the array, individually</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Iteration</div>
+
+        <div class="text-smallest">
+          <p><code class="code">for</code></p>
+<pre><code>
+  var boroughs = ['manhattan', 'the bronx', 'queens', 'brooklyn', 'staten island'];
+
+  for (var i = 0; i < boroughs.length; i++) {
+    var borough = boroughs[i]
+    console.log(borough)
+  }
+
+</code></pre>
+          <div class="fragment">
+            <p><code class="code">Array.forEach</code></p>
+<pre><code>
+  var boroughs = ['manhattan', 'the bronx', 'queens', 'brooklyn', 'staten island'];
+
+  boroughs.forEach(function (borough) {
+    console.log(borough)
+  })
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Iteration</div>
+
+          <p><code class="code">Array.filter()</code></p>
+          <p class="pad-left-lg text-smaller">&rArr; Creates a <u>new </u>array with all elements that pass the test implemented by the provided function</p>
+<pre><code>
+  var numbers = [1,2,3,4,5];
+
+  var numbersLargerThanTwo = numbers.filter(function (num) {
+    return num > 2
+  })
+
+  numbersLargerThanTwo
+  // [ 3, 4, 5 ]
+
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Array Iteration</div>
+
+        <div class="text-smallest">
+          <p><code class="code">Array.map()</code></p>
+          <p class="pad-left-lg">&rArr; Creates a new array with the results of calling a provided function on every element in this array</p>
+<pre><code>
+  var numbers = [1,2,3,4,5];
+
+  var timesFive = numbers.map(function (num) {
+    return num * 5
+  })
+
+
+  timesFive
+  // [5, 10, 15, 20, 25]
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Arrays Lab</div>
+
+        <p>1) Create a <code class="code">course-work</code> directory</p>
+        <p>2) Move <code class="code">array.js</code> into <code class="code">course-work</code></p>
+        <p>3) Complete <code class="code">array.js</code></p>
+        <p>4) Use Node to execute the file (ensure you are in the same directory as <code class="code">array.js</code>):</p>
+        <p class="pad-left-lg"><code class="code">node array.js</code></p>
+      </section>
+
+      <!-- END/WRAPUP -->
+      <section class="center">
+        <img src="img/main/the-end.jpg">
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #04 (of 20) - Conditionals and Loops</h4>
+        <div class="pad-left-lg">
+          <p>&rArr; <code class="code">if</code>/<code class="code">else</code> conditional statements</p>
+          <p>&rArr; Boolean logic: <code class="code">&&</code>, <code class="code">||</code></p>
+          <p>&rArr; <code class="code">switch</code> statements</p>
+          <p>&rArr; <code class="code">for</code> and <code class="code">while</code> loops</p>
+        </div>
+      </section>
     </div>
   </div>
 
