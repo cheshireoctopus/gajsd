@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JSD: Class 05</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/general-assembly.css" id="theme">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="stylesheet" href="css/zenburn.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+<!--       <section class="center">
+        <h1>Hello</h1>
+        <div class="text-left text-smaller">
+          <p>1) Please commit and push your homework to your <code class="code">github.io</code></p>
+          <p>2) Pull down this week's exercises and homework:</p>
+          <div class="pad-left-lg">
+            <p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+            <p>&#149; Run <code class="code">git pull</code></p>
+            <p>&#149; Use <code class="code">ls</code> and ensure you see <code class="code">week3</code></p>
+          </div>
+        </div>
+      </section> -->
+      <section class="hero condensed">
+        <h1>Class <span class="red">#05</span></h1>
+        <h1>02/19/2018</h1>
+        <h1 class="lesson-title">Functions and Scope</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+
+        <p>&#149; <a href="#/final-project-overview">Final Project Overview</a></p>
+        <p>&#149; <a href="#/bash-profile"><code class="code">.bash_profile</code></a></p>
+        <p>&#149; <a href="#/functions">Functions</a></p>
+        <p>&#149; <a href="#/parameters">Parameters</a></p>
+        <p>&#149; <a href="#/return-statement">The <code class="code">return</code> statement</a></p>
+        <p>&#149; <a href="#/scope">Scope</a></p>
+      </section>
+
+      <!-- WARM UP -->
+      <section class="center">
+        <h1>Warm Up</h1>
+        <p>Open <a target="_blank" href="https://repl.it/CaSA">https://repl.it/CaSA</a></p>
+      </section>
+
+      <!-- PREVIOUS FINAL PROJECTS -->
+      <section class="title" id="final-project-overview">
+        <h1>Final Projects</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Final Projects</div>
+
+        <div class="text-smaller">
+          <p>&#149; Due 8 weeks from today (<a href="http://jsd.nyc/pages/final-project.html" target="_blank">more info</a>)</p>
+          <p>&#149; <u>To Do:</u> begin developing ideas now!</p>
+          <p>&#149; Will begin regular deliverables starting week five</p>
+            <div class="fragment">
+            <p>&#149; Previous JSD projects:</p>
+            <div class="pad-left-lg text-smallest">
+              <p>&rArr; <a target="_blank" href="https://jbren23.github.io/nyc-dog-adoption/">https://jbren23.github.io/nyc-dog-adoption/</a></p>
+              <p>&rArr; <a target="_blank" href="https://elegris.github.io/">https://elegris.github.io/</a></p>
+              <p>&rArr; <a target="_blank" href="http://amandainnis.github.io/artists_without_studios/index.html">http://amandainnis.github.io/artists_without_studios/index.html</a></p>
+              <p>&rArr; <a target="_blank" href="https://colorz-9355e.firebaseapp.com/">https://colorz-9355e.firebaseapp.com/</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BASH PROFILE -->
+      <section class="center" id="bash-profile">
+        <h1><code class="code lower">.bash_profile</code></h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading"><code class="code lower">.bash_profile</code></div>
+
+        <div class="text-smaller">
+          <p><b>bash</b>:</p>
+          <p class="pad-left-lg"><u>B</u>ourne <u>A</u>gain <u>Sh</u>ell</p>
+          <div class="fragment">
+            <p><b>Shell:</b></p>
+            <p class="pad-left-lg">Layer between the user and OSX's UNIX kernel</p>
+          </div>
+          <div class="fragment">
+            <p><b>Kernel</b>:</p>
+            <p class="pad-left-lg">Runs the machine's resources: memory, processor, disk</p>
+          </div>
+          <p class="fragment"><b>NOTE</b>: Do not have to use bash; see <a href="http://ohmyz.sh/" target="_blank">http://ohmyz.sh/</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading"><code class="code lower">.bash_profile</code></div>
+
+        <div class="text-smaller">
+          <p>&#149; To customize bash, open a new terminal and ensure you are at the root of your user directory (<code class="code">cd</code>)</p>
+          <p>&#149; Use <code class="code">ls -a</code> (list all) to see hidden files</p>
+          <p>&#149; If you see a <code class="code">.bash_profile</code> file, open this in Sublime Text</p>
+          <p>&#149; If you do NOT see this file, run <code class="code">touch .bash_profile</code>, and then open this file in Sublime Text</p>
+          <p>&#149; Copy and paste the <a href="https://gist.github.com/cheshireoctopus/ac523847abe534027ce4bdb7c3400cd9">following</a> into your <code class="code">.bash_profile</code></p>
+        </div>
+      </section>
+
+      <!-- FUNCTIONS -->
+      <section class="title" id="functions">
+        <h1>Functions</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions</div>
+
+        <div class="text-smaller">
+          <p class="fragment">&#149; Blocks of code that execute (or run) line-by-line</p>
+          <p class="fragment">&#149; Reusable statements that can be called anywhere in the program</p>
+          <p class="fragment">&#149; Often take an input, perform logic on that input, and return ouput</p>
+          <p class="fragment">&#149; Allow the developer to segment large applications into smaller pieces</p>
+          <p class="fragment">&#149; Think of them as miniature programs</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions</div>
+
+        <div class="text-smaller">
+          <p>Functions must be <u>declared</u> (defined) before use:</p>
+          <div class="fragment">
+            <p>1) <u>Function Declarations</u>:</p>
+<pre><code>
+  function speak (words) {
+    console.log(words)
+  }
+
+</code></pre>
+          </div>
+          <div class="fragment">
+            <p>2) <u>Function Expressions</u>:</p>
+<pre><code>
+  var speak = function (words) {
+    console.log(words)
+  }
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions</div>
+
+        <div class="text-smallest">
+          <p>&#149; Function declarations can be used before they are defined</p>
+<pre><code>
+  speak('hello, world!');
+
+  function speak (words) {
+    console.log(words);
+  }
+
+  // 'hello, world!'
+
+</code></pre>
+          <div class="fragment">
+            <p>&#149; Function expressions must be defined before they are called</p>
+<pre><code>
+  speak('hello, world!');
+
+  var speak = function (words) {
+    console.log(words);
+  }
+
+  // TypeError: undefined is not a function
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions</div>
+
+        <div class="text-smallest">
+          <p>A function declaration has the following syntax:</p>
+          <p>&#149; <b>Name</b>: used to invoke or call the function</p>
+          <p>&#149; <b>Parameters</b>: options to change the function's input</p>
+          <p>&#149; <b>Body</b>: code that runs when the function is called</p>
+          <div class="fragment">
+<pre><code>
+  function speak (words) {
+    console.log(words);
+  }
+
+  // multiple parameters
+  function speak (words, repeat) {
+    for (var i = 1; i < repeat; i++) {
+      console.log(words)
+    }
+  }
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions</div>
+
+        <div class="text-smaller">
+          <p>&#149; <b>Remember</b>: you must <u>call</u> functions to use them!</p>
+          <p>&#149; Calling a function will execute the function's body</p>
+          <p>&#149; To call a function, follow the function's name with <code class="code">()</code></p>
+          <div class="fragment">
+<pre><code>
+  // function declaration
+  function helloWorld () {
+    console.log('hello, world!');
+  }
+
+  // will not call the function; returns the definition
+  helloWorld
+
+  // use () to call a function
+  helloWorld('hello')
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAB -->
+      <section class="title">
+        <h1>Lab</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Lab</div>
+        <p>&#149; Open <code class="code">dice</code> in Sublime Text</p>
+        <p>&#149; Open <code class="code">app.js</code> and <code class="code">index.html</code></p>
+        <p>&#149; Follow the directions in <code class="code">app.js</code></p>
+        <p>&#149; Remember to use Chrome's developer console to check for any JavaScrpit errors:</p>
+        <p class="pad-left-lg"><code class="code">command</code> + <code class="code">option</code> + <code class="code">j</code></p>
+      </section>
+
+      <!-- PARAMETERS -->
+      <section class="title" id="parameters">
+        <h1>Parameters</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Parameters</div>
+
+        <div class="text-smaller">
+          <p>&#149; If a function performed the same operation every time, it wouldn't make a dynamic codebase</p>
+          <p>&#149; We would have to write a new function for small variations</p>
+          <div class="fragment">
+            <p>&#149; For example, if we wanted to write functions that greeted the entire cast of Point Break:</p>
+<pre><code>
+  // Bad idea...
+  function helloKeanu () {
+    console.log('Hello, Keanu');
+  }
+
+  function helloGary () {
+    console.log('Hello, Gary');
+  }
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Parameters</div>
+        <p>&#149; Function parameters remedy this problem by allowing us to call the same function with different values:</p>
+<pre><code>
+  function sayHello (name) {
+    console.log('Hello, ' + name);
+  }
+
+  sayHello('Keanu');
+  sayHello('Gary');
+
+  // 'Hello, Keanu'
+  // 'Hello, Gary'
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Parameters</div>
+
+        <div class="text-smaller">
+          <p>&#149; Data inputs that are "passed" into a function</p>
+          <p>&#149; Defined as a comma-separated list:</p>
+<pre><code>
+  function add (x, y) {
+    return x + y;
+  }
+
+  function addThree (x, y, z) {
+    return x + y + z;
+  }
+
+  add(2, 2);
+  // 4
+
+  addThree(2, 4, 6)
+  // 12
+
+</code></pre>
+        </div>
+      </section>
+
+      <!-- THE RETURN STATEMENT -->
+      <section class="title" id="return-statement">
+        <h1>The <code class="code lower">return</code> Statment</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The <code class="code lower">return</code> statement</div>
+        <p>&#149; The <code class="code">return</code> statement allows us to treat functions as values</p>
+<pre><code>
+  function sum(x, y) {
+    return x + y;
+  }
+
+  var z = sum(3, 4);
+  // 7
+
+</code></pre>
+        <p>&#149; <b>Note:</b> if absent the function returns <code class="code">undefined</code></p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The <code class="code lower">return</code> statement</div>
+
+        <p>&#149; The <code class="code">return</code> statement <u>STOPS</u> function execution:</p>
+<pre><code>
+  function speak (words) {
+    return words;
+
+    // The following statements will not run:
+    var x = 1;
+    var y = 2;
+    console.log(x + y)
+  }
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">The <code class="code lower">return</code> statement</div>
+
+       <p>&#149; Useful when applied to conditionals:</p>
+<pre><code>
+  function authenticate (user) {
+    if (user.authenticated === false) {
+      return authenticate(user);
+    }
+
+    return allowEntry(user);
+  }
+
+</code></pre>
+      </section>
+
+      <!-- SCOPE -->
+      <section class="title" id="scope">
+        <h1>Scope</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Scope</div>
+
+        <div class="text-smaller">
+          <p>&#149; Scope is the set of variables and functions your code has access to</p>
+          <div class="fragment">
+            <p>&#149; Two levels of scope:</p>
+            <div class="pad-left-lg text-smallest">
+              <p>&rArr; Global</p>
+              <p>&rArr; Local</p>
+            </div>
+          </div>
+          <div class="fragment">
+            <p>&#149; What will the following code return?</p>
+<pre><code>
+  var num = 10;
+
+  function speak () {
+    var num = 100;
+    return num;
+  }
+
+  speak()
+
+</code></pre>
+          </div>
+        </  div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Scope: Global Scope</div>
+
+        <div class="text-smallest">
+          <p>&#149; Variables and functions defined <u>OUTSIDE</u> a function or block</p>
+          <p class="fragment">&#149; <u>Public</u> - accessible from all other scopes:</p>
+          <div class="fragment">
+<pre><code>
+  // global scope
+  var myFavActor = 'Keanu Reeves';
+
+  function alertFavActor () {
+    // local scope, but has access to global scope
+    console.log(myFavActor);
+
+    // automatically global
+    favFilm = 'Point Break';
+  }
+
+</code></pre>
+            <p>&#149; <b>Note:</b> If you omit <code class="code">var</code>, the variable becomes global</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Scope: Local Scope</div>
+
+        <div class="text-smallest">
+          <p>&#149; Variables and functions defined <u>INSIDE</u> a function or block</p>
+          <p>&#149; <u>Private</u> - cannot be accessed outside the function</p>
+<pre><code>
+  var a = "this is the global scope";
+
+  function myFunction() {
+      var b = "this variable is defined in the local scope";
+  }
+
+  myFunction();
+
+  console.log(b);
+  // ReferenceError: b is not defined
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Scope: Creation</div>
+        <p>Function Scope:</p>
+<pre><code>
+function speak(words) {
+  // scope created by the speak function
+  var message = words + "!";
+}
+
+</code></pre>
+
+        <div class="fragment">
+          <p>Block Scope:</p>
+          <div class="text-smaller">
+            <p>&#149; Scope created by loops and conditionals</p>
+            <p>&#149; ES6 feature!</p>
+<pre><code>
+if (true) {
+  let x = 2;
+}
+
+console.log(x)
+// ReferenceError: x is not defined
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Scope: Lexical Scope and Closures</div>
+        <p>&#149; Inner functions have access to the scope of the outer functions</p>
+<pre><code>
+// global scope
+
+function speak (words) {
+  // speak scope
+  var myFavoriteActor = 'Keanu Reeves'
+
+  function sayFavActor () {
+    // sayFaveActor scope - has access to speak's scope
+  console.log(myFavoriteActor)
+  }
+}
+
+
+</code></pre>
+        <p>&#149; Will be covering closures later</p>
+      </section>
+
+      <!-- END/WRAPUP -->
+      <section class="center">
+        <img src="img/main/the-end.jpg">
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #06 (of 20) - Project One</h4>
+        <div class="pad-left-lg">
+          <p>&rArr; In-class project covering all previous material</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>EXIT TICKETS!</h1>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="../js/analytics.js"></script>
+</body>
+</html>
