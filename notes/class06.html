@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JSD: Class 06</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/general-assembly.css" id="theme">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="stylesheet" href="css/zenburn.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+    <section class="hero condensed">
+      <h1>Hello</h1>
+<!--       <div class="text-left text-smaller">
+        <p>1) Please commit and push your homework to your <code class="code">github.io</code></p>
+        <p>2) Pull down this week's exercises and homework:</p>
+        <div class="pad-left-lg">
+          <p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+          <p>&#149; Run <code class="code">git pull</code></p>
+          <p>&#149; Do not copy over class 04 materials!</p>
+        </div>
+      </div> -->
+    </section>
+
+    <section class="hero condensed">
+      <h1>Class <span class="red">#06</span></h1>
+      <h1>02/26/2018</h1>
+      <h1 class="lesson-title">Project One: Hubot</h1>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Agenda</div>
+      <p>&#149; Function review</p>
+      <p>&#149; Lab Warmup</p>
+      <p>&#149; Lab</p>
+    </section>
+
+    <section class="center">
+      <h1>Function Review</h1>
+      <a href="https://repl.it/Cbzs" target="_blank">https://repl.it/Cbzs</a>
+    </section>
+
+    <!-- PROJECT 1: HUBOT -->
+    <section class="center">
+      <h1>Project One:</h1>
+      <img src="../img/class05/hubot.jpg" alt="">
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Overview</div>
+      <p>&#149; You will be creating a chatbot for Slack</p>
+      <p>&#149; <b>Hubot:</b> framework for creating chat bots for use in a variety of chat environments</p>
+      <p>&#149; Uses JS scripts to perform various tasks: configure servers, respond to users, facilitate issue tracking on GitHub, return pictures of cats, etc.</p>
+      <p>&#149; This project will focus on user interaction</p>
+      <p>&#149; See setup instructions <a target="_blank" href="../materials/class05/hubot-instructions.html">here</a></p>
+      <p>&#149; See the project prompt <a href="../main/slackbot.html" target="_blank">here</a></p>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Outline</div>
+      <p>&#149; Install and warmup</p>
+      <p>&#149; Lab work</p>
+      <p>&#149; Upon completion:</p>
+      <div class="pad-left-lg">
+        <p>1) Add a <code class="code">README.md</code> file to your <code class="code">hubot_project</code></p>
+        <p>2) Write some basic instructions using <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown</a></p>
+        <p>3) Commit and push your hubot to your <code class="code">github.io</code></p>
+        <p>4) Notify an instructor who will then set your bot up on the Slack channel</p>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Install</div>
+      <p>See setup instructions <a target="_blank" href="../materials/class05/hubot-instructions.html">here</a></p>
+      <p>1) Using <code class="code">npm</code>, you will be installing:</p>
+      <div class="pad-left-lg text-smaller">
+        <p>&rArr; Yeoman; <code class="code">yo</code></p>
+        <p>&rArr; Hubot; <code class="code">hubot</code></p>
+        <p>&rArr; The Hubot Generator; <code class="code">generator-hubot</code></p>
+        <p>&rArr; Coffe Script; <code class="code">coffee-script</code></p>
+      </div>
+      <p>2) Using Yeoman (<code class="code">yo</code>), you will generate a fresh Hubot</p>
+      <p>3) Once the install is complete, and you can get the bot to respond, notify an instructor</p>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Warm Up</div>
+      <p>We can interact with Hubot in a few ways:</p>
+      <div class="fragment">
+        <p>&#149; <b>Listening</b>:</p>
+        <div class="pad-left-lg">
+          <p><code class="code">.hear</code></p>
+          <p><code class="code">.respond</code></p>
+        </div>
+      </div>
+      <div class="fragment">
+        <p>&#149; <b>Speaking</b>:</p>
+        <p class="pad-left-lg"><code class="code">.send</code></p>
+        <p class="pad-left-lg"><code class="code">.reply</code></p>
+      </div>
+      <p class="fragment">&#149; Interactions leverage <a href="http://regexone.com/">Regular Expressions</a> (RegEx)</p>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Hear</div>
+      <p><code class="code">.hear</code></p>
+      <div class="pad-left-lg">
+        <p>&#149; Listens for a specific phrase anywhere in the Slack room</p>
+        <p>&#149; You don't have to mention your Hubot in order to get a response.</p>
+<pre><code>
+robot.hear(/hello|hi/i, function(res) {
+return res.send("Hello, World!");
+});
+
+// user: Hello
+// hubot: Hello, World!
+
+</code></pre>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Respond</div>
+      <p><code class="code">.respond</code></p>
+      <div class="pad-left-lg">
+        <p>&#149; Similar to <code class="code">hear</code>, but Hubot only responds to direct messages and <code class="code">@</code>-mentions</p>
+<pre><code>
+robot.respond(/What's your favorite food?/i, function(res) {
+return res.send("I'm a robot; I don't eat food!");
+});
+
+// user: @hubot What's your favorite food?
+// hubot: I'm a robot; I don't eat food!
+// user: What's your favorite food?
+// ... [no response because the user didn't tag Hubot in the message]
+
+</code></pre>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Send and Reply</div>
+      <p><code class="code">.send</code></p>
+      <p class="pad-left-lg">&#149; Hubot will send a message to the entire channel</p>
+<pre><code>
+robot.respond(/What's your favorite food?/i, function(res) {
+return res.send("I'm a robot; I don't eat food!");
+});
+
+</code></pre>
+      <p><code class="code">.reply</code></p>
+      <p class="pad-left-lg">&#149; Hubot will reply with an <code class="code">@</code>-mention</p>
+      <p class="pad-left-lg">&#149; Requires one (or more) <u>wildcard selector(s)</u></p>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Replying</div>
+      <div class="text-smaller">
+        <p>&#149; Use a wildcard selector - <code class="code">(.*)</code> - to accept user-input</p>
+        <p>&#149; Input will be storred in an array, <code class="code">match</code>, which lives in <code class="code">res</code></p>
+      </div>
+<pre><code>
+robot.respond(/My name is (.*)/i, function(res) {
+var name = res.match[1];
+
+if (name === "Hubot"){
+return res.send("You're not Hubot--I'm Hubot!");
+} else {
+return res.reply("Nice to meet you, " + name + "!");
+}
+});
+
+</code></pre>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Hubot: Replying</div>
+      <p>&#149; To capture additional input, use more wildcard selectors:</p>
+<pre><code>
+robot.respond(/add (.*) and (.*)/i, function(msg) {
+var x = parseInt(msg.match[1]);
+var y = parseInt(msg.match[2]);
+var sum = x + y;
+
+return msg.reply(x + " plus " + y + " = " + sum);
+});
+
+</code></pre>
+    </section>
+
+    <section class="center">
+      <h1>Begin Lab!</h1>
+    </section>
+
+    <!-- END/WRAPUP -->
+    <section class="center">
+      <h1>FIN</h1>
+      <img src="../img/main/the-end.jpg">
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Homework</div>
+
+      <p>1) Finish Hubot lab</p>
+      <p>2) Complte <code class="code">rock_paper_scissors.js</code></p>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">What's On Deck</div>
+      <h4>Class #06 (of 20) - Objects and JSON</h4>
+      <div class="pad-left-lg">
+        <p>&rArr; Objects</p>
+        <div class="pad-left-lg">
+          <p>&#149; Attributes</p>
+          <p>&#149; Methods</p>
+        </div>
+        <p>&rArr; Object construction</p>
+        <p>&rArr; JSON</p>
+      </div>
+    </section>
+
+    <section class="center">
+      <h1>EXIT TICKETS!</h1>
+    </section>
+   </div>
+  </div>
+
+  <script src="js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="../js/analytics.js"></script>
+</body>
+</html>
