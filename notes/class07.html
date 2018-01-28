@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JSD: Class 07</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/general-assembly.css" id="theme">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="stylesheet" href="css/zenburn.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+    <section class="hero condensed">
+      <h1>Hello</h1>
+      <!-- <div class="text-left text-smaller">
+        <p>1) Please commit and push your homework to your <code class="code">github.io</code></p>
+        <p>2) Pull down this class's exercises and homework:</p>
+        <div class="pad-left-lg">
+          <p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+          <p>&#149; Run <code class="code">git pull</code></p>
+        </div>
+      </div> -->
+    </section>
+
+    <section class="hero condensed">
+      <h1>Class <span class="red">#07</span></h1>
+      <h1>02/28/2018</h1>
+      <h1 class="lesson-title">Objects and JSON</h1>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Announcements</div>
+      <p>&#149; Final Project:</p>
+      <div class="pad-left-lg">
+        <p>&rArr; Due in 7 weeks: Monday, April 16th</p>
+        <p>&rArr; Final class will consist of (optional) presentations</p>
+        <p>&rArr; First deliverable due March 19th: at least three ideas or <u>proven progress</u> on one idea</p>
+      </div>
+    </section>
+
+    <section class="center">
+      <h1>Warm Up</h1>
+      <p><a href="https://repl.it/CdWV/0" target="_blank">https://repl.it/CdWV/0</a></p>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Agenda</div>
+      <p>&#149; <a href="#/objects">Objects</a></p>
+      <p>&#149; <a href="#/oop">Object-Oriented Programming</a></p>
+      <p>&#149; <a href="#/constructors">Object Constructors</a></p>
+      <p>&#149; <a href="#/json">JavaScript Object Notation (JSON)</a></p>
+    </section>
+
+    <!-- OBJECTS -->
+    <section class="title" id="objects">
+      <h1>Objects</h1>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Introduction</div>
+
+      <div class="text-smaller">
+        <p>&#149; So far, we've dealt with simple (primitive) data types:</p>
+        <div class="pad-left-lg fragment text-smaller">
+          <p>&rArr; <code class="code">String</code></p>
+          <p>&rArr; <code class="code">Number</code></p>
+          <p>&rArr; <code class="code">Boolean</code></p>
+          <p>&rArr; Not so much: <code class="code">undefined</code>, <code class="code">null</code></p>
+        </div>
+        <p class="fragment">&#149; <code class="code">Array</code>: a list-like data-structure (note: complex)</p>
+        <p class="fragment">&#149; As our applications grow more powerful, we need to leverage a more complex data-structure, the <code class="code">Object</code></p>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Introduction</div>
+
+      <div class="text-smaller">
+        <p>&#149; Objects are collections of <u>properties</u>, which are <u>key:value</u> pairs:</p>
+        <div class="fragment">
+<pre><code>
+  {
+    name: 'Chandler',
+    age: 29,
+    favorites: ['JavaScript', 'beer', 'beach'],
+    speak: function () {
+      return 'Do your JavaScript homework!';
+    }
+  }
+
+</code></pre>
+        </div>
+        <div class="fragment">
+          <p>&#149; Fundamental programming paradigm that helps us structure and categorize our code</p>
+          <p>&#149; AKA - associative array / hash / dictionary</p>
+        </div>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Creation</div>
+      <p>Like arrays, two ways to create objects:</p>
+      <div class="fragment">
+        <p>&#149; Object Literal:</p>
+<pre><code>
+  var person = {};
+
+</code></pre>
+        <p class="pad-left-lg text-smaller">&rArr; Useful for simple data stores</p>
+      </div>
+      <div class="fragment">
+        <p>&#149; Object Constructor:</p>
+<pre><code>
+  var person = new Object();
+
+</code></pre>
+        <p class="pad-left-lg text-smaller">&rArr; Useful for creating many instances of a particular type</p>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Get/Set Values</div>
+      <p>&#149; Use either <u>dot-notation</u> or <u>bracket notation</u> to set and get propreties</p>
+<pre><code>
+  var person = {
+    name: 'Chandler'
+  };
+
+  // dot-notation
+  person.job = 'frontend engineer';
+
+  person.job;
+  // "frontend engineer"
+
+  // bracket notation (useful if a property has a special character)
+  person['bad-habits'] = 'beer';
+
+  person['bad-habits'];
+  // "beer"
+
+</code></pre>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Recap</div>
+      <div class="text-smaller">
+        <p><b>Q: Objects are collections of _____:_____ pairs</b></p>
+        <div class="fragment">
+          <p class="pad-left-lg">A: <code class="code">key:value</code> pairs</p>
+<pre><code>
+  var person = {
+    name: 'Chandler',
+    age: 29,
+  }
+
+</code></pre>
+        </div>
+        <p class="fragment"><b>Q: Two methods of creating objects are: </b></p>
+        <div class="fragment">
+          <p class="pad-left-lg">A: The object literal and the object constructor</p>
+<pre><code>
+  var person = {};
+
+  var person = new Object();
+
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Recap</div>
+      <p><b>Q: To get and set object properties, we can use either:</b></p>
+      <div class="fragment">
+        <p class="pad-left-lg">A: <u>dot-notation</u> or <u>bracket-notation</u></p>
+<pre><code>
+  var person = {};
+
+  // set
+  person.name = 'Chandler';
+
+  // get
+  person.name
+  // "Chandler"
+
+</code></pre>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Property Iteration</div>
+      <p class="text-smaller">&#149; Use <code class="code">for...in</code> loop to iterate through an object's enumerable properties</p>
+      <p class="text-smaller">&#149; <b>NOTE</b>: unlike arrays, objects do not maintain property order</p>
+      <div class="text-smaller">
+<pre><code>
+    var person = {
+      name: 'Chandler',
+      age: 29,
+    };
+
+    for (var key in person) {
+      console.log(key);
+      console.log(person[key]);
+    }
+
+    // name
+    // "Chandler"
+    // age
+    // 29
+
+</code></pre>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Property Iteration</div>
+
+      <div class="text-smaller">
+        <p>&#149; Can also use <code class="code">Object.keys()</code> for property iteration:</p>
+<pre><code>
+  var person = {
+    name: 'Chandler',
+    age: 29,
+  };
+
+  Object.keys(person);
+  // ["name", "age"]
+
+  Object.keys(person).forEach(function (key) {
+    var value = person[key];
+    console.log(value)
+  })
+
+  // "Chandler"
+  // 29
+
+</code></pre>
+        <p class="fragment">&#149; <b>NOTE:</b> <code class="code">Object.values()</code> is still in <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values">development</a></p>
+      </div>
+    </section>
+
+    <section class="title" id="oop">
+      <h1>Object-Oriented Programming</h1>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Object-Oriented Programming (OOP)</div>
+
+      <p>&#149; Programming is a tool for problem-solving</p>
+      <div class="fragment">
+        <p>&#149; Many different approaches (programming paradigms):</p>
+        <div class="pad-left-lg">
+          <p>&rArr; Imperative</p>
+          <p>&rArr; Object-oriented (OOP)</p>
+          <p>&rArr; Functional (FP)</p>
+          <p>&rArr; Logic</p>
+        </div>
+      </div>
+      <div class="fragment">
+        <p>&#149; JSD is focused on OOP</p>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Object-Oriented Prgramming (OOP)</div>
+
+      <div class="text-smaller">
+        <p>&#149; The fundamental unit is the <u>object</u></p>
+        <div class="fragment">
+        <p>&#149; Objects are combinations of data and methods (functions) to act upon this data</p>
+<pre><code>
+  var person = {
+    name: 'Chandler',
+    age: 29,
+    favorites: ['JavaScript', 'beer', 'beach'],
+    speak: function () {
+      return 'Do your JavaScript homework!';
+    }
+  }
+
+</code></pre>
+        </div>
+        <p class="fragment">&#149; Make it easier for programmers to visualize the program by tying it to concrete concepts</p>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Object-Oriented Prgramming (OOP)</div>
+      <p>&#149; Use OOP to model the MTA</p>
+      <p>&#149; Identify likely objects, attributes, and methods</p>
+      <p>&#149; Some elements to consider:</p>
+      <div class="pad-left-lg">
+        <p>&rArr; Customers</p>
+        <p>&rArr; Stations</p>
+        <p>&rArr; Trains</p>
+        <p>&rArr; Lost tourists</p>
+      </div>
+    </section>
+
+    <section class="title" id="constructors">
+      <h1>Object Constructors</h1>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Object Constructors</div>
+
+      <p>&#149; Constructors are factories used to create many of the same type of object</p>
+      <div class="fragment">
+<pre><code>
+  // Object constructor
+  var Person = function () {};
+
+  // An instance of Person
+  var chandler = new Person();
+
+</code></pre>
+      </div>
+      <div class="fragment">
+        <p>&#149; By convention, use upper-cased variables when defining constructors</p>
+        <p>&#149; Invoke the constructor with the <code class="code">new</code> keyword</p>
+        <p>&#149; <b>NOTE:</b> JS is a prototype-based language; there are no classes!</p>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Object Constructors</div>
+
+      <div class="text-smaller">
+        <p>&#149; Object constructors are used to set an object's properties:</p>
+<pre><code>
+  var Person = function (name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  var chandler = new Person('chandler', 54)
+
+</code></pre>
+
+        <div class="fragment">
+          <p>&#149; Cleaner and more reusable than creation via literal:</p>
+<pre><code>
+  var chandler = {
+    name: 'chandler',
+    age: 29
+  }
+
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Object Constructors: <code class="code lower">this</code></div>
+
+      <p>&#149; <code class="code">this</code> is used to set a function's context</p>
+      <p>&#149; Inside the object constructor, <code class="code">this</code> refers to the <u>current</u> object instance</p>
+      <div class="fragment">
+        <p>&#149; Must use <code class="code">this</code> when referring to the object using methods:</p>
+<pre><code>
+  var Person = function (name) {
+    this.name = name;
+    this.sayName = function () {
+      console.log(this.name);
+    }
+  }
+
+  var chandler = new Person('chandler');
+  chandler.sayName();
+  // "chandler"
+
+</code></pre>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Objects: Recap</div>
+
+      <p><b>Q: Is there only one programming paradigm?</b></p>
+      <p class="fragment text-smaller pad-left-lg">NO! Many: OOP, functional, imperative</p>
+      <div class="fragment">
+        <p><b>Q: In OOP, objects contain:</b></p>
+        <p class="fragment text-smaller pad-left-lg">A: Data (properties) and methods (functions) to act upon this data</p>
+      </div>
+      <div class="fragment">
+        <p><b>Q: The object constructor allows us to</b></p>
+        <p class="fragment text-smaller pad-left-lg">A: Use a function to create many of the same type of object</p>
+      </div>
+      <div class="fragment">
+        <p><b>Q: The concept of <code class="code">this</code> refers to</b></p>
+        <p class="fragment text-smaller pad-left-lg">A: Whatever object is in context (invoked the function)</p>
+      </div>
+    </section>
+
+    <!-- OBJECTS LAB -->
+    <section class="center">
+      <h1>Objects Lab</h1>
+      <p>Please open <code class="code">monkey.js</code> in Sublime Text</p>
+    </section>
+
+    <!-- JSON -->
+    <section class="title" id="json">
+      <h1>JavaScript Object Notation (JSON)</h1>
+    </section>
+
+    <section class="center">
+      <img src="img/class01/dns.png" alt="">
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">JSON: What is it?</div>
+
+      <p>&#149; <b>JSON</b>: JavaScript Object Notation</p>
+      <p class="fragment">&#149; JSON !== JavaScript</p>
+      <p class="fragment">&#149; Text-based data format that is based on JS</p>
+      <p class="fragment">&#149; JSON is <u>language-independent</u>; Ruby, Python, etc. can all parse/generate JSON</p>
+      <p class="fragment">&#149; Successor to XML (ew)</p>
+      <p class="fragment">&#149; Easy for humans to read; easy for machines to parse</p>
+      <p class="fragment">&#149; Specified by Douglas Crockford</p>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">JSON: What's it used for?</div>
+
+      <p>&#149; JSON is used as a data-exchange format between progrmams/applications</p>
+      <p>&#149; Ex: sending data from the frontend (JavaScript), to a Python-powered backend, and vice-versa</p>
+      <div class="fragment">
+      <p>&#149; Has strict conventions:</p>
+        <div class="pad-left-lg text-smallest">
+          <p>&rArr; Property names must be double-quoted strings: <code class="code">"name"</code> vs <code class="code">name</code></p>
+          <p>&rArr; All strings must be double-quoted: <code class="code">"name"</code> vs <code class="code">'name'</code></p>
+          <p>&rArr; No in-line comments</p>
+          <p>&rArr; Trailing commas are forbidden</p>
+        </div>
+      </div>
+    </section>
+
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">JSON: JavaScript's <code class="code">JSON</code> Object</div>
+
+      <div class="text-smallest">
+        <p>Like the <code class="code">Math</code> object, JavaScript has a lib for working with JSON: <code class="code">JSON</code></p>
+        <div class="fragment">
+          <p>&#149; <code class="code">JSON.stringify()</code> &rArr; Transforms JavaScript to JSON</p>
+          <div class="pad-left-lg">
+<pre><code>
+  var jsonObject = JSON.stringify({ name: 'chandler' });
+  // "{"name":"chandler"}"
+
+  typeof jsonObject
+  // string
+
+</code></pre>
+          </div>
+        </div>
+        <div class="fragment">
+          <p>&#149; <code class="code">JSON.parse()</code> &rArr; Transforms JSON to JavaScript</p>
+          <div class="pad-left-lg">
+<pre><code>
+  var javaScriptObject = JSON.parse(jsonObject);
+  // { name: "chandler" }
+
+  typeof javaScriptObject
+  // "object"
+
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="center">
+      <h1>JSON LAB</h1>
+      <p>Open <code class="code">json_lab.js</code></p>
+    </section>
+
+    <!-- THE END -->
+    <section class="center">
+      <img src="img/main/the-end.jpg">
+    </section>
+
+    <!-- HOMEWORK -->
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">Homework</div>
+
+      <p>1) Finish <code class="code">json_lab.js</code></p>
+      <p>2) Complete <code class="code">json_hw.js</code></p>
+    </section>
+
+    <!-- ON DECK -->
+    <section data-background="#FFF" class="text-left">
+      <div class="heading">What's On Deck</div>
+      <h4>Class #07 (of 20) - Intro to the DOM and jQuery</h4>
+      <div class="pad-left-lg">
+        <p>&#149; The Document Object Model (DOM)</p>
+        <p>&#149; DOM Manipulation</p>
+        <p>&#149; jQuery</p>
+      </div>
+    </section>
+
+    <section class="center">
+      <h1>Exit Tickets!</h1>
+    </section>
+   </div>
+  </div>
+
+  <script src="js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="../js/analytics.js"></script>
+</body>
+</html>
