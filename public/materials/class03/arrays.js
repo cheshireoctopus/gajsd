@@ -48,8 +48,8 @@
 /**
  * Question 5
  * Create an array of numbers using 1, 2, 3, and 4 as values.
- * Use a for loop, a forEach function or a map function to increase
- * each value by 1. You can either store each new value back in the original
+ * Use the .forEach() or .map() array methods to increase each value by 1.
+ * You can either store each new value back in the original
  * array, or in a new array -- your choice. The end result should be
  * an array of numbers with values 2, 3, 4, and 5.
  */
