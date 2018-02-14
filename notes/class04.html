@@ -689,7 +689,8 @@
         <div class="heading">Loops</div>
 
         <div class="text-smallest">
-          <p>&#149; Loops allow us to execute the <u>same</u> block of code for all values in a particular set of data, or for a pre-defined number of loops:</p>
+          <p>&#149; Loops allow us to repeat the same action a certain number of times</p>
+          <p>&#149; The <u>same</u> block of code is executed at each step in the loop:</p>
 <pre><code>
   for (var i = 1; i <= 5; i++) {
     console.log(i);
@@ -702,11 +703,12 @@
   // 5
 
 </code></pre>
-          <p>&#149; We will be covering <code class="code">while</code> and <code class="code">for</code> loops</p>
+          <p>&#149; JavaScript offers a variety of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration" target="_blank">methods</a> for looping</p>
+          <p>&#149; We will be covering the <code class="code">for</code> loop</p>
         </div>
       </section>
 
-      <section data-background="#FFF" class="text-left">
+      <!-- <section data-background="#FFF" class="text-left">
         <div class="heading">Loops: <code class="code lower">while</code></div>
 
         <div class="text-smallest">
@@ -750,25 +752,27 @@
 
 </code></pre>
         </div>
-      </section>
+      </section> -->
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Loops: <code class="code lower">for</code></div>
 
         <div class="text-smallest">
-          <p>&#149; <code class="code">for</code> loops will run for a set duration (number)</p>
-          <p>&#149; The following will print the numbers one through five</p>
+          <p>&#149; <code class="code">for</code> loops run an explicity set number of times</p>
+          <div class="fragment">
+            <p>&#149; The following loop will print the numbers one through five:</p>
 <pre><code>
   for (var i = 1; i <= 5; i++) {
     console.log(i);
   }
 
 </code></pre>
-          <div class="text-smallest fragment">
-            <p>&#149; <b>initialization</b>: declares the loop's counter</p>
-            <p>&#149; <b>condition</b>: determines if the loop executes</p>
-            <p>&#149; <b>iteration</b>: changes the counter after each loop</p>
-            <p>&#149; <b>body</b>: code block that runs once per loop</p>
+          </div>
+          <div class="text-smallest">
+            <p class="fragment">&#149; <b>initialization</b>: declares the loop's counter <code class="code">var i = 1;</code></p>
+            <p class="fragment">&#149; <b>condition</b>: determines if the loop executes <code class="code">i <= 5;</code></p>
+            <p class="fragment">&#149; <b>iteration</b>: changes the counter after each loop <code class="code">i++</code></p>
+            <p class="fragment">&#149; <b>body</b>: code block that runs once per loop <code class="code">console.log(i)</code></p>
           </div>
         </div>
       </section>
@@ -830,7 +834,8 @@
 
         <p>1) Complete <code class="code">fizzbuzz.js</code></p>
         <p>2) Complete <code class="code">99_bottles_of_beer.js</code>:</p>
-          <p>&#149; Write a script that prints the lyrics to "99 Bottles of Beer on the Wall" in the terminal (<a href="http://www.99-bottles-of-beer.net/lyrics.html" target="_blank">lyrics </a>).</p>
+        <div class="pad-left-lg">
+          <p>&#149; Write a script that prints the lyrics to "99 Bottles of Beer on the Wall" in the terminal (<a href="http://www.99-bottles-of-beer.net/lyrics.html" target="_blank">lyrics</a>).</p>
           <p>&#149; Make sure your program can handle both singular and plural cases (i.e. both "99 bottles of beer" and "1 bottle of beer").</p>
         </div>
       </section>
