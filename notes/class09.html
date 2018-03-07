@@ -12,14 +12,465 @@
 <body>
   <div class="reveal">
     <div class="slides">
+      <section class="hero condensed">
+        <h1>Hello</h1>
+        <div class="opening-instructions">
+          <p>1) Please download <a href="../materials/class09.zip" target="_blank">Class 09 Starter Code</a></p>
+          <p>2) Move the following into <code class="code">class-work</code>:</p>
+          <div class="pad-left-lg">
+            <p>&#149; <code class="code">dom_intro</code></p>
+            <p>&#149; <code class="code">list_maker</code></p>
+          </div>
+          <p>3) Solution from last week is included</p>
+        </div>
+      </section>
+
+      <section class="hero condensed">
+        <h1>Class <span class="red">#09</span></h1>
+        <h1>03/07/2018</h1>
+        <h1 class="lesson-title">jQuery (ctn) + JS Templates</h1>
+      </section>
+
+      <!-- AGENDA -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+        <p>&#149; <a href="#/events">Browser Events</a></p>
+        <p>&#149; <a href="#/html-manipulation">HTML Manipulation</a></p>
+        <p>&#149; <a href="#/js-templates">JavaScript Templates</a></p>
+      </section>
+
+      <!-- WARM UP -->
+      <section class="center">
+        <h1>Warm Up</h1>
+        <p><a href="http://codepen.io/cheshireoctopus/pen/oLdzOr?editors=1010#0" target="_blank">CodePen Exercise</a></p>
+      </section>
+
+      <!-- Browser Events -->
+      <section class="title" id="events">
+        <h1>Browser Events</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Browser Events</div>
+
+        <div class="text-smaller">
+          <p>&#149; Events (actions) that users perform in the browser:</p>
+          <div class="pad-left-lg text-smaller">
+            <p>&rArr; click</p>
+            <p>&rArr; mouse over / mouse out</p>
+            <p>&rArr; key down / key up</p>
+            <p>&rArr; scroll</p>
+            <p>&rArr; form submit</p>
+          </div>
+          <p>&#149; We can use JavaScript to catch and respond to events</p>
+          <p>&#149; <a href="http://eloquentjavascript.net/14_event.html" target="_blank">More event info</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Browser Events</div>
+
+        <div class="pad-left-lg text-smallest">
+          <p>Handle events in three steps:</p>
+          <p>1) Use the jQuery selector,<code class="code">$()</code>, to select the element to handle the event:</p>
+<pre><code>
+  $('#my-awesome-btn')
+
+</code></pre>
+    <p>2) Call the desired event method on the selected element:</p>
+<pre><code>
+  $('#my-awesome-btn').click()
+
+</code></pre>
+    <p>3) Pass the event a <u>callback</u> function; this function will run when the event fires:</p>
+<pre><code>
+  $('#my-awesome-btn').click(function (event) {
+    console.log(event);
+  })
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Browser Events: Categories</div>
+        <p>&#149; Mouse</p>
+        <div class="pad-left-lg text-smallest">
+          <p>&rArr; <code class="code">click</code></p>
+          <p>&rArr; <code class="code">dblclick</code></p>
+          <p>&rArr; <code class="code">mouseenter</code></p>
+          <p>&rArr; <code class="code">mouseleave</code></p>
+        </div>
+        <p>&#149; Keyboard</p>
+        <div class="pad-left-lg text-smallest">
+          <p>&rArr; <code class="code">keypress</code></p>
+          <p>&rArr; <code class="code">keydown</code></p>
+          <p>&rArr; <code class="code">keyup</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Browser Events: Categories</div>
+        <p>&#149; Form</p>
+        <div class="pad-left-lg text-smallest">
+          <p>&rArr; <code class="code">submit</code></p>
+          <p>&rArr; <code class="code">change</code></p>
+          <p>&rArr; <code class="code">focus</code></p>
+          <p>&rArr; <code class="code">blur</code></p>
+        </div>
+        <p>&#149; Document/Window Events</p>
+        <div class="pad-left-lg text-smallest">
+          <p>&rArr; <code class="code">load</code></p>
+          <p>&rArr; <code class="code">resize</code></p>
+          <p>&rArr; <code class="code">scroll</code></p>
+          <p>&rArr; <code class="code">unload</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Browser Events</div>
+        <p>&#149; We can attach multiple events to the same element</p>
+    <pre><code>
+    $('#my-box').mouseenter(function () {
+    $('#my-box').css('background', 'red');
+    })
+
+    $('#my-box').mouseleave(function () {
+    $('#my-box').css('background', 'blue');
+    })
+
+    </code></pre>
+        <p>&#149; <a href="http://codepen.io/cheshireoctopus/pen/NArPdk">Codepen Example</a></p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Browser Events</div>
+        <div class="text-smaller">
+          <p>&#149; <code class="code">$(this)</code> is handy for listening to events on many elements of the same type or class</p>
+          <p>&#149; Refers to whatever element <u>caused</u> the event to trigger</p>
+          <p>&#149; JavaScript's <code class="code">this</code> is wrapped with jQuery's <code class="code">$()</code>; enables jQuery methods on vanilla <code class="code">this</code></p>
+        </div>
+    <pre><code>
+    $('.my-list-item').click(function () {
+    $(this).addClass('active');
+    $(this).siblings().removeClass('active');
+    })
+
+    </code></pre>
+        <p>&#149; <a href="http://codepen.io/cheshireoctopus/pen/mELymG">Codepen Example</a></p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Browser Events</div>
+
+        <p>&#149; Direct events (seen previously), are only attached to <u>existing</u> DOM elements on page load</p>
+        <p>&#149; Events on dynamically created elements must be set differently:</p>
+    <pre><code>
+    $(document).on('click', '.my-list-item', function () {
+    $(this).addClass('active');
+    $(this).siblings().removeClass('active');
+    })
+
+    </code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Events: Recap</div>
+        <p><b>Q: Can we only attach one event handler to an HTML element?</b></p>
+        <p class="fragment text-smaller pad-left-lg">A: No; can attach many!</p>
+        <p class="fragment"><b>Q: How do we handle events on dynamically created elements (those not present in the DOM at page load)?</b></p>
+        <div class="fragment text-smaller">
+    <pre><code>
+    $(document).on(event, selector, function)
+
+    $(document).on('click', '.my-els', function () {})
+
+    </code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Events: Recap</div>
+        <p class="fragment"><b>Q: How can we identify which element cause an event to happen?</b></p>
+        <div class="fragment text-smaller pad-left-lg">
+          A: Using <code class="code">$(this)</code>
+    <pre><code>
+    $('.my-elements').click(function () {
+    $(this).addClass('active');
+    $(this).siblings().removeClass('active');
+    })
+
+    </code></pre>
+        </div>
+
+      </section>
+
+      <section class="center">
+        <h1>HTML Manipulation</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTML Manipulation</div>
+
+        <p><code>.append('content')</code></p>
+        <p class="pad-left-lg">&rArr; Insert "content" at the <b>END</b> of each element</p>
+    <pre><code>
+    $('div').append('&lt;p>Appended paragraph&lt;/p>')
+
+    </code></pre>
+        <p><code>.prepend('content')</code></p>
+        <p class="pad-left-lg">&rArr; Insert "content" at the <b>BEGINNING</b> of each element</p>
+    <pre><code>
+    $('div').prepend('&lt;p>Prepended paragraph&lt;/p>')
+
+    </code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTML Manipulation</div>
+        <div class="text-smaller">
+          <p>&#149; Assuming the following HTML:</p>
+    <pre><code>
+    &lt;div id="someDiv">
+    &lt;p>A paragrpah of text&lt;/p>
+    &lt;/div>
+
+    </code></pre>
+          <p>&#149; The following JS:</p>
+    <pre><code>
+    $('#someDiv').append('&lt;p>Appended paragraph&lt;/p>');
+    $('#someDiv').prepend('&lt;p>Prepended paragraph&lt;/p>');
+
+    </code></pre>
+          <p>&#149; Will yield the following HTML:</p>
+    <pre><code>
+    &lt;div id="someDiv">
+    &lt;p>Prepended paragraph&lt;/p>
+    &lt;p>A paragrpah of text&lt;/p>
+    &lt;p>Appened paragraph&lt;/p>
+    &lt;/div>
+
+    </code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTML Manipulation</div>
+        <p><code>.remove()</code></p>
+        <p class="pad-left-lg">&rArr; Remove (delete) the selected element</p>
+    <pre><code>
+    $('#someDiv').remove()
+
+    </code></pre>
+        <p><code>.empty()</code></p>
+        <p class="pad-left-lg">&rArr; Remove all content from <b>INSIDE</b> an element; do not delete the element</p>
+    <pre><code>
+    $('#someDiv').empty()
+
+    </code></pre>
+      </section>
+
+      <!-- APPENDING LAB -->
+      <section class="center">
+        <h1>jQuery Events Lab</h1>
+        <p>Open <code class="code">list_maker</code> in Sublime Text</p>
+      </section>
+
+      <!-- BREAK (5-7 mins) -->
+      <section class="center">
+        <h1>5 minute break</h1>
+        <img src="../img/main/break-time-bear.jpg">
+      </section>
+
+      <!-- JAVASCRIPT TEMPLATING -->
+      <section class="center">
+        <h1>JavaScript Templating</h1>
+        <p>Open <code class="code">templates_intro</code> in Sublime Text</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">JS Templates</div>
+        <p>&#149; Writing HTML can be time-consuming and error-prone</p>
+        <p>&#149; Ex: create a <code class="code">&lt;select&gt;</code> containing all US presidents</p>
+        <p>&#149; Open <code class="code">templates_intro/index.html</code></p>
+        <hr>
+        <p class="fragment">&#149; Ain't nobody got time for that; instead:</p>
+        <div class="pad-left-lg">
+          <p class="fragment">1) Generate dynamically using jQuery</p>
+          <p class="fragment">2) Generate using templates</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">JS Templates</div>
+        <p>&#149; Generating with jQuery:</p>
+    <pre><code>
+    var presidentObject = {
+    presidents: ['Washington', 'Adams', ...];
+    }
+    var $list = $('#list');
+
+    presidentObject.presidents.forEach(function (president) {
+    $list.append('&lt;option&gt;' + president + '&lt;/option&gt;')
+    })
+
+    </code></pre>
+        <div class="fragment">
+          <p>&#149; Useful for simple HTML, but gets messy with larger structures:</p>
+    <pre><code>
+    $('#my-table')
+    .append('&lt;tr&gt;&lt;td&gt;' + name + '&lt;/td&gt;&lt;td&gt;' + age + '&lt;/td&gt;&lt;/tr&gt;')
+
+    </code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">JavaScript Templates</div>
+        <p>&#149; JS templates afford a degree of separation between logic (JS) and presentation (HTML)</p>
+        <p>&#149; Help avoid excessive DOM manipulation</p>
+        <p>&#149; Consider using once you are <u>generating</u> HTML from your JS</p>
+        <p>&#149; Data &rArr; Template &rArr; View</p>
+        <p>&#149; Many templating libraries:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&rArr; <a href="http://handlebarsjs.com/">handlebars.js</a></p>
+          <p>&rArr; <a href="http://mustache.github.io/">mustache.js</a></p>
+          <p>&rArr; <a href="http://underscorejs.org/">underscore.js</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Handlebars.js</div>
+        <p>&#149; Handlebars.js has a four step process:</p>
+        <div class="pad-left-lg">
+          <p>1) Create the template structure</p>
+          <p>2) Compile the template</p>
+          <p>3) Pass the compiled template a JavaScript data structure</p>
+          <p>4) Append the template to the DOM</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Handlebars.js</div>
+        <p>1) Create the template structure:</p>
+        <div class="text-smaller">
+          <p>&#149; Use <code class="code">&lt;script&gt;</code> tags to create the template</p>
+          <p>&#149; Must have <code class="code">id</code> and <code class="code">type="text/x-handlebars-template"</code></p>
+          <p>&#149; Write HTML inside the template, and surround dynamically generated data with <code class="code">{{}}</code></p>
+        </div>
+    <pre><code>
+    &lt;script id="title-template" type="text/x-handlebars-template"&gt;
+    &lt;h1&gt;{{title}}&lt;/h1&gt;
+    &lt;p&gt;{{description}}&lt;/p&gt;
+    &lt;/script&gt;
+
+    </code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Handlebars.js</div>
+        <div class="text-smaller">
+        <p>2) Use jQuery to reference the newly created template and compile using <code class="code">Handlebars.compile()</code></p>
+    <pre><code>
+    var source = $('#title-template').html();
+    var template = Handlebars.compile(source);
+
+    </code></pre>
+        <p>3) Pass a data object to the newly created template...</p>
+        <p>4) ...and add it to the DOM via jQuery</p>
+    <pre><code>
+    var titleObject = {
+    title: 'Presidents',
+    description: 'A JSD Project'
+    };
+
+    // 3
+    var titleTemplate = template(titleObject);
+
+    // 4
+    $('#title').append(titleTemplate);
+
+    </code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Handlebars.js</div>
+        <p>&#149; Handlebars provides the <code class="code">#each</code> helper for array iteration</p>
+        <p>&#149; When iterating over an array, use <code class="code">{{this}}</code> to reference each element</p>
+
+    <pre><code>
+    &lt;script id="title-template" type="text/x-handlebars-template"&gt;
+    {{#each presidents}}
+    &lt;option&gt;{{this}}&lt;/option&gt;
+    {{/each}}
+    &lt;/script&gt;
+
+    </code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Templates: Recap</div>
+        <p><b>Q: What are the four steps for using a Handlebars.js template?</b></p>
+        <div class="fragment text-smaller">
+          <p>1) Create the template structure</p>
+    <pre><code>
+    &lt;script id="my-template" type="text/x-handlebars-template"&gt;
+    <p>{{data}}</p>
+    &lt;/script&gt;
+
+    </code></pre>
+          <p>2) Compile the template</p>
+          <p>3) Pass the compiled template a JavaScript data structure</p>
+          <p>4) Append the template to the DOM</p>
+    <pre><code>
+    var myObj = { data: 'Hello, World!' };
+    var template = Handlebars.compile($('#my-template').html());
+    $('#myEl').append(template(myObj));
+
+    </code></pre>
+        </div>
+      </section>
+
+      <!-- TEMPLATING LAB -->
+      <section class="center">
+        <h1>Templating Lab</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Templating Lab</div>
+        <p>&#149; Rebuild <code class="code">list_maker</code>, using Handlebars templates</p>
+        <p>&#149; Create one template to render the initial <code class="code">&lt;li&gt;</code> items: ('Data types', 'Arrays', 'Objects', 'Functions')</p>
+        <p>&#149; Create a second template to handle adding new <code class="code">&lt;li&gt;</code> items</p>
+        <p>&#149; Remember: You must pass <u>objects</u> to Handlebars templates</p>
+      </section>
+
+      <!-- THE END -->
+      <section class="center">
+        <img src="../img/main/the-end.jpg">
+      </section>
 
       <!-- HOMEWORK -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">Homework</div>
-        <p>1) Finish <code class="code">json_hw.js</code> from last class</p>
-        <p>2) Complete <code class="code">99_bottles_DOM</code> - instructions are in the <code class="code">README.md</code></p>
+        <p>1) Complete <code class="code">99_bottles_DOM</code> - instructions are in the <code class="code">README.md</code></p>
       </section>
-   </div>
+
+      <!-- ON DECK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #09 (of 20) - AJAX and API's</h4>
+        <div class="pad-left-lg">
+          <p>&#149; Hypertext Transfer Protocol (HTTP)</p>
+          <p>&#149; Application Programming Interfaces (API's)</p>
+          <p>&#149; Asychronous JavaScript and XML (AJAX)</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Exit Tickets!</h1>
+      </section>
+    </div>
   </div>
 
   <script src="js/head.min.js"></script>
