@@ -1,0 +1,54 @@
+:root {
+  --gray: rgb(222, 222, 222);
+  --dark-blue: rgb(13, 45, 104);
+  --light-blue: rgb(62, 151, 222);
+}
+
+body {
+  background: var(--gray);
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.title {
+  color: var(--light-blue);
+  background: var(--dark-blue);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 0;
+}
+
+#stations {
+  background: var(--gray);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.station {
+  display: flex;
+  background: var(--light-blue);
+  border-radius: 3px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 4%;
+  padding: 25px;
+  text-align: center;
+  width: 21%;
+}
+
+.station-title {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 0.3px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.station-data {
+
+}
+
