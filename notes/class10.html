@@ -274,59 +274,64 @@
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">AJAX</div>
-        <p>&#149; AJAX = Asynchronous JavaScript and XML</p>
-        <p>&#149; Collection of technologies used to make HTTP (and other asychronous) requests from the browser</p>
-        <p>&#149; Sends and receives data in a variety of formats, including <code class="code">JSON</code></p>
-        <p>&#149; Operates in the "background"; allows us to request/receive data and update the UI without having to refresh the page</p>
-        <p>&#149; Will first demo vanilla JS AJAX, then will use jQuery AJAX</p>
+
+        <div class="text-smaller">
+          <p>&#149; AJAX = Asynchronous JavaScript and XML</p>
+          <p class="fragment">&#149; Technologies used to make HTTP requests from the browser</p>
+          <p class="fragment">&#149; Sends and receives data in a variety of formats, including <code class="code">JSON</code></p>
+          <p class="fragment">&#149; Operates in the "background"; allows us to request/receive data and update the UI without having to refresh the page</p>
+          <p class="fragment">&#149; Will first demo vanilla JS AJAX; then jQuery AJAX</p>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">AJAX</div>
-        <p>&#149; To make an AJAX request, we first need an instance of <code class="code">XMLHttpRequest</code></p>
-        <p>&#149; Handle the response using <code class="code">onreadystatechange</code></p>
+        <div class="heading">AJAX: Vanilla JS</div>
+
+        <div class="text-smallest">
+          <p>&#149; To make an AJAX request, we need the <code class="code">XMLHttpRequest</code> object</p>
+          <p>&#149; Handle the response using <code class="code">onreadystatechange</code></p>
 <pre><code>
   // Create instance of XMLHTTPRequest
   var httpRequest = new XMLHttpRequest();
 
-  // Set a custom function to handle the request
+  // Set a custom function to handle the response
   httpRequest.onreadystatechange = responseMethod;
 
   function responseMethod() {
-    // Request logic
+    // response logic here
   }
 
-  // Alternative method:
-  httpRequest.onreadystatechange = function() {
-    ...
-  }
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">AJAX</div>
+        <div class="heading">AJAX: Vanilla JS</div>
+
         <div class="text-smallest">
-        <p>&#149; Before we do anything with the request, we need to first check its state</p>
+        <p>&#149; Before we do anything with the response, we need to first check its state</p>
         <p>&#149; Once the state is <code class="code">DONE</code>, we handle the response:</p>
-        <div class="pad-left-lg">
-          <p>&rArr; Check for a success and update our application logic</p>
-          <p>&rArr; Check for an error and notify the user</p>
-        </div>
 <pre><code>
-function responseMethod() {
-  // Check if our state is "DONE"
-  if (httpRequest.readyState === XMLHttpRequest.DONE) {
-    // If our request was successful we get a return code/status of 200
-    if (httpRequest.status === 200) {
-      // Logic to perform after a successful request; access the API's data using the httpRequest object
-      console.log(httpRequest);
-    } else {
-      // This is the scenario that there was an error with our request
-      console.log('There was a problem with the request.');
+  function responseMethod() {
+
+    // Check if our state is "DONE"
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+
+      // If our request was successful we get a return code/status of 200
+      if (httpRequest.status === 200) {
+
+        // Handle a successful request
+        console.log(httpRequest);
+
+      } else {
+
+        // Error handling for when a request fails
+        console.log('There was a problem with the request.');
+
+      }
     }
   }
-}
 
 </code></pre>
         </div>
@@ -334,7 +339,8 @@ function responseMethod() {
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">AJAX</div>
-        <div class="text-smaller">
+
+        <div class="text-smallest">
           <p>After handling the reponse, we make the request:</p>
           <p>1) Open the request with: <code class="code">httpRequest.open(type, url)</code>:</p>
           <div class="pad-left-lg">
@@ -355,7 +361,9 @@ function responseMethod() {
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">AJAX</div>
-        <p>&#149; Opening and sending the request:</p>
+
+        <div class="text-smaller">
+          <p>&#149; Opening and sending the request:</p>
 <pre><code>
   var httpRequest = new XMLHttpRequest();
 
@@ -372,19 +380,20 @@ function responseMethod() {
   }
 
 </code></pre>
+        </div>
       </section>
 
       <!-- VANILLA AJAX CODEALONG -->
       <section class="center">
         <h1>Codealong</h1>
-        <p>Open <code class="code">citi_bike</code></p>
+        <p>Open <code class="code">ajax_practie</code></p>
       </section>
 
       <!-- JQUERY + AJAX -->
       <section class="center">
         <img src="https://judas23dotcom.files.wordpress.com/2015/03/fonzie-thumbs-down.jpg" alt="">
         <h1>That sucks</h1>
-        <h1>Let's use the jQuery AJAX</h1>
+        <h1>Let's use the jQuery</h1>
       </section>
 
       <!-- BREAK (5-7 mins) -->
@@ -394,7 +403,7 @@ function responseMethod() {
       </section> -->
 
       <!-- JQUERY + AJAX -->
-      <section class="center">
+      <section class="title" id="jquery-ajax">
         <h1>jQuery + AJAX</h1>
       </section>
 
