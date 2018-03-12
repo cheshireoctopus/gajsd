@@ -12,7 +12,481 @@
 <body>
   <div class="reveal">
     <div class="slides">
-   </div>
+      <section class="hero condensed">
+        <h1>Hello</h1>
+        <div class="opening-instructions">
+          <p>1) Please download <a href="../materials/class10.zip" target="_blank">Class 10 Starter Code</a></p>
+          <p>2) Move the following into <code class="code">homework</code>:</p>
+          <div class="pad-left-lg">
+            <p>&#149; <code class="code">citi_bike_templates</code></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="hero condensed">
+        <h1>Class <span class="red">#10</span></h1>
+        <h1>03/14/2018</h1>
+        <h1 class="lesson-title">AJAX + API's</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Announcements</div>
+
+        <p>&#149; Final Project</p>
+        <div class="pad-left-lg">
+          <p>&rArr; Due in 5 weeks: Wednesday, April 18th</p>
+          <p>&rArr; Final class will consist of (optional) presentations</p>
+          <p>&rArr; First deliverable due March 19th: at least three ideas or <u>proven progress</u> on one idea</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <img src="img/main/emotional_learning_curve.png" alt="">
+      </section>
+
+      <!-- AGENDA -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+        <p>&#149; <a href="#/intro-to-apis">Intro to API's</a></p>
+        <p>&#149; <a href="#/http">Hypertext Transfer Protocol (HTTP)</a></p>
+        <p>&#149; <a href="#/ajax">AJAX</a></p>
+        <p>&#149; <a href="#/">Codealong: Citi Bike API</a></p>
+        <p>&#149; <a href="#/jquery-ajax">jQuery + AJAX</a></p>
+      </section>
+
+      <!-- INTRO TO APIS -->
+      <section class="title" id="intro-to-apis">
+        <h1>Intro to API's</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">API's: What are they?</div>
+
+        <div class="text-smaller">
+          <p>&#149; API = Application Programming Interface</p>
+          <p>&#149; Set of rules/instructions for interacting with a piece of software</p>
+          <p>&#149; Middleman; allows different pieces of software to "talk"</p>
+          <p>&#149; API for devices (iPhone); for operating systems (OSX); for JavaScript libraries (jQuery API)</p>
+        </div>
+        <div class="text-center">
+          <img src="http://gafewd.github.io/img/class18/api.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">API: How We Will Use Them</div>
+
+        <div class="text-smaller">
+          <p>&#149; JSD will focus on <u>web-based</u> API's (web services)</p>
+          <p class="fragment">&#149; Use HTTP to request data from <u>endpoints</u> on a server</p>
+          <div class="fragment">
+            <p>&#149; Endpoints are addresses (URL's) that applications interact with:</p>
+            <div class="pad-left-lg text-smaller">
+              <p>&rArr; <a target="_blank" href="https://feeds.citibikenyc.com/stations/stations.json">https://feeds.citibikenyc.com/stations/stations.json</a></p>
+              <p>&rArr; <a href="https://data.cityofnewyork.us/resource/fhrw-4uyv.json" target="_blank">https://data.cityofnewyork.us/resource/fhrw-4uyv.json</a></p>
+            </div>
+          </div>
+          <div class="fragment">
+            <p>&#149; Numerous API's: <a href="http://www.programmableweb.com/" target="_blank">Programmable Web</a></p>
+            <p>&#149; Tie the web together; <a href="http://www.seehearparty.com/" target="_blank">http://www.seehearparty.com/</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HYPERTEXT TRANSFER PROTOCOL (HTTP) -->
+      <section class="title" id="http">
+        <h1>HTTP</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP</div>
+
+        <div class="text-smaller">
+          <p>&#149; HTTP &rArr; Hypertext Transfer Protocol</p>
+          <p>&#149; System of rules (protocol) that determine how data (hypertext) get sent (transfer) over the wire</p>
+          <p>&#149; Works through a system of clients, which make requests, and servers, which receive request</p>
+          <p>&#149; Request/response cycle</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP: Clients and Servers</div>
+
+        <div class="text-smaller">
+          <p>&#149; HTTP Client</p>
+          <div class="text-smaller pad-left-lg">
+          <p>&rArr; Makes requests</p>
+          <p>&rArr; Clients are browsers; command line programs (curl and wget); mobile apps</p>
+          </div>
+          <div class="fragment">
+            <p>&#149; HTTP Web Server</p>
+            <div class="text-smaller pad-left-lg">
+              <p>&rArr; Listens for HTTP requests and sends HTTP responses</p>
+              <p>&rArr; Many web servers: Apache, Nginx, Node, Django, Rails</p>
+              <p>&rArr; Web servers can be written in almost <a href="https://github.com/justinmeza/httpd.lol" target="_blank">any</a> language</p>
+              <p>&rArr; Often the middleman, passing requests from the client the web application</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP: Endpoints</div>
+
+        <div class="text-smallest">
+          <p>&#149; The URL (endpoint) tells the server what resouces to retrieve</p>
+          <p>&#149; Endpoints are composed of:</p>
+          <div class="text-center">
+            <img src="img/class10/url_anatomy.png" alt="">
+          </div>
+          <p>&#149; A resources represents an abstraction that your app uses</p>
+          <p>&#149; Resources can be represented in a variety of formats: HTML, JSON, PDF, etc.</p>
+        </div>
+      </section>
+
+      <!-- HTTP DEMO -->
+      <section class="title">
+        <h1>HTTP Demo</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP Demo</div>
+
+        <div class="text-smaller">
+          <p>&#149; Open Chrome's "Network" tab:</p>
+          <p>&#149; Navigate to <a target="_blank" href="http://generalassemb.ly">http://generalassemb.ly</a> (with the tab open)</p>
+          <p>&#149; The network tab only records HTTP requests when open</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP Demo</div>
+
+        <div class="text-smaller">
+          <p>&#149; The network tab displays all HTTP requests (and responses)</p>
+          <p>&#149; Can filter by request type: XHR, JS, CSS, etc.</p>
+          <p>&#149; Chrome provides data on each request:</p>
+          <div class="pad-left-lg text-smaller">
+            <p>&rArr; Endpoint (URL)</p>
+            <p>&rArr; Status (did it succeed or fail?)</p>
+            <p>&rArr; The size of the response</p>
+            <p>&rArr; Duration of request</p>
+            <p>&rArr; Body of request and response</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP Demo: HTTP Requests</div>
+
+        <div class="text-smallest">
+          <p>&#149; The first word in the request line is the request's method:</p>
+          <div class="text-center">
+            <img src="img/class10/http_request.jpeg" alt="">
+          </div>
+          <p>&#149; HTTP Methods:</p>
+          <div class="pad-left-lg text-smaller">
+            <p>GET => Retrieve a resource</p>
+            <p>POST => Create a resource</p>
+            <p>PUT => Update an existing resource</p>
+            <p>DELETE => Delete a resource</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP Demo: HTTP Requests</div>
+
+        <div class="text-smallest">
+          <p>HTTP Request Structure:</p>
+<pre><code>
+  [http request method] [URL] [http version]
+  [list of headers]
+
+  [request body]
+
+</code></pre>
+<pre><code>
+  GET / HTTP/1.1
+  Host: generalassemb.ly
+  Connection: keep-alive
+  Cache-Control: max-age=0
+  Upgrade-Insecure-Requests: 1
+  User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36
+  Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+  ...
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP Demo: HTTP Response</div>
+
+        <div class="text-smaller">
+          <p>The standard format for a HTTP response is:</p>
+<pre><code>
+  [http version] [status] [reason]
+  [list of headers]
+
+  [response body] # typically HTML, JSON, ...
+
+</code></pre>
+          <div class="text-center">
+            <img src="img/class10/http_response.jpeg" alt="">
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP Demo: Status Codes</div>
+
+        <div class="text-smaller">
+          <p><b>200</b>: Success</p>
+          <p><b>301</b>: Moved Permanently</p>
+          <p><b>302</b>: Moved Temporarily</p>
+          <p><b>400</b>: Bad Request</p>
+          <p><b>403</b>: Forbidden</p>
+          <p><b>404</b>: Not Found</p>
+          <p><b>500</b>: Internal Server Error</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP: Recap</div>
+
+        <div class="text-smaller">
+          <p><b>Q: What is an API?</b></p>
+          <p class="fragment pad-left-lg text-smaller">A: Set of instructions for interacting with a program</p>
+          <p class="fragment"><b>Q: What is HTTP?</b></p>
+          <p class="fragment pad-left-lg text-smaller">A: Protocol for sending data over the internet</p>
+          <p class="fragment"><b>Q: Describe a web application</b></p>
+          <p class="fragment pad-left-lg text-smaller">A: Program that leverages a web server to handle HTTP requests</p>
+          <p class="fragment"><b>Q: To view HTTP requests being made in Chrome, use the:</b></p>
+          <p class="fragment pad-left-lg text-smaller">A: Network tab</p>
+        </div>
+      </section>
+
+      <!-- AJAX -->
+      <section class="title" id="ajax">
+        <h1>AJAX</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">AJAX</div>
+        <p>&#149; AJAX = Asynchronous JavaScript and XML</p>
+        <p>&#149; Collection of technologies used to make HTTP (and other asychronous) requests from the browser</p>
+        <p>&#149; Sends and receives data in a variety of formats, including <code class="code">JSON</code></p>
+        <p>&#149; Operates in the "background"; allows us to request/receive data and update the UI without having to refresh the page</p>
+        <p>&#149; Will first demo vanilla JS AJAX, then will use jQuery AJAX</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">AJAX</div>
+        <p>&#149; To make an AJAX request, we first need an instance of <code class="code">XMLHttpRequest</code></p>
+        <p>&#149; Handle the response using <code class="code">onreadystatechange</code></p>
+<pre><code>
+  // Create instance of XMLHTTPRequest
+  var httpRequest = new XMLHttpRequest();
+
+  // Set a custom function to handle the request
+  httpRequest.onreadystatechange = responseMethod;
+
+  function responseMethod() {
+    // Request logic
+  }
+
+  // Alternative method:
+  httpRequest.onreadystatechange = function() {
+    ...
+  }
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">AJAX</div>
+        <div class="text-smallest">
+        <p>&#149; Before we do anything with the request, we need to first check its state</p>
+        <p>&#149; Once the state is <code class="code">DONE</code>, we handle the response:</p>
+        <div class="pad-left-lg">
+          <p>&rArr; Check for a success and update our application logic</p>
+          <p>&rArr; Check for an error and notify the user</p>
+        </div>
+<pre><code>
+function responseMethod() {
+  // Check if our state is "DONE"
+  if (httpRequest.readyState === XMLHttpRequest.DONE) {
+    // If our request was successful we get a return code/status of 200
+    if (httpRequest.status === 200) {
+      // Logic to perform after a successful request; access the API's data using the httpRequest object
+      console.log(httpRequest);
+    } else {
+      // This is the scenario that there was an error with our request
+      console.log('There was a problem with the request.');
+    }
+  }
+}
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">AJAX</div>
+        <div class="text-smaller">
+          <p>After handling the reponse, we make the request:</p>
+          <p>1) Open the request with: <code class="code">httpRequest.open(type, url)</code>:</p>
+          <div class="pad-left-lg">
+            <p><code class="code">type</code>: HTTP method (<code class="code">'GET'</code>, <code class="code">'PUT'</code>, <code class="code">'POST'</code>, <code class="code">'DELETE'</code>)</p>
+            <p><code class="code">url</code>: the request's endpoint</p>
+          </div>
+          <p>2) Send the request with: <code class="code">httpRequest.send()</code></p>
+          <div class="pad-left-lg">
+            <p>&#149; Used to pass data to the server</p>
+          </div>
+          <p>3) Pass headers using: <code class="code">httpRequest.setRequestHeader()</code></p>
+          <div class="pad-left-lg">
+            <p>&#149; Some API's require additional info to function</p>
+            <p>&#149; <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">More info</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">AJAX</div>
+        <p>&#149; Opening and sending the request:</p>
+<pre><code>
+  var httpRequest = new XMLHttpRequest();
+
+  httpRequest.onreadystatechange = responseMethod;
+
+  httpRequest.open('GET', 'http://data.consumerfinance.gov/api/views.json');
+
+  httpRequest.send();
+
+  httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+  function responseMethod () {
+    ...
+  }
+
+</code></pre>
+      </section>
+
+      <!-- VANILLA AJAX CODEALONG -->
+      <section class="center">
+        <h1>Codealong</h1>
+        <p>Open <code class="code">citi_bike</code></p>
+      </section>
+
+      <!-- JQUERY + AJAX -->
+      <section class="center">
+        <img src="https://judas23dotcom.files.wordpress.com/2015/03/fonzie-thumbs-down.jpg" alt="">
+        <h1>That sucks</h1>
+        <h1>Let's use the jQuery AJAX</h1>
+      </section>
+
+      <!-- BREAK (5-7 mins) -->
+<!--        <section class="center">
+        <h1>5 minute break</h1>
+        <img src="../img/main/break-time-bear.jpg">
+      </section> -->
+
+      <!-- JQUERY + AJAX -->
+      <section class="center">
+        <h1>jQuery + AJAX</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">jQuery AJAX</div>
+        <p>&#149; Vanilla JS is sufficient for making HTTP requests</p>
+        <p>&#149; It's just verbose...</p>
+        <p>&#149; Also, older browsers handle AJAX calls differently</p>
+        <div class="fragment">&#149; jQuery's motto: "Write Less, Do More!"</div>
+        <div class="fragment">
+<pre><code>
+  $.get('http://your-url.com, function(response) {
+      console.log(response);
+  });
+
+</code></pre>
+          <p>&#149; Oh yea...much easier</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">jQuery AJAX</div>
+        <p>&#149; <code class="code">$.get()</code> method is easy, but not very configurable</p>
+        <p>&#149; <code class="code">$.ajax()</code> method offers more granularity:</p>
+<pre><code>
+  $.ajax({
+    url: 'http://your-url.com',
+    type: 'GET',
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (xhr) {
+      console.log(xhr);
+    }
+  })
+
+</code></pre>
+        <p>&#149; Additional jQuery Ajax <a href="https://www.sitepoint.com/use-jquerys-ajax-function/">options</a></p>
+      </section>
+
+      <section class="center">
+        <h1>Codealong</h1>
+        <p>Open <code class="code">citi_bike</code></p>
+      </section>
+
+      <!-- LAB: OPEN WEATHER MAP -->
+      <section class="center">
+        <h1>LAB: OPEN WEATHER MAP</h1>
+        <p>Open <code class="code">open_weather_map</code></p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Open Weather Map</div>
+        <p>1) Visit <a target="_blank" href="http://openweathermap.org/">http://openweathermap.org/</a>; obtain an API key</p>
+        <p class="pad-left-lg">&#149; You want the free "Current weather data" API</p>
+        <p class="pad-left-lg">&#149; Documentation for the API <a href="http://openweathermap.org/current" target="_blank">here</a></p>
+        <p>2) Follow the directions inside <code class="code">app.js</code></p>
+        <p>3) Use whatever AJAX method (vanilla/jQuery) you prefer</p>
+      </section>
+
+      <!-- THE END -->
+      <section class="center">
+        <img src="../img/main/the-end.jpg">
+      </section>
+
+      <!-- HOMEWORK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Homework</div>
+        <p>1) Finish <code class="code">open_weather_map</code></p>
+        <p>2) Final project:</p>
+        <div class="pad-left-lg">
+          <p>&rArr; Project skeleton (top-level directories; necessary files)</p>
+          <p>&rArr; List of libraries (if any)</p>
+          <p>&rArr; List of API's (if any)</p>
+        </div>
+      </section>
+
+      <!-- ON DECK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #10 (of 20) - Asynchronous JavaScript and Callbacks</h4>
+        <div class="pad-left-lg">
+          <p>&#149; Asychronous JS</p>
+          <p>&#149; Anoymous Functions and Functions as First-Class Objects</p>
+          <p>&#149; Immediately Invoked Function Expressions (IIFE's)</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Exit Tickets!</h1>
+      </section>
+    </div>
   </div>
 
   <script src="js/head.min.js"></script>
