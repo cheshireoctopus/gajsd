@@ -372,11 +372,9 @@
 
   httpRequest.onreadystatechange = responseMethod;
 
-  httpRequest.open('GET', 'http://data.consumerfinance.gov/api/views.json');
+  httpRequest.open('GET', 'https://api.coinbase.com/v2/prices/BTC-USD/buy');
 
   httpRequest.send();
-
-  httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   function responseMethod () {
     ...
