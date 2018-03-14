@@ -16,9 +16,13 @@
         <h1>Hello</h1>
         <div class="opening-instructions">
           <p>1) Please download <a href="../materials/class10.zip" target="_blank">Class 10 Starter Code</a></p>
-          <p>2) Move the following into <code class="code">homework</code>:</p>
+          <p>2) Move the following into <code class="code">class-work</code>:</p>
           <div class="pad-left-lg">
-            <p>&#149; <code class="code">citi_bike_templates</code></p>
+            <p>&#149; <code class="code">hodl_crypto</code></p>
+          </div>
+          <p>3) Move the following into <code class="code">homework</code>:</p>
+          <div class="pad-left-lg">
+            <p>&#149; <code class="code">open_weather_map</code></p>
           </div>
         </div>
       </section>
@@ -77,10 +81,10 @@
         <div class="heading">API: How We Will Use Them</div>
 
         <div class="text-smaller">
-          <p>&#149; JSD will focus on <u>web-based</u> API's (web services)</p>
+          <p>&#149; This lesson will focus on <u>web-based</u> API's</p>
           <p class="fragment">&#149; Use HTTP to request data from <u>endpoints</u> on a server</p>
           <div class="fragment">
-            <p>&#149; Endpoints are addresses (URL's) that applications interact with:</p>
+            <p>&#149; Endpoints are locations on a server and are accessed via URL's:</p>
             <div class="pad-left-lg text-smaller">
               <p>&rArr; <a target="_blank" href="https://feeds.citibikenyc.com/stations/stations.json">https://feeds.citibikenyc.com/stations/stations.json</a></p>
               <p>&rArr; <a href="https://data.cityofnewyork.us/resource/fhrw-4uyv.json" target="_blank">https://data.cityofnewyork.us/resource/fhrw-4uyv.json</a></p>
@@ -104,7 +108,7 @@
         <div class="text-smaller">
           <p>&#149; HTTP &rArr; Hypertext Transfer Protocol</p>
           <p>&#149; System of rules (protocol) that determine how data (hypertext) get sent (transfer) over the wire</p>
-          <p>&#149; Works through a system of clients, which make requests, and servers, which receive request</p>
+          <p>&#149; Works through a system of clients, which make requests, and servers, which receive requests</p>
           <p>&#149; Request/response cycle</p>
         </div>
       </section>
@@ -124,7 +128,6 @@
               <p>&rArr; Listens for HTTP requests and sends HTTP responses</p>
               <p>&rArr; Many web servers: Apache, Nginx, Node, Django, Rails</p>
               <p>&rArr; Web servers can be written in almost <a href="https://github.com/justinmeza/httpd.lol" target="_blank">any</a> language</p>
-              <p>&rArr; Often the middleman, passing requests from the client the web application</p>
             </div>
           </div>
         </div>
@@ -139,8 +142,8 @@
           <div class="text-center">
             <img src="img/class10/url_anatomy.png" alt="">
           </div>
-          <p>&#149; A resources represents an abstraction that your app uses</p>
-          <p>&#149; Resources can be represented in a variety of formats: HTML, JSON, PDF, etc.</p>
+          <p>&#149; A resource represents a data abstraction</p>
+          <p>&#149; Resources can be represented in a variety of formats: XML, JSON, etc.</p>
         </div>
       </section>
 
@@ -186,10 +189,10 @@
           </div>
           <p>&#149; HTTP Methods:</p>
           <div class="pad-left-lg text-smaller">
-            <p>GET => Retrieve a resource</p>
-            <p>POST => Create a resource</p>
-            <p>PUT => Update an existing resource</p>
-            <p>DELETE => Delete a resource</p>
+            <p>GET &rArr; Retrieve a resource</p>
+            <p>POST &rArr; Create a resource</p>
+            <p>PUT &rArr; Update an existing resource</p>
+            <p>DELETE &rArr; Delete a resource</p>
           </div>
         </div>
       </section>
@@ -386,7 +389,7 @@
       <!-- VANILLA AJAX CODEALONG -->
       <section class="center">
         <h1>Codealong</h1>
-        <p>Open <code class="code">ajax_practie</code></p>
+        <p>Open <code class="code">hodl_crypto</code></p>
       </section>
 
       <!-- JQUERY + AJAX -->
@@ -409,85 +412,70 @@
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">jQuery AJAX</div>
-        <p>&#149; Vanilla JS is sufficient for making HTTP requests</p>
-        <p>&#149; It's just verbose...</p>
-        <p>&#149; Also, older browsers handle AJAX calls differently</p>
-        <div class="fragment">&#149; jQuery's motto: "Write Less, Do More!"</div>
-        <div class="fragment">
-<pre><code>
-  $.get('http://your-url.com, function(response) {
-      console.log(response);
-  });
 
-</code></pre>
-          <p>&#149; Oh yea...much easier</p>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">jQuery AJAX</div>
-        <p>&#149; <code class="code">$.get()</code> method is easy, but not very configurable</p>
-        <p>&#149; <code class="code">$.ajax()</code> method offers more granularity:</p>
+        <div class="text-smallest">
+          <p>&#149; Vanilla JS is sufficient for making HTTP requests</p>
+          <p>&#149; It's just verbose...</p>
+          <div class="fragment">&#149; jQuery's motto: "Write Less, Do More!"</div>
+          <div class="fragment">
 <pre><code>
   $.ajax({
-    url: 'http://your-url.com',
     type: 'GET',
-    success: function (response) {
-      console.log(response);
-    },
-    error: function (xhr) {
-      console.log(xhr);
+    url: 'https://your-api.com',
+    success: function(response) {
+      // handle response here
     }
   })
 
 </code></pre>
-        <p>&#149; Additional jQuery Ajax <a href="https://www.sitepoint.com/use-jquerys-ajax-function/">options</a></p>
+            <p>&#149; Oh yea...much easier</p>
+            <p>&#149; Additional jQuery Ajax <a href="https://www.sitepoint.com/use-jquerys-ajax-function/" target="_blank">options</a></p>
+          </div>
+        </div>
       </section>
 
       <section class="center">
         <h1>Codealong</h1>
-        <p>Open <code class="code">citi_bike</code></p>
+        <p>Open <code class="code">hodl_crypto</code></p>
       </section>
 
       <!-- LAB: OPEN WEATHER MAP -->
-      <section class="center">
-        <h1>LAB: OPEN WEATHER MAP</h1>
-        <p>Open <code class="code">open_weather_map</code></p>
+      <section class="title">
+        <h1>OPEN WEATHER MAP</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Open Weather Map</div>
-        <p>1) Visit <a target="_blank" href="http://openweathermap.org/">http://openweathermap.org/</a>; obtain an API key</p>
-        <p class="pad-left-lg">&#149; You want the free "Current weather data" API</p>
-        <p class="pad-left-lg">&#149; Documentation for the API <a href="http://openweathermap.org/current" target="_blank">here</a></p>
-        <p>2) Follow the directions inside <code class="code">app.js</code></p>
-        <p>3) Use whatever AJAX method (vanilla/jQuery) you prefer</p>
+
+        <div class="text-smaller">
+          <p>1) Open <code class="code">open_weather_map</code> in Sublime Text</p>
+          <p>2) Visit <a target="_blank" href="http://openweathermap.org/">http://openweathermap.org/</a> -  obtain an API key</p>
+          <p>3) Follow the directions inside <code class="code">app.js</code></p>
+          <p>4) You will need the API <a href="https://openweathermap.org/current" target="_blank">documentation</a></p>
+        </div>
       </section>
 
       <!-- THE END -->
       <section class="center">
-        <img src="../img/main/the-end.jpg">
+        <img src="img/main/the-end.jpg">
       </section>
 
       <!-- HOMEWORK -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">Homework</div>
         <p>1) Finish <code class="code">open_weather_map</code></p>
-        <p>2) Final project:</p>
-        <div class="pad-left-lg">
-          <p>&rArr; Project skeleton (top-level directories; necessary files)</p>
-          <p>&rArr; List of libraries (if any)</p>
-          <p>&rArr; List of API's (if any)</p>
-        </div>
+        <p>2) Final project ideas!</p>
       </section>
 
       <!-- ON DECK -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">What's On Deck</div>
-        <h4>Class #10 (of 20) - Asynchronous JavaScript and Callbacks</h4>
+        <h4>Class #11 (of 20) - Asynchronous JavaScript and Callbacks</h4>
+
         <div class="pad-left-lg">
-          <p>&#149; Asychronous JS</p>
-          <p>&#149; Anoymous Functions and Functions as First-Class Objects</p>
+          <p>&#149; Asynchronous JS</p>
+          <p>&#149; Anoymous Functions</p>
+          <p>&#149; Functions as First-Class Objects</p>
           <p>&#149; Immediately Invoked Function Expressions (IIFE's)</p>
         </div>
       </section>

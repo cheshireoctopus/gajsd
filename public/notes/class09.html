@@ -32,6 +32,7 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Announcements</div>
 
+        <p>&#149; Mid-Course Survey - TONIGHT!</p>
         <p>&#149; Final Project</p>
         <div class="pad-left-lg">
           <p>&rArr; Due in 5 weeks: Wednesday, April 18th</p>
@@ -48,11 +49,21 @@
         <p>&#149; <a href="#/js-templates">JavaScript Templates</a></p>
       </section>
 
+      <!-- QUESTIONS -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Questions</div>
+
+        <div class="text-smaller">
+          <p><b>Q: Iffy on jQuery syntax / does GA have a jQuery class?</b></p>
+          <p class="fragment">A: I teach FEWD: <a href="fewd.nyc" target="_blank">fewd.nyc</a> - please check out my lectures!</p>
+        </div>
+      </section>
+
       <!-- WARM UP -->
-      <section class="center">
+      <!-- <section class="center">
         <h1>Warm Up</h1>
         <p><a href="http://codepen.io/cheshireoctopus/pen/oLdzOr?editors=1010#0" target="_blank">CodePen Exercise</a></p>
-      </section>
+      </section> -->
 
       <!-- Browser Events -->
       <section class="title" id="events">
@@ -170,16 +181,16 @@
 
         <p>&#149; Multiple events can be attached to the same element:</p>
   <pre><code>
-  $('#my-box').mouseenter(function () {
+  $('#my-box').mouseenter(function() {
     $('#my-box').css('background', 'red')
   })
 
-  $('#my-box').mouseleave(function () {
+  $('#my-box').mouseleave(function() {
     $('#my-box').css('background', 'blue')
   })
 
   </code></pre>
-        <p>&#149; <a href="http://codepen.io/cheshireoctopus/pen/NArPdk">Codepen Example</a></p>
+        <p>&#149; <a target="_blank" href="http://codepen.io/cheshireoctopus/pen/NArPdk">Codepen Example</a></p>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -196,7 +207,7 @@
     })
 
     </code></pre>
-        <p>&#149; <a href="http://codepen.io/cheshireoctopus/pen/mELymG">Codepen Example</a></p>
+        <p>&#149; <a target="_blank" href="http://codepen.io/cheshireoctopus/pen/mELymG">Codepen Example</a></p>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -338,9 +349,8 @@
       </section>
 
       <!-- BREAK (5-7 mins) -->
-      <section class="center">
-        <h1>5 minute break</h1>
-        <img src="img/main/break-time-bear.jpg">
+      <section class="title">
+        <h1>Mid-Course Survey</h1>
       </section>
 
       <!-- JAVASCRIPT TEMPLATING -->
@@ -475,7 +485,7 @@
 
         <div class="text-smaller">
           <p>&#149; Handlebars provides the <code class="code">#each</code> helper for array iteration</p>
-          <p>&#149; When iterating over an array, use <code class="code">{{this}}</code> to reference each element</p>
+          <p>&#149; When iterating over an array, use <code class="code">this</code> to reference each element</p>
 
 <pre><code>
     &lt;script id="person-template" type="text/x-handlebars-template"&gt;
