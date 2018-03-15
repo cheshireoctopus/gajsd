@@ -54,7 +54,6 @@
         <p>&#149; <a href="#/intro-to-apis">Intro to API's</a></p>
         <p>&#149; <a href="#/http">Hypertext Transfer Protocol (HTTP)</a></p>
         <p>&#149; <a href="#/ajax">AJAX</a></p>
-        <p>&#149; <a href="#/">Codealong: Citi Bike API</a></p>
         <p>&#149; <a href="#/jquery-ajax">jQuery + AJAX</a></p>
       </section>
 
@@ -73,7 +72,7 @@
           <p>&#149; API for devices (iPhone); for operating systems (OSX); for JavaScript libraries (jQuery API)</p>
         </div>
         <div class="text-center">
-          <img src="http://gafewd.github.io/img/class18/api.png" alt="">
+          <img src="img/class07/api.png" alt="">
         </div>
       </section>
 
@@ -357,7 +356,7 @@
           <p>3) Pass headers using: <code class="code">httpRequest.setRequestHeader()</code></p>
           <div class="pad-left-lg">
             <p>&#149; Some API's require additional info to function</p>
-            <p>&#149; <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">More info</a></p>
+            <p>&#149; <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank">More info</a></p>
           </div>
         </div>
       </section>
@@ -419,7 +418,7 @@
 <pre><code>
   $.ajax({
     type: 'GET',
-    url: 'https://your-api.com',
+    url: 'https://api.coinbase.com/v2/prices/BTC-USD/buy',
     success: function(response) {
       // handle response here
     }
