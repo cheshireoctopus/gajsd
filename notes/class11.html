@@ -12,6 +12,307 @@
 <body>
   <div class="reveal">
     <div class="slides">
+      <section class="hero condensed">
+        <h1>Hello</h1>
+        <div class="opening-instructions">
+          <p>1) Please download <a href="../materials/class11.zip" target="_blank">Class 11 Starter Code</a></p>
+          <p>2) Move the following into <code class="code">class-work</code>:</p>
+          <div class="pad-left-lg">
+            <p>&#149; <code class="code">geo_locator</code></p>
+            <p>&#149; <code class="code">functions_lab</code></p>
+          </div>
+          <p>3) Solution from last week is included</p>
+        </div>
+      </section>
+
+      <section class="hero condensed">
+        <h1>Class <span class="red">#10</span></h1>
+        <h1>03/19/2018</h1>
+        <h1 class="lesson-title">More Functions</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Announcements</div>
+
+        <div class="text-smaller">
+          <p>&#149; Final Class: Tuesday, April 17th</p>
+          <p>&#149; Final Project</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Due in 4 weeks</p>
+            <p>&rArr; Final class will consist of (optional) presentations</p>
+            <p>&rArr; Second deliverable due March 26th: libraries + API(s)</p>
+          </div>
+          <p>&#149; DOM exercises: <a href="../materials/dom_exercises.zip" class="text-smaller">http://gajsd.surge.sh/main/resources.html</a></p>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+
+        <p>&#149; <code class="code">open_weather_map</code> review</p>
+        <p>&#149; <a href="#/geolocaiton">Geolocation</a></p>
+        <p>&#149; <a href="#/anon-fns">Anonymous functions</a></p>
+        <p>&#149; <a href="#/funcs-first-class">Functions as first-class objects</a></p>
+      </section>
+
+      <!-- FEEDBACK -->
+      <section class="title">
+        <h1>Mid-Course Feedback</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Mid-Course Feedback</div>
+
+        <p>1) Depth of topic exploration</p>
+        <p class="fragment">2) Pace of the program</p>
+        <p class="fragment">3) Collaborate with peers</p>
+        <p class="fragment">4) "The men's bathroom is always out of hand napkins."</p>
+      </section>
+
+      <!-- API REVIEW -->
+      <section class="title">
+        <h1>Open Weather Map Review</h1>
+      </section>
+
+      <!-- ASYNC JS -->
+      <!-- <section class="center">
+        <h1>Asychronous JS</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Async JS</div>
+
+        <p>&#149; So far, the majority of our code has been <u>synchronous</u></p>
+        <p class="pad-left-lg text-smaller">&rArr; One block of code must finish before moving on to the next</p>
+        <p>&#149; Now that we are dealing with API's (and HTTP request), we must leverage <u>asynchronous</u> code:</p>
+        <p class="pad-left-lg text-smaller">&rArr; We can move to another block of code while waiting for a block to finish</p>
+        <div class="text-center">
+          <img src="../img/class10/async-code.png" alt="">
+        </div>
+      </section> -->
+
+      <section class="title" id="geolocaiton">
+        <h1>Geolocation</h1>
+      </section>
+
+      <section class="title" id="anon-fns">
+        <h1>Anonymous Functions</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Recap: Anonymous Functions</div>
+
+        <p>&#149; <b>Named:</b> functions associated with a <u>name</u> that can be referenced later</p>
+        <p>&#149; <b>Anonymous:</b> functions with no name; exist only when running; useful for callbacks</p>
+<pre><code>
+  // named function
+  function hello () {
+    conosle.log('hello');
+  }
+
+  // anonymous function
+  function () {
+    console.log('hello');
+  }
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Recap: Anonymous Functions</div>
+<pre><code>
+  $(document).on('click', 'li', function (event) {
+    ...
+  })
+
+</code></pre>
+        <p>&#149; The function <code class="code">.on()</code> takes three arguments:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&rArr; An event: <code class="code">click</code></p>
+          <p>&rArr; A CSS selector: <code class="code">li</code></p>
+          <p>&rArr; A callback function: <code class="code">function (event) {...}</code></p>
+        </div>
+        <p>&#149; The function passed into <code class="code">on()</code> does not have a name; we are passing in a raw (anonymous) function</p>
+        <p>&#149; This is an example of treating a function as an object</p>
+      </section>
+
+      <section class="title" id="funcs-first-class">
+        <h1>Functions as First-Class Objects</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions as First-Class Objects</div>
+
+        <p>&#149; A language has first-class function objects <a href="https://en.wikipedia.org/wiki/First-class_function">if</a>:</p>
+        <blockquote class="text-smallest">...the language supports constructing new functions during the execution of a program, storing them in data structures, passing them as arguments to other functions, and returning them as the values of other functions.</blockquote>
+        <div class="fragment">
+          <p>&#149; AKA - the language treats functions just like any other data type:</p>
+          <div class="pad-left-lg text-smaller">
+            <p>&rArr; Stored in a variable</p>
+            <p>&rArr; Passed as a parameter to another function (callback!)</p>
+            <p>&rArr; Returned from a function</p>
+            <p>&rArr; Included in data structures (objects and arrays)</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions as First-Class Objects</div>
+        <div class="text-smaller">
+          <p>&#149; <b>Higher-order functions:</b> functions that take other functions as an argument, or return functions</p>
+          <p>&#149; One of JS's super powers (see: <a href="https://en.wikipedia.org/wiki/Functional_programming">functional programming</a>)</p>
+          <p>&#149; JS has many higher-order functions baked in:</p>
+        </div>
+<pre><code>
+  setTimeout(function () {
+    console.log("Hello, World!");
+  }, 1000);
+
+</code></pre>
+        <p>&#149; <code class="code">setTimeout()</code> takes two arguments:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&rArr; A function to be called/invoked</p>
+          <p>&rArr; The duration to wait before invoking the function</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions as First-Class Objects</div>
+
+        <p>&#149; No difference in syntax for higher-order functions:</p>
+        <p>&#149; Open up a <a href="https://repl.it/" target="_blank">https://repl.it/</a> with:</p>
+<pre><code>
+  var blastOff = function() {
+    console.log("Blasting off!");
+  }
+
+  function launchRocket(rocketName, blastOffCallback) {
+    console.log("Launching " + rocketName);
+    console.log("3... 2... 1...");
+    blastOffCallback();
+  }
+
+  launchRocket("Viking", blastOff);
+
+  // => Launching Viking
+  // => 3... 2... 1...
+  // => Blasting off!
+
+</code></pre>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions as First-Class Objects</div>
+        <div class="text-smaller">
+          <p>&#149; In the previous example, <code class="code">blastOffCallback</code> is a <b>callback</b></p>
+          <p>&#149; Callbacks are functions that are <u>called</u> by another function</p>
+          <div class="fragment">
+            <p>&#149; Callbacks can take arguments:</p>
+<pre><code>
+  var blastOff = function(destination) {
+    console.log("Blasting off for " + destination + "!");
+  }
+
+  function launchRocket(rocketName, blastOffCallback) {
+    console.log("Launching " + rocketName);
+    console.log("3... 2... 1...");
+    blastOffCallback("Mars");
+  }
+
+  launchRocket("Viking", blastOff);
+
+  // => Launching Viking
+  // => 3... 2... 1...
+  // => Blasting off for Mars!
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions as First-Class Objects</div>
+
+        <p>Functions can also be returned from other functions:</p>
+<pre><code>
+  var blastOff = function(destination) {
+    console.log("Blasting off for " + destination + "!");
+  }
+
+  function makeRocketLauncher(rocketName, blastOffCallback) {
+    return function() {
+      console.log("Launching " + rocketName);
+      console.log("3... 2... 1...");
+      blastOffCallback("Mars");
+    };
+  }
+
+  var launchViking = makeRocketLauncher("Viking", blastOff);
+  var launchMariner = makeRocketLauncher("Mariner", blastOff);
+
+  launchViking();
+  launchMariner();
+
+  // => Launching Viking
+  // => 3... 2... 1...
+  // => Blasting off for Mars!
+
+  // => Launching Mariner
+  // => 3... 2... 1...
+  // => Blasting off for Mars!
+</code></pre>
+      </section>
+
+      <!-- FUNCTIONS + CALLBACKS LAB -->
+      <section class="center">
+        <h1>Functions Lab</h1>
+        <div class="text-left">
+          <p>1) Open <code class="code">functions_lab</code></p>
+          <p>2) Follow instructions in <code class="code">main.js</code></p>
+          <p>3) Run from the cmd line: <code class="code">node main.js</code></p>
+          <p>4) When you finish, please check-in with Joe or me!</p>
+        </div>
+      </section>
+
+      <!-- ANONYMOUS FUNCTIONS AND IIFE'S -->
+      <!-- <section class="center">
+        <h1>Anoymous Functions</h1>
+        <h2>+</h2>
+        <h1>Immediately Inovked Function Expressions</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">IIFE's</div>
+
+        <p>&#149; IFFE: pronounced "iffy"</p>
+        <p>&#149; Allow us to execute a function expression as soon as they are declared</p>
+      </section> -->
+
+      <!-- THE END -->
+      <section class="center">
+        <img src="../img/main/the-end.jpg">
+      </section>
+
+      <!-- HOMEWORK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Homework</div>
+        <p>1) Sign up for a <a href="https://500px.com/" target="_blank">500px account</a></p>
+        <div class="pad-left-lg">
+          <p>&#149; <a href="https://github.com/500px/500px-js-sdk" target="_blank">JS SDK</a> documenation</p>
+        </div>
+        <p>2) Optional <a href="http://reactivex.io/learnrx/" target="_blank">functional-programming</a> exercises</p>
+      </section>
+
+      <!-- ON DECK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #11 (of 20) - 500px API Lab</h4>
+        <div class="pad-left-lg">
+          <p>&#149; Advanced API Applications</p>
+          <p>&#149; OAuth</p>
+        </div>
+      </section>
 
       <!-- THE END -->
       <section class="center">
