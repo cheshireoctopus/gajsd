@@ -317,72 +317,80 @@
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Functions as First-Class Objects</div>
-        <div class="text-smaller">
-          <p>&#149; <b>Higher-order functions:</b> functions that take other functions as an argument, or return functions</p>
-          <p>&#149; One of JS's super powers (see: <a href="https://en.wikipedia.org/wiki/Functional_programming">functional programming</a>)</p>
-          <p>&#149; JS has many higher-order functions baked in:</p>
-        </div>
+        
+        <div class="text-smallest">
+          <p>&#149; <b>Higher-order functions:</b></p>
+          <p class="pad-left-lg">&rArr; Functions that take other functions as an argument, or return functions</p>
+          
+          <p>&#149; One of JS's super powers (see: <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank">functional programming</a>)</p>
+          <div class="fragment">
+            <p>&#149; JS has a few higher-order functions baked in:</p>
 <pre><code>
-  setTimeout(function () {
+  setTimeout(function() {
     console.log("Hello, World!");
   }, 1000);
 
 </code></pre>
-        <p>&#149; <code class="code">setTimeout()</code> takes two arguments:</p>
-        <div class="pad-left-lg text-smaller">
-          <p>&rArr; A function to be called/invoked</p>
-          <p>&rArr; The duration to wait before invoking the function</p>
+            <p>&#149; <code class="code">setTimeout()</code> takes two arguments:</p>
+            <div class="pad-left-lg">
+              <p>&rArr; A function to be called/invoked</p>
+              <p>&rArr; The duration to wait before invoking the function</p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Functions as First-Class Objects</div>
 
-        <p>&#149; No difference in syntax for higher-order functions:</p>
-        <p>&#149; Open up a <a href="https://repl.it/" target="_blank">https://repl.it/</a> with:</p>
+        <div class="text-smaller">
+          <p>&#149; No difference in syntax for higher-order functions:</p>
+          <p>&#149; Create a <a href="https://repl.it/" target="_blank">https://repl.it/</a> with:</p>
 <pre><code>
   var blastOff = function() {
-    console.log("Blasting off!");
+    console.log('Blasting off!')
   }
 
   function launchRocket(rocketName, blastOffCallback) {
-    console.log("Launching " + rocketName);
-    console.log("3... 2... 1...");
-    blastOffCallback();
+    console.log('Launching ' + rocketName)
+    console.log('3... 2... 1...')
+    blastOffCallback()
   }
 
-  launchRocket("Viking", blastOff);
+  launchRocket('Viking', blastOff)
 
-  // => Launching Viking
-  // => 3... 2... 1...
-  // => Blasting off!
+  // `Launching Viking
+  // 3... 2... 1...
+  // Blasting off!
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Functions as First-Class Objects</div>
-        <div class="text-smaller">
+
+        <div class="text-smallest">
           <p>&#149; In the previous example, <code class="code">blastOffCallback</code> is a <b>callback</b></p>
           <p>&#149; Callbacks are functions that are <u>called</u> by another function</p>
           <div class="fragment">
             <p>&#149; Callbacks can take arguments:</p>
 <pre><code>
   var blastOff = function(destination) {
-    console.log("Blasting off for " + destination + "!");
+    console.log('Blasting off for ' + destination + '!')
   }
 
   function launchRocket(rocketName, blastOffCallback) {
-    console.log("Launching " + rocketName);
-    console.log("3... 2... 1...");
-    blastOffCallback("Mars");
+    console.log('Launching ' + rocketName)
+    console.log('3... 2... 1...')
+    blastOffCallback('Mars')
   }
 
-  launchRocket("Viking", blastOff);
+  launchRocket('Viking', blastOff)
 
-  // => Launching Viking
-  // => 3... 2... 1...
-  // => Blasting off for Mars!
+  // Launching Viking
+  // 3... 2... 1...
+  // Blasting off for Mars!
 
 </code></pre>
           </div>
@@ -392,53 +400,33 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Functions as First-Class Objects</div>
 
-        <p>Functions can also be returned from other functions:</p>
+        <div class="text-smallest">
+          <p>Functions can also be returned from other functions:</p>
 <pre><code>
-  var blastOff = function(destination) {
-    console.log("Blasting off for " + destination + "!");
-  }
-
-  function makeRocketLauncher(rocketName, blastOffCallback) {
-    return function() {
-      console.log("Launching " + rocketName);
-      console.log("3... 2... 1...");
-      blastOffCallback("Mars");
+  function makeRocketLauncher(rocketName) {
+    return function(destination) {
+      console.log('Launching ' + rocketName)
+      console.log('3... 2... 1...')
+      console.log9('Blasting off for ' + destination + '!')
     };
   }
 
-  var launchViking = makeRocketLauncher("Viking", blastOff);
-  var launchMariner = makeRocketLauncher("Mariner", blastOff);
+  var launchViking = makeRocketLauncher('Viking')
+  var launchMariner = makeRocketLauncher('Mariner')
 
-  launchViking();
-  launchMariner();
+  launchViking('Mars')
+  launchMariner('Mars')
 
-  // => Launching Viking
-  // => 3... 2... 1...
-  // => Blasting off for Mars!
+  // Launching Viking
+  // 3... 2... 1...
+  // Blasting off for Mars!
 
-  // => Launching Mariner
-  // => 3... 2... 1...
-  // => Blasting off for Mars!
-</code></pre>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Anonymous Functions</div>
-      
-<pre><code>
-  $(document).on('click', 'li', function (event) {
-    ...
-  })
+  // Launching Mariner
+  // 3... 2... 1...
+  // Blasting off for Mars!
 
 </code></pre>
-        <p>&#149; The function <code class="code">.on()</code> takes three arguments:</p>
-        <div class="pad-left-lg text-smaller">
-          <p>&rArr; An event: <code class="code">click</code></p>
-          <p>&rArr; A CSS selector: <code class="code">li</code></p>
-          <p>&rArr; A callback function: <code class="code">function (event) {...}</code></p>
         </div>
-        <p>&#149; The function passed into <code class="code">on()</code> does not have a name; we are passing in a raw (anonymous) function</p>
-        <p>&#149; This is an example of treating a function as an object</p>
       </section>
 
       <!-- FUNCTIONS + CALLBACKS LAB -->
