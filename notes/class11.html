@@ -75,25 +75,83 @@
         <h1>Open Weather Map Review</h1>
       </section>
 
-      <!-- ASYNC JS -->
-      <!-- <section class="center">
-        <h1>Asychronous JS</h1>
+      <section class="title" id="geolocaiton">
+        <h1>Geolocation</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">Async JS</div>
-
-        <p>&#149; So far, the majority of our code has been <u>synchronous</u></p>
-        <p class="pad-left-lg text-smaller">&rArr; One block of code must finish before moving on to the next</p>
-        <p>&#149; Now that we are dealing with API's (and HTTP request), we must leverage <u>asynchronous</u> code:</p>
-        <p class="pad-left-lg text-smaller">&rArr; We can move to another block of code while waiting for a block to finish</p>
-        <div class="text-center">
-          <img src="../img/class10/async-code.png" alt="">
+        <div class="heading">Geolocation: Navigator</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Modern browsers have a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" target="_blank">navigator</a> object</p>
+          <p>&#149; Used to access/identify users' browser information</p>
+          <div class="fragment">
+            <p>&#149; Available in console via <code class="code">navigator</code>:</p>
+            <div class="text-smaller pad-left-lg">
+              <p><code class="code">navigator.language</code> &rArr; user's language ex: <code class="code">en-US</code></p>
+              <p><code class="code">navigator.platform</code> &rArr; user's platform ex: <code class="code">MacIntel</code></p>
+              <p><code class="code">navigator.language</code> &rArr; users's browser ex: <code class="code">Google Inc.</code></p>
+            </div>
+          </div>
         </div>
-      </section> -->
+      </section>
 
-      <section class="title" id="geolocaiton">
-        <h1>Geolocation</h1>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Geolocation</div>
+      
+        <div class="text-smaller">
+          <p>&#149; <code class="code">navigator</code> also contains a <code class="code">geolocation</code> object</p>
+          <p>&#149; Enables users to share geolocation data with web applications</p>
+          <p>&#149; Users must <u>enable</u> the feature on a per-site basis</p>
+          <div class="fragment">
+            <p>&#149; Note: not all browsers have this feature:</p>
+<pre><code>
+  if (navigator.geolocation) {
+    /* user has geolocation */
+  } else {
+    /* user does not have geolocation */
+  }
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Geolocation</div>
+      
+        <div class="text-smallest">
+          <p>&#149; <code class="code">getCurrentPosition</code> returns users' positions</p>
+          <p>&#149; Note: this is an <u>asynchronous</u> request - requires a <u>callback</u></p>
+          <p>&#149; The callback needs an arugment for the <code class="code">position</code></p>
+<pre><code>
+  navigator.geolocation.getCurrentPosition(handleResponse)
+
+  function handleResponse(position) {
+    console.log(position)
+  }
+
+  // {
+  //   coords: {...}
+  //   timestamp: 1521422644286
+  // }
+
+</code></pre>
+        </div>
+      </section>
+
+      <section class="center">
+        <img src="img/class11/geo_locator.png" alt="">
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Geolocation Lab</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Open <code class="code">geo_locator</code> in Sublime Text</p>
+          <p>&#149; Follow the instructions in <code class="code">main.js</code></p>
+          <p>&#149; Be sure to reference <code class="code">open_weather_map</code> and <code class="code">cit_bike_google_maps</code></p>
+        </div>
       </section>
 
       <section class="title" id="anon-fns">
