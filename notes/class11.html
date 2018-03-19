@@ -21,7 +21,6 @@
             <p>&#149; <code class="code">geo_locator</code></p>
             <p>&#149; <code class="code">functions_lab</code></p>
           </div>
-          <p>3) Solution from last week is included</p>
         </div>
       </section>
 
@@ -42,7 +41,7 @@
             <p>&rArr; Final class will consist of (optional) presentations</p>
             <p>&rArr; Second deliverable due March 26th: libraries + API(s)</p>
           </div>
-          <p>&#149; DOM exercises: <a href="../materials/dom_exercises.zip" class="text-smaller">http://gajsd.surge.sh/main/resources.html</a></p>
+          <p>&#149; <a href="../materials/dom_exercises.zip">DOM exercises</a></p>
         </div>
       </section>
 
@@ -52,7 +51,7 @@
 
         <p>&#149; <code class="code">open_weather_map</code> review</p>
         <p>&#149; <a href="#/geolocaiton">Geolocation</a></p>
-        <p>&#149; <a href="#/anon-fns">Anonymous functions</a></p>
+        <p>&#149; <a href="#/function-creation">Function Creation</a></p>
         <p>&#149; <a href="#/funcs-first-class">Functions as first-class objects</a></p>
       </section>
 
@@ -122,18 +121,23 @@
       
         <div class="text-smallest">
           <p>&#149; <code class="code">getCurrentPosition</code> returns users' positions</p>
-          <p>&#149; Note: this is an <u>asynchronous</u> request - requires a <u>callback</u></p>
+          <p>&#149; Note: this is an <u>asynchronous</u> request; requires a <u>callback</u></p>
           <p>&#149; The callback needs an arugment for the <code class="code">position</code></p>
 <pre><code>
   navigator.geolocation.getCurrentPosition(handleResponse)
 
+  // callback
   function handleResponse(position) {
     console.log(position)
   }
 
   // {
-  //   coords: {...}
-  //   timestamp: 1521422644286
+  //  coords: {
+  //    latitude: 40.6,
+  //    longitude: -73.9,
+  //    ...
+  //  },
+  //  timestamp: 1521422644286
   // }
 
 </code></pre>
@@ -154,66 +158,162 @@
         </div>
       </section>
 
-      <section class="title" id="anon-fns">
-        <h1>Anonymous Functions</h1>
+      <!-- BREAK (5-7 mins) -->
+      <section class="center">
+        <h1>5 minute break</h1>
+        <img src="img/main/break-time-bear.jpg">
+      </section>
+
+      <section class="title" id="function-creation">
+        <h1>Function Creation</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">Recap: Anonymous Functions</div>
+        <div class="heading">Function Creation</div>
 
-        <p>&#149; <b>Named:</b> functions associated with a <u>name</u> that can be referenced later</p>
-        <p>&#149; <b>Anonymous:</b> functions with no name; exist only when running; useful for callbacks</p>
+        <div class="text-smallest">
+          <p>&#149; JS provides multiple ways to create functions</p>
+          <p>&#149; <b>Named:</b> functions associated with a <u>name</u> that can be referenced later</p>
+          <p>&#149; <b>Anonymous:</b> functions with no name; exist only when running</p>
 <pre><code>
   // named function
-  function hello () {
-    conosle.log('hello');
+  function hello() {
+    conosle.log('hello, world!');
   }
 
   // anonymous function
-  function () {
-    console.log('hello');
+  function() {
+    console.log('hello, world!');
   }
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">Recap: Anonymous Functions</div>
+        <div class="heading">Named Functions</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Named functions can be created in two ways:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Expressions</p>
+            <p>&rArr; Declarations</p>
+          </div>
 <pre><code>
-  $(document).on('click', 'li', function (event) {
-    ...
+  // expression
+  var sayHello = function(greeting) {
+    console.log(greeting)
+  }
+
+  // declaration
+  function sayHello(greeting) {
+    console.log(greeting)
+  }
+
+  // both of the above can be called as:
+  sayHello('hello, world!')
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Function Expressions</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Function expressions are <a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting" target="_blank">hoisted</a></p>
+          <p>&#149; Hoisted functions are loaded in memory during compilation</p>
+          <div class="fragment">
+            <p>&#149; We can use hoisted functions "before" we declare them:</p>
+<pre><code>
+  // invoked before declaration
+  sayHello('hello, world!')
+
+  function sayHello(greeting) {
+    console.log(greeting)
+  }
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Anonymous Functions</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Anonymous functions are functions without a name</p>
+          <p>&#149; Created during application runtime</p>
+          <p>&#149; Convenience feature allowing easy function creation</p>
+          <p>&#149; Useful for callbacks</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Anonymous Functions: Callback Examples</div>
+      
+        <div class="text-smallest">
+          <p>&#149; Handling a browser event:</p>
+<pre><code>
+  $('#my-btn').click(function() {
+    // do something
+  })
+
+  $(document).on('click', 'li', function() {
+    // do something
   })
 
 </code></pre>
-        <p>&#149; The function <code class="code">.on()</code> takes three arguments:</p>
-        <div class="pad-left-lg text-smaller">
-          <p>&rArr; An event: <code class="code">click</code></p>
-          <p>&rArr; A CSS selector: <code class="code">li</code></p>
-          <p>&rArr; A callback function: <code class="code">function (event) {...}</code></p>
+          <p>&#149; Handling an asynchronous event:</p>
+<pre><code>
+  $.ajax({
+    type: 'GET',
+    url: https://my-api.com,
+    success: function(res) {
+      console.log(res)
+    }
+  })
+
+</code></pre>
         </div>
-        <p>&#149; The function passed into <code class="code">on()</code> does not have a name; we are passing in a raw (anonymous) function</p>
-        <p>&#149; This is an example of treating a function as an object</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Anonymous vs Named Functions</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Anonymous functions are a convenience feature</p>
+          <div class="fragment">
+            <p>&#149; Named functions <a href="http://jscs.info/rule/disallowAnonymousFunctions" target="_blank">could be</a> considered better practice:</p>
+            <div class="pad-left-lg">
+              <p>&rArr; Useful in recursive situations</p>
+              <p>&rArr; Will appear named in callstack during debugging</p>
+              <p>&rArr; Forces developer to consider what the funciton does</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="title" id="funcs-first-class">
-        <h1>Functions as First-Class Objects</h1>
+        <h1>First-Class Functions</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Functions as First-Class Objects</div>
 
-        <p>&#149; A language has first-class function objects <a href="https://en.wikipedia.org/wiki/First-class_function">if</a>:</p>
-        <blockquote class="text-smallest">...the language supports constructing new functions during the execution of a program, storing them in data structures, passing them as arguments to other functions, and returning them as the values of other functions.</blockquote>
-        <div class="fragment">
-          <p>&#149; AKA - the language treats functions just like any other data type:</p>
-          <div class="pad-left-lg text-smaller">
+        <div class="text-smaller">
+          <p>&#149; A programming language supports <a href="https://en.wikipedia.org/wiki/First-class_function" target="_blank">first-class functions</a> if:</p>
+          <div class="pad-left-lg">
             <p>&rArr; Stored in a variable</p>
             <p>&rArr; Passed as a parameter to another function (callback!)</p>
             <p>&rArr; Returned from a function</p>
             <p>&rArr; Included in data structures (objects and arrays)</p>
           </div>
+          <p class="fragment">&#149; AKA - the language treats functions just like any other data type</p>
         </div>
       </section>
+
+
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Functions as First-Class Objects</div>
@@ -322,53 +422,34 @@
 </code></pre>
       </section>
 
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Anonymous Functions</div>
+      
+<pre><code>
+  $(document).on('click', 'li', function (event) {
+    ...
+  })
+
+</code></pre>
+        <p>&#149; The function <code class="code">.on()</code> takes three arguments:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&rArr; An event: <code class="code">click</code></p>
+          <p>&rArr; A CSS selector: <code class="code">li</code></p>
+          <p>&rArr; A callback function: <code class="code">function (event) {...}</code></p>
+        </div>
+        <p>&#149; The function passed into <code class="code">on()</code> does not have a name; we are passing in a raw (anonymous) function</p>
+        <p>&#149; This is an example of treating a function as an object</p>
+      </section>
+
       <!-- FUNCTIONS + CALLBACKS LAB -->
-      <section class="center">
-        <h1>Functions Lab</h1>
-        <div class="text-left">
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Functions Lab</div>
+      
+        <div class="text-smaller">
           <p>1) Open <code class="code">functions_lab</code></p>
           <p>2) Follow instructions in <code class="code">main.js</code></p>
           <p>3) Run from the cmd line: <code class="code">node main.js</code></p>
-          <p>4) When you finish, please check-in with Joe or me!</p>
-        </div>
-      </section>
-
-      <!-- ANONYMOUS FUNCTIONS AND IIFE'S -->
-      <!-- <section class="center">
-        <h1>Anoymous Functions</h1>
-        <h2>+</h2>
-        <h1>Immediately Inovked Function Expressions</h1>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">IIFE's</div>
-
-        <p>&#149; IFFE: pronounced "iffy"</p>
-        <p>&#149; Allow us to execute a function expression as soon as they are declared</p>
-      </section> -->
-
-      <!-- THE END -->
-      <section class="center">
-        <img src="../img/main/the-end.jpg">
-      </section>
-
-      <!-- HOMEWORK -->
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Homework</div>
-        <p>1) Sign up for a <a href="https://500px.com/" target="_blank">500px account</a></p>
-        <div class="pad-left-lg">
-          <p>&#149; <a href="https://github.com/500px/500px-js-sdk" target="_blank">JS SDK</a> documenation</p>
-        </div>
-        <p>2) Optional <a href="http://reactivex.io/learnrx/" target="_blank">functional-programming</a> exercises</p>
-      </section>
-
-      <!-- ON DECK -->
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">What's On Deck</div>
-        <h4>Class #11 (of 20) - 500px API Lab</h4>
-        <div class="pad-left-lg">
-          <p>&#149; Advanced API Applications</p>
-          <p>&#149; OAuth</p>
+          <p>4) If you finish early, please check in with me re: final project</p>
         </div>
       </section>
 
@@ -378,25 +459,22 @@
       </section>
 
       <!-- HOMEWORK -->
-      <section data-background="#FFF" class="text-left">
+      <!-- <section data-background="#FFF" class="text-left">
         <div class="heading">Homework</div>
-        <p>1) Finish <code class="code">open_weather_map</code></p>
-        <p>2) Final project:</p>
+        <p>1) Sign up for a <a href="https://500px.com/" target="_blank">500px account</a></p>
         <div class="pad-left-lg">
-          <p>&rArr; Project skeleton (top-level directories; necessary files)</p>
-          <p>&rArr; List of libraries (if any)</p>
-          <p>&rArr; List of API's (if any)</p>
+          <p>&#149; <a href="https://github.com/500px/500px-js-sdk" target="_blank">JS SDK</a> documenation</p>
         </div>
-      </section>
+        <p>2) Optional <a href="http://reactivex.io/learnrx/" target="_blank">functional-programming</a> exercises</p>
+      </section> -->
 
       <!-- ON DECK -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">What's On Deck</div>
-        <h4>Class #10 (of 20) - Asynchronous JavaScript and Callbacks</h4>
+        <h4>Class #12 (of 20) - 500px API Lab</h4>
         <div class="pad-left-lg">
-          <p>&#149; Asychronous JS</p>
-          <p>&#149; Anoymous Functions and Functions as First-Class Objects</p>
-          <p>&#149; Immediately Invoked Function Expressions (IIFE's)</p>
+          <p>&#149; Advanced API Applications</p>
+          <p>&#149; OAuth</p>
         </div>
       </section>
 
