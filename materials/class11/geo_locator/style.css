@@ -1,0 +1,23 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+	align-items: center;
+	display: flex;
+	font-family: sans-serif;
+	justify-content: center;
+	margin: 0;
+}
+
+#map {
+	background: gray;
+	border: 1px solid black;
+	height: 300px;
+	width: 300px;
+}
+
+.container {
+	text-align:center;
+}
