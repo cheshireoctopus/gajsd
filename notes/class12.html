@@ -25,7 +25,7 @@
 
       <section class="hero condensed">
         <h1>Class <span class="red">#12</span></h1>
-        <h1>03/21/2018</h1>
+        <h1>03/26/2018</h1>
         <h1 class="lesson-title">Advanced API's</h1>
       </section>
 
@@ -66,8 +66,16 @@
             <p>&#149; Allows third party applications <u>limited</u> access to a web service (API)</p>
             <p>&#149; Credentials are not shared!</p>
             <p>&#149; Created to be safer than "basic authentication" (username/password)</p>
-            <p>&#149; Example: use Google to log into Stackoverflow</p>
+            <p>&#149; Example: use Google to log into REPL.it</p>
           </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">OAuth: Overview</div>
+      
+        <div class="text-center">
+          <img src="img/class12/oauth_example.png" alt="">
         </div>
       </section>
 
@@ -75,13 +83,13 @@
         <div class="heading">OAuth: User Flow</div>
 
         <div class="text-smallest">
-          <p>1) User is redirected from our application to the third-party API we wish to authenticate with (500px)</p>
-          <p class="fragment">2) User logs into the 500px</p>
+          <p>1) User is directed from our app to the third-party API we are authenticating with (500px)</p>
+          <p class="fragment">2) User logs into 500px</p>
           <p class="fragment">3) 500px redirects user back to our application with an <b>access token</b></p>
-          <p class="fragment">4) User can now make requests for resources from 500px with the provided access token</p>
+          <p class="fragment">4) User can now make requests for resources from 500px with this access token</p>
           <p class="fragment">5) User receives resources from 500px</p>
         </div>
-        <p class="fragment text-smaller">Note: Having an access token does not mean you can perform any HTTP method on the resource provider's API, nor does it mean your request for any type of data will be granted</p>
+        <p class="fragment text-smaller">Note: Having an access token does not allow you to make all requests!</p>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -101,15 +109,15 @@
         <div class="heading">500px API</div>
 
         <div class="text-smaller">
-          <p><b>Goal</b>: Render the most popular 500px landscape pictures based on a user's location.</p>
+          <p><b>Goal</b>: Render popular 500px pictures given a user's location</p>
           <p><b>Overview</b>:</p>
           <div class="pad-left-lg text-smaller">
-            <p>&rArr; Check documentation (is our idea even possible)?</p>
-            <p>&rArr; Get 500px developer credentials</p>
-            <p>&rArr; Create our initial view which will have a way for our user to perform OAuth</p>
-            <p>&rArr; Get the user's location</p>
-            <p>&rArr; Access the 500px API with the user's location and access token</p>
-            <p>&rArr; Parse through API response for images and render them into DOM</p>
+            <p>1) Check documentation (is our idea even possible)?</p>
+            <p>2) Get 500px developer credentials</p>
+            <p>3) Build a view allowing users to perform OAuth against 500px</p>
+            <p>4) Get the user's location</p>
+            <p>5) Access the 500px API with the user's location and access token</p>
+            <p>6) Parse through API response for images and render them into DOM</p>
           </div>
         </div>
       </section>
@@ -120,14 +128,14 @@
         
         <div class="text-smallest">
           <p>&#149; Which 500px API endpoint should we use?</p>
-          <p>&#149; We are <u>searching</u> (aka <code class="code">GET</code>) for photos given a geo location</p>
+          <p>&#149; We are <u>searching</u> (the <code class="code">GET</code> method) for photos given a geo location</p>
           <p class="fragment">&#149; To the <a href="https://github.com/500px/api-documentation" target="_blank">docs</a>! Should come across:</p>
           <div class="fragment">
             <div class="text-center">
               <img src="img/class12/500px-search-endpoint.png" alt="">
             </div>
-            <p>&#149; Returns a list of twenty photos from search results for a specified tag, keyword, or <b>location</b>.</p>
-            <p>&#149; Note the <code class="code">geo</code> parameter!</p>
+            <p>&#149; Returns a list of photos from search results for a specified tag, keyword, or <b>location</b></p>
+            <p>&#149; Note the <code class="code">geo</code> parameter</p>
           </div>
         </div>
       </section>
@@ -277,23 +285,25 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">500px: OAuth</div>
 
-        <p>&#149; Once the app is running, let's begin the auth process</p>
-        <p>&#149; First, we need to configure the SDK and initialize it</p>
-        <p>&#149; Make sure your <code class="code">JavaScript SDK Key</code> is on hand</p>
-        <p>&#149; Inside of <code class="code">app.js</code>:</p>
+        <div class="text-smaller">
+          <p>&#149; Once the app is running, let's begin the auth process</p>
+          <p>&#149; First, we need to configure the SDK and initialize it</p>
+          <p>&#149; Make sure your <code class="code">JavaScript SDK Key</code> is on hand</p>
+          <p>&#149; Inside of <code class="code">app.js</code>:</p>
 <pre><code>
   _500px.init({
     sdk_key: 'YOUR JAVASCRIPT SDK KEY'
   });
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">500px: OAuth</div>
 
         <div class="text-smaller">
-          <p>&#149; When a user clicks the "Login..." button, we want to init the auth process using the 500px library</p>
+          <p>&#149; The "Login..." button will inititiate the auth process with 500px</p>
           <p>&#149; Use jQuery to add a click-event handler for the <code class="code">#login</code> button</p>
 <pre><code>
   $('#login').click(function() {
@@ -301,9 +311,15 @@
   });
 
 </code></pre>
-          <p>&#149; The <code class="code">login()</code> method will authorize a user and redirect them back to our site with their authorization token</p>
+          <p>&#149; The <code class="code">login()</code> method authorizes a user and redirect them back to our site with their authorization token</p>
           <p>&#149; Refresh your app and click the button to login</p>
         </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">500px; Oauth</div>
+      
+        
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -370,10 +386,7 @@
         <div class="text-smaller">
           <p>&#149; Use the browser's <code class="code">navigator</code> object to request geo location data</p>
           <p>&#149; Access this object after the user has logged in:</p>
-        </div>
 <pre><code>
-  // app.js
-
   // check if navigator geolocation is available from the browser
   if (navigator.geolocation) {
     // if it is use the getCurrentPosition method to retrieve the Window's location
@@ -390,6 +403,7 @@
   }
 
 </code></pre>
+        </div>
       </section>
 
       <!-- API REQUEST -->
@@ -400,10 +414,9 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">500px: API Request</div>
 
-        <p class="text-smaller">Use the <code class="code">500px.js</code> library to make API requests:</p>
+        <div class="text-smaller">
+          <p>&#149; Use the <code class="code">500px.js</code> library to make API requests:</p>
 <pre><code>
-  // app.js
-
   // Feel free to adjust the search radius as you see fit
   var radius = '25mi';
 
@@ -423,33 +436,18 @@
   });
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">500px: API Request</div>
-        <p>&#149; Write code to handle the <code class="code">response</code> from 500px</p>
-        <p>&#149; Your function should iterate through the <code class="code">photos</code> array</p>
-        <p>&#149; In each iteration, append the image to the <code class="code">.images</code> DOM element</p>
-        <p>&#149; Make sure the appened image has a class of <code class="code">image</code> for styling purposes</p>
-      </section>
 
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">500px: API Request</div>
-        <p>&#149; One way of handling the <code class="code">response</code> from 500px:</p>
-<pre><code>
-  // app.js
-
-  function handleResponseSuccess(response) {
-    var allData = response.data.photos;
-
-    $.each(allData, function() {
-      var element = $('<img>').attr('src', this.image_url).addClass('image');
-      $('.images').append(element);
-    });
-  }
-
-</code></pre>
-        <p>&#149; Note: Relies on jQuery's <code class="code">$.each()</code> function</p>
+        <div class="text-smaller">
+          <p>&#149; Write code to handle the <code class="code">response</code> from 500px</p>
+          <p>&#149; Start by iterating through the <code class="code">photos</code> array</p>
+          <p>&#149; For each iteration, append the image to the <code class="code">.images</code> element</p>
+          <p>&#149; Make sure the appended image has a class of <code class="code">image</code> for styling</p>
+        </div>
       </section>
 
       <section class="title">
@@ -482,8 +480,7 @@
 
         <p>1) Complete <code class="code">500px_api_lab</code></p>
         <p>2) Read the Feedr <a href="../main/feedr.html">project outline</a></p>
-        <p>3) Complete any missing HW; review challenging topics</p>
-        <p>4) Final project progress:</p>
+        <p>3) Final project progress:</p>
         <div class="pad-left-lg">
           <p>&#149; Read your docs! (Libraries and API's)</p>
           <p>&#149; Pseudo code for your core feature(s)</p>
