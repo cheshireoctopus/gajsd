@@ -16,7 +16,7 @@
         <h1>Hello</h1>
         <div class="opening-instructions">
           <p>1) Please download <a href="../materials/class12.zip" target="_blank">Class 12 Starter Code</a></p>
-          <p>2) Move the following into <code class="code">homework</code>:</p>
+          <p>2) Move the following into <code class="code">class-work</code>:</p>
           <div class="pad-left-lg">
             <p>&#149; <code class="code">500px</code></p>
           </div>
@@ -75,7 +75,7 @@
         <div class="heading">OAuth: Overview</div>
       
         <div class="text-center">
-          <img src="img/class12/oauth_example.png" alt="">
+          <img src="img/class12/oauth-example.png" alt="">
         </div>
       </section>
 
@@ -271,14 +271,15 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">500px: OAuth</div>
         
-        <div class="text-smaller">
+        <div class="text-smalle">
           <p>&#149; For this lab, we will be using our machines as servers</p>
-          <p>&#149; <code class="code">npm</code> has a server package we can use; from the command line:</p>
-          <p class="pad-left-lg"><code class="code">npm install -g http-server</code></p>
-          <p>&#149; Run this server from the root of the <code class="code">500px_api_lab</code> project:</p>
-          <p class="pad-left-lg"><code class="code">http-server -p 3000</code></p>
-          <p>&#149; This command starts a server accessible on port 3000</p>
-          <p>&#149; Once running, visit <code class="code">http://localhost:3000</code> in your browser</p>
+          <p>&#149; The Python language has a server baked in</p>
+          <div class="fragment">
+            <p>&#149; Start this server from the root of the <code class="code">500px_api_lab</code>:</p>
+            <p class="pad-left-lg"><code class="code">python -m SimpleHTTPServer 3000</code></p>
+            <p>&#149; This command starts a server accessible on port 3000</p>
+            <p>&#149; Once running, visit <code class="code">http://localhost:3000</code> in your browser</p>
+          </div>
         </div>
       </section>
 
@@ -317,9 +318,11 @@
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">500px; Oauth</div>
+        <div class="heading">500px: Oauth</div>
       
-        
+        <div class="text-center">
+          <img src="img/class12/500px-oauth.png" alt="">
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -427,7 +430,7 @@
   };
 
   _500px.api('/photos/search', searchOptions, function(response) {
-    if (response.data.photos.length == 0) {
+    if (response.data.photos.length === 0) {
       alert('No photos found!');
     } else {
       // Handle the successful response here
@@ -442,11 +445,16 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">500px: API Request</div>
 
-        <div class="text-smaller">
+        <div class="text-smallest">
           <p>&#149; Write code to handle the <code class="code">response</code> from 500px</p>
           <p>&#149; Start by iterating through the <code class="code">photos</code> array</p>
-          <p>&#149; For each iteration, append the image to the <code class="code">.images</code> element</p>
-          <p>&#149; Make sure the appended image has a class of <code class="code">image</code> for styling</p>
+          <p>&#149; For each iteration, use jQuery to:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Create a new <code class="code">img</code> element</p>
+            <p>&rArr; Add a <code class="code">src</code> attribute to this image pointing to the photo's URL</p>
+            <p>&rArr; Add a class of <code class="code">image</code> to this element</p> 
+            <p>&rArr; Append the element to the <code class="code">.images</code></p>
+          </div>
         </div>
       </section>
 
@@ -457,7 +465,7 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">500px: API Exploration</div>
 
-        <div class="text-smaller">
+        <div class="text-smallest">
           <p>&#149; Update the API query to:</p>
           <div class="pad-left-lg">
             <p>&rArr; Sort photos results by highest rated first</p>
@@ -479,9 +487,9 @@
         <div class="heading">Homework</div>
 
         <p>1) Complete <code class="code">500px_api_lab</code></p>
-        <p>2) Read the Feedr <a href="../main/feedr.html">project outline</a></p>
+        <p>2) Read the Feedr <a href="../pages/feedr.html">project outline</a></p>
         <p>3) Final project progress:</p>
-        <div class="pad-left-lg">
+        <div class="pad-left-lg text-smaller">
           <p>&#149; Read your docs! (Libraries and API's)</p>
           <p>&#149; Pseudo code for your core feature(s)</p>
           <p>&#149; Basic API functionality (if applicable)</p>

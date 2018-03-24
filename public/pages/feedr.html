@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSD: Feedr Project</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../img/main/ga-logo.png" width="20" heigh="20" alt="general assembly logo">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="notes.html">Notes</a></li>
+                    <li><a href="homework.html">Homework</a></li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="projects.html">Projects Overview</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="slackbot.html">Slackbot</a></li>
+                            <li><a href="feedr.html">Feedr</a></li>
+                            <li><a href="final-project.html">Final</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="resources.html">Misc</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron">
+            <div class="container">
+            <h1>Project 2: Feedr</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Overview</h2>
+                <p>
+                    The web is an ever growing medium and it is getting more and more difficult to filter useful information. In our journey to writing beautiful JavaScript we have come and will come across a great many reference points that will guide our learning. This is where personal feeds come in very useful. Online feeds are like to-do lists in that they can be infinitely personalized and there is not one solution that works for everybody.
+                </p>
+                <p>
+                    For our Unit 2 project we will build Feedr, a personalized feed reader. Our feed reader will pull feeds from our favorite news sources and blogs. The user will be able to filter between publications through the dropdown on the header menu. Clicking/tapping on one of the articles will load a pop up with more information. The user from that point will be able to either dismiss the additional information or go to the referenced article.
+                </p>
+                <p>
+                    This will be our first single page app. All of our application views will be contained in the provided index.html file. Our task, after we pull from the respective feed APIs, will be to toggle the appropriate classes and content for the provided site architecture.
+                </p>
+                <hr>
+
+                <!-- TECHNICAL REQUIREMENTS -->
+                <h2>Technical Requirements</h2>
+                <h3>Feed sources:</h3>
+
+                <p>Give the user the ability to pull from a multiple news sources. Here are three sources we suggest:</p>
+                <ul>
+                    <li><a href="http://mashable.com/stories.json" target="_blank">Mashable: http://mashable.com/stories.json</a></li>
+                    <li><a href="https://www.reddit.com/top.json" target="_blank">Reddit: https://www.reddit.com/top.json</a></li>
+                    <li><a href="http://digg.com/api/news/popular.json" target="_blank">Digg: http://digg.com/api/news/popular.json</a></li>
+                </ul>
+
+                <p>
+                    You should also feel free to use other news APIs; however, you will find that many APIs that do not support either <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> or <a href="https://en.wikipedia.org/wiki/JSONP">JSONp</a> will result in a cross-domain restriction error (<code>No 'Access-Control-Allow-Origin' header is present...</code>) in the browser. To get around this, you can use the following proxy server to filter your API requests.
+                </p>
+
+                <p>Let's say you wanted to use the Digg API, which has the following endpoint:</p>
+
+                <p><code>http://digg.com/api/news/popular.json</code></p>
+
+                <p>If you preface the request with the proxy server API as follows...</p>
+
+                <p>
+                    <code>https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json</code>
+                </p>
+
+                <p>
+                    ...you should be able to use the Digg API without encountering a cross-domain restriction error. Here's a code example of how you might use the proxy server:
+                </p>
+
+                <pre><code>
+    $.get("https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json", function(results) {
+
+        console.log(results);
+
+        results.data.feed.forEach(function(result){
+            $("ul").append('&lt;li&gt;'+result.content.title+'&lt;/li&gt;')
+        })
+
+    })
+                </code></pre>
+
+                <p>
+                    If you use your own feeds, they must have APIs with the following minimum requirements:
+                </p>
+
+                <ul>
+                    <li>Each article must provide an image source for the circular thumbnail at the left of the article.</li>
+                    <li>Must provide either a category, tag, or custom taxonomy to display below the title (of course title of article is also required).</li>
+                    <li>Must provide a point, ranking, or some type of total impressions for the respective article.</li>
+                    <li>Must provide either a full version or a summary of the article for the pop up screen.</li>
+                </ul>
+
+                <h3>Feed Goals:</h3>
+
+                <ul>
+                    <li>
+                        When the application first loads display the loading container (see below on instructions to toggle this). When you successfully retrieve information from the default API hide the loader and replace the content of the #main container with that of the API. The DOM structure of each article must adhere to the .article structure.
+                    </li>
+                    <li>
+                        When the user selects an article's title show the #popUp overlay. The content of the article must be inserted in the .container class inside #popUp. Make sure you remove the .loader class when toggling the article information in the pop-up.
+                    </li>
+                    <li>Change the link of the "Read more from source" button to that of the respective article.</li>
+                    <li>
+                        When the user selects a source from the dropdown menu on the header, replace the content of the page with articles from the newly selected source. Display the loading pop up when the user first selects the new source, and hide it on success.
+                    </li>
+                    <li>Add an error message (either alert or a notification on the page) if the app cannot load from the selected feed.</li>
+                </ul>
+
+                <h3>Additional UI interaction Goals:</h3>
+
+                <ul>
+                    <li>
+                        When the user clicks/taps the search icon, expand the input box. Best approach for this is to toggle the .active class for the #search container. If the search input box is already expanded tapping the search icon again will close the input. Pressing the "Enter" key should also close the opened input box. See Bonus 2 for search filtering functionality.
+                    </li>
+                    <li>
+                        When the app is first loading and when the user selects to load a new feed from the dropdown, display the #popUp container with the .loader class. You can toggle the .hidden class from the container to display/hide the overlay container.
+                    </li>
+                    <li>Add functionality to hide the pop-up when user selects the "X" button on the pop-up.</li>
+                    <li>Clicking/tapping the "Feedr" logo will display the main/default feed.</li>
+                </ul>
+
+                <h3>Bonus</h3>
+
+                <ol>
+                    <li>
+                        Merge all feeds into one main feed in chronological order for the initial view. When the user clicks/taps the "Feedr" logo at the top, they should be return to this feed. This will be the new "home view."
+                    </li>
+                    <li>
+                        Filter feed by title according to user keyboard input on the search input box. This should run the filter on every keystroke. When the input box is cleared, all articles should display in the respective feed.
+                    </li>
+                    <li>Add infinite scrolling. Start displaying only the first 20 articles and keep loading more on user scrolling.</li>
+                </ol>
+
+                <hr>
+
+                <!-- NECESSARY DELIVERABLES -->
+                <h2>Necessary Deliverables</h2>
+                <ul>
+                    <li>A working Feedr, built by you, that can be run locally</li>
+                    <li>Be sure to save the project inside your <code class="code">github.io</code> repository</li>
+                </ul>
+                <hr>
+
+                <!-- GETTING STARTED -->
+                <h2>Getting Started</h2>
+               <!--  <p>
+                    Begin by "forking" the starter <a href="https://github.com/generalassembly-studio/JS-Unit-2-Project-Starter-Code">code repository</a>. You can do so by clicking the "Fork" icon on the top right of <a href="https://github.com/generalassembly-studio/JS-Unit-2-Project-Starter-Code">this</a> page. Once complete, clone the repository to your computer by running the following commands:
+                </p>
+
+                <p>
+                    <pre><code>
+    // navigate to the directory you wish to save the project
+    git clone https://github.com/YOUR_USERNAME_HERE/feedr.git
+    cd feedr
+                    </code></pre>
+                </p>
+
+                <p>
+                    You can then open Sublime Text and point it at the <code>/feedr</code> directory and work on the below steps. As you accomplish a feature, be sure to commit it in Git with the following commands:
+                </p>
+
+                <p>
+                    <pre><code>
+    git add .
+    git commit -m "A description of what was added"
+    git push -u origin master
+                    </code></pre>
+                </p> -->
+
+                <p>Here are some sugestions on where to start:</p>
+
+                <ul>
+                    <li>Start by adding all the DOM functionality first.</li>
+                    <li>Map out all of the needed fields/properties from each respective feed.</li>
+                    <li>Start by doing a <code>console.log()</code> of the incoming feeds to confirm you have a successful transaction before you start mapping anything out.</li>
+                    <li>Make sure you have the <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en">JSON View chrome extension</a> to get a clean view of the JSON dump in your browser.</li>
+                    <li>Think about ways to best standardize all of your incoming data.</li>
+                    <li>Test small pieces of functionality frequently, to make sure everything is working.</li>
+                    <li>Use tools such as Stack Overflow, Google and documentation resources to solve problems.</li>
+                </ul>
+
+                <hr>
+
+                <!-- USEFULE RESOURCES -->
+                <h2>Useful Resources</h2>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">MDN JavaScript data types and data structures</a></li>
+                    <li><a href="https://learn.jquery.com/events/event-basics/">jQuery Event Basics</a></li>
+                    <li><a href="http://learn.jquery.com/events/event-delegation/">Understanding Event Delegation</a></li>
+                    <li><a href="http://tutorials.jenkov.com/jquery/index.html#jquery-version-used-in-this-tutorial">jQuery Tutorial</a></li>
+                    <li><a href="http://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340">A beginner's guide to HTTP and REST</a></li>
+                    <li><a href="http://sporto.github.io/blog/2012/12/09/callbacks-listeners-promises/">Async JS Callbacks</a></li>
+                    <li><a href="http://www.sitepoint.com/introduction-jquery-shorthand-ajax-methods/">SitePoint: Intro to jQuery Shorthand AJAX Methods</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-38902038-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
