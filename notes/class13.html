@@ -12,7 +12,153 @@
 <body>
   <div class="reveal">
     <div class="slides">
-   </div>
+      <section class="hero">
+        <h1>Hello</h1>
+        <div class="opening-instructions">
+          <p>1) Please download <a href="../materials/class13.zip" target="_blank">Class 13 Starter Code</a></p>
+          <p>2) Move the following into <code class="code">homework</code>:</p>
+          <div class="pad-left-lg">
+            <p>&#149; <code class="code">feedr</code></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="hero condensed">
+        <h1>Class <span class="red">#13</span></h1>
+        <h1>03/28/2018</h1>
+        <h1 class="lesson-title">Project Two: Feedr</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Announcements</div>
+
+        <div class="text-smaller">
+          <p>&#149; Final Class: Tuesday, April 17th</p>
+          <p>&#149; Make-up Class: Saturday, April 14th</p>
+          <p>&#149; Final Project</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Due in 3 weeks</p>
+            <p>&rArr; Third deliverable due April 2nd: core application structure (HTML, CSS, etc.)</p>
+          </div>
+          <p>&#149; <a href="../materials/dom_exercises.zip">DOM exercises</a></p>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+        <p>&#149; Feedr Lab</p>
+      </section>
+
+      <!-- LAB INTRO -->
+      <section class="title">
+        <h1>Feedr Lab</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Feedr Lab: Overview</div>
+
+        <div class="text-smaller">
+          <p>&#149; We are building Feedr: a personalized news reader</p>
+          <p>&#149; Our reader will pull feeds from various API's</p>
+          <p>&#149; The user will be able to filter the feeds via a dropdown</p>
+          <p>&#149; Clicking an article will render a modal with more info</p>
+          <p>&#149; This will be a single page app (SAP); all application views will be contained in the provided <code class="code">index.html</code> file</p>
+          <p>&#149; If you haven't already, read the project <a target="_blank" href="../main/feedr.html">overview</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Feedr Lab: Overview</div>
+
+        <p>&#149; You will pull from three "news" sources:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&rArr; <a target="_blank" href="http://mashable.com/stories.json">Mashable</a></p>
+          <p>&rArr; <a target="_blank" href="https://www.reddit.com/top.json">Reddit</a></p>
+          <p>&rArr; <a target="_blank" href="http://digg.com/api/news/popular.json">Digg</a></p>
+        </div>
+        <p>&#149; Feel free to add other sources</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Feedr Lab: Getting Started</div>
+
+        <div class="text-smallest">
+          <p>&#149; Start by adding all the DOM functionality first</p>
+          <p>&#149; <code class="code">console.log</code> the feeds to confirm your data before you map it</p>
+          <p>&#149; Consider installing <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en" target="_blank">JSON View chrome extension</a></p>
+          <p>&#149; Test small pieces of functionality frequently</p>
+          <p>&#149; Use Stack Overflow, Google, and docs to solve problems</p>
+          <p>&#149; Be sure to <a href="../pages/feedr.html">read</a>: <u>Feed Goals</u> and <u>Additional UI interaction Goals</u></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Feedr Lab: Getting Started</div>
+    
+        <div class="text-smallest">
+          <p>Note: each feed article should be rendered in the following manner:</p>
+<pre><code>
+  &lt;div class="article"&gt;
+
+    &lt;section class="featuredImage"&gt;
+      &lt;img src="images/article_placeholder_1.jpg" alt="" /&gt;
+    &lt;/section&gt;
+
+    &lt;section class="articleContent"&gt;
+      &lt;a href="#"&gt;&lt;h3&gt;Test article title&lt;/h3&gt;&lt;/a&gt;
+      &lt;h6&gt;Lifestyle&lt;/h6&gt;
+    &lt;/section&gt;
+
+    &lt;section class="impressions"&gt;
+      526
+    &lt;/section&gt;
+
+    &lt;div class="clearfix"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+</code></pre>
+        </div>
+      </section>
+
+      <!-- FEEDR LAB -->
+      <section class="title">
+        <h1>Feedr Lab</h1>
+      </section>
+
+            <!-- THE END -->
+      <section class="center">
+        <img src="img/main/the-end.jpg">
+      </section>
+
+      <!-- HOMEWORK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Homework</div>
+
+        <p>1) Complete <code class="code">feedr</code></p>
+        <p>2) Final project progress:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&#149; Core application structure (HTML, CSS, JS)</p>
+        </div>
+      </section>
+
+      <!-- ON DECK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+
+        <h4>Class #14 (of 20) - Prototypal Inheritance</h4>
+        <div class="pad-left-lg">
+          <p>&#149; Prototypes</p>
+          <p>&#149; Prototypes vs. classes</p>
+          <p>&#149; Prototypes and constructors</p>
+          <p>&#149; Inheritance</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Exit Tickets!</h1>
+      </section>
+    </div>
   </div>
 
   <script src="js/head.min.js"></script>
