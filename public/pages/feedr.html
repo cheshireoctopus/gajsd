@@ -62,13 +62,12 @@
 
         <!-- TECHNICAL REQUIREMENTS -->
         <h2>Technical Requirements</h2>
-        <h3>Feed sources:</h3>
 
         <p>Give the user the ability to pull from a multiple news sources. Here are three sources we suggest:</p>
         <ul>
-            <li><a href="http://mashable.com/stories.json" target="_blank">Mashable: http://mashable.com/stories.json</a></li>
-            <li><a href="https://www.reddit.com/top.json" target="_blank">Reddit: https://www.reddit.com/top.json</a></li>
-            <li><a href="http://digg.com/api/news/popular.json" target="_blank">Digg: http://digg.com/api/news/popular.json</a></li>
+            <li><a href="http://open-platform.theguardian.com/access/" target="_blank">The Guardian</a></li>
+            <li><a href="https://newsapi.org/" target="_blank">NewsApi.org</a></li>
+            <li><a href="https://developer.nytimes.com/" target="_blank">NYTimes</a></li>
         </ul>
 
         <p>
@@ -101,58 +100,20 @@ $.get("https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/new
 })
         </code></pre>
 
-        <h3>Feed Goals:</h3>
+        <h2>Feed Goals</h2>
 
-        <ul>
+        <ol class="push-bottom">
             <li>
-                When the application first loads display the loading container (see below on instructions to toggle this). When you successfully retrieve information from the default API hide the loader and replace the content of the #main container with that of the API. The DOM structure of each article must adhere to the .article structure.
+                When the application first loads display the loading container (see below on instructions to toggle this). When you successfully retrieve information from the default API hide the loader and replace the content of the #main container with that of the API. The DOM structure of each article must adhere to the <code class="code">.article</code> structure.
             </li>
             <li>
-                When the user selects an article's title show the #popUp overlay. The content of the article must be inserted in the .container class inside #popUp. Make sure you remove the .loader class when toggling the article information in the pop-up.
+                When the user selects an article's title show the <code class="code">#popUp</code> overlay. The content of the article must be inserted in the <code class="code">.container</code> class inside <code class="code">#popUp</code>.
             </li>
             <li>Change the link of the "Read more from source" button to that of the respective article.</li>
             <li>
-                When the user selects a source from the dropdown menu on the header, replace the content of the page with articles from the newly selected source. Display the loading pop up when the user first selects the new source, and hide it on success.
+                When the user selects a source from the dropdown menu on the header, replace the content of the page with articles from the newly selected source.
             </li>
-            <li>Add an error message (either alert or a notification on the page) if the app cannot load from the selected feed.</li>
-        </ul>
-
-        <h3>Additional UI interaction Goals:</h3>
-
-        <ul>
-            <li>
-                When the user clicks/taps the search icon, expand the input box. Best approach for this is to toggle the .active class for the #search container. If the search input box is already expanded tapping the search icon again will close the input. Pressing the "Enter" key should also close the opened input box. See Bonus 2 for search filtering functionality.
-            </li>
-            <li>
-                When the app is first loading and when the user selects to load a new feed from the dropdown, display the #popUp container with the .loader class. You can toggle the .hidden class from the container to display/hide the overlay container.
-            </li>
-            <li>Add functionality to hide the pop-up when user selects the "X" button on the pop-up.</li>
-            <li>Clicking/tapping the "Feedr" logo will display the main/default feed.</li>
-        </ul>
-
-        <h3>Bonus</h3>
-
-        <ol>
-            <li>
-                Merge all feeds into one main feed in chronological order for the initial view. When the user clicks/taps the "Feedr" logo at the top, they should be return to this feed. This will be the new "home view."
-            </li>
-            <li>
-                Filter feed by title according to user keyboard input on the search input box. This should run the filter on every keystroke. When the input box is cleared, all articles should display in the respective feed.
-            </li>
-            <li>Add infinite scrolling. Start displaying only the first 20 articles and keep loading more on user scrolling.</li>
         </ol>
-
-        <!-- USEFULE RESOURCES -->
-        <h2>Useful Resources</h2>
-        <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">MDN JavaScript data types and data structures</a></li>
-            <li><a href="https://learn.jquery.com/events/event-basics/">jQuery Event Basics</a></li>
-            <li><a href="http://learn.jquery.com/events/event-delegation/">Understanding Event Delegation</a></li>
-            <li><a href="http://tutorials.jenkov.com/jquery/index.html#jquery-version-used-in-this-tutorial">jQuery Tutorial</a></li>
-            <li><a href="http://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340">A beginner's guide to HTTP and REST</a></li>
-            <li><a href="http://sporto.github.io/blog/2012/12/09/callbacks-listeners-promises/">Async JS Callbacks</a></li>
-            <li><a href="http://www.sitepoint.com/introduction-jquery-shorthand-ajax-methods/">SitePoint: Intro to jQuery Shorthand AJAX Methods</a></li>
-        </ul>
       </div>
     </div>
   </div>
