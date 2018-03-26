@@ -458,10 +458,31 @@
           <p>&#149; For each iteration, use jQuery to:</p>
           <div class="pad-left-lg">
             <p>&rArr; Create a new <code class="code">img</code> element</p>
-            <p>&rArr; Add a <code class="code">src</code> attribute to this image pointing to the photo's URL</p>
+            <p>&rArr; Add a <code class="code">src</code> attribute to this <code class="code">img</code> pointing to the photo's <code class="code">image_url</code></p>
             <p>&rArr; Add a class of <code class="code">image</code> to this element</p> 
             <p>&rArr; Append the element to the <code class="code">.images</code></p>
           </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">500px: Trouble Shooting</div>
+        
+        <div class="text-smaller">
+          <p>&#149; This API has been known to <a href="https://en.wikipedia.org/wiki/Rate_limiting" target="_blank">rate limit</a> request</p>
+          <p>&#149; If this happens, load <code class="code">500px_response.json</code> locally:</p>
+<pre><code>
+  $.ajax({
+    type: 'GET',
+    url: '500px_response.json',
+    success: function(response) {
+      console.log(response)
+    }
+  })
+
+</code></pre>
+          <p>&#149; Be sure to comment out <code class="code">_500px.api('/photos/search'...</code></p>
+          <p>&#149; While not ideal, it provides a workaround</p>
         </div>
       </section>
 
