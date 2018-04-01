@@ -12,58 +12,48 @@
 <body>
   <div class="reveal">
     <div class="slides">
-      <section class="center">
+      <section class="hero">
         <h1>Hello</h1>
-        <div class="text-left text-smaller">
-          <p>Pull down this class's exercises and homework:</p>
+        <div class="opening-instructions">
+          <p>1) Please download <a href="../materials/class14.zip" target="_blank">Class 14 Starter Code</a></p>
+          <p>2) Move the following into <code class="code">class-work</code>:</p>
           <div class="pad-left-lg">
-            <p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
-            <p>&#149; Run <code class="code">git pull</code></p>
+            <p>&#149; <code class="code"></code></p>
           </div>
         </div>
       </section>
 
-      <section class="center">
-        <h1>Class <span style="color: red;">#13</span> - 08/11/2016</h1>
-        <h1>Prototypal Inheritance</h1>
+      <section class="hero condensed">
+        <h1>Class <span class="red">#14</span></h1>
+        <h1>04/02/2018</h1>
+        <h1 class="lesson-title">Prototypal Inheritance</h1>
       </section>
 
-      <!-- ANNOUNCEMENTS -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">Announcements</div>
+
         <div class="text-smaller">
-          <p>&#149; Starting this class, HW is final project-related</p>
-          <p>&#149; Final Project (T-Minus 26 days...)</p>
-          <div class="pad-left-lg text-smallest">
-            <p>&rArr; Next deliverable due 08/16:</p>
-            <div class="pad-left-lg">
-              <p>&#149; Basic API functionality should be complete</p>
-              <p>&#149; Begin connecting JS with HTML and CSS</p>
-            </div>
-            <p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
+          <p>&#149; Final Class: Tuesday, April 17th</p>
+          <p>&#149; Make-up Class: Saturday, April 7th and 14th</p>
+          <p>&#149; Final Project</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Due in 2 weeks</p>
+            <p>&rArr; Fourth deliverable due April 9th: MVP</p>
           </div>
-          <p>&#149; Weekend Office Hours: 8/22 (Sat), 8/28 (Sun), and 9/04 (Sun)</p>
-          <p>&#149; Student Choice for Classes 18 and 19:</p>
-          <div class="pad-left-lg text-smallest">
-            <p>&rArr; Node + Express Server</p>
-            <p>&rArr; D3.js</p>
-            <p>&rArr; Anything else?</p>
-          </div>
+          <p>&#149; <a href="../materials/dom_exercises.zip">DOM exercises</a></p>
         </div>
       </section>
 
       <!-- AGENDA -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">Agenda</div>
-        <p>&#149; Prototypes</p>
-        <p>&#149; Prototypes vs. Classes</p>
-        <p>&#149; Prototypes and Constructors</p>
-        <p>&#149; Inheritance</p>
+        <p>&#149; <a href="#/prototypes">Prototypes</a></p>
+        <p>&#149; <a href="#/inheritance">Inheritance</a></p>
         <p>&#149; Lab</p>
       </section>
 
       <!-- PROTOTYPES -->
-      <section class="center">
+      <section class="title" id="prototypes">
         <h1>Prototypes</h1>
       </section>
 
@@ -72,16 +62,16 @@
 
 <pre><code>
   // define an array literal
-  var numbers = [1,2,3,4,5];
+  var numbers = [1,2,3,4,5]
 
-  numbers.push(6,7,8,9,10);
+  numbers.push(6,7,8,9,10)
 
-  numbers.forEach(function (num) {
-    num * 2;
+  numbers.forEach(function(num) {
+    num * 2
   })
 
 </code></pre>
-        <p class="fragment">&#149; Where did <code class="code">push</code> and <code class="code">forEach</code> come from?</p>
+        <p class="fragment">&#149; Where did the <code class="code">push</code> and <code class="code">forEach</code> methods come from?</p>
         <div class="fragment">
           <p>&#149; These methods are <u>inherited</u> from the <code class="code">Array</code> object</p>
           <p>&#149; <b>Note:</b> Use <code class="code">Array.prototype</code> to see all available methods</p>
@@ -90,16 +80,21 @@
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototypes</div>
-        <div class="text-smaller">
-          <p>&#149; JS is a prototype-based language (vs. a class-based language)</p>
+
+        <div class="text-smallest">
+          <p>&#149; JS is a prototype-based language:</p>
           <blockquote class="text-smallest">
             Prototype-based programming is a style of object-oriented programming in which behavior reuse (known as inheritance) is performed via a process of cloning existing objects that serve as prototypes.
           </blockquote>
           <div class="fragment">
             <p>In other words...</p>
-            <p class="fragment">&#149; When you create an object, it comes with a few pre-defined properties; one of which is its prototype</p>
-            <p class="fragment">&#149; The prototype points to another object (often containing methods/properties)</p>
-            <p class="fragment">&#149; If you try to look up a key on an object and it is not found, JS will look for it in prototype. It will follow the "prototype chain" until it sees a null value. In that case, it returns undefined.</p>
+            <p class="fragment">&#149; Objects are created with a few pre-defined properties</p>
+            <p class="fragment">&#149; One of these properties is the <code class="code">prototype</code></p>
+            <p class="fragment">&#149; The <code class="code">prototype</code> points to <u>another</u> object (containing methods/properties)</p>
+            <div class="fragment">
+              <p>&#149; If you look up a key on an object and it is not found, JS will look for it in <code class="code">prototype</code></p>
+              <p>&#149; JS follows the "prototype chain" until it sees a null value and returns <code class="code">undefined</code></p>
+            </div>
           </div>
         </div>
         <!-- Prototype-based programming is an OOP model that doesn't use classes, but rather it first accomplishes the behavior of any class and then reuses it (equivalent to inheritance in class-based languages) by decorating (or expanding upon) existing prototype objects. (Also called classless, prototype-oriented, or instance-based programming.) -->
@@ -108,15 +103,15 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototypes</div>
 
-        <div class="text-smaller">
-          <p>&#149; Think of prototypes as recipes for objects</p>
-          <p>&#149; Functions have a <code class="code">prototype</code> property that is used during the creation of new instances</p>
-          <p>&#149; <code class="code">prototype</code> is shared among all object instances (those instances can access properties of the prototype)</p>
-          <p>&#149; Ex: <code class="code">hasOwnProperty</code> is defined on the generic <code class="code">Object.prototype</code>, but it can be accessed from any object as if it were its own property</p>
+        <div class="text-smallest">
+          <p>&#149; Think of prototypes as shared tooling between objects</p>
+          <p>&#149; Functions have a <code class="code">prototype</code> property used during creation of new instances</p>
+          <p>&#149; This <code class="code">prototype</code> is shared among <u>all</u> object instances</p>
+          <p>&#149; Ex: <code class="code">hasOwnProperty</code> is defined on <code class="code">Object.prototype</code> and   can be accessed from any object as if it were its own property</p>
 <pre><code>
-  var obama = { name: 'obama' }
+  var language = { name: 'JavaScript' }
 
-  obama.hasOwnProperty('name');
+  language.hasOwnProperty('name')
   // true
 
 </code></pre>
@@ -127,38 +122,42 @@
         <div class="heading">Prototypes</div>
 
         <div class="text-smallest">
-          <p>&#149; Instances keep track of their prototypes with an internal property, [[Prototype]]</p>
-          <!-- <p>&#149; This property points back to the prototype object that the constructor was using</p> -->
-          <p>&#149; When an object is constructed using <code class="code">new</code>, the constructor's <code class="code">prototype</code> property is assigned to the object's [[Prototype]] property</p>
+          <p>&#149; Instances keep track of their prototypes with an internal property, <code class="code">[[Prototype]]</code></p>
+          <p>&#149; This property points back to the prototype object that the constructor was using</p>
+          <p>&#149; When an object is created, the constructor's <code class="code">prototype</code> is assigned to the object's <code class="code">[[Prototype]]</code></p>
           <p>&#149; Use <code class="code">Object.getPrototypeOf(yourObj)</code> to read an object's <code class="code">prototype</code></p>
-          <p>&#149; NOTE: some JS engines support <code class="code">__proto__</code> on objects; this property allows you to read and write to the [[Prototype]] property</p>
+          <p>&#149; NOTE: some JS engines support <code class="code">__proto__</code> on objects; this property allows you to read and write to the <code class="code">[[Prototype]]</code> property</p>
           <p>&#149; Open up Chrome's console to see the above</p>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototypes</div>
-        <div class="text-smaller">
+        
+        <div class="text-smallest">
           <p>&#149; Recall, prototypes are objects that all instances can access:</p>
 <pre><code>
-  function Person (name) {
-    this.name = name;
+  function Dog (name) {
+    this.name = name
   }
 
-  Person.prototype.speak = function () {
-    console.log('Hello, my name is ' + this.name);
+  Dog.prototype.speak = function () {
+    console.log('Hello, my name is ' + this.name)
   }
 
-  var chandler = new Person('Chandler');
-  var joe = new Person('Joe');
+  var spot = new Dog('Spot')
+  var rex = new Dog('Rex')
 
-  chandler.speak()
-  // 'Hello, my name is Chandler'
+  spot.speak()
+  // 'Hello, my name is Spot'
+
+  rex.speak()
+  // 'Hello, my name is Rex'
 
 </code></pre>
           <div class="fragment">
             <p>&#149; As methods perform the same actions, no need to create a new method for each instance</p>
-            <p>&#149; More efficient to put these methods on the prototype and use <code class="code">this</code> to access the current instance</p>
+            <p>&#149; Place rhese methods on the <code class="code">prototype</code> and use <code class="code">this</code> to access the current instance</p>
           </div>
         </div>
       </section>
@@ -170,20 +169,20 @@
           <p>&#149; Becareful when sharing reference values using the prototype:</p>
 
 <pre><code>
-  function Person (name) {
-    this.name = name;
+  function Dog (name) {
+    this.name = name
   }
 
-  Person.prototype.favorites = [];
+  Dog.prototype.favorites = []
 
-  var chandler = new Person('Chandler');
-  var joe = new Person('Joe');
+  var spot = new Dog('Spot')
+  var rex = new Dog('Rex')
 
-  chandler.favorites.push('beer');
-  joe.favorites.push('kale salad');
+  spot.favorites.push('tennis ball')
+  rex.favorites.push('chasing small animals')
 
-  console.log(joe.favorites);
-  // ['beer', 'kale salad']
+  console.log(rex.favorites)
+  // ['tennis ball', 'chasing small animals']
 
 </code></pre>
           <p>&#149; <code class="code">favorites</code> is pointing to the same array; all instances use it</p>
@@ -196,16 +195,16 @@
         <div class="text-smallest">
           <p>&#149; JS allows you to modify the standard built-in objects (<code class="code">Array</code>, <code class="code">Number</code>)</p>
           <p>&#149; As built-ins have constructors, they have proptypes that can be changed</p>
-          <p>&#149; Here, we extended the <code class="code">Array.prototype</code> with a function that sums an array's values:</p>
+          <p>&#149; We can <u>extend</u> <code class="code">Array.prototype</code> with a function that sums an array's values:</p>
 <pre><code>
-  Array.prototype.sum = function () {
-    var sum = 0;
+  Array.prototype.sum = function() {
+    var sum = 0
 
-    this.forEach(function (number) {
-      sum += number;
+    this.forEach(function(number) {
+      sum += number
     })
 
-    return sum;
+    return sum
   }
 
   [1,2,3,4].sum()
