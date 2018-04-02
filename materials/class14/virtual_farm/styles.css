@@ -1,0 +1,16 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background: url("https://cdn.shopify.com/s/files/1/0914/6382/t/1/assets/3-about-our-farm.jpg?7619714384780390818") no-repeat;
+  background-size: cover;
+}
+.animal {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+}
