@@ -409,21 +409,6 @@
         </div>
       </section>
 
-      <section class="title">
-        <h1>Recap</h1>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Prototypes and Constructors</div>
-
-        <div class="text-smallest">
-          <p class="fragment">&#149; JavaScript is a prototype-based language (vs. a traditional class-based language)</p>
-          <p class="fragment">&#149; Almost everything in JS is an object and each of these objects contain an internal property that links it to its constructor</p>
-          <p class="fragment">&#149; This is what defines Javascript as being prototype-based and allows for inheritance</p>
-          <p class="fragment">&#149; If we try to access a property on an object that doesn't exist Javascript will search the object's immediate properties, but once it cannot find it, it will continue to search within the object's prototype property. If it can't find it there, it will search within the prototype of that prototype and so on and so forth traversing down the prototype chain until it reaches <code class="code">Object</code></p>
-        </div>
-      </section>
-
       <!-- GROUP EXERCISES -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototype Group Exercise</div>
@@ -431,8 +416,8 @@
         <div class="text-center">
           <img src="img/class14/prototype_group_exercise.png" alt="">
         </div>
-        <div class="text-smaller">
-          <p>&#149; Explain what is happening line-by-line using all the following keywords: <b>constructor</b>, <b>instance property</b>, <b>prototype</b>, <b>inheritance</b> and <b>prototype chain</b></p>
+        <div class="text-smallest">
+          <p>&#149; Explain what is happening line-by-line using all the following keywords: <b>constructor</b>, <b>prototype</b>, <b>inheritance</b> and <b>prototype chain</b></p>
           <p>&#149; Also discuss why car has a different value from the first and second times it is printed</p>
         </div>
       </section>
@@ -440,11 +425,14 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototype Group Exercise</div>
 
-        <p>Use <a href="http://repl.it" target="_blank">http://repl.it</a> to:</p>
-        <div class="pad-left-lg">
-          <p>1) Create a constructor function for an object of your choice (it should generate at least two instances)</p>
-          <p>2) Ensure the constructor function instantiates the objects with instance methods/properties</p>
-          <p>3) Use <code class="code">prototype</code> to generate a few additional properties on the object instances</p>
+        <div class="text-smaller">
+          <p>Use <a href="http://repl.it" target="_blank">http://repl.it</a> to:</p>
+          <div class="pad-left-lg">
+            <p>1) Create a constructor function for an object of your choice</p>
+            <p>2) Generate two object instances from this contstructor</p>
+            <p>2) Ensure the constructor function instantiates the objects with instance methods/properties</p>
+            <p>3) Use <code class="code">prototype</code> to generate a few additional properties on the object instances</p>
+          </div>
         </div>
       </section>
 
