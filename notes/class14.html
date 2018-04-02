@@ -459,7 +459,7 @@
         -
 
        -->
-      <section class="center">
+      <section class="title" id="inheritance">
         <h1>Inheritance</h1>
       </section>
 
@@ -499,40 +499,45 @@
 
   var prius = new HybridCar('white');
 
-  prius.color // "white"
+  console.log(prius.color)
+  prius.accelerate()
 
 </code></pre>
-        <p class="text-smaller">&#149; Let's break this down...</p>
+        <p class="text-smaller">&#149; Let's break this down... <a href="https://repl.it/@cheshireoctopus/JSD-Class-14-Inheritance" target="_blank">Repl.it</a></p>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Inheritance</div>
 
-        <p>&#149; The constructor for <code class="code">HybridCar</code>:</p>
+        <div class="text-smaller">
+          <p>&#149; The constructor for <code class="code">HybridCar</code>:</p>
 <pre><code>
   function HybridCar (color) {
     Vehicle.call(this, color)
   }
 
 </code></pre>
-        <p>&#149; <code class="code">.call()</code> is used to invoke the <code class="code">Vehicle</code> constructor in the context of <code class="code">HybridCar</code></p>
-        <p>&#149; Allows us to apply <code class="code">this.color</code> to <code class="code">HybridCar</code> instances</p>
-        <p>&#149; Will be discussed next lesson</p>
+          <p>&#149; <code class="code">.call()</code> is used to invoke the <code class="code">Vehicle</code> constructor in the context of <code class="code">HybridCar</code></p>
+          <p>&#149; Allows us to apply <code class="code">this.color</code> to <code class="code">HybridCar</code> instances</p>
+          <p>&#149; Will be discussed next lesson</p>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Inheritance</div>
 
+        <div class="text-smaller">
 <pre><code>
   HybridCar.prototype = new Vehicle()
 
 </code></pre>
-        <p>&#149; Sets <code class="code">HybridCar</code>'s <code class="code">prototype</code> equal to an instance of <code class="code">Vehicle</code></p>
-        <p>&#149; Allows <code class="code">HybridCar</code> instances to inherit all of <code class="code">Vehicle</code>'s prototype properties: <code class="code">accelerate</code></p>
+          <p>&#149; Sets <code class="code">HybridCar</code>'s <code class="code">prototype</code> equal to an instance of <code class="code">Vehicle</code></p>
+          <p>&#149; Allows <code class="code">HybridCar</code> instances to inherit all of <code class="code">Vehicle</code>'s prototype properties: <code class="code">accelerate</code></p>
+        </div>
       </section>
 
       <!-- INHERITANCE CODEALONG -->
-      <section class="center">
+      <section class="title">
         <h1>Inheritance Codealong</h1>
       </section>
 
@@ -545,7 +550,7 @@
           <p>3) Create a <code class="code">Square</code> constructor that has a <code class="code">size</code> instance property</p>
           <p>4) <code class="code">Square</code> should inherit from the <code class="code">Rectangle</code> constructor</p>
           <p>5) Use Rectangle's constructor inside of Square</p>
-          <p>Use the following <a href="https://repl.it/CmOM/1" target="_blank">https://repl.it/CmOM/1</a></p>
+          <p>Use the following <a href="https://repl.it/@cheshireoctopus/JSD-Class-14-Inheritance-CodeAlong" target="_blank">Repl.it</a></p>
         </div>
       </section>
 
@@ -562,7 +567,7 @@
       </section>
 
       <!-- HOMEWORK -->
-      <section data-background="#FFF" class="text-left">
+      <!-- <section data-background="#FFF" class="text-left">
         <div class="heading">Homework</div>
         <p>1) Finish <code class="code">virtual_farm</code></p>
         <p>2 Final project:</p>
@@ -570,7 +575,7 @@
           <p>&#149; Basic API functionality should be complete</p>
           <p>&#149; Begin connecting JS with HTML and CSS</p>
         </div>
-      </section>
+      </section> -->
 
       <!-- ON DECK -->
       <section data-background="#FFF" class="text-left">
