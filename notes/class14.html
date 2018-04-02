@@ -48,6 +48,7 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Agenda</div>
         <p>&#149; <a href="#/prototypes">Prototypes</a></p>
+        <p>&#149; <a href="#/proto-and-constructor">Prototypes and Constructors</a></p>
         <p>&#149; <a href="#/inheritance">Inheritance</a></p>
         <p>&#149; Lab</p>
       </section>
@@ -218,7 +219,7 @@
         </div>
       </section>
 
-      <section class="center">
+      <!-- <section class="center">
         <h1>Prototypes vs. Classes</h1>
       </section>
 
@@ -272,9 +273,9 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <section class="center">
+      <section class="title" id="proto-and-constructor">
         <h1>Prototypes and Constructors</h1>
       </section>
 
@@ -283,54 +284,47 @@
 
         <p class="text-smaller"><u>Constructor</u>:</p>
         <div class="text-smallest">
-          <p>&#149; A function used with <code class="code">new</code> to create an object</p>
-          <p>&#149; Is an ordinary function no different than any function</p>
-          <p>&#149; What does distinguish it is when it is used with the <code class="code">new</code> operator</p>
+          <p>&#149; A <u>ordinary</u> function used with <code class="code">new</code> to create an object</p>
           <p>&#149; Used to create objects with pre-defined properties and methods</p>
           <p>&#149; Open a <a href="http://repl.it" target="_blank">http://repl.it</a> and enter the following:</p>
 <pre><code>
-  function Vehicle (color) {
+  function Vehicle(color) {
     this.color = color
   }
 
   var car = new Vehicle('red')
 
 </code></pre>
-          <p>&#149; <b>Note:</b> out of convention, just as we would capitalize a class name, we capitalize the name of our constructor function.</p>
+          <p>&#149; <b>Note:</b> By convention, capitalize the name of constructor functions</p>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototypes and Constructors</div>
 
-        <p>&#149; The <code class="code">new</code> operator creates a new object instance</p>
-        <p>&#149; The constructor function is what specifies the type of the object instance to create</p>
-        <p>&#149; This has several implications:</p>
-        <div class="pad-left-lg text-smallest">
-          <p>1) The constructor creates a new object: <code class="code">{}</code></p>
-          <p>2) The constructor sets an internal <code class="code">constructor</code> property referencing the function that created it</p>
-          <p>3) The constructor sets up the object to delegate to its prototype</p>
-          <p>4) The constructor calls <code class="code">Vehicle()</code> in the context of the new object</p>
-        </div>
-        <p>&#149; Let's discuss points 2 - 4</p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Prototypes and Constructors</div>
         <div class="text-smaller">
-          <p>2) The constructor sets an internal <code class="code">constructor</code> property referencing the function that created it</p>
-          <hr>
-          <p>&#149; In our example, <code class="code">car.constructor === Vehicle</code></p>
-          <p>&#149; If you enumerate the car object, <code class="code">constructor</code> will not show</p>
-          <p>&#149; If you redefine the <code class="code">constructor</code> property, you will add a property with the name "constructor" on top of the special one</p>
-          <p>&#149; <code class="code">constructor</code> is built-in with the new keyword and can never be set manually</p>
+          <p>&#149; The <code class="code">new</code> operator creates a new object instance</p>
+          <p>&#149; The constructor function specifies the type of the object instance to create</p>
+          <div class="fragment">
+            <p>&#149; This has several implications:</p>
+            <div class="pad-left-lg text-smaller">
+              <p>1) Constructor creates a new object: <code class="code">{}</code></p>
+              <p>2) Constructor sets <code class="code">constructor</code> property referencing the function that created it</p>
+              <p>3) Constructor sets up the object to delegate to its prototype</p>
+              <p>4) Constructor calls <code class="code">Vehicle()</code> in the context of the new object</p>
+            </div>
+            <p>&#149; Let's discuss points 2 - 4</p>
+          </div>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototypes and Constructors</div>
 
-        <p>&#149; To assert the reference of a <code class="code">constructor</code>, use the <code class="code">instanceof</code> operator:</p>
+        <div class="text-smallest">
+          <p>2) Sets <code class="code">constructor</code> property referencing function that created it</p>
+          <hr>
+          <p>&#149; To assert the reference of a <code class="code">constructor</code>, use the <code class="code">instanceof</code> operator:</p>
 <pre><code>
   function Vehicle (color) {
     this.color = color
@@ -341,17 +335,29 @@
   car instanceof Vehicle
   // true
 
+  car.constructor === Vehicle
+  // true
+
 </code></pre>
-        <p>&#149; Or, use <code class="code">car.constructor === Vehicle</code></p>
+          <p>&#149; Note: If you enumerate the car object, <code class="code">constructor</code> will not show:</p>
+<pre><code>
+  for (var key in car) {
+    console.log(key)
+  }
+
+  // color
+
+</code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Prototypes and Constructors</div>
+
         <div class="text-smallest">
           <p>3) The constructor sets up the object to delegate to its prototype</p>
           <hr>
-          <p>&#149; Functions are objects and can contain properties</p>
-          <p>&#149; Recall: functions have a special <code class="code">prototype</code> property which has a value of an empty object</p>
+          <p>&#149; Recall: functions have a <code class="code">prototype</code> property pointing to an object</p>
           <p>&#149; Whenever an object is constructed, it inherits all the properties of its constructor's <code class="code">prototype</code></p>
 <pre><code>
   Vehicle.prototype.wheels = 4
@@ -370,14 +376,14 @@
         <div class="heading">Prototypes and Constructors</div>
 
         <div class="text-smaller">
-          <p>We never declared a <code class="code">wheels</code> property on <code class="code">car</code> so how did it receive the value from <code class="code">Vehicle</code>?</p>
+          <p>&#149; How did <code class="code">car</code> access <code class="code">wheels</code>?</p>
           <div class="pad-left-lg text-smallest">
-            <p>&#149; When we accessed <code class="code">car.wheels</code> JS looked to the <code class="code">car</code> object and could not find <code class="code">wheels</code></p>
-            <p>&#149; It continued along the <u>prototype chain</u> to search for inherited values</p>
-            <p>&#149; Where it then found <code class="code">4</code> from Vehicle's <code class="code">wheels</code> in its prototype</p>
+            <p>1) When we accessed <code class="code">car.wheels</code>, JS first looked to the <code class="code">car</code> object and could not find <code class="code">wheels</code></p>
+            <p>2) It continued along the <u>prototype chain</u> to search for inherited values...</p>
+            <p>3) ...where it then found <code class="code">4</code> from Vehicle's <code class="code">wheels</code> in its prototype</p>
           </div>
         </div>
-        <img src="../img/class13/prototype_chain.png" alt="">
+        <img src="img/class14/prototype_chain.png" alt="">
 
         <!-- PROTOTYPE CHAIN -->
         <!-- When it comes to inheritance, JavaScript only has one construct: objects. Each object has an internal link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. null, by definition, has no prototype, and acts as the final link in this prototype chain. -->
@@ -389,22 +395,22 @@
         <div class="text-smaller">
           <p>4) The constructor calls <code class="code">Vehicle()</code> in context of the new obj</p>
           <hr>
-          <p>&#149; Context will be covered in detail next lesson</p>
-          <p>&#149; For now, context, in a nutshell, deals with object reference</p>
-          <p>&#149; JS provides a tool, <code class="code">this</code> which tells you which object you are referencing</p>
-          <p>&#149; When we construct a new object the <code class="code">this</code> in our constructor will reference the new object instance:</p>
+          <p>&#149; Context deals with object reference (more next class!)</p>
+          <p>&#149; JS provides a tool, <code class="code">this</code>, to help navigate context</p>
+          <p>&#149; When constructing a new object, the <code class="code">this</code> in the constructor will reference the new object instance:</p>
 <pre><code>
-  var greenCar = Vehicle('green');
-  var blueCar = Vehicle('blue');
-  var pinkCar = Vehicle('pink');
+  function Vehicle (color) {
+    this.color = color
+  }
+
+  var pinkCar = new Vehicle('pink');
 
 </code></pre>
-          <p>&#149; These are referred to as <b>instance properties</b></p>
         </div>
       </section>
 
-      <section class="center">
-        <h1>Prototype + Constructor Recap</h1>
+      <section class="title">
+        <h1>Recap</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -412,7 +418,7 @@
 
         <div class="text-smallest">
           <p class="fragment">&#149; JavaScript is a prototype-based language (vs. a traditional class-based language)</p>
-          <p class="fragment">&#149; Almost everything in Javascript is an object and each of these objects contain an internal property that links it to its constructor</p>
+          <p class="fragment">&#149; Almost everything in JS is an object and each of these objects contain an internal property that links it to its constructor</p>
           <p class="fragment">&#149; This is what defines Javascript as being prototype-based and allows for inheritance</p>
           <p class="fragment">&#149; If we try to access a property on an object that doesn't exist Javascript will search the object's immediate properties, but once it cannot find it, it will continue to search within the object's prototype property. If it can't find it there, it will search within the prototype of that prototype and so on and so forth traversing down the prototype chain until it reaches <code class="code">Object</code></p>
         </div>
@@ -423,7 +429,7 @@
         <div class="heading">Prototype Group Exercise</div>
 
         <div class="text-center">
-          <img src="../img/class13/prototype_group_exercise.png" alt="">
+          <img src="img/class14/prototype_group_exercise.png" alt="">
         </div>
         <div class="text-smaller">
           <p>&#149; Explain what is happening line-by-line using all the following keywords: <b>constructor</b>, <b>instance property</b>, <b>prototype</b>, <b>inheritance</b> and <b>prototype chain</b></p>
@@ -445,7 +451,7 @@
       <!-- BREAK -->
       <section class="center">
         <h1>5 minute break</h1>
-        <img src="../img/main/break-time-bear.jpg">
+        <img src="img/main/break-time-bear.jpg">
       </section>
 
       <!--
@@ -564,7 +570,7 @@
 
       <!-- THE END -->
       <section class="center">
-        <img src="../img/main/the-end.jpg">
+        <img src="img/main/the-end.jpg">
       </section>
 
       <!-- HOMEWORK -->
@@ -581,7 +587,7 @@
       <!-- ON DECK -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">What's On Deck</div>
-        <h4>Class #14 (of 20) - Closures and This</h4>
+        <h4>Class #15 (of 20) - Closures and This</h4>
         <div class="pad-left-lg">
           <p>&#149; Scope</p>
           <p>&#149; Closures and Context</p>
