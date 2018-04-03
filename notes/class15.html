@@ -18,7 +18,7 @@
           <p>1) Please download <a href="../materials/class15.zip" target="_blank">Class 15 Starter Code</a></p>
           <p>2) Move the following into <code class="code">class-work</code>:</p>
           <div class="pad-left-lg">
-            <p>&#149; <code class="code">virtual_farm</code></p>
+            <p>&#149; <code class="code">sticky_notes</code></p>
           </div>
         </div>
       </section>
@@ -35,6 +35,7 @@
         <div class="text-smaller">
           <p>&#149; Final Class: Tuesday, April 17th</p>
           <p>&#149; Make-up Class: Saturday, April 7th and 14th</p>
+          <p>&#149; Weekend Office Hours: Sunday, April 15th</p>
           <p>&#149; Final Project</p>
           <div class="pad-left-lg">
             <p>&rArr; Due in 2 weeks</p>
@@ -56,8 +57,7 @@
 
       <!-- OBJECTS REVIVEW -->
       <section class="center">
-        <h1>Objects Review</h1>
-        <p><a href="https://repl.it/CmaM/1" target="_blank">https://repl.it/CmaM/1</a></p>
+        <h1><a href="https://repl.it/CmaM/1" target="_blank">Objects Review</a></h1>
       </section>
 
       <!-- SCOPE REVIEW -->
@@ -68,87 +68,90 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Scope Review</div>
 
-        <p>&#149; JavaScript scope is synonymous with variable access</p>
-        <p>&#149; In other words, what variables our functions have access to</p>
-        <p>&#149; We've discussed two types of scope: global and local</p>
+        <div class="text-smaller">
+          <p>&#149; Scope is what variables/functions code have access to</p>
+          <p>&#149; We've discussed two types of scope: <u>global</u> and <u>local</u></p>
 <pre><code>
-// global scope
-var x = 2;
+  // global scope
+  var number = 2;
 
-function local () {
-  // local scope
-  var x = 5;
-}
+  function local () {
+    // local scope
+    var number = 5;
+  }
 
-console.log(x);
-// 2
+  console.log(number);
+  // 2
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Scope Review</div>
 
-        <p>Global Scope:</p>
-        <p>&#149; Variables declared <u>outside</u> of functions</p>
-        <p>&#149; Can be accessed anywhere in the execution environment</p>
+        <div class="text-smaller">
+          <p>Global Scope:</p>
+          <p>&#149; Variables declared <u>outside</u> of functions</p>
+          <p>&#149; Can be accessed anywhere in the execution environment</p>
+          <p>&#149; Assigned to the <code class="code">window</code> object</p>
 <pre><code>
-var name = 'obama';
+  var name = 'Chandler'
 
-function hello () {
-  console.log('hello, ' + name);
-}
+  function hello () {
+    console.log('hello, ' + name)
+  }
 
-hello();
-// "hello, obama"
+  hello()
+  // "hello, Chandler"
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Scope Review</div>
 
-        <p>Local Scope:</p>
-        <p>&#149; Variables declared <u>inside</u> of functions</p>
-        <p>&#149; Only accessible within the function they are declared</p>
-
+        <div class="text-smaller">
+          <p>Local Scope:</p>
+          <p>&#149; Variables declared <u>inside</u> of functions</p>
+          <p>&#149; Only accessible within the function they are declared</p>
 <pre><code>
-function hello () {
-  var name = 'obama';
-  console.log('hello, ' + name);
-}
+  function hello () {
+    var name = 'Chandler'
+    console.log('hello, ' + name)
+  }
 
-hello();
-// "hello, obama"
+  hello()
+  // "hello, Chandler"
 
-console.log(name);
-// name is not defined
+  console.log(name)
+  // name is not defined
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Scope Review: Nested Functions</div>
 
-        <div class="text-smaller">
-          <p>&#149; Each function has its own local scope</p>
-          <p>&#149; Variables created in local scope can only be accessed inside the function they were declared (Lexical Scope)</p>
-          <p>&#149; Inner functions can access variables in the scope of their outer function, but not <a href="https://repl.it/Cn2z" target="_blank">vice versa</a>:</p>
+        <div class="text-smallest">
+          <p>&#149; Nested functions can access variables in the scope of their outer function, but not <a href="https://repl.it/Cn2z" target="_blank">vice versa</a>:</p>
         </div>
 <pre><code>
-function outer () {
-  var outerVar = 1;
-  console.log(innerVar);
+  function outer () {
+    var outerVar = 1
+    console.log(innerVar) // this will not work
 
-  function inner () {
-    var innerVar = 2;
-    console.log(outerVar);
+    function inner () {
+      var innerVar = 2
+      console.log(outerVar)
+    }
+
+    inner()
   }
 
-  inner();
-}
-
-outer();
+  outer()
 
 </code></pre>
       </section>
@@ -156,38 +159,39 @@ outer();
       <section data-background="#FFF" class="text-left">
         <div class="heading">Scope Review: Nested Functions</div>
 
-        <div class="text-smaller">
+        <div class="text-smallest">
           <p>&#149; Note: <a href="https://repl.it/Cn3C/0" target="_blank">sibling scopes</a> are also restricted from accessing each other's variables</p>
 <pre><code>
-function outer () {
-  var outerVar = 1;
+  function outer () {
+    var outerVar = 1
 
-  function innerOne() {
-    var innerOneVar = 'cat';
+    function innerOne() {
+      var innerOneVar = 'cat'
 
-    console.log(innerOneVar);
-    console.log(outerVar);
+      console.log(innerOneVar)
+      console.log(outerVar)
+    }
+
+    function innerTwo() {
+      var innerTwoVar = 'dog'
+
+      console.log(innerTwoVar)
+      console.log(outerVar)
+      console.log(innerOneVar) // this will fail
+    }
+
+    innerOne()
+    innerTwo()
   }
 
-  function innerTwo() {
-    var innerTwoVar = 'dog';
+  outer()
 
-    console.log(innerTwoVar);
-    console.log(outerVar);
-    console.log(innerOneVar);
-  }
-
-  innerOne();
-  innerTwo();
-}
-
-outer();
 </code></pre>
         </div>
       </section>
 
       <!-- CLOSURES -->
-      <section class="center">
+      <section class="title" id="closures">
         <h1>Closures</h1>
       </section>
 
@@ -410,9 +414,8 @@ var yourObject = (function() {
       </section> -->
 
       <!-- CONTEXT (MEANING AND PURPOSE OF THIS) -->
-      <section class="center">
+      <section class="title">
         <h1>Context</h1>
-        <h2>Meaning and Purpose of <code class="code">this</code></h2>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -482,7 +485,7 @@ foo() === window.foo() // true
       </section>
 
       <!-- MANIPULATING CONTEXT -->
-      <section class="center">
+      <section class="title" id="manipulating-context">
         <h1>Manipulating Context</h1>
       </section>
 
@@ -645,7 +648,14 @@ $('button').click(user.showFullName)
 
       <!-- THE END -->
       <section class="center">
-        <img src="../img/main/the-end.jpg">
+        <img src="img/main/the-end.jpg">
+      </section>
+
+      <!-- HOMEWORK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Homework</div>
+
+        <p>1) Final Project MVP</p>
       </section>
 
       <!-- ON DECK -->
