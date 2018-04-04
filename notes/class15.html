@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>JSD: Class 15</title>
+  <title>JSD: Class 16</title>
   <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/general-assembly.css" id="theme">
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
@@ -12,666 +12,534 @@
 <body>
   <div class="reveal">
     <div class="slides">
-      <section class="hero">
-        <h1>Hello</h1>
-        <div class="opening-instructions">
-          <p>1) Please download <a href="../materials/class15.zip" target="_blank">Class 15 Starter Code</a></p>
-          <p>2) Move the following into <code class="code">class-work</code>:</p>
-          <div class="pad-left-lg">
-            <p>&#149; <code class="code">sticky_notes</code></p>
+        <section class="center">
+          <h1>Hello</h1>
+          <div class="text-left text-smaller">
+            <p>Pull down this class's exercises and homework:</p>
+            <div class="pad-left-lg">
+              <p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
+              <p>&#149; Run <code class="code">git pull</code></p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="hero condensed">
-        <h1>Class <span class="red">#15</span></h1>
-        <h1>04/04/2018</h1>
-        <h1 class="lesson-title">Closures, Context, and <code class="code lower">this</code></h1>
-      </section>
+        <section class="center">
+          <h1>Class <span style="color: red;">#15</span> - 08/18/2016</h1>
+          <h1>Intro to CRUD and Firebase</h1>
+        </section>
 
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Announcements</div>
-
-        <div class="text-smaller">
-          <p>&#149; Final Class: Tuesday, April 17th</p>
-          <p>&#149; Make-up Class: Saturday, April 7th and 14th</p>
-          <p>&#149; Weekend Office Hours: Sunday, April 15th</p>
-          <p>&#149; Final Project</p>
-          <div class="pad-left-lg">
-            <p>&rArr; Due in 2 weeks</p>
-            <p>&rArr; Fourth deliverable due April 9th: MVP</p>
+        <!-- ANNOUNCEMENTS -->
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Announcements</div>
+          <div class="text-smallest">
+            <p>&#149; Final Project (T-Minus 19 days...)</p>
+            <div class="pad-left-lg text-smallest">
+              <p>&rArr; Next deliverable due 08/23:</p>
+              <div class="pad-left-lg">
+                <p>&#149; Wrapping up API functionality</p>
+                <p>&#149; Additional HTML/CSS</p>
+              </div>
+              <p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
+            </div>
+            <p>&#149; Weekend Office Hours:</p>
+            <div class="pad-left-lg text-smallest">
+              <p>&rArr; 8/20 (Sat) Noon - 2:00PM (3rd floor, Room: TBD)</p>
+              <p>&rArr; 8/28 (Sun), 9/03 (Sat), maybe 9/04 (Sun)</p>
+            </div>
+            <p>&#149; Student Choice for Class 17:</p>
+            <div class="pad-left-lg text-smallest">
+              <p>&rArr; Node + Express Server</p>
+              <p>&rArr; D3.js</p>
+              <p>&rArr; Angular.js</p>
+              <p>&rArr; Google Maps</p>
+            </div>
           </div>
-          <p>&#149; <a href="../materials/dom_exercises.zip">DOM exercises</a></p>
-        </div>
-      </section>
-
-      <!-- AGENDA -->
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Agenda</div>
-        <p>&#149; <a href="#/scope-review">Scope Review</a></p>
-        <p>&#149; <a href="#/closures">Closures</a></p>
-        <!-- <p>&#149; The Module Pattern</p> -->
-        <p>&#149; <a href="#/context">Context</a></p>
-        <p>&#149; <a href="#/manipulating-context">Manipluating Context</a></p>
-      </section>
-
-      <!-- OBJECTS REVIVEW -->
-      <section class="center">
-        <h1><a href="https://repl.it/CmaM/1" target="_blank">Objects Review</a></h1>
-      </section>
-
-      <!-- SCOPE REVIEW -->
-      <section class="title" id="scope-review">
-        <h1>Scope Review</h1>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Scope Review</div>
-
-        <div class="text-smaller">
-          <p>&#149; Scope is what variables/functions code have access to</p>
-          <p>&#149; We've discussed two types of scope: <u>global</u> and <u>local</u></p>
-<pre><code>
-  // global scope
-  var number = 2;
-
-  function local () {
-    // local scope
-    var number = 5;
-  }
-
-  console.log(number);
-  // 2
-
-</code></pre>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Scope Review</div>
-
-        <div class="text-smaller">
-          <p>Global Scope:</p>
-          <p>&#149; Variables declared <u>outside</u> of functions</p>
-          <p>&#149; Can be accessed anywhere in the execution environment</p>
-          <p>&#149; Assigned to the <code class="code">window</code> object</p>
-<pre><code>
-  var name = 'Chandler'
-
-  function hello () {
-    console.log('hello, ' + name)
-  }
-
-  hello()
-  // "hello, Chandler"
-
-</code></pre>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Scope Review</div>
-
-        <div class="text-smaller">
-          <p>Local Scope:</p>
-          <p>&#149; Variables declared <u>inside</u> of functions</p>
-          <p>&#149; Only accessible within the function they are declared</p>
-<pre><code>
-  function hello () {
-    var name = 'Chandler'
-    console.log('hello, ' + name)
-  }
-
-  hello()
-  // "hello, Chandler"
-
-  console.log(name)
-  // name is not defined
-
-</code></pre>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Scope Review: Nested Functions</div>
-
-        <div class="text-smallest">
-          <p>&#149; Nested functions can access variables in the scope of their outer function, but not <a href="https://repl.it/Cn2z" target="_blank">vice versa</a>:</p>
-        </div>
-<pre><code>
-  function outer () {
-    var outerVar = 1
-    console.log(innerVar) // this will not work
-
-    function inner () {
-      var innerVar = 2
-      console.log(outerVar)
-    }
-
-    inner()
-  }
-
-  outer()
-
-</code></pre>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Scope Review: Nested Functions</div>
-
-        <div class="text-smallest">
-          <p>&#149; Note: <a href="https://repl.it/Cn3C/0" target="_blank">sibling scopes</a> are also restricted from accessing each other's variables</p>
-<pre><code>
-  function outer () {
-    var outerVar = 1
-
-    function innerOne() {
-      var innerOneVar = 'cat'
-
-      console.log(innerOneVar)
-      console.log(outerVar)
-    }
-
-    function innerTwo() {
-      var innerTwoVar = 'dog'
-
-      console.log(innerTwoVar)
-      console.log(outerVar)
-      console.log(innerOneVar) // this will fail
-    }
-
-    innerOne()
-    innerTwo()
-  }
-
-  outer()
-
-</code></pre>
-        </div>
-      </section>
-
-      <!-- CLOSURES -->
-      <section class="title" id="closures">
-        <h1>Closures</h1>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closures</div>
-
-        <div class="text-smallest">
-          <p>&#149; A closure is an inner function that has access to the outer (enclosing) function's scope</p>
-          <p>&#149; <code class="code">makeFullName</code> has access to the outer function's variables, including the parameter</p>
-          <p>&#149; Note: <code class="code">makeFullName</code> was returned <u>before</u> it was executed</p>
-<pre><code>
-function showName (firstName, lastName) {
-  var nameIntro = 'Your name is ';
-
-  function makeFullName () {
-    return nameIntro + firstName + ' ' + lastName;
-  }
-
-  return makeFullName;
-}
-
-var obama = showName('barack', 'obama');
-
-obama();
-
-</code></pre>
-          <p>&#149; <a href="https://repl.it/Cn9D/0" target="_blank">https://repl.it/Cn9D/0</a></p>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closures</div>
-
-        <div class="text-smallest">
-          <p>&#149; When functions in JavaScript execute, they use the same scope that was in effect when they were created</p>
-          <p>&#149; Closures have access to the outer function's scope - even after the outer function returns</p>
-          <p>&#149; Therefore, you can call the inner function later in your <a href="https://repl.it/Cn9M/0" target="_blank">program</a>:</p>
-<pre><code>
-function showName (firstName, lastName) {
-  var nameIntro = 'Your name is ';
-
-  // the inner function, makeFullName, has access to the outer's variables, including its parameters
-  function makeFullName () {
-    return nameIntro + firstName + ' ' + lastName;
-  }
-
-  return makeFullName;
-}
-
-// The outer function, showName, is called and returns
-var obama = showName('barack', 'obama');
-
-// The closure is called here after the outer function has returned above
-// It retains access to the outer function's variables and parameters!
-obama();
-
-</code></pre>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closures</div>
-
-        <div class="text-smaller">
-          <p>&#149; Closures combine:</p>
-          <div class="pad-left-lg">
-            <p>1) A function</p>
-            <p>2) The environment in which the function was created</p>
-          </div>
-          <p class="fragment">&#149; Let you closely associate some data (the environment) with a function that operates on said data</p>
-          <div class="fragment">
-            <p>&#149; Much of the code JS-devs write is event-based: code is attached to a browser action (e.g. <code class="code">onclick</code>) in the form of a callback</p>
-            <p>&#149; For example...</p>
-          </div>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closures</div>
-
-        <div class="text-smaller">
-          <p>&#149; Assuming the following HTML and JS:</p>
-<pre><code>
-// HTML
-&lt;button&gt;Click Me!&lt;/button&gt;
-
-// JS
-$(document).ready(function () {
-
-  var count = 0;
-
-  $('button').click(function () {
-    alert(count);
-  })
-})
-
-</code></pre>
-          <p>&#149; <code class="code">click</code> closes over <code class="code">count</code> and continues to have access to this variable no matter how many times the user clicks on the <code class="code">&lt;button&gt;</code></p>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closures</div>
-
-        <div class="text-smallest">
-          <p>&#149; Multiple functions share access to the same variables in their clousure:</p>
-          <p>&#149; <a href="http://codepen.io/cheshireoctopus/pen/BzbjZj?editors=1010" target="_blank">Below</a>, both close over <code class="code">count</code> so whenever it changes, both scope chains have access to the new value!</p>
-          <p>&#149; Note: this behavior can lead to incorrectly referenced variables...</p>
-
-
-<pre><code>
-// HTML
-&lt;button id="increase">Increase Number +&lt;/button&gt;
-&lt;button id="show">Show Me!&lt;/button&gt;
-
-// JS
-$(document).ready(function() {
-
-  var count = 0;
-
-  $('#increase').click(function () {
-    count = count + 1;
-  })
-
-  $('#show').click(function () {
-    alert(count);
-  })
-})
-
-</code></pre>
-        </div>
-      </section>
-
-      <section class="center">
-        <h1>Closure Exercise 1</h1>
-        <p>Open up <code class="code">sticky_notes</code> in Sublime Text</p>
-      </section>
-
-      <section class="center">
-        <h1>Closure Exercise 2</h1>
-        <p>Open <a href="https://repl.it/CnEc/3" target="_blank">https://repl.it/CnEc/3</a></p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closure Exercise 2</div>
-
-        <p>The Problem:</p>
-        <p>&#149; The inner function accesses the outer function's variable (<code class="code">positionInQueue</code>) by reference, not by value</p>
-        <p>&#149; The value of <code class="code">positionInQueue</code> was incremented in a for loop that ran thrice; its referenced value ended up being 4 (1 + 1 + 1 + 1)</p>
-        <p>&#149; We have a few methods to fix the code so that our closure uses the correct reference</p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closure Exercise 2</div>
-
-        <p>Here is a potential solution using immediately invoked function expressions (<a href="http://gregfranko.com/blog/i-love-my-iife/" target="_blank">IIFE</a>):</p>
-        <p class="pad-left-lg"><a href="https://repl.it/CnEt/2" target="_blank">https://repl.it/CnEt/2</a></p>
-        <p>&#149; IFFE's create new scope</p>
-        <p>&#149; The IIFE takes a single parameter, <code class="code">position</code>, which is a copy of the current value of <code class="code">positionInQueue</code></p>
-        <p>&#149; Takes advantage of the way JS passes arguments by value, allowing the closure to reference a unique, unchanging value for <code class="code">position</code></p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Closure Exercise 2</div>
-
-        <p>&#149; An alternative solution, which also helps explain how the above IIFE works, is to use any one of the built-in array iteration methods, such as <code class="code">forEach</code></p>
-        <p>&#149; Here, the scope created by the function passed to <code class="code">forEach</code> also contains a unique value for index every time it is executed, allowing the closure created by .id to close over the single, unchanging value.</p>
-        <p><a href="https://repl.it/CnEv/1" target="_blank">https://repl.it/CnEv/1</a></p>
-      </section>
-
-      <!-- THE MODULE PATTERN -->
-      <!-- <section class="center">
-        <h1>The Module Pattern</h1>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">The Module Pattern</div>
-
-        <p>
-          Now that we know the ins-and-outs and quirks of scope & closure, how exactly is it useful?
-
-          Well, they can help us hide state by creating modules:
-        </p>
-
-        <p>
-          Unlike most other object-oriented languages, Javascript doesn't have a true concept of private context. Closures allow us to abstract away private variables and functions so that the public doesn't need to worry about the complicated details of how the program works, they can use the module pattern to get what they need done accomplished. In terms of this example, wheelCount and start expressions are private. The module is solely concerned with returning an object for the public to use while hiding how the values for the object properties were created. This is the main idea behind the module pattern, that it returns an object literal which through its use, is the only way to access the private functions and variables. Another benefit of the module pattern, is that it helps keep your codebase cleaner by organizing relevant code together which in turn also helps with testing and reuse.
-        </p>
-
-        <p>
-          <a href="https://repl.it/CnFG/1" target="_blank">https://repl.it/CnFG/1</a>
-        </p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">The Module Pattern</div>
-
-        <p>&#149; IN JS, all object properties are <u>public</u></p>
-        <p>&#149; No explicit way to indicate a property shouldn't be accessed from outside a object</p>
-        <p>&#149; Might not want all of an object's data to be publically accessible</p>
-        <p>&#149; There are naming conventions <code class="code">_name</code>, but they are nothing more than just a naming convention (are not very bulletproof)</p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">The Module Pattern</div>
-
-        <p>&#149; The <u>module pattern</u> is an object-creation pattern designed to create objects w/ private data</p>
-        <p>&#149; The approach involves using an IIFE to return an object</p>
-        <p>&#149; The IIFE will contain any number of local variables that are not accessible from outside the function</p>
-        <p>&#149; Because the returned object is defined within the function, the object's methods have access to its data</p>
-        <p>&#149; A closure is used</p>
-<pre><code>
-var yourObject = (function() {
-  // private data variables
-
-  return {
-    // public methods and properties
-  }
-}());
-</code></pre>
-      </section> -->
-
-      <!-- CONTEXT (MEANING AND PURPOSE OF THIS) -->
-      <section class="title">
-        <h1>Context</h1>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Context</div>
-
-        <p>&#149; Functions do not occur in a vacuum - they are always executed in relation to some object</p>
-        <p class="fragment">&#149; Context refers to whatever object is responsible for executing a function</p>
-        <p class="fragment">&#149; This object can be referenced using the tool: <code class="code">this</code></p>
-        <p class="fragment">&#149; In other words, <code class="code">this</code> represents whatever object is in context when a function runs</p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Context</div>
-
-        <div class="text-smaller">
-          <p>&#149; In the browser, the top-level object in the global scope is <code class="code">window</code></p>
-<pre><code>
-console.log(this === window)
-// true
-
-</code></pre>
-          <div class="fragment">
-            <p>&#149; By default a function runs within the scope of the object it sits in, so in this case this is still equivalent to the window object.</p>
-<pre><code>
-function foo() {
-    console.log(this === window)
-}
-
-foo()
-// true
-
-</code></pre>
-          </div>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Context</div>
-
-        <p>In fact:</p>
-<pre><code>
-foo() === window.foo() // true
-
-</code></pre>
-        <p>&#149; Here you can see that <code class="code">foo()</code> is a property of the object it's running in.</p>
-
-        <p>&#149; Note: We would never need to explicitly code the <code class="code">window</code> object like this, but this example illustrates the point that the function <code class="code">foo</code> does in fact exist within <code class="code">window</code> when it runs in the global scope.</p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Context</div>
-
-        <div class="text-smaller">
-          <p>&#149; So, what's the purpose of context and <code class="code">this</code>?</p>
-          <p class="pad-left-lg"><a href="https://repl.it/CnFR/1" target="_blank">https://repl.it/CnFR/1</a></p>
-          <p>&#149; In <code class="code">printASL</code> we are referring to the <code class="code">chatroomUser</code> object using:</p>
-          <div class="pad-left-lg">
-            <p>&rArr; <code class="code">chatroomUser</code></p>
-            <p>&rArr; <code class="code">this</code></p>
-          </div>
-          <div class="fragment">
-            <p>&#149; What if we wanted to turn <code class="code">chatroomUser</code> into a constructor?</p>
-            <p>&#149; Using <code class="code">this</code> allows precision and removes any ambiguity from our code</p>
-            <p>&#149; <code class="code">this</code> allows us to set (manipulate) the context of any function we call</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- MANIPULATING CONTEXT -->
-      <section class="title" id="manipulating-context">
-        <h1>Manipulating Context</h1>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Manipulating Context</div>
-
-        <div class="text-smaller">
-          <p>&#149; Recall: functions are objects; objects have properties</p>
-          <p>&#149; Also recall: when a function executes, <code class="code">this</code> refers to the object that invokes the function</p>
-<pre><code>
-var user = {
-  firstName: 'Barack',
-  lastName: 'Obama',
-  showFullName: function() {
-    console.log(this.firstName + ' ' + this.lastName)
-  }
-}
-
-user.showFullName()
-// Barack Obama
-
-</code></pre>
-          <div class="fragment">
-
-            <p>&#149; Sometimes, <code class="code">this</code> doesn't behave as <a href="http://codepen.io/cheshireoctopus/pen/pbGKba?editors=1010#0" target="_blank">expected</a></p>
-            <p>&#149; The above is an example of when we want to change what <code class="code">this</code> refers to</p>
-          </div>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Manipulating Context</div>
-
-        <div class="text-smaller">
-          <p>There are three methods that allow us to control context:</p>
-          <p><code class="code">call</code>: Calls a function with a given <code class="code">this</code> value and arguments provided individually</p>
-          <p><code class="code">apply</code>: Calls a function with a given <code class="code">this</code> value and arguments provided as an array (or an array-like object)</p>
-          <p><code class="code">bind</code>: Creates a new function that, when called, has its <code class="code">this</code> keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called</p>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Manipulating Context</div>
-
-        <p>Call:</p>
-<pre><code>
-function speak (prefix) {
-  console.log(prefix + ' ' + this.sound);
-}
-
-var dog = {
-  sound: 'woof'
-}
-
-speak.call(dog, 'the dog says')
-// 'the dog says woof'
-
-</code></pre>
-        <div class="fragment">
-        <hr>
-<pre><code>
-$('button').click(function() {
-  user.showFullName.call(user)
-})
-
-</code></pre>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Manipulating Context</div>
-
-        <p>Apply</p>
-<pre><code>
-function speak (prefix) {
-  console.log(prefix + ' ' + this.sound);
-}
-
-var cat = {
-  sound: 'meow',
-}
-
-speak.apply(cat, ['the cat says'])
-// 'the cat says meow'
-
-</code></pre>
-
-        <div class="fragment">
-          <hr>
-<pre><code>
-$('.button').click(function() {
-  user.showFullName.apply(user) // Chelsea Logan
-})
-
-</code></pre>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Manipulating Context</div>
-
-        <div class="text-smallest">
-          <p>&#149; <code class="code">call</code> and <code class="code">apply</code> yield the same end result</p>
-          <p>&#149; The first parameter in both is always responsible for establishing context (<code class="code">this</code>)</p>
-          <p>&#149; They differ in how many remaining arguments they take</p>
-          <p>&#149; <code class="code">call</code> takes individual arguments, while <code class="code">apply</code> takes an array</p>
-<pre><code>
-var user = {
-  firstName: 'Barack',
-  lastName: 'Obama',
-  showFullName: function(x, y, z) {
-    console.log(this.firstName + ' ' + this.lastName, x, y, z)
-  }
-}
-
-$('button').click(function() {
-  user.showFullName.call(user, 1, 2, 3)
-  // Barack Obama 1 2 3
-})
-
-$('button').click(function() {
-  user.showFullName.apply(user, [1, 2, 3])
-  // Barack Obama 1 2 3
-})
-
-</code></pre>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Manipulating Context</div>
-
-        <div class="text-smaller">
-          <p>&#149; <code class="code">bind</code> is different in that it doesn't set the context of a function, but rather <u>creates</u> an entire new function with the context (and arguments) supplied</p>
-<pre><code>
-var user = {
-  firstName: 'Barack',
-  lastName: 'Obama',
-  showFullName: function() {
-    console.log(this.firstName + ' ' + this.lastName)
-  }
-}
-
-// declare a new variable whose value is the user.showFullName function with a context set to user
-var contextSetUser = user.showFullName.bind(user)
-$('button').click(contextSetUser)
-// Barack Obama
-
-$('button').click(user.showFullName)
-// undefined undefined
-
-</code></pre>
-        </div>
-      </section>
-
-      <section class="center">
-        <h1>Manipulating Context Lab</h1>
-        <p>Complete the following: <a href="https://repl.it/CnF7/1" target="_blank">https://repl.it/CnF7/1</a></p>
-      </section>
-
-      <!-- THE END -->
-      <section class="center">
-        <img src="img/main/the-end.jpg">
-      </section>
-
-      <!-- HOMEWORK -->
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Homework</div>
-
-        <p>1) Final Project MVP</p>
-      </section>
-
-      <!-- ON DECK -->
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">What's On Deck</div>
-        <h4>Class #16 (of 20) - Intro to CRUD and Firebase</h4>
-        <div class="pad-left-lg">
-          <p>&#149; CRUD: Create, Read, Update, Delete</p>
+        </section>
+
+        <!-- AGENDA -->
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Agenda</div>
+          <p>&#149; Intro to CRUD</p>
           <p>&#149; Firebase</p>
-        </div>
-      </section>
+          <div class="pad-left-lg">
+            <p>&rArr; Setup</p>
+            <p>&rArr; Create w/ Firebase</p>
+            <p>&rArr; Read w/ Firebase</p>
+            <p>&rArr; Update w/ Firebase</p>
+            <p>&rArr; Delete w/ Firebase</p>
+          </div>
+          <p>&#149; Final project updates</p>
+        </section>
 
-      <section class="center">
-        <h1>Exit Tickets!</h1>
-      </section>
-    </div>
+        <!-- CRUD -->
+        <section class="center">
+          <h1>Intro to CRUD</h1>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Intro to CRUD</div>
+
+          <p>&#149; Most applications are wrappers around four data-related actions:</p>
+          <div class="pad-left-lg">
+            <p><u>C</u>reate</p>
+            <p><u>R</u>ead</p>
+            <p><u>U</u>pdate (edit)</p>
+            <p><u>D</u>elete</p>
+          </div>
+          <p class="fragment">&#149; Instagram, Facebook, GMail, Percolate...</p>
+          <p class="fragment">&#149; Tonight, we will explore CRUD and how to implement this functionality using Firebase</p>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Intro to CRUD</div>
+
+          <p>&#149; You have already used some technical implementations of performing CRUD:</p>
+          <div class="pad-left-lg text-smaller">
+            <p class="fragment">&rArr; For the 500px lab, you had to <code class="code">GET</code> various photos from an endpoint</p>
+            <p class="fragment">&rArr; For the Feedr lab, you also had to <code class="code">GET</code> various data feeds from Reddit, Digg, and Mashable</p>
+          </div>
+          <p class="fragment">&#149; Which CRUD action does <code class="code">GET</code> align with?</p>
+          <p class="fragment">&#149; Surprise: CRUD and HTTP actions are related!</p>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Intro to CRUD</div>
+
+          <div class="text-smaller">
+            <p>&#149; Recall, when communicating with a web-based API, the developer has the option to utilize HTTP actions: GET, POST, PUT, and DELETE</p>
+            <p>&#149; Each of these HTTP actions is related to a CRUD action:</p>
+          </div>
+          <div class="text-center">
+            <img src="../img/class15/http-crud.png" alt="">
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Intro to CRUD</div>
+          <div class="text-smallest">
+            <p>1) Open up the docs to the API you are using for your final project</p>
+            <p>2) Locate the HTTP methods (the endpoints in the docs) a developer must use in order to: Create, Read, Update, and Destroy a record</p>
+            <p class="pad-left-lg">&#149; Ex: What endpoint must a developer who wants to Create an post on Instagram use?</p>
+            <p>3) Once you've located your methods, let Joe or me know</p>
+            <p>&#149; Note: Certain APIs may not allow for full CRUD functionality. If you're researching one of these APIs be sure to point out its limitations </p>
+            <p>&#149; Note 2: Not using an API? Please select an API of your choice and locate these methods :)</p>
+          </div>
+        </section>
+
+        <!-- FIREBASE -->
+        <section class="center">
+          <h1>Firebase</h1>
+          <h2>A Backend Service</h2>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Intro</div>
+
+          <p>&#149; We have covered how to consume data from third-party APIs, but have not yet created our own API</p>
+          <p class="fragment">&#149; The process of actually creating the API, not consuming it, is what is known as back-end development</p>
+          <p class="fragment">&#149; We have learned <u>frontend</u> dev, not <u>backend</u> dev</p>
+          <p class="fragment">&#149; We will be leveraging <a href="https://firebase.google.com/" target="_blank">Firebase</a>, a backend-as-a-service, to build our own API and persist (store) data</p>
+
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Intro</div>
+
+          <p>&#149; Firebase serves as the entire backend of an application:</p>
+          <div class="pad-left-lg text-smallest">
+            <p>&rArr; Provides a database to persist application data</p>
+            <p>&rArr; Provides an easy-to-use API for CRUD actions against this DB</p>
+            <p>&rArr; Assist with user-authentication</p>
+            <p>&rArr; Offers an analytics suite</p>
+            <p>&rArr; Offers infrastructure (hosting)</p>
+          </div>
+          <p>&#149; Free service (up to a point)</p>
+          <p>&#149; Acquired by Google in <a href="https://techcrunch.com/2014/10/21/google-acquires-firebase-to-help-developers-build-better-realtime-apps/" target="_blank">October</a>, 2014</p>
+        </section>
+
+        <!-- FIREBASE SETUP -->
+        <section class="center">
+          <h1>Firebase Setup</h1>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <p>&#149; You are about to build your first CRUD app!</p>
+          <p>&#149; We are building a message board that allows users to:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Create messages</p>
+            <p>&rArr; Read messages</p>
+            <p>&rArr; Update messages (upvote and downvote)</p>
+            <p>&rArr; Delete messages</p>
+          </div>
+          <p>&#149; Firebase will provide our backend</p>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <p>&#149; Open <code class="code">korn_app</code> in Sublime Text</p>
+          <p>&#149;Starter Code:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; <code class="code">app.js</code></p>
+            <p>&rArr; <code class="code">keys.js</code></p>
+            <p>&rArr; <code class="code">index.html</code></p>
+            <p>&rArr; <code class="code">styles.css</code></p>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <div class="text-smaller">
+            <p>&#149; Sign up at <a href="https://www.firebase.com/" target="_blank">https://www.firebase.com/</a></p>
+            <p>&#149; Firebase requires you to sign up with Google (you will need a Google account)</p>
+            <p>&#149; Click through to "See our new website" - then "Get Started For Free"</p>
+            <div class="fragment">
+              <p>&#149; After signing up, you will be taken to your <u>Console</u> where you can create new apps</p>
+              <p>&#149; Click "Create New Project" and enter a project name (JSD-KORN-APP)</p>
+              <p>&#149; After creation, you will be taken to your new app's <u>Overview</u> page</p>
+            </div>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <p>Select "Add Firebase to your web app":</p>
+          <img src="../img/class15/firebase-app-overview.png" alt="">
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <p>Copy the following configuration code into your <code class="code">index.html</code>:</p>
+          <img src="../img/class15/firebase-app-config.png" alt="">
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <div class="text-smaller">
+            <p>&#149; A closer look at the configuration code:</p>
+<pre><code>
+  &lt;script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // Initialize Firebase
+    var config = {
+      apiKey: "ThisIsYourAPIKey",
+      authDomain: "thisIsYourApp.firebaseapp.com",
+      databaseURL: "https://thisIsYourAppDB.firebaseio.com",
+      storageBucket: "ThisIsYourStorage.appspot.com",
+    };
+    firebase.initializeApp(config);
+  &lt;/script&gt;
+
+</code></pre>
+            <p>&#149; Move the JS code from the second <code class="code">&lt;script&gt;</code> into <code class="code">keys.js</code></p>
+            <p>&#149; The starter code already has the <code class="code">gstatic</code> script</p>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <p>To ensure you are connecting with your Firebase app, we have to leverage Firebase's hosting services:</p>
+          <img src="../img/class15/firebase-app-hosting.png" alt="">
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <p>Now, install the Firebase command line tools to make deployment easy (you might have to run with <code class="code">sudo</code>):</p>
+          <img src="../img/class15/firebase-app-tools.png" alt="">
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <div class="text-smallest">
+            <p>&#149; 1) From the cmd line, navigate into to your starter code's root</p>
+            <p>&#149; 2) Run <code class="code">firebase login</code> to authenticate</p>
+            <p>&#149; 3) Then run <code class="code">firebase init</code> to build your app locally:</p>
+            <div class="text-center">
+              <img src="../img/class15/firebase-init.png" alt="">
+            </div>
+            <p>&#149; Note: select the Firebase app you just created</p>
+            <p>&#149; Continue to hit enter until the initilization is complete</p>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Setup</div>
+
+          <p>&#149; The init process will create a series of files in your current directory:</p>
+          <div class="pad-left-lg text-smallest">
+            <p>&rArr; <code class="code">.firebaserc</code></p>
+            <p>&rArr; <code class="code">database.rules.json</code></p>
+            <p>&rArr; <code class="code">firebase.json</code></p>
+          </div>
+          <p>&#149; Inside <code class="code">database.rules.json</code>:</p>
+<pre><code>
+  {
+    "rules": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+
+</code></pre>
+        </section>
+
+        <!-- FIREBASE CREATE -->
+        <section class="center">
+          <h1>Firebase Create</h1>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Create</div>
+
+          <p>&#149; The first part of our app will focus on creating messages for our board</p>
+          <p>&#149; Consider the steps necessary to achieve this:</p>
+          <div class="pad-left-lg text-smaller">
+            <p class="fragment">1) Create the necessary HTML <code class="code">&lt;form&gt;</code> (already done!)</p>
+            <p class="fragment">2) Attach a <code class="code">submit</code> handler to this <code class="code">&lt;form&gt;</code></p>
+            <p class="fragment">3) Pull the data (our fan message) from the DOM</p>
+            <p class="fragment">4) Send this data to our backend to persist it in the database</p>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Create</div>
+
+          <p>&#149; Inside <code class="code">js/app.js</code> add the following:</p>
+          <div class="pad-left-lg text-smallest">
+            <p class="fragment">1) <code class="code">$(document).ready()</code></p>
+            <div class="fragment">
+              <p>2) Connect to our Firebase data base via:</p>
+              <p class="pad-left-lg"><code class="code">var messageAppReference = firebase.database();</code></p>
+            </div>
+            <p class="fragment">3) A <code class="code">submit</code> event attached to <code class="code">#message-form</code></p>
+            <p class="fragment">4) Remember to use <code class="code">event.preventDefault()</code>!</p>
+            <p class="fragment">5) Store the user input from <code class="code">#message</code> in a variable</p>
+            <div class="fragment">
+              <p>6) Send data to your Firebase DB:</p>
+<pre><code>
+  messagesReference.push({
+    message: message,
+    votes: 0
+  })
+
+</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Create</div>
+
+          <p>&#149; Use the form to create a few messages, and then visit your app's Database dashboard</p>
+          <p>&#149; You should be able to view (and interact with) your data!</p>
+          <div class="text-center">
+            <img src="../img/class15/firebase-app-view-data.png" alt="">
+          </div>
+        </section>
+
+        <!-- FIREBASE READ -->
+        <section class="center">
+          <h1>Firebase Read</h1>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Read</div>
+
+          <p>&#149; So we can create messages; now we need to display them</p>
+          <p>&#149; Conceptualize the steps for our <b>read</b> action:</p>
+          <div class="pad-left-lg">
+            <p class="fragment">1) We first need to <u>fetch</u> our data (messages) from the API (Firebase)</p>
+            <p class="fragment">2) These messages need to be iterated over and formatted properly</p>
+            <p class="fragment">3) Lastly, we render these objects in the DOM</p>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Read</div>
+          <p>&#149; Add the following to your <code class="code">app.js</code>:</p>
+<pre><code>
+  function getFanMessages() {
+    messageAppReference.ref('messages').on('value', function (results) {
+
+      results.forEach(function (msg) {
+        var message = msg.val();
+        console.log(message);
+      })
+    })
+  }
+
+</code></pre>
+          <p>&#149; See if you can append the <code class="code">message</code> object to the DOM</p>
+          <p>&#149; Hint: use the <code class="code">&lt;ul class="message-board"&gt;</code></p>
+        </section>
+
+        <!-- FIREBASE UPDATE -->
+        <section class="center">
+          <h1>Firebase Update</h1>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Update</div>
+
+          <p>&#149; We want to more than just render our messages:</p>
+          <div class="pad-left-lg">
+            <p>1) Upvote a message</p>
+            <p>2) Downvote a message (damn haters)</p>
+          </div>
+          <p>&#149; Firebase makes updating a record easy via the <code class="code">update()</code> API</p>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Update</div>
+
+          <div class="text-smaller">
+            <p>&#149; Before we utilize the API, we need to add the proper DOM elements for upvoting and downvoting</p>
+            <p>&#149; Add the following into your <code class="code">forEach</code> loop:</p>
+<pre><code>
+  // create up vote element
+  var $upVoteElement = $('<i class="fa fa-thumbs-up pull-right"></i>');
+
+  $upVoteElement.on('click', function () {
+    updateMessage(id, ++votes);
+  })
+
+  // create down vote element
+  var $downVoteElement = $('<i class="fa fa-thumbs-down pull-right"></i>');
+
+  $downVoteElement.on('click', function () {
+    updateMessage(id, --votes);
+  })
+
+  // add voting elements to $li
+  $li.append($upVoteElement);
+  $li.append($downVoteElement);
+
+</code></pre>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Update</div>
+
+          <p>&#149; Our DOM elements are calling a function <code class="code">updateMessage</code></p>
+          <p>&#149; This function takes a message <code class="code">id</code> and a <code class="code">voteCount</code></p>
+          <p>&#149; It then sends an request to the Firebase API to update our message record:</p>
+          <div class="fragment">
+<pre><code>
+  function updateMessage (id, votes) {
+    // find message whose objectId is equal to the id we're searching with
+    var messageReference = messageAppReference.ref('messages/' + id);
+
+    // update votes property
+    messageReference.update({
+      votes: votes
+    })
+  }
+
+</code></pre>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Update</div>
+
+          <p>&#149; Lastly, let's add a DOM element that displays each message's current vote count:</p>
+          <p>&#149; Add the following into your <code class="code">forEach</code> loop:</p>
+<pre><code>
+  $li.append('&lt;div class="pull-right"&gt;' + votes + '&lt;/div&gt;');
+
+</code></pre>
+        </section>
+
+        <!-- FIREBASE DELETE -->
+        <section class="center">
+          <h1>Firebase Delete</h1>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Delete</div>
+
+          <p>&#149; Our final action will allow users to delete messages</p>
+          <p>&#149; Delete requests in Firebase work as follows:</p>
+          <div class="pad-left-lg">
+            <p>1) Get the unique ID (key) of the object we wish to delete</p>
+            <p>2) Reference this object in our local Firebase.database instance</p>
+            <p>3) Call the <code class="code">.remove()</code> method on this object</p>
+          </div>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Delete</div>
+
+          <p>&#149; First, let's add the necessary DOM elements</p>
+          <p>&#149; Add the following into your <code class="code">forEach</code> loop:</p>
+<pre><code>
+  // create delete element
+  var $deleteElement = $('&lt;i class="fa fa-trash pull-right delete"&gt;&lt;/i&gt;');
+
+  $deleteElement.on('click', function () {
+    deleteMessage(id);
+  })
+
+  $li.append($deleteElement);
+
+</code></pre>
+        </section>
+
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Firebase Delete</div>
+
+          <p>&#149; Now, create the proper function to call <code class="code">.remove()</code>:</p>
+<pre><code>
+  function deleteMessage (id) {
+    // find message whose objectId is equal to the id we're searching with
+    var messageReference = messageAppReference.ref('messages/' + id);
+
+    messageReference.remove();
+  }
+
+</code></pre>
+        </section>
+
+        <!-- THE END -->
+        <section class="center">
+          <img src="../img/main/the-end.jpg">
+        </section>
+
+        <!-- HOMEWORK -->
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">Homework</div>
+          <p>1) Final project:</p>
+          <div class="pad-left-lg">
+            <p>&#149; Wrapping up API functionality</p>
+            <p>&#149; Additional HTML/CSS</p>
+          </div>
+        </section>
+
+        <!-- ON DECK -->
+        <section data-background="#FFF" class="text-left">
+          <div class="heading">What's On Deck</div>
+          <h4>Class #16 (of 20) - Deploying Your App</h4>
+          <div class="pad-left-lg">
+            <p>&#149; Deployment w/ GitHub Pages</p>
+            <p>&#149; Deployment w/ Heroku</p>
+            <p>&#149; Heroku + Firebase</p>
+          </div>
+        </section>
+
+        <section class="center">
+          <h1>Exit Tickets!</h1>
+        </section>
+   </div>
   </div>
 
   <script src="js/head.min.js"></script>
