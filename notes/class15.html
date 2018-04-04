@@ -52,11 +52,11 @@
         <p>&#149; <a href="#/intro-to-crud">Intro to CRUD</a></p>
         <p>&#149; <a href="#/firebase">Firebase</a>:</p>
         <div class="pad-left-lg text-smaller">
-          <p>&rArr; Setup</p>
-          <p>&rArr; Create w/ Firebase</p>
-          <p>&rArr; Read w/ Firebase</p>
-          <p>&rArr; Update w/ Firebase</p>
-          <p>&rArr; Delete w/ Firebase</p>
+          <p>&rArr; <a href="#/firebase-setup">Setup</a></p>
+          <p>&rArr; <a href="#/firebase-create">Create</a></p>
+          <p>&rArr; <a href="#/firebase-read">Read</a></p>
+          <p>&rArr; <a href="#/firebase-update">Update</a></p>
+          <p>&rArr; <a href="#/firebase-delete">Delete</a></p>
         </div>
       </section>
 
@@ -118,26 +118,29 @@
         </div>
       </section>
 
-        <!-- FIREBASE -->
-        <section class="title" id="firebase">
-          <h1>Firebase</h1>
-        </section>
+      <!-- FIREBASE -->
+      <section class="title" id="firebase">
+        <h1>Firebase</h1>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Intro</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Intro</div>
 
-          <p>&#149; We have covered how to consume data from third-party APIs, but have not yet created our own API</p>
-          <p class="fragment">&#149; The process of actually creating the API, not consuming it, is what is known as back-end development</p>
-          <p class="fragment">&#149; We have learned <u>frontend</u> dev, not <u>backend</u> dev</p>
+        <div class="text-smaller">
+          <p>&#149; So far, we have consumed data from third-party APIs...</p>
+          <p class="fragment">&#149; ...but, we have not yet created our own API</p>
+          <p class="fragment">&#149; Building an API could fall under backend development</p>
+          <p class="fragment">&#149; We have focused on frontend development...</p>
           <p class="fragment">&#149; We will be leveraging <a href="https://firebase.google.com/" target="_blank">Firebase</a>, a backend-as-a-service, to build our own API and persist (store) data</p>
+        </div>
+      </section>
 
-        </section>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Intro</div>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Intro</div>
-
+        <div class="text-smaller">
           <p>&#149; Firebase serves as the entire backend of an application:</p>
-          <div class="pad-left-lg text-smallest">
+          <div class="pad-left-lg text-smaller">
             <p>&rArr; Provides a database to persist application data</p>
             <p>&rArr; Provides an easy-to-use API for CRUD actions against this DB</p>
             <p>&rArr; Assist with user-authentication</p>
@@ -146,132 +149,140 @@
           </div>
           <p>&#149; Free service (up to a point)</p>
           <p>&#149; Acquired by Google in <a href="https://techcrunch.com/2014/10/21/google-acquires-firebase-to-help-developers-build-better-realtime-apps/" target="_blank">October</a>, 2014</p>
-        </section>
+        </div>
+      </section>
 
-        <!-- FIREBASE SETUP -->
-        <section class="center">
-          <h1>Firebase Setup</h1>
-        </section>
+      <!-- FIREBASE SETUP -->
+      <section class="title" id="firebase-setup">
+        <h1>Firebase Setup</h1>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
 
-          <p>&#149; You are about to build your first CRUD app!</p>
-          <p>&#149; We are building a message board that allows users to:</p>
-          <div class="pad-left-lg">
-            <p>&rArr; Create messages</p>
-            <p>&rArr; Read messages</p>
-            <p>&rArr; Update messages (upvote and downvote)</p>
-            <p>&rArr; Delete messages</p>
+        <p>&#149; You are about to build your first CRUD app!</p>
+        <p>&#149; We are building a message board that allows users to:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&rArr; Create messages</p>
+          <p>&rArr; Read messages</p>
+          <p>&rArr; Update messages (upvote and downvote)</p>
+          <p>&rArr; Delete messages</p>
+        </div>
+        <p>&#149; Firebase will provide our backend</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
+
+        <p>&#149; Open <code class="code">keanu_fan_app</code> in Sublime Text</p>
+        <p>&#149;Starter Code:</p>
+        <div class="pad-left-lg">
+          <p>&rArr; <code class="code">app.js</code></p>
+          <p>&rArr; <code class="code">keys.js</code></p>
+          <p>&rArr; <code class="code">index.html</code></p>
+          <p>&rArr; <code class="code">styles.css</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
+
+        <div class="text-smaller">
+          <p>&#149; Sign up at <a href="https://www.firebase.com/" target="_blank">https://www.firebase.com/</a></p>
+          <p>&#149; Firebase requires you to sign up with Google (you will need a Google account)</p>
+          <div class="fragment">
+            <p>&#149; After signing up, go to the <u>Console</u> where you can create new apps</p>
+            <p>&#149; Click "Create New Project" and enter a project name (JSD-Project)</p>
+            <p>&#149; After creation, you will be taken to your new app's <u>Overview</u> page</p>
           </div>
-          <p>&#149; Firebase will provide our backend</p>
-        </section>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
 
-          <p>&#149; Open <code class="code">korn_app</code> in Sublime Text</p>
-          <p>&#149;Starter Code:</p>
-          <div class="pad-left-lg">
-            <p>&rArr; <code class="code">app.js</code></p>
-            <p>&rArr; <code class="code">keys.js</code></p>
-            <p>&rArr; <code class="code">index.html</code></p>
-            <p>&rArr; <code class="code">styles.css</code></p>
-          </div>
-        </section>
+        <p>1. Select "Add Firebase to your web app":</p>
+        <div class="text-center">
+          <img src="img/class15/firebase-app-overview.png" alt="">
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
 
-          <div class="text-smaller">
-            <p>&#149; Sign up at <a href="https://www.firebase.com/" target="_blank">https://www.firebase.com/</a></p>
-            <p>&#149; Firebase requires you to sign up with Google (you will need a Google account)</p>
-            <p>&#149; Click through to "See our new website" - then "Get Started For Free"</p>
-            <div class="fragment">
-              <p>&#149; After signing up, you will be taken to your <u>Console</u> where you can create new apps</p>
-              <p>&#149; Click "Create New Project" and enter a project name (JSD-KORN-APP)</p>
-              <p>&#149; After creation, you will be taken to your new app's <u>Overview</u> page</p>
-            </div>
-          </div>
-        </section>
+        <p>2. Copy the following code into your <code class="code">index.html</code>:</p>
+        <div class="text-center">
+          <img src="img/class15/firebase-app-config.png" alt="">
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
 
-          <p>Select "Add Firebase to your web app":</p>
-          <img src="../img/class15/firebase-app-overview.png" alt="">
-        </section>
-
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
-
-          <p>Copy the following configuration code into your <code class="code">index.html</code>:</p>
-          <img src="../img/class15/firebase-app-config.png" alt="">
-        </section>
-
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
-
-          <div class="text-smaller">
-            <p>&#149; A closer look at the configuration code:</p>
+        <div class="text-smaller">
+          <p>&#149; A closer look at the configuration code:</p>
 <pre><code>
-  &lt;script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"&gt;&lt;/script&gt;
+  &lt;script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"&gt;&lt;/script&gt;
   &lt;script&gt;
     // Initialize Firebase
     var config = {
-      apiKey: "ThisIsYourAPIKey",
-      authDomain: "thisIsYourApp.firebaseapp.com",
-      databaseURL: "https://thisIsYourAppDB.firebaseio.com",
-      storageBucket: "ThisIsYourStorage.appspot.com",
+      apiKey: "API_KEY",
+      authDomain: "APP_URL",
+      databaseURL: "DATABASE_URL",
+      projectId: "PROJECT_ID",
+      storageBucket: "STORAGE_URL",
+      messagingSenderId: "SENDER_ID"
     };
     firebase.initializeApp(config);
   &lt;/script&gt;
 
 </code></pre>
-            <p>&#149; Move the JS code from the second <code class="code">&lt;script&gt;</code> into <code class="code">keys.js</code></p>
-            <p>&#149; The starter code already has the <code class="code">gstatic</code> script</p>
+          <p>&#149; Move the JS code from the second <code class="code">&lt;script&gt;</code> into <code class="code">keys.js</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
+
+        <p>3. To connect with Firebase, we need some tooling</p>
+        <div class="text-center">
+          <img src="img/class15/firebase-app-hosting.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
+
+        <p>4. Install the Firebase CLI (might have to  use <code class="code">sudo</code>):</p>
+        <div class="text-center">
+          <img src="img/class15/firebase-app-tools.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
+
+        <div class="text-smallest">
+          <p>1) From the cmd line, navigate into to your starter code's root</p>
+          <p>2) Run <code class="code">firebase login</code> to authenticate</p>
+          <p>3) Then run <code class="code">firebase init</code> to build your app locally:</p>
+          <div class="text-center">
+            <img src="img/class15/firebase-init.png" alt="">
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Setup</div>
 
-          <p>To ensure you are connecting with your Firebase app, we have to leverage Firebase's hosting services:</p>
-          <img src="../img/class15/firebase-app-hosting.png" alt="">
-        </section>
-
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
-
-          <p>Now, install the Firebase command line tools to make deployment easy (you might have to run with <code class="code">sudo</code>):</p>
-          <img src="../img/class15/firebase-app-tools.png" alt="">
-        </section>
-
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
-
-          <div class="text-smallest">
-            <p>&#149; 1) From the cmd line, navigate into to your starter code's root</p>
-            <p>&#149; 2) Run <code class="code">firebase login</code> to authenticate</p>
-            <p>&#149; 3) Then run <code class="code">firebase init</code> to build your app locally:</p>
-            <div class="text-center">
-              <img src="../img/class15/firebase-init.png" alt="">
-            </div>
-            <p>&#149; Note: select the Firebase app you just created</p>
-            <p>&#149; Continue to hit enter until the initilization is complete</p>
-          </div>
-        </section>
-
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Setup</div>
-
-          <p>&#149; The init process will create a series of files in your current directory:</p>
-          <div class="pad-left-lg text-smallest">
-            <p>&rArr; <code class="code">.firebaserc</code></p>
-            <p>&rArr; <code class="code">database.rules.json</code></p>
-            <p>&rArr; <code class="code">firebase.json</code></p>
-          </div>
-          <p>&#149; Inside <code class="code">database.rules.json</code>:</p>
+        <div class="text-smaller">
+        <p>&#149; The init process will create a series of files in your current directory:</p>
+        <div class="pad-left-lg text-smallest">
+          <p><code class="code">.firebaserc</code></p>
+          <p><code class="code">database.rules.json</code></p>
+          <p><code class="code">firebase.json</code></p>
+        </div>
+        <p>&#149; Inside <code class="code">database.rules.json</code>:</p>
 <pre><code>
   {
     "rules": {
@@ -281,7 +292,8 @@
   }
 
 </code></pre>
-        </section>
+        </div>
+      </section>
 
         <!-- FIREBASE CREATE -->
         <section class="center">
@@ -333,7 +345,7 @@
           <p>&#149; Use the form to create a few messages, and then visit your app's Database dashboard</p>
           <p>&#149; You should be able to view (and interact with) your data!</p>
           <div class="text-center">
-            <img src="../img/class15/firebase-app-view-data.png" alt="">
+            <img src="img/class15/firebase-app-view-data.png" alt="">
           </div>
         </section>
 
