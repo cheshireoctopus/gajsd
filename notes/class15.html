@@ -357,33 +357,39 @@
         </div>
       </section>
 
-        <!-- FIREBASE READ -->
-        <section class="center">
-          <h1>Firebase Read</h1>
-        </section>
+      <!-- FIREBASE READ -->
+      <section class="title" id="firebase-read">
+        <h1>Firebase Read</h1>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Read</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Read</div>
 
-          <p>&#149; So we can create messages; now we need to display them</p>
+        <div class="text-smaller">
+          <p>&#149; We can create messages; now we need to display them</p>
           <p>&#149; Conceptualize the steps for our <b>read</b> action:</p>
           <div class="pad-left-lg">
             <p class="fragment">1) We first need to <u>fetch</u> our data (messages) from the API (Firebase)</p>
             <p class="fragment">2) These messages need to be iterated over and formatted properly</p>
             <p class="fragment">3) Lastly, we render these objects in the DOM</p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Read</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Read</div>
+
+        <div class="text-smaller">
           <p>&#149; Add the following to your <code class="code">app.js</code>:</p>
 <pre><code>
   function getFanMessages() {
+    // listens for changes to the `messages` 
     messageAppReference.ref('messages').on('value', function (results) {
 
       results.forEach(function (msg) {
-        var message = msg.val();
-        console.log(message);
+        var message = msg.val()
+        var id = msg.key
+        console.log(message, id)
       })
     })
   }
@@ -391,7 +397,8 @@
 </code></pre>
           <p>&#149; See if you can append the <code class="code">message</code> object to the DOM</p>
           <p>&#149; Hint: use the <code class="code">&lt;ul class="message-board"&gt;</code></p>
-        </section>
+        </div>
+      </section>
 
         <!-- FIREBASE UPDATE -->
         <section class="center">
