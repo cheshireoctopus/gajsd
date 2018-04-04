@@ -383,7 +383,7 @@
           <p>&#149; Add the following to your <code class="code">app.js</code>:</p>
 <pre><code>
   function getFanMessages() {
-    // listens for changes to the `messages` 
+    // listens for changes to the `messages` node in the DB
     messageAppReference.ref('messages').on('value', function (results) {
 
       results.forEach(function (msg) {
@@ -400,83 +400,87 @@
         </div>
       </section>
 
-        <!-- FIREBASE UPDATE -->
-        <section class="center">
-          <h1>Firebase Update</h1>
-        </section>
+      <!-- FIREBASE UPDATE -->
+      <section class="title" id="firebase-update">
+        <h1>Firebase Update</h1>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Update</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Update</div>
 
-          <p>&#149; We want to more than just render our messages:</p>
-          <div class="pad-left-lg">
-            <p>1) Upvote a message</p>
-            <p>2) Downvote a message (damn haters)</p>
-          </div>
-          <p>&#149; Firebase makes updating a record easy via the <code class="code">update()</code> API</p>
-        </section>
+        <p>&#149; We want to more than just render our messages:</p>
+        <div class="pad-left-lg">
+          <p>&rArr; Upvote a message</p>
+          <p>&rArr; Downvote a message (damn haters)</p>
+        </div>
+        <p>&#149; Firebase makes updating a record easy via the <code class="code">update()</code> API</p>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Update</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Update</div>
 
-          <div class="text-smaller">
-            <p>&#149; Before we utilize the API, we need to add the proper DOM elements for upvoting and downvoting</p>
-            <p>&#149; Add the following into your <code class="code">forEach</code> loop:</p>
+        <div class="text-smallest">
+          <p>&#149; We first need to add the proper DOM elements for upvoting and downvoting</p>
+          <p>&#149; Add the following into your <code class="code">forEach</code> loop:</p>
 <pre><code>
-  // create up vote element
-  var $upVoteElement = $('<i class="fa fa-thumbs-up pull-right"></i>');
+  // Create up vote element
+  var $upVoteElement = $('&lt;i class="fa fa-thumbs-up pull-right"></i>')
 
   $upVoteElement.on('click', function () {
-    updateMessage(id, ++votes);
+    updateMessage(id, ++votes)
   })
 
-  // create down vote element
-  var $downVoteElement = $('<i class="fa fa-thumbs-down pull-right"></i>');
+  // Create down vote element
+  var $downVoteElement = $('&lt;i class="fa fa-thumbs-down pull-right"></i>')
 
   $downVoteElement.on('click', function () {
-    updateMessage(id, --votes);
+    updateMessage(id, --votes)
   })
 
-  // add voting elements to $li
-  $li.append($upVoteElement);
-  $li.append($downVoteElement);
+  $li.append($downVoteElement)
+  $li.append($upVoteElement) 
 
 </code></pre>
-          </div>
-        </section>
+          <p>&#149; Ensure you create a <code class="code">votes</code> variable!</p>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Update</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Update</div>
 
+        <div class="text-smaller">
           <p>&#149; Our DOM elements are calling a function <code class="code">updateMessage</code></p>
           <p>&#149; This function takes a message <code class="code">id</code> and a <code class="code">voteCount</code></p>
-          <p>&#149; It then sends an request to the Firebase API to update our message record:</p>
           <div class="fragment">
+            <p>&#149; Send a request to the Firebase API to update our message record:</p>
 <pre><code>
   function updateMessage (id, votes) {
     // find message whose objectId is equal to the id we're searching with
-    var messageReference = messageAppReference.ref('messages/' + id);
+    var messageReference = messageAppReference.ref('messages/' + id)
 
     // update votes property
     messageReference.update({
-      votes: votes
+      votes: votes,
     })
   }
 
 </code></pre>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Update</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Update</div>
 
-          <p>&#149; Lastly, let's add a DOM element that displays each message's current vote count:</p>
+        <div class="text-smaller">
+          <p>&#149; Lastly, add an element to display each message's vote count</p>
           <p>&#149; Add the following into your <code class="code">forEach</code> loop:</p>
 <pre><code>
-  $li.append('&lt;div class="pull-right"&gt;' + votes + '&lt;/div&gt;');
+  $li.append('&lt;div class="pull-right"&gt;' + votes + '&lt;/div&gt;')
 
 </code></pre>
-        </section>
+        </div>
+      </section>
 
         <!-- FIREBASE DELETE -->
         <section class="center">
