@@ -286,8 +286,8 @@
 <pre><code>
   {
     "rules": {
-      ".read": "auth != null",
-      ".write": "auth != null"
+      ".read": "true",
+      ".write": "true"
     }
   }
 
@@ -295,39 +295,46 @@
         </div>
       </section>
 
-        <!-- FIREBASE CREATE -->
-        <section class="center">
-          <h1>Firebase Create</h1>
-        </section>
+      <!-- FIREBASE CREATE -->
+      <section class="title" id="firebase-create">
+        <h1>Firebase Create</h1>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Create</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Create</div>
 
-          <p>&#149; The first part of our app will focus on creating messages for our board</p>
+        <div class="text-smaller">
+          <p>&#149; We will first focus on creating messages for our board</p>
           <p>&#149; Consider the steps necessary to achieve this:</p>
-          <div class="pad-left-lg text-smaller">
+          <div class="pad-left-lg">
             <p class="fragment">1) Create the necessary HTML <code class="code">&lt;form&gt;</code> (already done!)</p>
             <p class="fragment">2) Attach a <code class="code">submit</code> handler to this <code class="code">&lt;form&gt;</code></p>
             <p class="fragment">3) Pull the data (our fan message) from the DOM</p>
             <p class="fragment">4) Send this data to our backend to persist it in the database</p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Create</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Create</div>
 
+        <div class="text-smallest">
           <p>&#149; Inside <code class="code">js/app.js</code> add the following:</p>
-          <div class="pad-left-lg text-smallest">
-            <p class="fragment">1) <code class="code">$(document).ready()</code></p>
+          <div class="pad-left-lg">
             <div class="fragment">
-              <p>2) Connect to our Firebase data base via:</p>
-              <p class="pad-left-lg"><code class="code">var messageAppReference = firebase.database();</code></p>
+              <p>1) Connect to our Firebase data base via:</p>
+<pre><code>
+  // Get a reference to the root of the Database
+  var messageAppReference = firebase.database()
+  // Create a section for messages data in your db
+  var messagesReference = messageAppReference.ref('messages')
+
+</code></pre>
             </div>
-            <p class="fragment">3) A <code class="code">submit</code> event attached to <code class="code">#message-form</code></p>
-            <p class="fragment">4) Remember to use <code class="code">event.preventDefault()</code>!</p>
-            <p class="fragment">5) Store the user input from <code class="code">#message</code> in a variable</p>
+            <p class="fragment">2) A <code class="code">submit</code> event attached to <code class="code">#message-form</code></p>
+            <p class="fragment">3) Store the user input from <code class="code">#message</code> in a variable</p>
             <div class="fragment">
-              <p>6) Send data to your Firebase DB:</p>
+              <p>4) Send data to your Firebase DB:</p>
 <pre><code>
   messagesReference.push({
     message: message,
@@ -337,17 +344,18 @@
 </code></pre>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Firebase Create</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Create</div>
 
-          <p>&#149; Use the form to create a few messages, and then visit your app's Database dashboard</p>
-          <p>&#149; You should be able to view (and interact with) your data!</p>
-          <div class="text-center">
-            <img src="img/class15/firebase-app-view-data.png" alt="">
-          </div>
-        </section>
+        <p>&#149; Use the form to create a few messages, and then visit your app's Database dashboard</p>
+        <p>&#149; You should be able to view (and interact with) your data!</p>
+        <div class="text-center">
+          <img src="img/class15/firebase-app-view-data.png" alt="">
+        </div>
+      </section>
 
         <!-- FIREBASE READ -->
         <section class="center">
