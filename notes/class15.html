@@ -12,124 +12,115 @@
 <body>
   <div class="reveal">
     <div class="slides">
-        <section class="center">
-          <h1>Hello</h1>
-          <div class="text-left text-smaller">
-            <p>Pull down this class's exercises and homework:</p>
-            <div class="pad-left-lg">
-              <p>&#149; Navigate into <code class="code">jsd04_class_repo</code> using your terminal</p>
-              <p>&#149; Run <code class="code">git pull</code></p>
-            </div>
-          </div>
-        </section>
-
-        <section class="center">
-          <h1>Class <span style="color: red;">#15</span> - 08/18/2016</h1>
-          <h1>Intro to CRUD and Firebase</h1>
-        </section>
-
-        <!-- ANNOUNCEMENTS -->
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Announcements</div>
-          <div class="text-smallest">
-            <p>&#149; Final Project (T-Minus 19 days...)</p>
-            <div class="pad-left-lg text-smallest">
-              <p>&rArr; Next deliverable due 08/23:</p>
-              <div class="pad-left-lg">
-                <p>&#149; Wrapping up API functionality</p>
-                <p>&#149; Additional HTML/CSS</p>
-              </div>
-              <p>&rArr; Classes 18 (8/30) and 19 (9/01) are in-class project work</p>
-            </div>
-            <p>&#149; Weekend Office Hours:</p>
-            <div class="pad-left-lg text-smallest">
-              <p>&rArr; 8/20 (Sat) Noon - 2:00PM (3rd floor, Room: TBD)</p>
-              <p>&rArr; 8/28 (Sun), 9/03 (Sat), maybe 9/04 (Sun)</p>
-            </div>
-            <p>&#149; Student Choice for Class 17:</p>
-            <div class="pad-left-lg text-smallest">
-              <p>&rArr; Node + Express Server</p>
-              <p>&rArr; D3.js</p>
-              <p>&rArr; Angular.js</p>
-              <p>&rArr; Google Maps</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- AGENDA -->
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Agenda</div>
-          <p>&#149; Intro to CRUD</p>
-          <p>&#149; Firebase</p>
+      <section class="hero">
+        <h1>Hello</h1>
+        <div class="opening-instructions">
+          <p>1) Please download <a href="../materials/class15.zip" target="_blank">Class 15 Starter Code</a></p>
+          <p>2) Move the following into <code class="code">homework</code>:</p>
           <div class="pad-left-lg">
-            <p>&rArr; Setup</p>
-            <p>&rArr; Create w/ Firebase</p>
-            <p>&rArr; Read w/ Firebase</p>
-            <p>&rArr; Update w/ Firebase</p>
-            <p>&rArr; Delete w/ Firebase</p>
+            <p>&#149; <code class="code">keanu_fan_app</code></p>
           </div>
-          <p>&#149; Final project updates</p>
-        </section>
+        </div>
+      </section>
 
-        <!-- CRUD -->
-        <section class="center">
-          <h1>Intro to CRUD</h1>
-        </section>
+      <section class="hero condensed">
+        <h1>Class <span class="red">#15</span></h1>
+        <h1>04/04/2018</h1>
+        <h1 class="lesson-title">Intro to CRUD and Firebase</h1>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Intro to CRUD</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Announcements</div>
 
-          <p>&#149; Most applications are wrappers around four data-related actions:</p>
+        <div class="text-smaller">
+          <p>&#149; Final Class: Tuesday, April 17th</p>
+          <p>&#149; Make-up Class: Saturday, April 7th and 14th, 2:15PM - 5:15PM</p>
+          <p>&#149; Office Hours: Sunday, April 15th, 10:30Am - 1:30PM</p>
+          <p>&#149; Final Project</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Due in < 2 weeks</p>
+            <p>&rArr; Fourth deliverable due April 9th: MVP</p>
+          </div>
+          <p>&#149; <a href="../materials/dom_exercises.zip">DOM exercises</a></p>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+
+        <p>&#149; <a href="#/intro-to-crud">Intro to CRUD</a></p>
+        <p>&#149; <a href="#/firebase">Firebase</a>:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>&rArr; Setup</p>
+          <p>&rArr; Create w/ Firebase</p>
+          <p>&rArr; Read w/ Firebase</p>
+          <p>&rArr; Update w/ Firebase</p>
+          <p>&rArr; Delete w/ Firebase</p>
+        </div>
+      </section>
+
+      <!-- CRUD -->
+      <section class="title" id="intro-to-crud">
+        <h1>Intro to CRUD</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Intro to CRUD</div>
+
+        <div class="text-smaller">
+          <p>&#149; Many web apps are wrappers around four data-related actions:</p>
           <div class="pad-left-lg">
             <p><u>C</u>reate</p>
             <p><u>R</u>ead</p>
-            <p><u>U</u>pdate (edit)</p>
+            <p><u>U</u>pdate</p>
             <p><u>D</u>elete</p>
           </div>
-          <p class="fragment">&#149; Instagram, Facebook, GMail, Percolate...</p>
-          <p class="fragment">&#149; Tonight, we will explore CRUD and how to implement this functionality using Firebase</p>
-        </section>
+          <p class="fragment">&#149; Instagram, Facebook, GMail...</p>
+          <p class="fragment">&#149; Tonight, we will explore CRUD using <a href="https://firebase.google.com/" target="_blank">Firebase</a></p>
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Intro to CRUD</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Intro to CRUD</div>
 
-          <p>&#149; You have already used some technical implementations of performing CRUD:</p>
-          <div class="pad-left-lg text-smaller">
-            <p class="fragment">&rArr; For the 500px lab, you had to <code class="code">GET</code> various photos from an endpoint</p>
-            <p class="fragment">&rArr; For the Feedr lab, you also had to <code class="code">GET</code> various data feeds from Reddit, Digg, and Mashable</p>
-          </div>
-          <p class="fragment">&#149; Which CRUD action does <code class="code">GET</code> align with?</p>
-          <p class="fragment">&#149; Surprise: CRUD and HTTP actions are related!</p>
-        </section>
+        <p>&#149; We have already practiced an aspect of CRUD:</p>
+        <div class="pad-left-lg text-smaller">
+          <p class="fragment">&rArr; For the 500px lab, you had to <code class="code">GET</code> various photos from an endpoint</p>
+          <p class="fragment">&rArr; For the Feedr lab, you also had to <code class="code">GET</code> various data feeds from news sources</p>
+        </div>
+        <p class="fragment">&#149; Which CRUD action does <code class="code">GET</code> align with?</p>
+        <p class="fragment">&#149; Surprise: CRUD and HTTP actions are related!</p>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Intro to CRUD</div>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Intro to CRUD</div>
 
-          <div class="text-smaller">
-            <p>&#149; Recall, when communicating with a web-based API, the developer has the option to utilize HTTP actions: GET, POST, PUT, and DELETE</p>
-            <p>&#149; Each of these HTTP actions is related to a CRUD action:</p>
-          </div>
-          <div class="text-center">
-            <img src="../img/class15/http-crud.png" alt="">
-          </div>
-        </section>
+        <div class="text-smaller">
+          <p>&#149; We consuming a web-based API, developers can utilize HTTP actions: GET, POST, PUT, and DELETE</p>
+          <p>&#149; Each of these HTTP actions is related to a CRUD action:</p>
+        </div>
+        <div class="text-center">
+          <img src="img/class15/http-crud.png" alt="">
+        </div>
+      </section>
 
-        <section data-background="#FFF" class="text-left">
-          <div class="heading">Intro to CRUD</div>
-          <div class="text-smallest">
-            <p>1) Open up the docs to the API you are using for your final project</p>
-            <p>2) Locate the HTTP methods (the endpoints in the docs) a developer must use in order to: Create, Read, Update, and Destroy a record</p>
-            <p class="pad-left-lg">&#149; Ex: What endpoint must a developer who wants to Create an post on Instagram use?</p>
-            <p>3) Once you've located your methods, let Joe or me know</p>
-            <p>&#149; Note: Certain APIs may not allow for full CRUD functionality. If you're researching one of these APIs be sure to point out its limitations </p>
-            <p>&#149; Note 2: Not using an API? Please select an API of your choice and locate these methods :)</p>
-          </div>
-        </section>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Intro to CRUD</div>
+
+        <div class="text-smallest">
+          <p>1) Open up the docs to the API you are using for your final project</p>
+          <p>2) Locate the HTTP methods (the endpoints in the docs) a developer must use in order to: Create, Read, Update, and Destroy a record</p>
+          <p class="pad-left-lg">&#149; Ex: What endpoint must a developer who wants to Create an post on Instagram use?</p>
+          <p>3) Once you've located your methods, share them with me!</p>
+          <p>&#149; Note: Certain APIs may not allow for full CRUD functionality. If you're researching one of these APIs be sure to point out its limitations </p>
+          <p>&#149; Note 2: Not using an API? Please select an API of your choice and locate these methods :)</p>
+        </div>
+      </section>
 
         <!-- FIREBASE -->
-        <section class="center">
+        <section class="title" id="firebase">
           <h1>Firebase</h1>
-          <h2>A Backend Service</h2>
         </section>
 
         <section data-background="#FFF" class="text-left">
