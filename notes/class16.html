@@ -49,7 +49,8 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Agenda</div>
         <p>&#149; <a href="#/deployment-overview">Deployment Overview</a></p>
-        <p>&#149; <a href="#/github-pages">GitHub Pages Deployment</a></p>
+        <p>&#149; <a href="#/github-pages">GitHub Pages</a></p>
+        <p>&#149; <a href="#/surge">Surge.sh</a></p>
         <p>&#149; <a href="#/firebase-deployment">Firebase Deployment</a></p>
       </section>
 
@@ -230,6 +231,45 @@
 
       <section class="title" id="surge">
         <h1>Surge</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Surge</div>
+      
+        <div class="text-smaller">
+          <p>&#149; <a href="http://surge.sh/" target="_blank">Surge.sh</a> is a tool for "simple, single-command web publishing"</p>
+          <p>&#149; Only supports frontend static assets (HTML, CSS, JS)</p>
+          <p>&#149; Command line interface: <code class="code">$ surge</code></p>
+          <p>&#149; Supports custom domains</p>
+          <p>&#149; Custom 404 pages</p>
+          <p>&#149; Free/paid tiers</p>
+          <p>&#149; I use Surge whenever possible (including these notes!)</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Surge</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Available as an <a href="https://www.npmjs.com/package/surge" target="_blank">npm</a> package</p>
+          <p>&#149; Install from terminal using <code class="code">npm install -g </code></p>
+          <p>&#149; To use:</p>
+          <div class="pad-left-lg">
+            <p>1. Navigate to your project's root directory</p>
+            <p>2. Enter <code class="code">surge</code></p>
+            <p>3. Choose a URL</p>
+            <p>4. Deploy!</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Surge</div>
+      
+        <p>&#149; By default, Surge uses a different URL when you want to deploy</p>
+        <p>&#149; To prevent this, add a <code class="code">CNAME</code> file to your project</p>
+        <p>&#149; Add your domain to this file, w/ out <code class="code">https://</code></p>
+        <p>&#149; Surge will now look to this file when deploying</p>
       </section>
 
       <section data-background="#FFF" class="text-left">
