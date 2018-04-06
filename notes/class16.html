@@ -272,29 +272,21 @@
         <p>&#149; Surge will now look to this file when deploying</p>
       </section>
 
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">GitHub Pages</div>
-
-        <p>&#149; What if we built out a full-stack application that already has a server?</p>
-        <p>&#149; In our last lesson we utilized the BEaaS, Firebase, to build an application</p>
-        <p>&#149; Firebase provided us with both a server and a database</p>
-        <p>&#149; If we have an application that already has its own server, would it still be appropriate to use a hosting service, like GitHub Pages, that provides our program with a server?</p>
-      </section>
-
       <!-- FIREBASE DEPLOYMENT -->
-      <section class="center">
-        <h1>Firebase</h1>
-        <h1>Deployment</h1>
+      <section class="title" id="firebase-deployment">
+        <h1>Firebase Deployment</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Firebase Deployment</div>
 
-        <p>&#149; Firebase Hosting provides developers the infrastructure, features, and tooling tailored to deploying and managing their websites</p>
-        <p>&#149; Gives your project a subdomain on the firebaseapp.com domain:</p>
-        <p class="pad-left-lg"><code class="code">YOUR_FIREBASE_APP.firebaseapp.com</code></p>
-        <p>&#149; Using the Firebase CLI, you can deploy files from local directories to Firebase</p>
-        <p>&#149; Files are served over an SSL connection from the closest edge server on their global CDN</p>
+        <div class="text-smaller">
+          <p>&#149; <a href="https://firebase.google.com/docs/hosting/" target="_blank">Firebase Hosting</a> provides infrastructure/features/tooling for static hosting</p>
+          <p>&#149; Gives your project a subdomain on the firebaseapp.com domain:</p>
+          <p class="pad-left-lg"><code class="code">YOUR_FIREBASE_APP.firebaseapp.com</code></p>
+          <p>&#149; Uses a CLI (like Surge) to deploy files from local directories to Firebase</p>
+          <p>&#149; Served over SSL connection from the closest server on global CDN</p>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -305,66 +297,9 @@
           <p>1) Install the Firebase Command Line Interface (CLI)</p>
           <p>2) Use <code class="code">firebase init</code> to begin your Firebase project</p>
           <p>3) Create the proper project directory using <code class="code">public/</code></p>
-          <p>4) Test your app locally using <code class="code">firebase serve</code></p>
-          <p>5) Use <code class="code">firebase deploy</code> to delpoy your app to Firebase's servers</p>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Firebase Deployment</div>
-
-        <div class="text-smaller">
-          <p>&#149; You already accomplished a few of these steps last class:</p>
-          <div class="pad-left-lg">
-            <p>&rArr; Installed the Firebase CLI using <code class="code">npm install -g firebase-tools</code></p>
-            <p>&rArr; Created and deployed your application using <code class="code">firebase init</code> and <code class="code">firebase deploy</code></p>
-          </div>
-          <div class="fragment">
-            <p>&#149; Next steps:</p>
-            <div class="pad-left-lg">
-              <p>&rArr; Create the proper project structure</p>
-              <p>&rArr; Test using <code class="code">firebase serve</code></p>
-              <p>&rArr; Deploy and confirm</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Firebase Deployment</div>
-
-        <p>To obtain your Firebase project's URL, visit your application's overview page:</p>
-        <img src="img/class16/firebase-app-overview.png" alt="">
-      </section>
-
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Firebase Deployment</div>
-
-        <p>Opening the URL should yield the following:</p>
-        <img src="img/class16/firebase-hosting-welcome.png" alt="">
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Firebase Deployment</div>
-
-        <div class="text-smaller">
-          <p>&#149; <code class="code">firebase.init</code> creates a <code class="code">firebase.json</code> config file:</p>
-<pre><code>
-  {
-    "hosting": {
-      "public": "public",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    }
-  }
-
-</code></pre>
-          <p>&#149; Only the <code class="code">public</code> attribute is required; tells Firebase which directory to upload to Firebase hosting</p>
-          <p>&#149; The <code class="code">ignore</code> attribute specifies files which Firebase should ignore (smiliar to <code class="code">.gitignore</code>)</p>
+          <p>4) Update <code class="code">firebase.json</code> config</p>
+          <p>5) Test your app locally using <code class="code">firebase serve</code></p>
+          <p>6) Use <code class="code">firebase deploy</code> to delpoy your app to Firebase's servers</p>
         </div>
       </section>
 
@@ -372,38 +307,61 @@
         <div class="heading">Firebase Deployment</div>
 
         <div class="text-smallest">
-          <p>&#149; We need to move our static assets into the <code class="code">public directory</code>:</p>
-          <div class="pad-left-lg">
-            <p>&rArr; <code class="code">HTML</code></p>
-            <p>&rArr; <code class="code">CSS</code></p>
-            <p>&rArr; <code class="code">JS</code></p>
-            <p>&rArr; Any images/videos</p>
-          </div>
-          <p>&#149; Your app's structure should look like:</p>
-        </div>
-        <div class="text-center">
-          <img src="img/class16/firebase-project-structure.png" alt="">
+          <p>&#149; Create a <code class="code">public</code> directory; move all HTML, CSS, and JS into it</p>
+          <p>&#149; Update <code class="code">firebase.json</code> config with <code class="code">hosting</code>:</p>
+<pre><code>
+  {
+    "database": ...,
+    "hosting": {
+      "public": "public"
+    }
+  }
+
+</code></pre>
+          <p>&#149; Only the <code class="code">public</code> attribute is required; tells Firebase which directory to serve</p>
+          <p>&#149; <a href="https://firebase.google.com/docs/hosting/full-config" target="_blank">More configuration options</a></p>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Firebase Deployment</div>
-
+      
         <div class="text-smaller">
-          <p>&#149; Use <code class="code">firebase serve</code> to test your application using your local machine as a webserver</p>
-          <p>&#149; By default, will use port <code class="code">5000</code></p>
-          <p>&#149; Navigate to <code class="code">http://localhost:5000</code> in your browser</p>
+          <p>&#149; Before deploying, we should test our changes locally</p>
+          <p>&#149; From your project's root: <code class="code">firebase serve</code></p>
           <div class="text-center">
-            <img src="img/class16/firebase-serve-cli.png" alt="">
+            <img src="img/class16/firebase-serve.png" alt="">
           </div>
-          <p>&#149; If all is well, deploy to Firebase using <code class="code">firebase deploy</code></p>
-          <p>&#149; Access your deployed code at <code class="code"><YOUR-FIREBASE-APP>.firebaseapp.com</code></p>
+          <p>&#149; Open <code class="code">http://localhost:5000</code> in your browser</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Once verified locally, deploy w/ <code class="code">firebase deploy</code></p>
+          <div class="text-center">
+            <img src="img/class16/firebase-deploy.png" alt="">
+          </div>
+          <p>&#149; Vist the <code class="code">Hosting URL</code> to see your app live</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Visit your "Hosting" page for more information</p>
+          <div class="text-center">
+            <img src="img/class16/firebase-hosting.png" alt="">
+          </div>
         </div>
       </section>
 
       <section class="center">
         <h1>Note:</h1>
-        <p>We will be covering hosting with Heroku once we learn how to write a basic web application using Node and Express</p>
+        <p>We will be covering hosting with <a href="https://heroku.com" target="_blank">Heroku</a> once we learn how a bit of Node and Express</p>
       </section>
 
       <!-- THE END -->
@@ -414,12 +372,11 @@
       <!-- ON DECK -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">What's On Deck</div>
-        <h4>Class #17 (of 20) - Student Choice</h4>
+        <h4>Class #17 (of 20) - Node and Express</h4>
         <div class="pad-left-lg">
-          <p>&#149; Node + Express</p>
-          <p>&#149; Heroku + Node Deployment</p>
-          <p>&#149; Angular.js</p>
-          <p>&#149; D3.js</p>
+          <p>&#149; Server-side JavaScript with Node.js</p>
+          <p>&#149; Web servers overview</p>
+          <p>&#149; Express.js</p>
         </div>
       </section>
 
