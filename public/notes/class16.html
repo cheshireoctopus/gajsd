@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JSD: Class 16</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/general-assembly.css" id="theme">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="stylesheet" href="css/zenburn.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- <section class="hero">
+        <h1>Hello</h1>
+        <div class="opening-instructions">
+          <p>1) Please download <a href="../materials/class16.zip" target="_blank">Class 16 Starter Code</a></p>
+          <p>2) Move the following into <code class="code">homework</code>:</p>
+          <div class="pad-left-lg">
+            <p>&#149; <code class="code">keanu_fan_club</code></p>
+          </div>
+        </div>
+      </section> -->
+
+      <section class="hero condensed">
+        <h1>Class <span class="red">#16</span></h1>
+        <h1>04/07/2018</h1>
+        <h1 class="lesson-title">Deploying Your App</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Announcements</div>
+
+        <div class="text-smaller">
+          <p>&#149; Final Class: Tuesday, April 17th</p>
+          <p>&#149; Make-up Class: Saturday, April 14th, 2:15PM - 5:15PM</p>
+          <p>&#149; Office Hours: Sunday, April 15th, 10:30AM - 1:30PM</p>
+          <p>&#149; Final Project</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Due in < 2 weeks</p>
+            <p>&rArr; Fourth deliverable due April 9th: MVP</p>
+          </div>
+          <p>&#149; <a href="../materials/dom_exercises.zip">DOM exercises</a></p>
+        </div>
+      </section>
+
+      <!-- AGENDA -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Agenda</div>
+        <p>&#149; <a href="#/firebase-authentication">Firebase Authentication</a></p>
+        <p>&#149; <a href="#/deployment-overview">Deployment Overview</a></p>
+        <p>&#149; <a href="#/github-pages">GitHub Pages</a></p>
+        <p>&#149; <a href="#/surge">Surge.sh</a></p>
+        <p>&#149; <a href="#/firebase-deployment">Firebase Deployment</a></p>
+      </section>
+
+      <!-- FIREBASE AUTHENTICATION -->
+      <section class="title" id="firebase-authentication">
+        <h1>Firebase Authentication</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Many apps require users to login before posting</p>
+          <p>&#149; <a href="https://firebase.google.com/docs/auth/" target="_blank">Firebase Authentication</a> provides SDKs + UI libraries for easy authentication</p>
+          <p>&#149; Offers OAuth through: Google, FB, Twitter, GitHub, etc.</p>
+          <p>&#149; Handles annoyances: password confirmation email/resets</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <p class="text-smaller">&#149; Visit "Develop > Authentication" to setup user auth</p>
+        <div class="text-center">
+          <img src="img/class16/firebase-authentication.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <p class="text-smaller">&#149; Enable "Email/Password" provider</p>
+        <div class="text-center">
+          <img src="img/class16/firebase-email-password-auth.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Firebase provides a <a href="https://firebase.google.com/docs/auth/web/firebaseui" target="_blank">UI library</a> for user input</p>
+<pre><code>
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth())
+
+  var uiConfig = {
+    callbacks: {
+      signInSuccessWithAuthResult: function() {
+        return false;
+      },
+    },
+    signInOptions: [
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+  }
+
+  ui.start('#firebaseui-auth-container', uiConfig)
+
+</code></pre>
+          <p>&#149; <code class="code">signInOptions</code> can take an array of OAuth proivders (Google, GitHub)</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smallest">
+          <p>&#149; We need to provide the HTML for Firebase UI:</p>
+<pre><code>
+  &lt;div id="sign-in-container">
+      &lt;h1 class="text-center">Welcome to the Keanu Fan Club&lt;/h1>
+      &lt;div id="firebaseui-auth-container">&lt;/div>
+  &lt;/div>
+
+  // don't forget to add this id!
+  &lt;div id="message-board-container" class="container">
+    ...
+
+</code></pre>
+          <p>&#149; We also need the following CSS:</p>
+<pre><code>
+  #message-board-container,
+  #sign-in-container {
+    display: none;
+  }
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Use <code class="code">firebase.auth()</code> to determine if a user is logged in</p>
+          <p>&#149; Based on the user's status, hide/show elements in the DOM</p>
+<pre><code>
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      $('#sign-in-container').hide()
+      $('#message-board-container').show()
+    } else {
+      $('#sign-in-container').show()
+      $('#message-board-container').hide()
+    }
+  })
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smallest">
+          <p>&#149; We want to keep a record of which user added a comment:</p>
+          <p>&#149; <code class="code">firebase.auth().currentUser</code> gets the logged-in user</p>
+<pre><code>
+  messagesReference.push({
+    message: message,
+    votes: 0,
+    // add a `user` property to each message
+    user: firebase.auth().currentUser.displayName,
+  })
+
+</code></pre>
+          <div class="fragment">
+            <p>&#149; Then surface this value on the message board:</p>
+<pre><code>
+  var user = msg.val().user
+  var id = msg.key
+  var $li = $('&lt;li>').text(message + ' - ' + user)
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Lastly, we need to provide the ability to logout</p>
+          <p>&#149; Update the HTML with an icon:</p>
+<pre><code>
+  &lt;div class="navbar-header text-danger">
+    &lt;h1>Keanu Fan Club&lt;/h1>
+  &lt;/div>
+  &lt;i id="sign-out" class="fa fa-sign-out" aria-hidden="true">&lt;/i>
+
+</code></pre>
+        <p>&#149; Then add the following JS:</p>
+<pre><code>
+  $('#sign-out').click(function() {
+    firebase.auth().signOut()
+  })
+
+</code></pre>
+        </div>
+      </section>
+
+      <!-- DEPLOYMENT OVERVIEW -->
+      <section class="title" id="deployment-overview">
+        <h1>Deployment Overview</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Deployment</div>
+
+        <div class="text-smaller">
+          <p>&#149; So far, our code has been developed <u>locally</u></p>
+          <p class="pad-left-lg fragment">&rArr; Your code runs solely on your machines</p>
+          <p class="fragment">&#149; Need to push code to a <u>remote</u> server to share with the world</p>
+          <div class="fragment">
+            <p>&#149; Why develop locally in the first place?</p>
+            <div class="pad-left-lg">
+              <p class="fragment">&rArr; Requires a lot less resources</p>
+              <p class="fragment">&rArr; Control over the development environment</p>
+              <p class="fragment">&rArr; Easier to track/identify bugs</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Deployment</div>
+
+        <div class="text-smaller">
+        <p>&#149; Deployment:</p>
+          <blockquote>
+            Deployment encompasses all the processes involved in getting new software or hardware up and running properly in its environment, including installation, configuration, running, testing, and making necessary changes
+          </blockquote>
+          <p class="fragment">&#149; The process of moving your <u>local</u> application to a <u>remote</u> server</p>
+          <p class="fragment">&#149; Once deployed, code moves from <u>development</u> to <u>production</u></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Deployment</div>
+
+        <div class="text-smaller">
+          <p>&#149; Not all applications deploy the same way!</p>
+          <p>&#149; We have learned how to build two different types of programs:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Static websites</p>
+            <p>&rArr; Dynamic web applications</p>
+          </div>
+          <p>&#149; There are many hosting options available; each is best suited to a particular application type</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Deployment</div>
+
+        <div class="text-smaller">
+          <p>Static websites:</p>
+          <div class="pad-left-lg">
+            <p>&#149; Purely frontend application</p>
+            <p>&#149; Consist of only HTML, CSS and JS files + assets</p>
+            <p>&#149; Does not persist data!</p>
+            <p>&#149; Note: Firebase has come to redefine the notion of a static site</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Deployment</div>
+
+        <div class="text-smaller">
+          <p>Dynamic web apps:</p>
+          <div class="pad-left-lg">
+            <p>&#149; Defined as a client-server software application</p>
+            <p>&#149; ...or, an application with both a frontend and a backend</p>
+            <p>&#149; Leveraged Firebase to build one:</p>
+            <div class="pad-left-lg">
+              <p>&rArr; HTML, CSS and JS are considered the client (frontend)</p>
+              <p>&rArr; Firebase provides the backend (server, API, database)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Deployment</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Simpler applications have simpler deployments</p>
+          <div class="fragment">
+            <p>&#149; Static apps only require pushing files to a server</p>
+            <p>&#149; Web applications require more configuration (server, DB, etc)</p>
+          </div>
+          <div class="fragment">
+            <p>&#149; We will be covering static deployment:</p>
+            <div class="pad-left-lg text-smaller">
+              <p>&rArr; GitHub Pages</p>
+              <p>&rArr; Surge.sh</p>
+              <p>&rArr; Firebase Deploy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GITHUB PAGES -->
+      <section class="title" id="github-pages">
+        <h1>GitHub Pages</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub Pages</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Great option for deploying a simple static website</p>
+          <p>&#149; Have already taken advantage :D</p>
+          <p>&#149; Free with your GitHub acount (limited to one per user)</p>
+          <div class="pad-left-lg"><code class="code">http://your_username.github.com</code></div>
+          <p>&#149; Public - do not push API keys or other sensitive information here</p>
+          <p>&#149; <a href="https://pages.github.com/" target="_blank">More info</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub Pages</div>
+
+        <div class="text-smaller">
+          <p>To deploy with GitHub pages:</p>
+          <div class="pad-left-lg">
+            <p>1) Create your <code class="code">github.io</code> repository</p>
+            <p>2) Clone your newly created repo to your local environment</p>
+            <p>3) Create <code class="code">HTML</code>, <code class="code">CSS</code>, and <code class="code">JS</code> files (requires an <code class="code">index.html</code> at the root)</p>
+            <p>4) Add, commit, and push your newly created files</p>
+            <p>5) Visit <code class="code">http://your_username.github.com</code></p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub Pages</div>
+
+        <div class="text-smallest">
+          <p><b>Note:</b> GitHub pages <u>require</u> the following naming convention:</p>
+          <code class="code">your_github_username.github.io</code>
+        </div>
+        <div class="text-center">
+          <img src="img/class16/github-create-repo.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub Pages</div>
+
+        <div class="text-smaller">
+          <p>&#149; After creating your repo, clone it to your machine</p>
+          <p>&#149; <code class="code">git</code> may complain that you cloned an empty repo:</p>
+          <img src="img/class16/github-empty-clone.png" alt="">
+          <p>&#149; Note: an <code class="code">index.html</code> file is required at this repo's root!</p>
+          <p>&#149; Create the necessary files; then <code class="code">add</code>, <code class="code">commit</code>, and <code class="code">push</code> to GitHub</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">GitHub Pages</div>
+
+        <div class="text-smaller">
+          <p>&#149; Where are you pushing your code to?</p>
+          <div class="fragment">
+            <p>&#149; A <u>Server</u>:</p>
+            <div class="pad-left-lg">
+              <p>&rArr; Machine that listens for requests from other machines (clients)</p>
+              <p>&rArr; Purpose is to share data/hardware/software among many clients</p>
+              <p>&rArr; Client <-> Server model</p>
+              <p>&rArr; Server creation falls under backend development</p>
+          </div>
+          <p>&#149; You are using GitHub server to deliver your repo's resources (HTML, CSS and JS)</p>
+        </div>
+      </section>
+
+      <section class="title" id="surge">
+        <h1>Surge</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Surge</div>
+      
+        <div class="text-smaller">
+          <p>&#149; <a href="http://surge.sh/" target="_blank">Surge.sh</a> is a tool for "simple, single-command web publishing"</p>
+          <p>&#149; Only supports frontend static assets (HTML, CSS, JS)</p>
+          <p>&#149; Command line interface: <code class="code">$ surge</code></p>
+          <p>&#149; Supports custom domains</p>
+          <p>&#149; Custom 404 pages</p>
+          <p>&#149; Free/paid tiers</p>
+          <p>&#149; I use Surge whenever possible (including these notes!)</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Surge</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Available as an <a href="https://www.npmjs.com/package/surge" target="_blank">npm</a> package</p>
+          <p>&#149; Install from terminal using <code class="code">npm install -g </code></p>
+          <p>&#149; To use:</p>
+          <div class="pad-left-lg">
+            <p>1. Navigate to your project's root directory</p>
+            <p>2. Enter <code class="code">surge</code></p>
+            <p>3. Choose a URL</p>
+            <p>4. Deploy!</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Surge</div>
+      
+        <p>&#149; By default, Surge uses a different URL when you want to deploy</p>
+        <p>&#149; To prevent this, add a <code class="code">CNAME</code> file to your project</p>
+        <p>&#149; Add your domain to this file, w/ out <code class="code">https://</code></p>
+        <p>&#149; Surge will now look to this file when deploying</p>
+      </section>
+
+      <!-- FIREBASE DEPLOYMENT -->
+      <section class="title" id="firebase-deployment">
+        <h1>Firebase Deployment</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+
+        <div class="text-smaller">
+          <p>&#149; <a href="https://firebase.google.com/docs/hosting/" target="_blank">Firebase Hosting</a> provides infrastructure/features/tooling for static hosting</p>
+          <p>&#149; Gives your project a subdomain on the firebaseapp.com domain:</p>
+          <p class="pad-left-lg"><code class="code">YOUR_FIREBASE_APP.firebaseapp.com</code></p>
+          <p>&#149; Uses a CLI (like Surge) to deploy files from local directories to Firebase</p>
+          <p>&#149; Served over SSL connection from the closest server on global CDN</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+
+        <p>Firebase Deployment Overview:</p>
+        <div class="pad-left-lg text-smaller">
+          <p>1) Install the Firebase Command Line Interface (CLI)</p>
+          <p>2) Use <code class="code">firebase init</code> to begin your Firebase project</p>
+          <p>3) Create the proper project directory using <code class="code">public/</code></p>
+          <p>4) Update <code class="code">firebase.json</code> config</p>
+          <p>5) Test your app locally using <code class="code">firebase serve</code></p>
+          <p>6) Use <code class="code">firebase deploy</code> to delpoy your app to Firebase's servers</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+
+        <div class="text-smallest">
+          <p>&#149; Create a <code class="code">public</code> directory; move all HTML, CSS, and JS into it</p>
+          <p>&#149; Update <code class="code">firebase.json</code> config with <code class="code">hosting</code>:</p>
+<pre><code>
+  {
+    "database": ...,
+    "hosting": {
+      "public": "public"
+    }
+  }
+
+</code></pre>
+          <p>&#149; Only the <code class="code">public</code> attribute is required; tells Firebase which directory to serve</p>
+          <p>&#149; <a href="https://firebase.google.com/docs/hosting/full-config" target="_blank">More configuration options</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Before deploying, we should test our changes locally</p>
+          <p>&#149; From your project's root: <code class="code">firebase serve</code></p>
+          <div class="text-center">
+            <img src="img/class16/firebase-serve.png" alt="">
+          </div>
+          <p>&#149; Open <code class="code">http://localhost:5000</code> in your browser</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Once verified locally, deploy w/ <code class="code">firebase deploy</code></p>
+          <div class="text-center">
+            <img src="img/class16/firebase-deploy.png" alt="">
+          </div>
+          <p>&#149; Vist the <code class="code">Hosting URL</code> to see your app live</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Deployment</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Visit your "Hosting" page for more information</p>
+          <div class="text-center">
+            <img src="img/class16/firebase-hosting.png" alt="">
+          </div>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Note:</h1>
+        <p>We will be covering hosting with <a href="https://heroku.com" target="_blank">Heroku</a> once we learn how a bit of Node and Express</p>
+      </section>
+
+      <!-- THE END -->
+      <section class="center">
+        <img src="img/main/the-end.jpg">
+      </section>
+
+      <!-- ON DECK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #17 (of 20) - Node and Express</h4>
+        <div class="pad-left-lg">
+          <p>&#149; Server-side JavaScript with Node.js</p>
+          <p>&#149; Web servers overview</p>
+          <p>&#149; Express.js</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Exit Tickets!</h1>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="../js/analytics.js"></script>
+</body>
+</html>
