@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -48,10 +48,170 @@
       <!-- AGENDA -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">Agenda</div>
+        <p>&#149; <a href="#/firebase-authentication">Firebase Authentication</a></p>
         <p>&#149; <a href="#/deployment-overview">Deployment Overview</a></p>
         <p>&#149; <a href="#/github-pages">GitHub Pages</a></p>
         <p>&#149; <a href="#/surge">Surge.sh</a></p>
         <p>&#149; <a href="#/firebase-deployment">Firebase Deployment</a></p>
+      </section>
+
+      <!-- FIREBASE AUTHENTICATION -->
+      <section class="title" id="firebase-authentication">
+        <h1>Firebase Authentication</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Many apps require users to login before posting</p>
+          <p>&#149; <a href="https://firebase.google.com/docs/auth/" target="_blank">Firebase Authentication</a> provides SDKs + UI libraries for easy authentication</p>
+          <p>&#149; Offers OAuth through: Google, FB, Twitter, GitHub, etc.</p>
+          <p>&#149; Handles annoyances: password confirmation email/resets</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <p class="text-smaller">&#149; Visit "Develop > Authentication" to setup user auth</p>
+        <div class="text-center">
+          <img src="img/class16/firebase-authentication.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <p class="text-smaller">&#149; Enable "Email/Password" provider</p>
+        <div class="text-center">
+          <img src="img/class16/firebase-email-password-auth.png" alt="">
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Firebase provides a <a href="https://firebase.google.com/docs/auth/web/firebaseui" target="_blank">UI library</a> for user input</p>
+<pre><code>
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth())
+
+  var uiConfig = {
+    callbacks: {
+      signInSuccessWithAuthResult: function() {
+        return false;
+      },
+    },
+    signInOptions: [
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+  }
+
+  ui.start('#firebaseui-auth-container', uiConfig)
+
+</code></pre>
+          <p>&#149; <code class="code">signInOptions</code> can take an array of OAuth proivders (Google, GitHub)</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smallest">
+          <p>&#149; We need to provide the HTML for Firebase UI:</p>
+<pre><code>
+  &lt;div id="sign-in-container">
+      &lt;h1 class="text-center">Welcome to the Keanu Fan Club&lt;/h1>
+      &lt;div id="firebaseui-auth-container">&lt;/div>
+  &lt;/div>
+
+  // don't forget to add this id!
+  &lt;div id="message-board-container" class="container">
+    ...
+
+</code></pre>
+          <p>&#149; We also need the following CSS:</p>
+<pre><code>
+  #message-board-container,
+  #sign-in-container {
+    display: none;
+  }
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Use <code class="code">firebase.auth()</code> to determine if a user is logged in</p>
+          <p>&#149; Based on the user's status, hide/show elements in the DOM</p>
+<pre><code>
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      $('#sign-in-container').hide()
+      $('#message-board-container').show()
+    } else {
+      $('#sign-in-container').show()
+      $('#message-board-container').hide()
+    }
+  })
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smallest">
+          <p>&#149; We want to keep a record of which user added a comment:</p>
+          <p>&#149; <code class="code">firebase.auth().currentUser</code> gets the logged-in user</p>
+<pre><code>
+  messagesReference.push({
+    message: message,
+    votes: 0,
+    // add a `user` property to each message
+    user: firebase.auth().currentUser.displayName,
+  })
+
+</code></pre>
+          <div class="fragment">
+            <p>&#149; Then surface this value on the message board:</p>
+<pre><code>
+  var user = msg.val().user
+  var id = msg.key
+  var $li = $('&lt;li>').text(message + ' - ' + user)
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Firebase Authentication</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Lastly, we need to provide the ability to logout</p>
+          <p>&#149; Update the HTML with an icon:</p>
+<pre><code>
+  &lt;div class="navbar-header text-danger">
+    &lt;h1>Keanu Fan Club&lt;/h1>
+  &lt;/div>
+  &lt;i id="sign-out" class="fa fa-sign-out" aria-hidden="true">&lt;/i>
+
+</code></pre>
+        <p>&#149; Then add the following JS:</p>
+<pre><code>
+  $('#sign-out').click(function() {
+    firebase.auth().signOut()
+  })
+
+</code></pre>
+        </div>
       </section>
 
       <!-- DEPLOYMENT OVERVIEW -->
