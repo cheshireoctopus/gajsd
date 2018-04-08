@@ -49,6 +49,7 @@
         <p>&#149; <a href="#/node">Node.js</a></p>
         <p>&#149; <a href="#/http-node">HTTP & Node</a></p>
         <p>&#149; <a href="#/express">Express</a></p>
+        <p>&#149; <a href="#/routing">Request Routing</a></p>
       </section>
 
       <!-- NODE.JS -->
@@ -196,29 +197,6 @@
           </div>
       </section>
 
-      <!-- <section data-background="#FFF" class="text-left">
-        <div class="heading">Node: Getting Started</div>
-
-        <div class="text-smallest">
-          <p>&#149; Let's add the npm packages we will be using:</p>
-          <div class="pad-left-lg">
-            <p>&rArr; Express</p>
-            <p>&rArr; Faker</p>
-            <p>&rArr; Request</p>
-          </div>
-          <p>&#149; Install one at a time: <code class="code">npm install express --save</code></p>
-          <p>&#149; Or, all at once:</p>
-            <p>&#149; Recording installed packages is a convenient way to know from a glance the project's dependencies</p>
-          <p>&#149; These packages are stored in the <code class="code">node_modules</code> directory</p>
-<pre><code>
-  npm install express faker request --save
-
-</code></pre>
-          <p>&#149; The <code class="code">--save</code> flag records these modules in the <code class="code">package.json</code> file</p>
-          <p>&#149; These packages are stored in the <code class="code">node_modules</code> directory</p>
-        </div>
-      </section> -->
-
       <!-- HTTP & NODE -->
       <section class="title" id="http-node">
         <h1>HTTP & Node</h1>
@@ -262,7 +240,7 @@
 
   // Tell the server to listen on port 1337
   server.listen(1337, function() {
-    console.log('The magic is happening on 1337!')
+    console.log('The magic is going down on 1337!')
   })
 
 </code></pre>
@@ -302,42 +280,66 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Express.js: Overview</div>
 
-        <p>&#149; While useful, the native <code class="code">http</code> module can be difficult to work with:</p>
-        <p>&#149; <a href="https://expressjs.com/" target="_blank">Express.js</a> is a light-weight, easy-to-use, web framework for Node</p>
-        <p>&#149; Used to help organize web apps on the server-side</p>
-        <p>&#149; Abstracts of lot of Node's inner-workings to speed/ease application development</p>
-        <p>&#149; Notable features:</p>
-        <div class="pad-left-lg">
-          <p>&rArr; Router</p>
-          <p>&rArr; HTTP request handling</p>
-          <p>&rArr; Middleware</p>
+        <div class="text-smallest">
+          <p>&#149; While useful, the native <code class="code">http</code> module can be difficult to work with</p>
+          <p>&#149; <a href="https://expressjs.com/" target="_blank">Express.js</a> is a light-weight, easy-to-use, web framework for Node</p>
+          <p>&#149; Used to help organize web apps on the server-side</p>
+          <p>&#149; Abstracts Node's internals to speed/ease application development</p>
+          <p>&#149; Notable features:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Router</p>
+            <p>&rArr; HTTP request handling</p>
+            <p>&rArr; Middleware</p>
+          </div>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">Express.js: Setup</div>
-
-        <div class="text-smallest">
-          <p>Add the following to <code class="code">index.js</code>:</p>
+        <div class="heading">Express.js: Installation</div>
+      
+        <div class="text-smaller">
+          <p>&#149; As Express is a package, install it using <code class="code">npm:</code></p>
 <pre><code>
-  var express = require('express');
-  var path = require('path');
-
-  var app = express();
-
-  app.get('/', function (req, res) {
-    res.send('Hello, World!');
-  });
-
-  app.listen(1337, function () {
-    console.log('The magic is going down on 1337!')
-  });
+  $ npm install --save express
 
 </code></pre>
-          <p>&#149; Builds a new Express application</p>
-          <p>&#149; Creates a new <u>route</u> at <code class="code">/</code> that reponds to <code class="code">get</code> requests</p>
-          <p>&#149; Listens for incoming HTTP request on port 1337</p>
-          <p>&#149; Kick off your app by running <code class="code">nodemon</code>; open <code class="code">http://localhost:1337/</code> in your browser</p>
+          <p>&#149; The <code class="code">--save</code> flag records the install in the <code class="code">package.json</code> file:</p>
+<pre><code>
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+
+</code></pre>
+          <p>&#149; Listing dependencies show what packages the project needs</p>
+          <p>&#149; These packages live in the <code class="code">node_modules</code> directory</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js: Setup</div>
+      
+        <div class="text-smallest">
+          <p>&#149; To use Express, require it in <code class="code">index.js</code>:</p>
+<pre><code>
+  var express = require('express')
+
+</code></pre>
+          <p>&#149; Then, quickly setup a web server:</p>
+<pre><code>
+  // Create a new express application
+  var app = express()
+
+  // Add a route at "/" that responds to GET requests
+  app.get('/', function(request, response) {
+    response.send('Hello, World!')
+  })
+
+  // Listens for HTTP requests on port 1337
+  app.listen(1337, function() {
+    console.log('The magic is going down on 1337!')
+  })
+
+</code></pre>
         </div>
       </section>
 
@@ -345,33 +347,27 @@
         <div class="heading">Express.js: Setup</div>
 
         <div class="text-smallest">
-          <p>&#149; To send an actual HTML file, we need to do a few things:</p>
+          <p>&#149; To send static assets as a response, we need to:</p>
           <div class="pad-left-lg">
-            <p>1) Create a <code class="code">public</code> directory to hold our HTML, CSS, and JS files:</p>
-            <div class="pad-left-lg">
-              <p>&rArr; <code class="code">index.html</code></p>
-              <p>&rArr; <code class="code">styles.css</code></p>
-              <p>&rArr; <code class="code">app.js</code></p>
-            </div>
+            <p>1) Create a <code class="code">public</code> directory to hold HTML, CSS, and JS files</p>
             <p>2) Tell Express where this public directory is:</p>
 <pre><code>
-  app.use(express.static('public'));
+  app.use(express.static('public'))
 
 </code></pre>
             <p>3) Return the <code class="code">index.html</code> on the <code class="code">app.get('/', ...</code> route:</p>
 <pre><code>
-  app.get('/', function (req, res) {
-    res.send('index.html');
-  });
+  app.get('/', function(request, response) {
+    response.send('index.html')
+  })
 
 </code></pre>
           </div>
         </div>
       </section>
 
-      <section class="center">
-        <h1>Next Step:</h1>
-        <h2>Add Routes and Backend Application Logic</h2>
+      <section class="title" id="routing">
+        <h1>Request Routing</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -628,12 +624,10 @@
       <!-- ON DECK -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">What's On Deck</div>
-        <h4>Class #18 (of 20) - Student Choice</h4>
+        <h4>Class #18 (of 20)</h4>
         <div class="pad-left-lg">
+          <p>&#149; Node Parameters</p>
           <p>&#149; In-class project work</p>
-          <p>&#149; Heroku + Node Deployment</p>
-          <p>&#149; D3.js</p>
-          <p>&#149; JS Debugging</p>
         </div>
       </section>
 
