@@ -49,7 +49,8 @@
         <p>&#149; <a href="#/node">Node.js</a></p>
         <p>&#149; <a href="#/http-node">HTTP & Node</a></p>
         <p>&#149; <a href="#/express">Express</a></p>
-        <p>&#149; <a href="#/routing">Request Routing</a></p>
+        <p>&#149; <a href="#/routing">Routing</a></p>
+        <p>&#149; <a href="#/requests">Requests</a></p>
       </section>
 
       <!-- NODE.JS -->
@@ -367,36 +368,54 @@
       </section>
 
       <section class="title" id="routing">
-        <h1>Request Routing</h1>
+        <h1>Routing</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Express.js: Routing</div>
 
         <div class="text-smallest">
-          <p>&#149; Routes allow for functionality built on top of the HTTP methods</p>
+          <p>&#149; Routing determines how an app responds to requests to a particular endpoint</p>
           <p class="fragment">&#149; Our app already has one route:</p>
           <div class="fragment">
 <pre><code>
-  app.get('/', function (req, res) {
-    res.send('index.html');
-  });
+  app.get('/', function(request, response) {
+    response.send('index.html')
+  })
 
 </code></pre>
           </div>
           <div class="fragment">
-            <p>&#149; Whenever a <code class="code">GET</code> request is made to the root of our Node server <code class="code">/</code>, Express responds with a callback:</p>
+            <p>&#149; <code class="code">GET</code> requests to the root of our server - <code class="code">/</code> - are handled with a callback:</p>
 <pre><code>
-  function (req, res) {
-    res.send('index.html');
+  function(request, response) {
+    response.send('index.html')
   }
 
 </code></pre>
           </div>
+          
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js Routing</div>
+      
+        <div class="text-smaller">
+          <p>&#149; What happens when you visit <code class="code">localhost:1337/test</code>?</p>
           <div class="fragment">
-            <p>&#149; This callback has two arguments: <code class="code">req</code> and <code class="code">res</code></p>
-            <p>&#149; <code class="code">req</code> is an object representing our <u>HTTP request</u></p>
-            <p>&#149; <code class="code">res</code> is an object representing our <u>HTTP response</u></p>
+            <p>&#149; To enable behavior at <code class="code">/test</code>, add a route:</p>
+<pre><code>
+  app.get('/', function(request, response) {
+    response.send('index.html')
+  })
+
+  // the new route
+  app.get('/test', function(request, response) {
+    res.send('This is a test route!')
+  })
+
+</code></pre>
           </div>
         </div>
       </section>
@@ -404,46 +423,48 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Express.js: Routing</div>
 
-        <p>Express makes it easy to handle all HTTP methods:</p>
+        <div class="text-smaller">
+          <p>Express makes it easy to handle all HTTP methods:</p>
 <pre><code>
   // GET
-  app.get('/', function (req, res) {
-    res.send('Received a GET request');
-  });
+  app.get('/', function(request, reqsponse) {
+    response.send('Received a GET request')
+  })
 
   // POST
-  app.post('/', function (req, res) {
-    res.send('Received a POST request');
-  });
+  app.post('/', function(request, reqsponse) {
+    response.send('Received a POST request')
+  })
 
   // PUT
-  app.put('/', function (req, res) {
-    res.send('Received a PUT request');
-  });
+  app.put('/', function(request, reqsponse) {
+    response.send('Received a PUT request')
+  })
 
   // DELETE
-  app.delete('/user', function (req, res) {
-    res.send('Received a DELETE request');
-  });
+  app.delete('/user', function(request, reqsponse) {
+    response.send('Received a DELETE request')
+  })
 
 </code></pre>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Express.js: Routing</div>
 
-        <p>&#149; Let's add a new route that will return our random geolocation data:</p>
-        <div class="fragment">
+        <div class="text-smaller">
+          <p>&#149; Add a route that will (soon) return random geo-location data:</p>
 <pre><code>
-  app.get('/geo', function (req, res) {
-    res.send('I am working!');
-  });
+  app.get('/geo', function(request, response) {
+    res.send('fetching geo data!')
+  })
 
 </code></pre>
+          <p>&#149; As we want to <u>read</u> data, use <code class="code">app.get()</code></p>
+          <p>&#149; The route we are accessing is <code class="code">/geo</code></p>
+          <p>&#149; For now, return a string to test if the route is working</p>
         </div>
-        <p class="fragment">&#149; We are fetching data, so we will use <code class="code">app.get()</code></p>
-        <p class="fragment">&#149; The route which we will hit is <code class="code">/geo</code></p>
-        <p class="fragment">&#149; For now, we are just returning a string to test if our route is working</p>
       </section>
 
       <section data-background="#FFF" class="text-left">
@@ -452,7 +473,6 @@
         <div class="text-smallest">
           <p>&#149; How can we test our new route?</p>
           <p class="fragment">&#149; Enter the path in the browser: <code class="code">http://localhost:1337/geo</code></p>
-          <p class="fragment">&#149; What JS tool can we use to make a request to our <code class="code">/geo</code> endpoint?</p>
           <div class="fragment">
             <p>&#149; We could use an AJAX request; add the following to your <code class="code">public/app.js</code>:</p>
 <pre><code>
@@ -460,12 +480,14 @@
     url: '/geo',
     type: 'GET',
     success: function (response) {
-      console.log(response);
-    },
-    error: function (xhr) {
-      console.log(xhr);
+      console.log(response)
     }
-  });
+  })
+
+</code></pre>
+            <p>&#149; Be sure to add the jQuery CDN:</p>
+<pre><code>
+  &lt;script src="https://cdnjs.com/libraries/jquery/">&lt;/script>
 
 </code></pre>
           </div>
@@ -473,45 +495,68 @@
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">Express.js: Application Logic</div>
+        <div class="heading">Express.js: Routing</div>
 
-        <p>Now that our route is working, let's add some application logic:</p>
-        <div class="pad-left-lg">
-          <p class="fragment">1) Require the <code class="code">faker</code> package into your <code class="code">index.js</code></p>
-          <p class="fragment">2) Generate random geo-data in the <code class="code">/geo</code> callback</p>
-          <p class="fragment">3) Return this data to the frontend as a JSON object</p>
-          <p class="fragment">4) Update the AJAX call to handle the new response</p>
+        <div class="text-smaller">
+          <p>With a working route, let's add some application logic:</p>
+          <div class="pad-left-lg">
+            <p class="fragment">1) Require the <code class="code">faker</code> package into your <code class="code">index.js</code></p>
+            <p class="fragment">2) Generate random geo-data in the <code class="code">/geo</code> callback</p>
+            <p class="fragment">3) Return this data to the frontend as a JSON object</p>
+            <p class="fragment">4) Update the AJAX call to handle the new response</p>
+          </div>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
-        <div class="heading">Express.js: Application Logic</div>
+        <div class="heading">Express.js: Routing</div>
 
-        <p>&#149; To use the <code class="code">faker</code> pacakge, you must require it:</p>
+        <div class="text-smaller">
+          <p>&#149; <a href="https://github.com/Marak/faker.js" target="_blank">Faker</a> is a package used to generate <a href="http://needanidea.herokuapp.com/" target="_blank">fake data</a>:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; Addresses</p>
+            <p>&rArr; Companies</p>
+            <p>&rArr; Images</p>
+            <p>&rArr; Names</p>
+          </div>
+          <p>&#149; To install, use npm:</p>
 <pre><code>
-  var faker = require('faker');
-
-</code></pre>
-        <div class="fragment">
-          <p>&#149; Update the <code class="code">/geo</code> route to send an object containing the geo-data:</p>
-<pre><code>
-  app.get('/geo', function (req, res) {
-    var latitude = faker.address.latitude();
-    var longitude = faker.address.longitude();
-
-    res.send({
-      lat: latitude,
-      lng: longitude,
-    });
-  });
+  $ npm install --save faker
 
 </code></pre>
         </div>
       </section>
 
-      <section class="center">
-        <h1>Next Step:</h1>
-        <h2>Making HTTP RequestS from Node</h2>
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js: Routing</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Like Express, to use the Faker package, require it:</p>
+<pre><code>
+  var express = require('express')
+  var faker = require('faker')
+
+</code></pre>
+          <div class="fragment">
+            <p>&#149; Update the <code class="code">/geo</code> route to send an object containing the geo-data:</p>
+<pre><code>
+  app.get('/geo', function (req, res) {
+    var latitude = faker.address.latitude()
+    var longitude = faker.address.longitude()
+
+    res.send({
+      lat: latitude,
+      lng: longitude,
+    })
+  })
+
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="title" id="request">
+        <h1>Requests w/ Node</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
