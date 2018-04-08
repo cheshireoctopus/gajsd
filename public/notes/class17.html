@@ -46,38 +46,41 @@
       <!-- AGENDA -->
       <section data-background="#FFF" class="text-left">
         <div class="heading">Agenda</div>
-        <p>&#149; <a href="#/firebase-authentication">Firebase Authentication</a></p>
-        <p>&#149; <a href="#/deployment-overview">Deployment Overview</a></p>
-        <p>&#149; <a href="#/github-pages">GitHub Pages</a></p>
-        <p>&#149; <a href="#/surge">Surge.sh</a></p>
-        <p>&#149; <a href="#/firebase-deployment">Firebase Deployment</a></p>
+        <p>&#149; <a href="#/node">Node.js</a></p>
+        <p>&#149; <a href="#/express">Express</a></p>
       </section>
 
       <!-- NODE.JS -->
-      <section class="center">
+      <section class="title" id="node">
         <h1>Node.js</h1>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Note: Preface</div>
 
-        <p>&#149; So far, we have only developed on the <u>client-side</u> of the <u>client-server</u> model</p>
-        <p>&#149; While Firebase provided us with a backend (server/API/database) ... we actually didn't build it</p>
-        <p>&#149; Tonight, we will leverage Node.js, to create a JavaScript-powered server-side application</p>
+        <div class="text-smaller">
+          <p>&#149; We have only developed the <u>client</u> of the <u>client/server</u> model</p>
+          <p>&#149; Firebase provided us with a backend (server/API/database)...</p>
+          <p>&#149; ...but we didn't have to build it</p>
+          <div class="fragment">
+            <p>&#149; Tonight we are working across the stack</p>
+            <p>&#149; Using Node/Express to create a JS-powered server-side app</p>
+          </div>
+        </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
         <div class="heading">Node: Overview</div>
-        <p>&#149; Node(<a href="https://en.wikipedia.org/wiki/Node.js">source</a>):</p>
-        <blockquote class="text-smaller">
-          Node.js is an open-source, cross-platform runtime environment for developing server-side Web applications
-        </blockquote>
-        <div class="fragment">
-          <p>&#149; Enables JavaScript on the server (the backend)</p>
-          <p>&#149; Written in C, C++, and JS (so, not a JS framework)</p>
-          <p>&#149; Interprets JS using Chrome's <a href="https://developers.google.com/v8/">V8 engine</a></p>
-          <p>&#149; Module driven; see Node Package Manager (<a href="https://www.npmjs.com/">npm</a>)</p>
-          <p>&#149; Event-driven, asychronous (non-blocking) input/output</p>
+
+        <div class="text-smaller">
+          <p>&#149; <a href="https://nodejs.org/en/" target="_blank">Node.js</a> is an open-source, cross-platform runtime environment for developing server-side Web applications</p>
+          <div class="fragment">
+            <p>&#149; Enables JavaScript on the server (the backend)</p>
+            <p>&#149; Written in C, C++, and JS (so, not a JS framework)</p>
+            <p>&#149; Interprets JS using Chrome's <a href="https://developers.google.com/v8/">V8 engine</a></p>
+            <p>&#149; Module driven; see Node Package Manager (<a href="https://www.npmjs.com/">npm</a>)</p>
+            <p>&#149; Event-driven, asychronous (non-blocking) input/output</p>
+          </div>
         </div>
       </section>
 
@@ -85,15 +88,15 @@
         <div class="heading">Node: npm</div>
 
         <div class="text-smaller">
-          <p>&#149; <a href="https://www.npmjs.com/" target="_blank">Node Package Manager</a> (npm); ships with Node</p>
-          <p>&#149; Allows developers to easily pull in modules for their projects</p>
+          <p>&#149; <a href="https://www.npmjs.com/" target="_blank">Node Package Manager</a> (npm) - ships with Node</p>
+          <p>&#149; Allows easy installation/mgmt of packages</p>
           <p>&#149; Most often, there is no need to re-invent the wheel</p>
           <p>&#149; Installed packages are kept in a project's <code class="code">package.json</code></p>
-          <p>&#149; Some popular packages (as of August, 2016):</p>
-          <div class="pad-left-lg">
+          <p>&#149; A few packages we will be using tonight:</p>
+          <div class="pad-left-lg text-smaller">
             <p>&rArr; <a href="https://www.npmjs.com/package/express" target="_blank">express</a>: minimalist web framework</p>
-            <p>&rArr; <a href="https://www.npmjs.com/package/requests" target="_blank">request</a>: simple HTTP request client</p>
-            <p>&rArr; <a href="https://www.npmjs.com/package/nodemon" target="_blank">nodemon</a>: monitor for Node development</p>
+            <p>&rArr; <a href="https://www.npmjs.com/package/request" target="_blank">request</a>: simple HTTP request client</p>
+            <p>&rArr; <a href="https://www.npmjs.com/package/nodemon" target="_blank">nodemon</a>: monitoring for Node development</p>
           </div>
         </div>
       </section>
@@ -119,70 +122,101 @@
         <div class="heading">Node: Getting Started</div>
 
         <div class="text-smallest">
-          <p>&#149; To begin a Node app, run <code class="code">npm init</code> from the command line:</p>
+          <p>&#149; Create a new directory - <code class="code">node_project</code> - and run <code class="code">npm init</code> from within it</p>
+          <p>&#149; <code class="code">npm init</code> helps configure Node applications; most prompts are optional</p>
           <div class="text-center">
-            <img src="../img/class17/node-init.png" alt="">
+            <img src="img/class17/node-init.png" alt="">
           </div>
-          <p>&#149; All the prompts are <b>OPTIONAL</b>; most have default values</p>
-          <p>&#149; You will now have a <code class="code">package.json</code> file at your directory root</p>
         </div>
       </section>
 
       <section data-background="#FFF" class="text-left">
+        <div class="heading">Node: Getting Started</div>
+      
+        <div class="text-smallest">
+          <p>&#149; You should now see a <code class="code">package.json</code> file at the project root</p>
+<pre><code>
+  {
+    "name": "node_project",
+    "version": "1.0.0",
+    "description": "First node project",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+
+</code></pre>
+          <p>&#149; Used for configuration: name, version, author, dependencies, etc.</p>
+          <p>&#149; Every Node project will need a new configuration</p>
+          <p>&#149; <a href="https://docs.npmjs.com/files/package.json" target="_blank">More info</a></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Node: Getting Started</div>
+
+        <div class="text-smaller">
+          <p>&#149; Part of this configuration is the <code class="code">main</code> property</p>
+          <p>&#149; This specifies the first file to run (the entry point to the app)</p>
+<pre><code>
+  "main": "index.js",
+
+</code></pre>
+          <p>&#149; Create this file via <code class="code">touch index.js</code>; add the following to it:</p>
+<pre><code>
+  console.log('Hello, World!')
+
+</code></pre>
+          <p>&#149; Run the file using <code class="code">node index.js</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Node: Getting Started</div>
+      
+        <div class="text-smallest">
+          <p>&#149; Changes to Node projects require restarting the app</p>
+          <p>&#149; The <a href="http://nodemon.io/" target="_blank">nodemon</a> package listens for changes and restarts the app automatically
+          </p>
+          <div class="fragment">
+            <p>1) Install via <code class="code">npm install -g nodemon</code></p>
+            <p>2) Run <code class="code">nodemon</code> from the command line</p>
+            <p>3) Add a new line to <code class="code">index.js</code>:</p>
+<pre><code>
+  console.log('How are things on Spaceship Earth?')
+
+</code></pre>
+              <p>4) Check your terminal for output</p>
+              <p>&#149; <b>Note:</b> Use <code class="code">control</code> + <code class="code">c</code> (OSX) to stop nodemon</p>
+            </div>
+          </div>
+      </section>
+
+      <!-- <section data-background="#FFF" class="text-left">
         <div class="heading">Node: Getting Started</div>
 
         <div class="text-smallest">
           <p>&#149; Let's add the npm packages we will be using:</p>
           <div class="pad-left-lg">
             <p>&rArr; Express</p>
-            <p>&rArr; Nodemon</p>
             <p>&rArr; Faker</p>
             <p>&rArr; Request</p>
           </div>
           <p>&#149; Install one at a time: <code class="code">npm install express --save</code></p>
           <p>&#149; Or, all at once:</p>
+            <p>&#149; Recording installed packages is a convenient way to know from a glance the project's dependencies</p>
+          <p>&#149; These packages are stored in the <code class="code">node_modules</code> directory</p>
 <pre><code>
-  npm install express nodemon faker request --save
+  npm install express faker request --save
 
 </code></pre>
           <p>&#149; The <code class="code">--save</code> flag records these modules in the <code class="code">package.json</code> file</p>
           <p>&#149; These packages are stored in the <code class="code">node_modules</code> directory</p>
         </div>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Node: Getting Started</div>
-
-        <p>&#149; When we ran <code class="code">npm init</code>, we specified an entry point for our Node app: <code class="code">index.js</code></p>
-        <p>&#149; This is the first file to run when the Node app starts</p>
-        <p>&#149; Add this file using <code class="code">touch index.js</code>, and add to it:</p>
-<pre><code>
-  console.log('Hello, World!');
-
-</code></pre>
-        <p>&#149; Test the file by running <code class="code">node index.js</code> from the command line</p>
-      </section>
-
-      <section data-background="#FFF" class="text-left">
-        <div class="heading">Node: Getting Started</div>
-
-        <div class="text-smallest">
-          <p>&#149; Next, let's see Nodemon in action:</p>
-          <div class="pad-left-lg">
-            <p>1) Run <code class="code">nodemon</code> from the command line (may have to install globally)</p>
-            <p>2) Add a new line to <code class="code">index.js</code>:</p>
-<pre><code>
-  console.log('How are things on Spaceship Earth?');
-
-</code></pre>
-            <p>3) Go back to your command line; you should see the following:</p>
-          </div>
-          <div class="text-center">
-            <img src="../img/class17/nodemon-restart.png" alt="">
-          </div>
-          <p>&#149; Use <code class="code">control</code> + <code class="code">c</code> to stop nodemon</p>
-        </div>
-      </section>
+      </section> -->
 
       <section class="center">
         <h1>Next Step:</h1>
@@ -516,7 +550,7 @@
 
       <!-- THE END -->
       <section class="center">
-        <img src="../img/main/the-end.jpg">
+        <img src="img/main/the-end.jpg">
       </section>
 
       <!-- ON DECK -->
