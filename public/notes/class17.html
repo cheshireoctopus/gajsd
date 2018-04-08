@@ -47,6 +47,7 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Agenda</div>
         <p>&#149; <a href="#/node">Node.js</a></p>
+        <p>&#149; <a href="#/http-node">HTTP & Node</a></p>
         <p>&#149; <a href="#/express">Express</a></p>
       </section>
 
@@ -218,9 +219,79 @@
         </div>
       </section> -->
 
-      <section class="center">
-        <h1>Next Step:</h1>
-        <h2>Setup an Express-powered HTTP server</h2>
+      <!-- HTTP & NODE -->
+      <section class="title" id="http-node">
+        <h1>HTTP & Node</h1>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP & Node</div>
+      
+        <div class="text-smaller">
+          <p>&#149; As mentioned, Node is <a href="https://nodejs.org/api/modules.html" target="_blank">module driven</a></p>
+          <p>&#149; Conceptually, think of modules as JS libraries</p>
+          <p>&#149; In order to use modules, we must require/import them</p>
+          <div class="fragment">
+            <p>&#149; By default, Node ships with an <a href="https://nodejs.org/dist/latest-v8.x/docs/api/http.html#http_http" target="_blank">HTTP</a> package</p>
+            <p>&#149; To use it, require it into <code class="code">index.js</code>:</p>
+<pre><code>
+  var http = require('http')
+
+</code></pre>
+            <p>&#149; You now have access to Node's HTTP module via <code class="code">http</code></p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP & Node</div>
+      
+        <div class="text-smaller">
+          <p>&#149; Using the HTTP module to easily create a web server</p>
+          <p>&#149; Add the following to <code class="code">index.js</code>; then visit <code class="code">localhost:1337</code></p>
+<pre><code>
+  // Create a new server
+  var server = http.createServer(function(request, response) {
+    // Log out the request method and url
+    console.log(request.method, request.url)
+    // Write the response
+    response.write('&lt;h1>Hello World!&lt;/h1>')
+    // End the response
+    response.end()
+  })
+
+  // Tell the server to listen on port 1337
+  server.listen(1337, function() {
+    console.log('The magic is happening on 1337!')
+  })
+
+</code></pre>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">HTTP & Node</div>
+      
+        <div class="text-smallest">
+          <p>&#149; <code class="code">http.createServer</code> takes a function as argument</p>
+          <p>&#149; This function will run everytime a request is made to the server</p>
+<pre><code>
+  var server = http.createServer(function(request, response) {
+    // Log out the request
+    console.log(req)
+    // Write the response
+    res.write('&lt;h1>Hello World!&lt;/h1>')
+    // End the response
+    res.end()
+  })
+
+</code></pre>
+          <p>&#149; It provides two objects to help handle the request:</p>
+          <div class="pad-left-lg">
+            <p>&rArr; <code class="code">request</code> - contains information about the incoming request</p>
+            <p>&rArr; <code class="code">response</code> - represents the outgoing response</p>
+          </div>
+        </div>
       </section>
 
       <!-- EXPRESS.JS -->
@@ -231,6 +302,7 @@
       <section data-background="#FFF" class="text-left">
         <div class="heading">Express.js: Overview</div>
 
+        <p>&#149; While useful, the native <code class="code">http</code> module can be difficult to work with:</p>
         <p>&#149; <a href="https://expressjs.com/" target="_blank">Express.js</a> is a light-weight, easy-to-use, web framework for Node</p>
         <p>&#149; Used to help organize web apps on the server-side</p>
         <p>&#149; Abstracts of lot of Node's inner-workings to speed/ease application development</p>
