@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JSD: Class 18</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/general-assembly.css" id="theme">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="stylesheet" href="css/zenburn.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="center">
+        <h1>Express.js: Parameters</h1>
+      </section>
+
+      <section class="center">
+        <h1>Express.js: Parameters</h1>
+        <div class="text-left">
+          <p>1) Open up <code class="code">node_maps_two</code> in Sublime Text</p>
+          <p>2) From the command line, run <code class="code">nodemon</code></p>
+          <p class="fragment">3) What is the error message?</p>
+          <p class="pad-left-lg fragment">&rArr; <code class="code">Error: Cannot find module 'express'</code></p>
+          <div class="fragment">4) Install npm modules using <code class="code">npm install</code></div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js: Parameters</div>
+
+        <p>&#149; Last week, we covered how to:</p>
+        <div class="pad-left-lg text-smaller">
+          <p class="fragment">1) Setup a Node app using <code class="code">npm init</code> and <code class="code">npm install</code></p>
+          <p class="fragment">2) Start a simple web server using Express.js</p>
+          <p class="fragment">3) Create routes using <code class="code">app.get()</code></p>
+          <p class="fragment">4) Send static assets - <code class="code">index.html</code> - to the frontend</p>
+          <p class="fragment">4) Make an HTTP request from our server using <code class="code">request</code></p>
+          <p class="fragment">5) Send a JSON response to the frontend via <code class="code">res.send()</code></p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js: Parameters</div>
+        <p>&#149; Tonight, we will learn how to:</p>
+        <div class="pad-left-lg text-smaller">
+          <p class="fragment">&rArr; Add additional routes to Express</p>
+          <p class="fragment">&rArr; Allow users to submit data to the server using parameters</p>
+        </div>
+        <div class="fragment">
+          <p>&#149; Our goals:</p>
+          <div class="pad-left-lg text-smaller">
+            <p class="framgent">&rArr; Use <code class="code">navigator.geolocation</code> to get the weather at a user's current location</p>
+            <p class="fragment">&rArr; Allow the user to fetch the weather by inputting a city</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js: Parameters</div>
+
+        <p>&#149; In order to get weather at the user's current location, we need to:</p>
+        <div class="pad-left-lg text-smaller">
+          <p class="fragment">1) Use <code class="code">navigator.geolocation</code> to get our user's current location</p>
+          <p class="fragment">2) Send this location to our server using <code class="code">$.ajax()</code></p>
+          <p class="fragment">3) Handle the request using <code class="code">app.get()</code></p>
+          <p class="fragment">4) Make an HTTP request with the location to OpenWeatherMap API</p>
+          <p class="fragment">5) Send this response as a JSON object to the frontend</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js: Parameters</div>
+
+        <p>1) Use <code class="code">navigator.geolocation</code> to get our user's current location"</p>
+        <div class="fragment">
+          <p>&#149; Inside of <code class="code">app.js</code>, add:</p>
+<pre><code>
+  navigator.geolocation.getCurrentPosition( function (position) {
+    console.log(position);
+
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+
+    console.log(lat, lng);
+  });
+
+</code></pre>
+          <p>&#149; Refresh your node server and ensure these coordinates are logged to the console</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js: Parameters</div>
+        <p>2) Send this location to our server using <code class="code">$.ajax()</code></p>
+        <div class="fragment">
+<pre><code>
+  function fetchGeoWeather (lat, lng) {
+    $.ajax({
+      url: '/coords/lat/' + lat + '/lng/' + lng,
+      type: 'GET',
+      success: function (response)  {
+        console.log(response);
+      },
+      error: function (xhr) {
+        console.log(xhr);
+      }
+      })
+  }
+
+</code></pre>
+          <p>&#149; Note the <code class="code">url</code> option</p>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js Parameters</div>
+        <p>3) Handle the request using <code class="code">app.get()</code></p>
+        <div class="fragment text-smallest">
+        <p>&#149; Inside of <code class="code">index.js</code>:</p>
+<pre><code>
+  app.get('/coords/lat/:lat/lng/:lng', function (req, res) {
+    console.log(req)
+  })
+
+</code></pre>
+          <p>&#149; Parameters are denoted in URL paths using <code class="code">:</code></p>
+          <p>&#149; In this example, we have two parameters, <code class="code">:lat</code> and <code class="code">:lng</code></p>
+          <div class="fragment">
+            <p>&#149; Make sure to call <code class="code">fetchGeoWeather(lat, lng);</code> in <code class="code">app.js</code></p>
+            <p>&#149; Refresh your node server, refresh the browser, and then check your server logs</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js Parameters</div>
+
+        <p>&#149; To access the <code class="code">params</code> object in Express:</p>
+<pre><code>
+  app.get('/coords/lat/:lat/lng/:lng', function (req, res) {
+    var params = req.params;
+    var latitude = params.lat;
+    var longitude = params.lng;
+
+    console.log(latitude, longitude);
+
+    res.send({
+      lat: latitude,
+      lng: longitude
+    });
+  })
+
+</code></pre>
+        <p>&#149; Recall: <code class="code">res.send()</code> is how we send a response to the frontend</p>
+      </section>
+
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">Express.js Parameters</div>
+
+        <div class="text-smallest">
+          <p>4 + 5) Make an HTTP request with the location to OpenWeatherMap API</p>
+          <p>&#149; Similar to our first Node app, we will use the <code class="code">request</code> module:</p>
+<pre><code>
+  app.get('/coords/lat/:lat/lng/:lng', function (req, res) {
+    var params = req.params;
+    var latitude = params.lat;
+    var longitude = params.lng;
+
+    var weatherKey = '19ab861f15cfd2e8216a3be1ed615598';
+    var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey
+
+    // uses the "request" package to make a HTTP request from the Node server to the OpenWeatherMap API
+    request(weatherURL, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        res.send({
+          weather: JSON.parse(body),
+          lat: latitude,
+          lng: longitude,
+        });
+      }
+    })
+  })
+
+</code></pre>
+        </div>
+      </section>
+
+      <!-- THE END -->
+      <section class="center">
+        <img src="../img/main/the-end.jpg">
+      </section>
+
+      <!-- ON DECK -->
+      <section data-background="#FFF" class="text-left">
+        <div class="heading">What's On Deck</div>
+        <h4>Class #20 (of 20) - Final Presentations</h4>
+        <div class="pad-left-lg">
+          <p>&rArr; Good times</p>
+          <p>&rArr; Presentations</p>
+          <p>&rArr; Beer + Wine</p>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>Exit Tickets!</h1>
+      </section>  
+    </div>
+  </div>
+
+  <script src="js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="../js/analytics.js"></script>
+</body>
+</html>
